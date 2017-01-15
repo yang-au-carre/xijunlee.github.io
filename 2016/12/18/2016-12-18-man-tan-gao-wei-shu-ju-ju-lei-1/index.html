@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://github.com/xijunlee/xijunlee.github.io/blob/master/images/high-dimensional-clustering1/pic3.jpg?raw=true">
 <meta property="og:image" content="https://github.com/xijunlee/xijunlee.github.io/blob/master/images/high-dimensional-clustering1/pic4.jpg?raw=true">
 <meta property="og:image" content="https://github.com/xijunlee/xijunlee.github.io/blob/master/images/high-dimensional-clustering1/pic5.jpg?raw=true">
-<meta property="og:updated_time" content="2017-01-15T08:52:01.000Z">
+<meta property="og:updated_time" content="2017-01-15T08:56:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="漫谈高维数据聚类(1)">
 <meta name="twitter:description" content="摘要：
@@ -216,17 +216,17 @@
 <h3 id="2-1K均值聚类算法"><a href="#2-1K均值聚类算法" class="headerlink" title="2.1K均值聚类算法"></a>2.1K均值聚类算法</h3><p>为简单起见，我就又举个栗子来说明这个算法吧。</p>
 <img src="https://github.com/xijunlee/xijunlee.github.io/blob/master/images/high-dimensional-clustering1/pic5.jpg?raw=true">
 <p>如上图所示，总共有A,B,C,D,E五个样本，要将其聚成k=2类。其中，灰色点是类中心。K均值算法的流程如下：</p>
-<p>1）类中心初始化。这里可以直接取任意k个样本作为初始类中心{Ci}(i=1,..,k)，也可以随意取这些样本之外的k个点作为类中心{Ci}；</p>
-<p>2）计算每一个样本Pi到k个类中心{Ci}的距离，将样本Pi划到与其距离最近的类中心Cj所在的类中去，即若Cj是到Pi最近的类中心，则将Pi归到第j类中去；</p>
+<p>1）类中心初始化。这里可以直接取任意k个样本作为初始类中心${C_i}(i=1,..,k)$，也可以随意取这些样本之外的k个点作为类中心${C_i}$；</p>
+<p>2）计算每一个样本Pi到k个类中心${C_i}$的距离，将样本Pi划到与其距离最近的类中心${C_j}$所在的类中去，即若${C_j}$是到${P_i}$最近的类中心，则将${P_i}$归到第j类中去；</p>
 <p>3）更新类中心。根据第2）步的聚类结果，计算新的类中心，较直接的方法是取该类中所有样本各坐标的均值作为新类中心的各坐标值。</p>
-<p>4）重复步骤2），3），直到k 个类中心不再发生变化，即得到最后的聚类结果；</p>
+<p>4）重复步骤2），3），直到k个类中心不再发生变化，即得到最后的聚类结果；</p>
 <p>步骤3）中是最简单的更新类中心的方法，但还有其他的求类中心的方法：</p>
 <p>1、Minkowski Distance公式——λ可以随意取值：</p>
-<p>$d<em>{ij}=\lambda\sqrt{\sum</em>{k=1}^{n}|x<em>{ik}-x</em>{jk}|^\lambda}$</p>
+<p>$$d<em>{ij}=\lambda\sqrt{\sum</em>{k=1}^{n}|x<em>{ik}-x</em>{jk}|^\lambda}$$</p>
 <p>2、Euclidean Distance公式——第一个公式λ=2的情况：</p>
-<p>$d<em>{ij}=\sqrt{\sum</em>{k=1}^{n}(x<em>{ik}-x</em>{jk})^2}$</p>
+<p>$$d<em>{ij}=\sqrt{\sum</em>{k=1}^{n}(x<em>{ik}-x</em>{jk})^2}$$</p>
 <p>3、CityBlock Distance公式——第一个公式λ=1的情况：</p>
-<p>$d<em>{ij}=\sum</em>{k=1}^n|x<em>{ik}-x</em>{jk}|$</p>
+<p>$$d<em>{ij}=\sum</em>{k=1}^n|x<em>{ik}-x</em>{jk}|$$</p>
 <hr>
 <p>好了，以上就是对于聚类问题以及传统聚类算法的一个简单介绍，下一章中我将介绍针对高维数据聚类的子空间聚类算法。</p>
 

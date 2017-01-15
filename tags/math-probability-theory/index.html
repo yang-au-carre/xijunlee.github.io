@@ -6,26 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="//xijunlee.github.io">
-  <title>漫谈高维数据聚类(2):子空间聚类 | Xijun&#39;s Safari</title>
+  <title>Tag: math probability theory | Xijun&#39;s Safari</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要
-如今处理高维数据的问题往往会有两座“大山”，分别是存储成本高和计算时间过长。显然，这是因为数据的高维数造成的。面对大规模的高维数据的聚类任务，传统的聚类算法有点hold不住了，正因此，子空间分割算法应运而生。
-前面的一篇文章应该是解释清楚了啥是聚类，也安利了一个经典的聚类算法——K均值聚类。本篇开始正式介绍一些子空间聚类算法，以及这些聚类算法的应用实例。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="漫谈高维数据聚类(2):子空间聚类">
-<meta property="og:url" content="//xijunlee.github.io/2016/12/22/2016-12-22-man-tan-gao-wei-shu-ju-ju-lei-2-zi-kong-jian-ju-lei/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Xijun's Safari">
+<meta property="og:url" content="//xijunlee.github.io/tags/math-probability-theory/index.html">
 <meta property="og:site_name" content="Xijun's Safari">
-<meta property="og:description" content="摘要
-如今处理高维数据的问题往往会有两座“大山”，分别是存储成本高和计算时间过长。显然，这是因为数据的高维数造成的。面对大规模的高维数据的聚类任务，传统的聚类算法有点hold不住了，正因此，子空间分割算法应运而生。
-前面的一篇文章应该是解释清楚了啥是聚类，也安利了一个经典的聚类算法——K均值聚类。本篇开始正式介绍一些子空间聚类算法，以及这些聚类算法的应用实例。">
-<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/C83B7ACE-76BC-4D9C-A24B-DFA41C1244D1.png">
-<meta property="og:updated_time" content="2017-01-15T09:17:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="漫谈高维数据聚类(2):子空间聚类">
-<meta name="twitter:description" content="摘要
-如今处理高维数据的问题往往会有两座“大山”，分别是存储成本高和计算时间过长。显然，这是因为数据的高维数造成的。面对大规模的高维数据的聚类任务，传统的聚类算法有点hold不住了，正因此，子空间分割算法应运而生。
-前面的一篇文章应该是解释清楚了啥是聚类，也安利了一个经典的聚类算法——K均值聚类。本篇开始正式介绍一些子空间聚类算法，以及这些聚类算法的应用实例。">
-<meta name="twitter:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/C83B7ACE-76BC-4D9C-A24B-DFA41C1244D1.png">
+<meta name="twitter:title" content="Xijun's Safari">
   
     <link rel="alternative" href="/atom.xml" title="Xijun&#39;s Safari" type="application/atom+xml">
   
@@ -155,201 +143,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2016-12-22-man-tan-gao-wei-shu-ju-ju-lei-2-zi-kong-jian-ju-lei" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      漫谈高维数据聚类(2):子空间聚类
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/12/28/2016-12-28-bo-song-fen-bu-yu-zhi-shu-fen-bu-de-zhong-xin-li-jie/" class="archive-article-date">
+  	<time datetime="2016-12-28T03:01:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-28</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/12/28/2016-12-28-bo-song-fen-bu-yu-zhi-shu-fen-bu-de-zhong-xin-li-jie/">泊松分布与指数分布的重新理解</a>
     </h1>
   
 
-        
-        <a href="/2016/12/22/2016-12-22-man-tan-gao-wei-shu-ju-ju-lei-2-zi-kong-jian-ju-lei/" class="archive-article-date">
-  	<time datetime="2016-12-22T01:46:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><hr>
-<p>如今处理高维数据的问题往往会有两座“大山”，分别是存储成本高和计算时间过长。显然，这是因为数据的高维数造成的。面对大规模的高维数据的聚类任务，传统的聚类算法有点hold不住了，正因此，子空间分割算法应运而生。</p>
-<p>前面的一篇文章应该是解释清楚了啥是聚类，也安利了一个经典的聚类算法——K均值聚类。本篇开始正式介绍一些子空间聚类算法，以及这些聚类算法的应用实例。</p>
-<a id="more"></a>
-<h2 id="1-什么是子空间聚类"><a href="#1-什么是子空间聚类" class="headerlink" title="1.什么是子空间聚类"></a>1.什么是子空间聚类</h2><blockquote>
-<p>给定一个n个样本构成的矩阵$X=[x_1, x_2, …, x_n]\in R^{m*n},x_i \in  R^m$，并且已知这n个样本是分别来自k个子空间${S_i},i=1, …, k$。令${d_i&lt;m,i=1,…,k}$表示k个子空间的维度（其中$d_i$是未知的）。子空间聚类的目的是将这个n个样本正确地划归到各自所属的子空间中去，即将n个样本聚成k类，每一个类就是一个子空间。</p>
-</blockquote>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/C83B7ACE-76BC-4D9C-A24B-DFA41C1244D1.png">
-<p>从上图可以看到，总共有三个子空间，每个子空间上都有一些样本，位于同一个子空间内的样本就可以说是同一类的。每一个子空间有其相应的维数d,和一组基$[b_1,b_2,…,b_d]$，由这组基可以表示该子空间中任意一个向量。</p>
-<h2 id="2-稀疏表示模型和低秩表示模型"><a href="#2-稀疏表示模型和低秩表示模型" class="headerlink" title="2.稀疏表示模型和低秩表示模型"></a>2.稀疏表示模型和低秩表示模型</h2><p>目前，有四大类主流的求解子空间聚类问题的算法，分别是：</p>
-<p>（1）基于统计的方法：混合数据假设是从服从某一概率分布（如混合高斯分布）中抽取出的独立样本集，于是数据的分割问题就转化为一模型估计问题。代表性的工作有凝聚有损压缩[2]和随机抽样一致[1]；</p>
-<p>（2）基于矩阵分解的方法：将数据矩阵分解为一正交基矩阵和一低秩矩阵的乘积，从分解结果的结构来揭示聚类的特性。当子空间含有噪声和奇异值，或者独立子空间的假设不成立时，此类方法的效果不尽人意。代表性的工作有K子空间分割[4]；</p>
-<p>（3）基于代数的方法：可以处理子空间不是相互独立的情况，但计算量大，且对噪声和奇异值敏感。代表性的工作有Generalized PCA(GPCA)[3]；</p>
-<p>（4）基于谱聚类的方法：谱聚类算法是一种对高维数据进行聚类的技术。基于谱聚类的子空间分割算法先根据观测样本求得一个相似矩阵，然后对这个相似矩阵进行谱聚类获得最终的聚类结果。代表性的工作有稀疏子空间聚类[5]和低秩表示子空间聚类[6][7]。</p>
-<p>而我要安利的是基于谱聚类的两个算法：稀疏表示子空间聚类算法和低秩表示子空间聚类算法，这两个算法都是比较简单和直观的，是子空间聚类研究这一块的基石性的算法，很多新算法都是在这两个算法的基础上加以改进而提出来的。当然，想要弄清楚这两个算法，还是需要一些简单的线性代数知识的。</p>
-<h3 id="稀疏表示-Sparse-Representation"><a href="#稀疏表示-Sparse-Representation" class="headerlink" title="稀疏表示(Sparse Representation)"></a>稀疏表示(Sparse Representation)</h3><p>稀疏表示这一概念的提出，说到底还是受到压缩感知理论[8][9]的启发。该理论认为很多高维数据是冗余的，如果其具有可压缩性，那么可以只需要通过少量的采样便可恢复原始高维数据。更简单地说就是，许多高维数据是存在其低维表示的。</p>
-<p>学过线性代数的都应该知道线性相关这一概念，即向量组$X=[x_1,x_2,…,x_n]$,其中$x_i$是$X$的列向量，若存在不全为0 的系数$a_1,a_2,…,a_n$，使得$a_1<em>x_1+a_2</em>x_2+…+a_n<em>x_n=0$成立，则说$x_1,x_2,…,x_n$是线性相关的，如若$a_i$不等于零，那$x_i$就可以被其余向量线性表示，即$x_i=-(a_1</em>x_1+a_2<em>x<em>2+…a</em>{i-1}</em>x<em>{i-1}+a</em>{i+1}<em>x_{i+1}+…+a_n</em>x_n)/a_i$。</p>
-<p>有了以上两个认知，就可以理解稀疏表示了。在前面提到过位于同一个子空间中的样本，如果样本数足够多，那么某一个样本$x_i$是可以被与它位于同一个子空间中的其他样本线性表示的，而我们希望用尽量少的样本来表示$x_i$$，这就是稀疏表示的简单理解，用数学语言描述该模型如下：</p>
-<p>给定一个n个样本构成的矩阵$X=[x_1,x_2,…,x_n]\in R^{m<em>n},x<em>i\in R^m$,其中每一列是一个样本，由$X$中d个样本构成一个“字典”$D=[x</em>{i1},x<em>{i2},…,x</em>{id}]\in R^{m</em>d}$,$D$中每一列成为原子。那么，每一个样本都可以表示成“字典”中原子的线性组合：</p>
-<p>$$X=DZ$$</p>
-<p>其中,$Z=[z_1,z_2,…,z_n]$是系数矩阵，$z_i$是样本$x_i$的“表示”。而字典$D$通常是过完备的，因为经常是选取全部样本作为字典，即$d=n$。因此，上市会有多个解。但是如给系数矩阵加上约束，则会有唯一解。稀疏表示即是要求系数矩阵$Z$是最稀疏的，即</p>
-<p>$$\min \Arrowvert Z \Arrowvert_1$$</p>
-<p>$$s.t.\quad X=DZ$$</p>
-<p>其中，$\Arrowvert \cdot\Arrowvert_1$是求矩阵所有元素的绝对值的和。进一步，这个模型还可以加上噪声，即</p>
-<p>$$\min \Arrowvert Z \Arrowvert_1+\lambda\Arrowvert E\Arrowvert_F$$</p>
-<p>$$s.t.\quad X=DZ+E$$</p>
-<h3 id="低秩表示-Low-rank-Representation"><a href="#低秩表示-Low-rank-Representation" class="headerlink" title="低秩表示(Low-rank Representation)"></a>低秩表示(Low-rank Representation)</h3><p>低秩表示模型和稀疏表示模型几乎一样，区别仅在于对系数矩阵的约束不同，在低秩表示中，它期望系数表示矩阵Z尽可能的低秩，用数学语言描述如下:</p>
-<p>$$ \min rank(Z)$$</p>
-<p>$$s.t.\quad X=DZ$$</p>
-<p>其中,$rank(Z)$表示矩阵$Z$的秩。与$\ell _0$范数一样，秩函数也具有离散组合性质，因此求解上式是一个NP难得。但是如果上式存在一个较低秩的解的话，秩优化问题可以被松弛为核范数最小化问题，即:</p>
-<p>$$\min \Arrowvert Z \Arrowvert_*$$</p>
-<p>$$s.t.\quad X=DZ$$</p>
-<p>其中，$\Arrowvert \cdot \Arrowvert_*$是矩阵的核范数。松弛的原理可以这么理解，一个矩阵的秩等于其非零奇异值的个数。那么矩阵的秩最小化等价于矩阵的奇异值非零个数尽量少，进一步可以松弛为矩阵的所有奇异值的和尽量小。</p>
-<p>低秩表示模型是在稀疏表示模型之后提出来的，当然它比稀疏表示模型的性能更好，这是因为低秩表示模型中的核函数自带聚集属性，具体的原因我推荐论文[10]中的讲解（在其第五章中）。</p>
-<p>##上述两个模型的求解</p>
-<p>求解这两个模型的方法有很多，有兴趣的朋友可以参阅论文[11]。</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1]Fischler M., Bolles R. RANSAC random sample consensus: a paradigm for model fitting with applications to image analysis and automated cartography. Journal of ACM, 1981, 24(6): 381–395.</p>
-<p>[2]Ma Y., Derksen H., Hong W., Wright J. Segmentation of multivariate mixed data via lossy coding and compression. IEEE Trans. Pattern Analysis and Machine Intelligence, 2007, 29(9): 1546–1562.</p>
-<p>[3]Vidal R., Ma Y., Sastry S. Generalized principal component analysis (GPCA). IEEE Trans. Pattern Analysis and Machine Intelligence, 2005, 27(12): 1–15.</p>
-<p>[4]Lu L., Vidal R. Combined central and subspace clustering on computer vision applications. In: Proc. 23rd Int’l Conf. Machine Learning (ICML), 2006, pp.593–600.</p>
-<p>[5] Elhamifar E, Vidal R. Sparse subspace clustering[J]. IEEE Conference on Computer Vision and Pattern Recognition, Cvpr, 2009:2790 - 2797.</p>
-<p>[6]G L, Z L, S Y, et al. Robust Recovery of Subspace Structures by LowRank Representation[J]. Pattern Analysis &amp; Machine Intelligence IEEE Transactions on, 2010, 35(1):171 - 184.</p>
-<p>[7]X G, K Z, D T, et al. Image SuperResolution With Sparse Neighbor Embedding[J]. IEEE Transactions on Image Processing, 2012, 21(7):3194 - 3205.</p>
-<p>[8]Donoho D L． Compressed sensing． IEEE Transactions on Information Theory,2006 52(4)：1289-1306．</p>
-<p>[9]Cand6s E．Compressive sampling．Proceedings of Proceedings of Inter-national Congress of Mathematicians，2006．1433-1452．</p>
-<p>[10] 卢参义. 基于稀疏表示的人脸分类与聚类[D]. 中国科学技术大学, 2012. DOI:10.7666/d.y2126052.</p>
-<p>[11]Lin Z, Chen M, Ma Y. The Augmented Lagrange Multiplier Method for Exact Recovery of Corrupted Low-Rank Matrices[J]. Eprint Arxiv, 2010.</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">machine learning clustering</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">math probability theory</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://xijunlee.github.io/2016/12/22/2016-12-22-man-tan-gao-wei-shu-ju-ju-lei-2-zi-kong-jian-ju-lei/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2016/12/24/2016-12-24-you-bi-ge-de-hua-tu-cong-gnuplotshuo-qi/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          有逼格的画图从gnuplot说起
-        
-      </div>
-    </a>
   
   
-    <a href="/2016/12/21/2016-12-21-wan-hadoopzhong-yu-dao-de-keng/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">玩Hadoop中遇到的坑</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-
-  
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="2016-12-22-man-tan-gao-wei-shu-ju-ju-lei-2-zi-kong-jian-ju-lei" data-title="漫谈高维数据聚类(2):子空间聚类" data-url="//xijunlee.github.io/2016/12/22/2016-12-22-man-tan-gao-wei-shu-ju-ju-lei-2-zi-kong-jian-ju-lei/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"xijun"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
+    </div></section>
   
 
-
+    
 
 
           </div>
@@ -372,9 +219,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

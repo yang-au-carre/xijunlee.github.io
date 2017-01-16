@@ -6,14 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="//xijunlee.github.io">
-  <title>Tag: academic plotting | Xijun&#39;s Safari</title>
+  <title>算法导论学习之二叉查找树的删除操作 | Xijun&#39;s Safari</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Xijun's Safari">
-<meta property="og:url" content="//xijunlee.github.io/tags/academic-plotting/index.html">
+  <meta name="description" content="写在前面的话虽然二叉树很简单，但是其中的删除操作还是有些麻烦的。看完算导关于本节的内容后，动手实现了一遍，发现自己写的代码虽然功能能实现，但是代码很丑，究其原因就是我并没有仔细总结删除操作中三种情况的共性，所以自己写的代码有很多冗余。回头看算导上的伪代码，发现自己还是太naive，认真总结了下三种情形的共同特点，又重新有了收获，以后也可以裸写二叉树的删除操作了。
+在本篇中，我只会阐述我对于删除操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法导论学习之二叉查找树的删除操作">
+<meta property="og:url" content="//xijunlee.github.io/2017/01/16/算法导论学习之二叉查找树的删除操作/index.html">
 <meta property="og:site_name" content="Xijun's Safari">
+<meta property="og:description" content="写在前面的话虽然二叉树很简单，但是其中的删除操作还是有些麻烦的。看完算导关于本节的内容后，动手实现了一遍，发现自己写的代码虽然功能能实现，但是代码很丑，究其原因就是我并没有仔细总结删除操作中三种情况的共性，所以自己写的代码有很多冗余。回头看算导上的伪代码，发现自己还是太naive，认真总结了下三种情形的共同特点，又重新有了收获，以后也可以裸写二叉树的删除操作了。
+在本篇中，我只会阐述我对于删除操作">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/erchashu/img1.jpeg">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/erchashu/img2.jpeg">
+<meta property="og:updated_time" content="2017-01-16T10:18:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xijun's Safari">
+<meta name="twitter:title" content="算法导论学习之二叉查找树的删除操作">
+<meta name="twitter:description" content="写在前面的话虽然二叉树很简单，但是其中的删除操作还是有些麻烦的。看完算导关于本节的内容后，动手实现了一遍，发现自己写的代码虽然功能能实现，但是代码很丑，究其原因就是我并没有仔细总结删除操作中三种情况的共性，所以自己写的代码有很多冗余。回头看算导上的伪代码，发现自己还是太naive，认真总结了下三种情形的共同特点，又重新有了收获，以后也可以裸写二叉树的删除操作了。
+在本篇中，我只会阐述我对于删除操作">
+<meta name="twitter:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/erchashu/img1.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="Xijun&#39;s Safari" type="application/atom+xml">
   
@@ -143,60 +153,197 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-算法导论学习之二叉查找树的删除操作" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/24/2016-12-24-you-bi-ge-de-hua-tu-cong-gnuplotshuo-qi/" class="archive-article-date">
-  	<time datetime="2016-12-24T12:29:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-24</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/24/2016-12-24-you-bi-ge-de-hua-tu-cong-gnuplotshuo-qi/">有逼格的画图从gnuplot说起</a>
+    <h1 class="article-title" itemprop="name">
+      算法导论学习之二叉查找树的删除操作
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/01/16/算法导论学习之二叉查找树的删除操作/" class="archive-article-date">
+  	<time datetime="2017-01-16T10:13:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><p>虽然二叉树很简单，但是其中的删除操作还是有些麻烦的。看完算导关于本节的内容后，动手实现了一遍，发现自己写的代码虽然功能能实现，但是代码很丑，究其原因就是我并没有仔细总结删除操作中三种情况的共性，所以自己写的代码有很多冗余。回头看算导上的伪代码，发现自己还是太naive，认真总结了下三种情形的共同特点，又重新有了收获，以后也可以裸写二叉树的删除操作了。</p>
+<p>在本篇中，我只会阐述我对于删除操作的理解，因为前面的遍历、插入、查找等操作都十分简单易懂易实现，当然还有一个前提是需要对二叉树的基本性质有起码的理解。</p>
+<a id="more"></a>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/erchashu/img1.jpeg">
+<p>图1 二叉树删除操作的三种情况:a)被删除节点z没有任何子女 b)被删节点z有一个子女 c)被删节点z有两个子女</p>
+<p>总共有三种情况：</p>
+<ol>
+<li>被删除节点z没有任何子女。是最简单的情况，将z父节点12的儿子指针置为null，再free掉节点z就好;</li>
+<li>被删节点z有且只有有一个子女。这个情况稍微麻烦点，但说起来比较容易，将节点z的父节点15和其唯一子节点20连接起来就好，然后free掉节点z就好;</li>
+<li>被删节点z有两个子女。这个是最复杂的，但是其基本思想还是没变，将第三种情况转化为第二种情况处理即可。那么怎么做呢？解决方法就是去找z的后继（后继是什么？就是比节点z中关键字5大的所有节点中最小的那个，说起来很拗口是吧，就是图中关键字为6的节点y）。要删除有两个子女的节点z，就去找它的后继节点y，它的后继节点y能保证只有一个右儿子（为什么？如果它的后继节点有左儿子，那么节点y就不可能是z的后继节点。算导书上p155 练习 12.2-5有要求证明，不懂的可以稍微思考下）。基于上述事实，我们找到了z的后继节点y，那么就已经将情况3转化为了情况2了，接下来要做的操作就是将y的父节点10与y的子节点7连起来。这时还没做完，因为z才是待删除的节点，我们要将节点z出的关键字替换为节点y的关键字，如图中所示。然后free掉节点y。</li>
+</ol>
+<p>以上就是对三种情形的处理方法，可以涵盖所有的节点删除可能出现的情形。从上面可以看到，情况2是一般形式，情况1是情况2的最简单形式，情况3是情况2的最复杂形式，但是都可以转化成情况2。有了以上认识，我们就可以看清楚算法导论上伪代码的意图了，也方便我们以后裸写二叉树的删除操作了。下面我解释下伪代码是如何具体实现这些操作的。</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/erchashu/img2.jpeg">
+<p>第2~4行，是判断待删除节点是什么类型的。如果是有且只有一个子节点或没有子节点的节点，那么y=z。若是有两个子节点的节点，那么就去找它的后继，因此y=TREE-SUCCESSOR(z)，（真正要删除的节点是y）；</p>
+<p>第5~7行，是获得节点y的子节点x。因为节点y能保证一定是只有一个儿子的（或者没有儿子，也就是说x==null）；</p>
+<p>第8~14行，便是将节点y的子节点和其父节点“连接起来”。</p>
+<p>第15~16行，是替换关键字的操作。因为y有可能是z的后继，所以要将节点z的关键字替换为节点y的关键字。<br>最后，删除节点y即可。</p>
+<p>finally,贴上我利用c++实现的一系列二叉树操作的代码，请见笑了╭(′▽`)╯：</p>
+<p>```c<br>// 二叉查找树.cpp : 定义控制台应用程序的入口点。<br>//</p>
+<p>#include “stdafx.h”</p>
+<p>#include <stdlib.h></stdlib.h></p>
+<p>#include <stdio.h></stdio.h></p>
+<p>#include <iostream><br>using namespace std;</iostream></p>
+<p>typedef struct dataType<br>{<br>    int key;<br>    dataType <em>p;<br>    dataType </em>left;<br>    dataType *right;<br>}node;</p>
+<p>node *root;</p>
+<p>void INORDER_TREE_WALK(node *x)//中序遍历<br>{<br>    if (x != NULL)<br>    {<br>        INORDER_TREE_WALK(x-&gt;left);<br>        cout &lt;&lt; x-&gt;key &lt;&lt; endl;<br>        INORDER_TREE_WALK(x-&gt;right);<br>    }<br>    return;<br>}</p>
+<p>node<em> TREE_SEARCH(node </em>x, int k)<br>{<br>    if (x == NULL || k == x-&gt;key)<br>        return x;<br>    else<br>    {<br>        if (k &lt; x-&gt;key)<br>            x = x-&gt;left;<br>        else<br>            x = x-&gt;right;<br>        return TREE_SEARCH(x, k);<br>    }<br>}</p>
+<p>node<em> TREE_MAXIMUM(node </em>x)<br>{<br>    while (x-&gt;right != NULL)<br>    {<br>        x = x-&gt;right;<br>    }<br>    return x;<br>}</p>
+<p>node<em> TREE_MINIMUM(node </em>x)<br>{<br>    while (x-&gt;left != NULL)<br>    {<br>        x = x-&gt;left;<br>    }<br>    return x;<br>}</p>
+<p>node<em> TREE_SUCCESSOR(node </em>x)<br>{<br>    if (x-&gt;right != NULL)<br>        return TREE_MINIMUM(x-&gt;right);<br>    node* y = x-&gt;p;<br>    while (y!=NULL &amp;&amp; y-&gt;right==x)<br>    {<br>        x = y;<br>        y = y-&gt;p;<br>    }<br>    return y;<br>}</p>
+<p>node<em> TREE_PREDECESSOR(node </em>x)<br>{<br>    if (x-&gt;left != NULL)<br>        return TREE_MAXIMUM(x-&gt;left);<br>    node* y = x-&gt;p;<br>    while (y != NULL &amp;&amp; y-&gt;left == x)<br>    {<br>        x = y;<br>        y = y-&gt;p;<br>    }<br>    return y;<br>}</p>
+<p>void TREE_INSERT(node <em>T, node </em>z)<br>{<br>    node <em>y = NULL;<br>    node </em>x = T;<br>    while (x != NULL)<br>    {<br>        y = x;<br>        if (z-&gt;key &lt; x-&gt;key)<br>            x = x-&gt;left;<br>        else<br>            x = x-&gt;right;<br>    }<br>    z-&gt;p = y;<br>    if (y == NULL)//则新插入的节点作为树根<br>        T = z;<br>    else<br>    {<br>        if (y-&gt;key &gt; z-&gt;key)<br>            y-&gt;left = z;<br>        else<br>            y-&gt;right = z;<br>    }<br>}</p>
+<p>void TREE_DELETE(node <em>T, node </em>z)<br>{<br>    node <em>y,</em>x;<br>    if (z-&gt;left == NULL || z-&gt;right == NULL)<br>        y = z;<br>    else<br>        y = TREE_SUCCESSOR(z);<br>    if (y-&gt;left != NULL)<br>        x = y-&gt;left;<br>    else<br>        x = y-&gt;right;<br>    if (x != NULL)<br>        x-&gt;p = y-&gt;p;<br>    if (y-&gt;p == NULL)<br>    {<br>        T = x;<br>    }<br>    else<br>    {<br>        if (y == y-&gt;p-&gt;left)<br>            y-&gt;p-&gt;left = x;<br>        else<br>            y-&gt;p-&gt;right = x;<br>    }<br>    if (y != z)<br>        z-&gt;key = y-&gt;key;<br>    delete y;<br>}</p>
+<p>node<em> ALLOCATE_NODE(int k)<br>{<br>    node </em>tmp = new node;<br>    tmp-&gt;key = k;<br>    tmp-&gt;p = NULL;<br>    tmp-&gt;left = NULL;<br>    tmp-&gt;right = NULL;<br>    return tmp;<br>}</p>
+<p>int _tmain(int argc, _TCHAR* argv[])<br>{<br>    int a[] = { 15, 5, 3, 16, 20, 12, 10, 6, 7, 13, 18, 23 };</p>
+<pre><code>root = ALLOCATE_NODE(15);
+for (int i = 1; i &lt; 12; i++)
+{
+    TREE_INSERT(root, ALLOCATE_NODE(a[i]));
+}
+INORDER_TREE_WALK(root);
+/*
+cout &lt;&lt; &quot;the MAXIMUM in this tree&quot; &lt;&lt; TREE_MAXIMUM(root)-&gt;key &lt;&lt; endl;
+cout &lt;&lt; &quot;the MINIMUM in this tree&quot; &lt;&lt; TREE_MINIMUM(root)-&gt;key &lt;&lt; endl;
+cout &lt;&lt; TREE_PREDECESSOR(TREE_SEARCH(root, 15))-&gt;key &lt;&lt; endl;
+cout &lt;&lt; TREE_SUCCESSOR(TREE_SEARCH(root, 15))-&gt;key &lt;&lt; endl;*/
+node *tmp = TREE_SEARCH(root, 18);
+TREE_DELETE(root, tmp);
+cout &lt;&lt; &quot;After delete the node 3:&quot; &lt;&lt; endl;
+INORDER_TREE_WALK(root);
+return 0;
+</code></pre><p>}</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">academic plotting</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algorithm</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://xijunlee.github.io/2017/01/16/算法导论学习之二叉查找树的删除操作/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/01/15/又从octopress迁移到hexo了……/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">又从octopress迁移到hexo了……</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="算法导论学习之二叉查找树的删除操作" data-title="算法导论学习之二叉查找树的删除操作" data-url="//xijunlee.github.io/2017/01/16/算法导论学习之二叉查找树的删除操作/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"xijun"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-    
+
 
 
           </div>
@@ -219,9 +366,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

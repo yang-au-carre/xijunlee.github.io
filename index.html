@@ -145,6 +145,71 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-算法导论学习之二叉查找树的删除操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/16/算法导论学习之二叉查找树的删除操作/">算法导论学习之二叉查找树的删除操作</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/16/算法导论学习之二叉查找树的删除操作/" class="archive-article-date">
+  	<time datetime="2017-01-16T10:13:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><p>虽然二叉树很简单，但是其中的删除操作还是有些麻烦的。看完算导关于本节的内容后，动手实现了一遍，发现自己写的代码虽然功能能实现，但是代码很丑，究其原因就是我并没有仔细总结删除操作中三种情况的共性，所以自己写的代码有很多冗余。回头看算导上的伪代码，发现自己还是太naive，认真总结了下三种情形的共同特点，又重新有了收获，以后也可以裸写二叉树的删除操作了。</p>
+<p>在本篇中，我只会阐述我对于删除操作的理解，因为前面的遍历、插入、查找等操作都十分简单易懂易实现，当然还有一个前提是需要对二叉树的基本性质有起码的理解。</p>
+        
+          <a class="article-more-a" href="/2017/01/16/算法导论学习之二叉查找树的删除操作/#more">More >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algorithm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/16/算法导论学习之二叉查找树的删除操作/">Show All >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-又从octopress迁移到hexo了……" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -598,72 +663,6 @@
 
 
   
-    <article id="post-2016-12-18-man-tan-gao-wei-shu-ju-ju-lei-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/18/2016-12-18-man-tan-gao-wei-shu-ju-ju-lei-1/">漫谈高维数据聚类(1)</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/18/2016-12-18-man-tan-gao-wei-shu-ju-ju-lei-1/" class="archive-article-date">
-  	<time datetime="2016-12-18T02:25:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="摘要："><a href="#摘要：" class="headerlink" title="摘要："></a>摘要：</h2><p>从高维数据中挖掘出有效信息并揭示其内在规律和本质，逐渐成为数据挖掘、机器学习、模式识别等领域的热点研究问题。其中，对于高维数据的聚类是一个最基本的，也是研究得最多的问题。传统的聚类算法，如K-means算法，已经无法胜任处理大规模高维数据聚类的任务。子空间分割算法正是为了解决高维数据聚类问题而被提出来，逐渐成为学术界研究的热点问题。</p>
-<p>写在括号里的话：（其实这是我本科毕设的内容，当时做了两个月，觉得还比较有意思。花两三个月做毕设是有点多余的，期间很是拖沓。我觉得这个课题还是蛮有趣的，和实际应用联系得很紧密，所以我就来安利一下子空间聚类算法 (￣︶￣)</p>
-<h2 id="1-什么是高维数据？"><a href="#1-什么是高维数据？" class="headerlink" title="1.什么是高维数据？"></a>1.什么是高维数据？</h2><p>高维数据，顾名思义就是维数很高的数据（废话），像图像、视频这些最常见的数据就是高维数据，它们的维数至少都是上百维的。这么说不直观，我们来看下实际研究中是如何处理一张图像数据的。</p>
-        
-          <a class="article-more-a" href="/2016/12/18/2016-12-18-man-tan-gao-wei-shu-ju-ju-lei-1/#more">More >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">machine learning clustering</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/18/2016-12-18-man-tan-gao-wei-shu-ju-ju-lei-1/">Show All >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -770,6 +769,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">dairy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">reading life</a>
               </li>
              
@@ -778,23 +781,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Hadoop distributed computing</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">academic plotting</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dairy</a>
+                <a href="javascript:void(0)" class="js-tag color4">Hadoop distributed computing</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">math probability theory</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">academic plotting</a>
               </li>
              
               <li class="article-tag-list-item">

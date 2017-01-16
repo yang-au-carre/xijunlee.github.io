@@ -18,7 +18,7 @@
 在本篇中，我只会阐述我对于删除操作">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/erchashu/img1.jpeg">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/erchashu/img2.jpeg">
-<meta property="og:updated_time" content="2017-01-16T10:19:47.000Z">
+<meta property="og:updated_time" content="2017-01-16T10:21:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法导论学习之二叉查找树的删除操作">
 <meta name="twitter:description" content="写在前面的话虽然二叉树很简单，但是其中的删除操作还是有些麻烦的。看完算导关于本节的内容后，动手实现了一遍，发现自己写的代码虽然功能能实现，但是代码很丑，究其原因就是我并没有仔细总结删除操作中三种情况的共性，所以自己写的代码有很多冗余。回头看算导上的伪代码，发现自己还是太naive，认真总结了下三种情形的共同特点，又重新有了收获，以后也可以裸写二叉树的删除操作了。
@@ -191,7 +191,8 @@
 <p>第8~14行，便是将节点y的子节点和其父节点“连接起来”。</p>
 <p>第15~16行，是替换关键字的操作。因为y有可能是z的后继，所以要将节点z的关键字替换为节点y的关键字。<br>最后，删除节点y即可。</p>
 <p>finally,贴上我利用c++实现的一系列二叉树操作的代码，请见笑了╭(′▽`)╯：</p>
-<p>```c<br>// 二叉查找树.cpp : 定义控制台应用程序的入口点。<br>//</p>
+<p>```c</p>
+<p>// 二叉查找树.cpp : 定义控制台应用程序的入口点。<br>//</p>
 <p>#include “stdafx.h”</p>
 <p>#include <stdlib.h></stdlib.h></p>
 <p>#include <stdio.h></stdio.h></p>
@@ -224,7 +225,8 @@ TREE_DELETE(root, tmp);
 cout &lt;&lt; &quot;After delete the node 3:&quot; &lt;&lt; endl;
 INORDER_TREE_WALK(root);
 return 0;
-</code></pre><p>}<br>‘’’</p>
+</code></pre><p>}</p>
+<p>‘’’</p>
 
       
 

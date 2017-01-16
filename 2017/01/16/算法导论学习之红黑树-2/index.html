@@ -9,23 +9,20 @@
   <title>算法导论学习之红黑树(2) | Xijun&#39;s Safari</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="写在前面的话这一章具体介绍红黑树的删除操作，以及我对删除一系列操作的理解。
-话不多说，我先直接给出算导上关于删除操作的伪代码（这伪代码几乎就可以当作实现代码了，不过还是要搞懂原理）
-红黑树的删除操作删除操作伪代码123456789101112131415161718RB-DELETE(T,z)  if left[z] == nil[T] || right[z] == nil[T]    then">
+话不多说，我先直接给出算导上关于删除操作的伪代码（这伪代码几乎就可以当作实现代码了，不过还是要搞懂原理）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法导论学习之红黑树(2)">
 <meta property="og:url" content="//xijunlee.github.io/2017/01/16/算法导论学习之红黑树-2/index.html">
 <meta property="og:site_name" content="Xijun's Safari">
 <meta property="og:description" content="写在前面的话这一章具体介绍红黑树的删除操作，以及我对删除一系列操作的理解。
-话不多说，我先直接给出算导上关于删除操作的伪代码（这伪代码几乎就可以当作实现代码了，不过还是要搞懂原理）
-红黑树的删除操作删除操作伪代码123456789101112131415161718RB-DELETE(T,z)  if left[z] == nil[T] || right[z] == nil[T]    then">
+话不多说，我先直接给出算导上关于删除操作的伪代码（这伪代码几乎就可以当作实现代码了，不过还是要搞懂原理）">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree2/img1.jpeg">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree2/img2.jpeg">
-<meta property="og:updated_time" content="2017-01-16T10:40:42.000Z">
+<meta property="og:updated_time" content="2017-01-16T10:44:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法导论学习之红黑树(2)">
 <meta name="twitter:description" content="写在前面的话这一章具体介绍红黑树的删除操作，以及我对删除一系列操作的理解。
-话不多说，我先直接给出算导上关于删除操作的伪代码（这伪代码几乎就可以当作实现代码了，不过还是要搞懂原理）
-红黑树的删除操作删除操作伪代码123456789101112131415161718RB-DELETE(T,z)  if left[z] == nil[T] || right[z] == nil[T]    then">
+话不多说，我先直接给出算导上关于删除操作的伪代码（这伪代码几乎就可以当作实现代码了，不过还是要搞懂原理）">
 <meta name="twitter:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree2/img1.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="Xijun&#39;s Safari" type="application/atom+xml">
@@ -178,6 +175,7 @@
       
         <h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><p>这一章具体介绍红黑树的删除操作，以及我对删除一系列操作的理解。</p>
 <p>话不多说，我先直接给出算导上关于删除操作的伪代码（这伪代码几乎就可以当作实现代码了，不过还是要搞懂原理）</p>
+<a id="more"></a>
 <h3 id="红黑树的删除操作"><a href="#红黑树的删除操作" class="headerlink" title="红黑树的删除操作"></a>红黑树的删除操作</h3><h4 id="删除操作伪代码"><a href="#删除操作伪代码" class="headerlink" title="删除操作伪代码"></a>删除操作伪代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">RB-DELETE(T,z)</div><div class="line">  <span class="keyword">if</span> left[z] == nil[T] || right[z] == nil[T]</div><div class="line">    then y &lt;- z</div><div class="line">    <span class="keyword">else</span> y &lt;- TREE-SUCCESOR(z)</div><div class="line">  <span class="keyword">if</span> left[y] != nil[T]</div><div class="line">    then x &lt;- left[y]</div><div class="line">    <span class="keyword">else</span> x &lt;- right[y]</div><div class="line">  p[x] &lt;- p[y]</div><div class="line">  <span class="keyword">if</span> p[y] == nil[T]</div><div class="line">    then root[T] &lt;- x</div><div class="line">   	<span class="keyword">else</span> <span class="keyword">if</span> y == left[p[y]]</div><div class="line">       then left[p[y]] &lt;- x</div><div class="line">       <span class="keyword">else</span> right[p[y]] &lt;- x</div><div class="line">  <span class="keyword">if</span> y != z</div><div class="line">    then key[z] &lt;- key[y]</div><div class="line">        copy y’s satellite data into z</div><div class="line">  <span class="keyword">if</span> color[y] == BLACK</div><div class="line">     then RB-DELETE-FIXUP(T,z)</div></pre></td></tr></table></figure>
 <p>可以从上述伪代码发现，红黑树的删除操作和普通二叉树操作差不多，但因为红黑树的性质，当如果删除的节点是一个黑节点时，则有可能违反某些性质（用脚趾头想最可能违反的性质就是性质5）：某个节点到其叶子节点所有路径上的包含相同的黑节点数），那么就需要调用 RB-DELETE-FIXUP(T,z)来修正。为什么不要讨论删除的节点是红节点的情况呢？如果这棵树先前就是一棵标准的红黑树的话，那么它就满足所有的红黑性质，删除一个红色节点，是不会违反任何一条性质的。</p>
 <p>下面先给出RB-DELETE-FIXUP(T,z)的伪代码</p>
@@ -420,43 +418,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">reading life</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dairy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">machine learning clustering</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Hadoop distributed computing</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">academic plotting</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">math probability theory</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">auction pricing</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">distributed computing</a>
+                <a href="javascript:void(0)" class="js-tag color3">reading</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -464,7 +426,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">reading</a>
+                <a href="javascript:void(0)" class="js-tag color1">dairy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">distributed computing</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">academic plotting</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">auction</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -472,7 +450,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">auction</a>
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
             
             <div class="clearfix"></div>

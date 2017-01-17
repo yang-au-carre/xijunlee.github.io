@@ -6,23 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="//xijunlee.github.io">
-  <title>算法导论学习之红黑树(1) | XSafari</title>
+  <title>Archives: 2015/7 | XSafari</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="写在前面的话花了三天时间，将将实现了红黑树算法，但还是不能裸写红黑树，起码要看着算导书上的示意图::&amp;gt;_&amp;lt;:: 整个算法确实算比较复杂的，实现代码比普通二叉树多一倍多，但换来的是效率上的提升。废话不多说，总结一下学习心得（基本的细节不会提到，因为可以去翻书，我只写出对书中个别知识点的理解和总结），方便日后会看红黑树时，能立马回忆起来。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="算法导论学习之红黑树(1)">
-<meta property="og:url" content="//xijunlee.github.io/2017/01/16/算法导论学习之红黑树-1/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="XSafari">
+<meta property="og:url" content="//xijunlee.github.io/archives/2015/07/index.html">
 <meta property="og:site_name" content="XSafari">
-<meta property="og:description" content="写在前面的话花了三天时间，将将实现了红黑树算法，但还是不能裸写红黑树，起码要看着算导书上的示意图::&amp;gt;_&amp;lt;:: 整个算法确实算比较复杂的，实现代码比普通二叉树多一倍多，但换来的是效率上的提升。废话不多说，总结一下学习心得（基本的细节不会提到，因为可以去翻书，我只写出对书中个别知识点的理解和总结），方便日后会看红黑树时，能立马回忆起来。">
-<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree1/img1.jpeg">
-<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree1/img2.jpeg">
-<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree1/img3.jpeg">
-<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree1/img4.jpeg">
-<meta property="og:updated_time" content="2017-01-16T10:40:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法导论学习之红黑树(1)">
-<meta name="twitter:description" content="写在前面的话花了三天时间，将将实现了红黑树算法，但还是不能裸写红黑树，起码要看着算导书上的示意图::&amp;gt;_&amp;lt;:: 整个算法确实算比较复杂的，实现代码比普通二叉树多一倍多，但换来的是效率上的提升。废话不多说，总结一下学习心得（基本的细节不会提到，因为可以去翻书，我只写出对书中个别知识点的理解和总结），方便日后会看红黑树时，能立马回忆起来。">
-<meta name="twitter:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree1/img1.jpeg">
+<meta name="twitter:title" content="XSafari">
   
     <link rel="alternative" href="/atom.xml" title="XSafari" type="application/atom+xml">
   
@@ -162,69 +153,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-算法导论学习之红黑树-1" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      算法导论学习之红黑树(1)
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2015" class="archive-year">2015</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2015/07/22/算法导论学习之红黑树-2/" class="archive-article-date">
+  	<time datetime="2015-07-22T10:31:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-07-22</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/07/22/算法导论学习之红黑树-2/">算法导论学习之红黑树(2)</a>
     </h1>
   
 
-        
-        <a href="/2017/01/16/算法导论学习之红黑树-1/" class="archive-article-date">
-  	<time datetime="2017-01-16T10:24:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><p>花了三天时间，将将实现了红黑树算法，但还是不能裸写红黑树，起码要看着算导书上的示意图::&gt;_&lt;:: 整个算法确实算比较复杂的，实现代码比普通二叉树多一倍多，但换来的是效率上的提升。废话不多说，总结一下学习心得（基本的细节不会提到，因为可以去翻书，我只写出对书中个别知识点的理解和总结），方便日后会看红黑树时，能立马回忆起来。</p>
-<a id="more"></a>
-<h3 id="红黑树的性质"><a href="#红黑树的性质" class="headerlink" title="红黑树的性质"></a>红黑树的性质</h3><ol>
-<li>每个节点要么是红的， 要么是黑的；</li>
-<li>根节点是黑的；</li>
-<li>每个叶节点（NIL）是黑的；</li>
-<li>如果一个节点是红的，那么它的两个儿子是黑的；</li>
-<li>对每个节点，从该节点到其子孙节点的所有路径上包含数目相同的黑节点。</li>
-</ol>
-<p>以上四条性质都很好理解，唯独就是第五条不好理解，我觉得是翻译的不好。如果不亲自去实现一遍这个算法，对第五条性质中的“子孙节点”的理解是会有歧义的。比如，我初次看到这条性质的时候，我将该节点的子孙节点理解成为该节点的儿子节点+孙子节点+曾孙子节点+……+叶节点，汉语中确实是这么个意思嘛，但实际上是指沿着该节点下去的能达到的所有叶子节点。</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree1/img1.jpeg">
-<p>图1 一棵标准的红黑树</p>
-<p>如图所示，这是一棵标准的红黑树。针对性质5），我们从图中根节点26出发，很容易验证到达其叶子节点nil[T]的所有路径中经过的黑节点数都是4（当然包括它本身）。再拿节点21做例子，从节点21出发到达叶子节点的所有路径中经过的黑节点数都是3。这才是性质5）想要表达的意思，因此，我将性质5）转述成了如下：<br>性质5）对于每个节点，从该节点到叶子节点nil[T]的所有路径上包含相同数目的黑节点。<br>有了对上述五条性质的正确理解，才能搞得懂后面那些操作算法，因为这些算法的正确性需要有这些性质做保证。</p>
-<h3 id="局部旋转"><a href="#局部旋转" class="headerlink" title="局部旋转"></a>局部旋转</h3><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree1/img2.jpeg">
-<p>图2 旋转操作</p>
-<p>旋转操作还是很简单的，所以不去赘述其细节，但在具体实现的时候要注意两点：</p>
-<ol>
-<li>节点之间的连接关系的建立与删除最好是成对地去处理；</li>
-<li>若旋转前的父节点x是整棵树的根节点，旋转之后，要记得将树的根节点置为y。</li>
-</ol>
-<h3 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h3><p>先给出算法导论书上的伪代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">RB-INSERT(T,z)伪代码</div><div class="line">  y &lt;- nil[T]</div><div class="line">  x &lt;- root[T]</div><div class="line">  <span class="keyword">while</span> x != nil[T]</div><div class="line">  y &lt;- x</div><div class="line">  <span class="keyword">if</span> key[x] &gt; key[z]</div><div class="line">    then x &lt;- left[x]</div><div class="line">    <span class="keyword">else</span> x&lt;- right[x]</div><div class="line">  p[z] &lt;- y</div><div class="line">  <span class="keyword">if</span> y == nil[T]</div><div class="line">  then root[T] &lt;- z</div><div class="line">  <span class="keyword">else</span> <span class="keyword">if</span> key[z] &lt; key[y]</div><div class="line">      then left[y] &lt;- z</div><div class="line">      <span class="keyword">else</span> right[y] &lt;- z</div><div class="line"> left[z] &lt;- nil[T]</div><div class="line"> right[z] &lt;- nil[T]</div><div class="line"> color[z] &lt;- RED</div><div class="line"> RB-INSERT-FIXUP(T,z)</div></pre></td></tr></table></figure>
-<p>从上述伪代码可以看出，红黑树的插入操作与普通二叉树的插入操作的差别很小，我们可以注意到插入的新节点的颜色居然是红色，为什么是红色呢？其实很容易想得通，如果插入的新节点就是黑色的话，那么会改变某个节点的黑高度，因此违反了性质5），往往涉及到黑节点的处理都会比较复杂。因此算导选择插入的新节点一开始就将它设置为红色的，但这样子也可能违反性质2）、4），因此需要有一个辅助程序RB-INSERT-FIXUP来修补可能违反的性质。</p>
-<p>RB-INSERT-FIXUP修补可能违反的性质4），z指向插入的红色节点，因为违反了性质4），所以p[z]也是红的。可以将违反性质4）的情况归结为三种（其实，不止三种，是六种，另外三种可以通过对称关系得到。）</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">RB-INSERT-FIXUP(T,z)伪代码</div><div class="line">  <span class="keyword">while</span> color[p[z]] == RED</div><div class="line">  <span class="keyword">if</span> p[z] == left[p[p[z]]</div><div class="line">    then y &lt;- right[p[p[z]]</div><div class="line">     <span class="keyword">if</span> color[y] == RED                                                    <span class="comment">//case1</span></div><div class="line">       then color[p[z]] &lt;- BLACK                                           <span class="comment">//case1</span></div><div class="line">           color[y] &lt;- BLACK                                             <span class="comment">//case1</span></div><div class="line">           color[p[p[z]] &lt;- RED                                            <span class="comment">//case1</span></div><div class="line">           z &lt;- p[p[z]]                                                    <span class="comment">//case1</span></div><div class="line">       <span class="keyword">else</span> <span class="keyword">if</span> z == right[p[z]]                                               <span class="comment">//case2</span></div><div class="line">           then z &lt;- p[z]                                                 <span class="comment">//case2</span></div><div class="line">           LEFT-ROTATE(T,z)                                            <span class="comment">//case2</span></div><div class="line">              color[p[z]] &lt;- BLACK                                      <span class="comment">//case 3</span></div><div class="line">              color[p[p[z]] &lt;- RED                                       <span class="comment">//case 3</span></div><div class="line">              RIGHT-ROTATE(T,p[p[z]])                                 <span class="comment">//case 3</span></div><div class="line">     <span class="keyword">else</span> (same as then clause with “right” and “lefet” exchange)</div><div class="line">  color[root[T]] &lt;- BLACK</div></pre></td></tr></table></figure>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree1/img3.jpeg">
-<p>图3 插入操作中可能遇到的三种情况</p>
-<ol>
-<li>z的叔叔y是红色的。<br>处理方法：很简单，将z的祖父染成红色，将其父亲和叔父染成黑色，这样就解决了z的红色与其父亲也是红色的冲突。（那么其祖父先前就会是黑色的吗？答案是一定的，因为z的父亲和叔叔都是红色的，而未加入红节点z之前该树是满足红黑性质的，因此z的祖父一定是黑色的，如果z的祖父也是红的话，那么就与z父亲是红色的冲突了。）z指向其原来祖父，这样指针沿着树上升了两层。并且所有情况中，只有情况1会使得指针z上升两层。</li>
-<li>z的叔叔y是黑色的，z是其父亲的右孩子。<br>处理方法：将z的父亲右旋即可，z指向原先z的父亲。经过旋转变换后，现在的z是其父亲的左儿子，并且它的叔叔是黑色的，那么情况2就转换为了情况3。</li>
-<li>z的叔叔y是黑色的，z是其父亲的左孩子。<br>处理方法：通过情况1或者情况2都可能进到情况3。因为在这个情况下，z及其父亲p[z]都是红色。故先将其父亲p[z]染成黑色，将其祖父p[p[z]]染成红色，然后对祖父节点p[p[z]]做右旋。</li>
-</ol>
-<p>其余的三种情况与上述三种情况是相互对称的。上述三种情况的转化关系如下：</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree1/img4.jpeg">
-<p>最后，值得注意的是退出while循环时，需要置根节点的颜色为黑色。因为while循环条件是z的父亲p[z]为红色的，当z指向树的根时，z的父亲是nil[T]为黑色，故会退出循环，但是z的颜色为红色，因此需要置其颜色为黑色，这样就不违反性质2）了。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -236,115 +194,95 @@
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://xijunlee.github.io/2017/01/16/算法导论学习之红黑树-1/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
   
-<nav id="article-nav">
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2015/07/20/算法导论学习之红黑树-1/" class="archive-article-date">
+  	<time datetime="2015-07-20T10:24:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-07-20</time>
+</a>
+        </div>
+    	 
   
-    <a href="/2017/01/16/算法导论学习之红黑树-2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          算法导论学习之红黑树(2)
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/01/16/算法导论学习之二叉查找树的删除操作/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">算法导论学习之二叉查找树的删除操作</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-
-  
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="算法导论学习之红黑树-1" data-title="算法导论学习之红黑树(1)" data-url="//xijunlee.github.io/2017/01/16/算法导论学习之红黑树-1/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"xijun"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/07/20/算法导论学习之红黑树-1/">算法导论学习之红黑树(1)</a>
+    </h1>
   
 
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algorithm</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
+          
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2015/07/14/算法导论学习之二叉查找树的删除操作/" class="archive-article-date">
+  	<time datetime="2015-07-14T10:13:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-07-14</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/07/14/算法导论学习之二叉查找树的删除操作/">算法导论学习之二叉查找树的删除操作</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algorithm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
+
+    
 
 
           </div>
@@ -367,8 +305,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

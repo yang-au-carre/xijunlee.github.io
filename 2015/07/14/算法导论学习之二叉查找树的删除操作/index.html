@@ -6,14 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="//xijunlee.github.io">
-  <title>XSafari</title>
+  <title>算法导论学习之二叉查找树的删除操作 | XSafari</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="XSafari">
-<meta property="og:url" content="//xijunlee.github.io/page/2/index.html">
+  <meta name="description" content="写在前面的话虽然二叉树很简单，但是其中的删除操作还是有些麻烦的。看完算导关于本节的内容后，动手实现了一遍，发现自己写的代码虽然功能能实现，但是代码很丑，究其原因就是我并没有仔细总结删除操作中三种情况的共性，所以自己写的代码有很多冗余。回头看算导上的伪代码，发现自己还是太naive，认真总结了下三种情形的共同特点，又重新有了收获，以后也可以裸写二叉树的删除操作了。
+在本篇中，我只会阐述我对于删除操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法导论学习之二叉查找树的删除操作">
+<meta property="og:url" content="//xijunlee.github.io/2015/07/14/算法导论学习之二叉查找树的删除操作/index.html">
 <meta property="og:site_name" content="XSafari">
+<meta property="og:description" content="写在前面的话虽然二叉树很简单，但是其中的删除操作还是有些麻烦的。看完算导关于本节的内容后，动手实现了一遍，发现自己写的代码虽然功能能实现，但是代码很丑，究其原因就是我并没有仔细总结删除操作中三种情况的共性，所以自己写的代码有很多冗余。回头看算导上的伪代码，发现自己还是太naive，认真总结了下三种情形的共同特点，又重新有了收获，以后也可以裸写二叉树的删除操作了。
+在本篇中，我只会阐述我对于删除操作">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/erchashu/img1.jpeg">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/erchashu/img2.jpeg">
+<meta property="og:updated_time" content="2017-01-17T14:54:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XSafari">
+<meta name="twitter:title" content="算法导论学习之二叉查找树的删除操作">
+<meta name="twitter:description" content="写在前面的话虽然二叉树很简单，但是其中的删除操作还是有些麻烦的。看完算导关于本节的内容后，动手实现了一遍，发现自己写的代码虽然功能能实现，但是代码很丑，究其原因就是我并没有仔细总结删除操作中三种情况的共性，所以自己写的代码有很多冗余。回头看算导上的伪代码，发现自己还是太naive，认真总结了下三种情形的共同特点，又重新有了收获，以后也可以裸写二叉树的删除操作了。
+在本篇中，我只会阐述我对于删除操作">
+<meta name="twitter:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/erchashu/img1.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="XSafari" type="application/atom+xml">
   
@@ -153,404 +163,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-2016-12-18-man-tan-gao-wei-shu-ju-ju-lei-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-算法导论学习之二叉查找树的删除操作" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/18/2016-12-18-man-tan-gao-wei-shu-ju-ju-lei-1/">漫谈高维数据聚类(1)</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/18/2016-12-18-man-tan-gao-wei-shu-ju-ju-lei-1/" class="archive-article-date">
-  	<time datetime="2016-12-18T02:25:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="摘要："><a href="#摘要：" class="headerlink" title="摘要："></a>摘要：</h2><p>从高维数据中挖掘出有效信息并揭示其内在规律和本质，逐渐成为数据挖掘、机器学习、模式识别等领域的热点研究问题。其中，对于高维数据的聚类是一个最基本的，也是研究得最多的问题。传统的聚类算法，如K-means算法，已经无法胜任处理大规模高维数据聚类的任务。子空间分割算法正是为了解决高维数据聚类问题而被提出来，逐渐成为学术界研究的热点问题。</p>
-<p>写在括号里的话：（其实这是我本科毕设的内容，当时做了两个月，觉得还比较有意思。花两三个月做毕设是有点多余的，期间很是拖沓。我觉得这个课题还是蛮有趣的，和实际应用联系得很紧密，所以我就来安利一下子空间聚类算法 (￣︶￣)</p>
-<h2 id="1-什么是高维数据？"><a href="#1-什么是高维数据？" class="headerlink" title="1.什么是高维数据？"></a>1.什么是高维数据？</h2><p>高维数据，顾名思义就是维数很高的数据（废话），像图像、视频这些最常见的数据就是高维数据，它们的维数至少都是上百维的。这么说不直观，我们来看下实际研究中是如何处理一张图像数据的。</p>
-        
-          <a class="article-more-a" href="/2016/12/18/2016-12-18-man-tan-gao-wei-shu-ju-ju-lei-1/#more">More >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/18/2016-12-18-man-tan-gao-wei-shu-ju-ju-lei-1/">Show All >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-2016-12-17-du-shu-bi-ji-zhi-&lt;&lt;li-shi-de-jiao-xun-&gt;&gt;" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/17/2016-12-17-du-shu-bi-ji-zhi-<<li-shi-de-jiao-xun->>/">读书笔记之《历史的教训》</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/17/2016-12-17-du-shu-bi-ji-zhi-<<li-shi-de-jiao-xun->>/" class="archive-article-date">
-  	<time datetime="2016-12-17T15:13:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>历来就喜欢读历史书籍，高中以前读的大多是中国古代史，到了大学以后，才以多种方式接触了欧洲近现代史和中国近现代史。但多多少少都觉得是以一种听故事的心态在读历史，从没思考过历史为什么会是这样子以及其中的规律，然而杜兰特这本精简的《历史的教训》简直是带我飞起来了，俯瞰过往的历史，原来这一切离散的历史都是有迹可循的。</p>
-<p>这本书的作者——杜兰特夫妇是大有来头的，两人花了50年的时间写成了11卷的《世界文明史》，但因为这套书卷帙浩繁，比较学术，所以二人于1968年出了这套巨作的精简版《历史的教训》，方便一般读者阅读。因为作者是活跃于20世纪的人，因此他们的部分观点是有点过时和不客观的，大家去读了就知道。</p>
-        
-          <a class="article-more-a" href="/2016/12/17/2016-12-17-du-shu-bi-ji-zhi-<<li-shi-de-jiao-xun->>/#more">More >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">reading</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/17/2016-12-17-du-shu-bi-ji-zhi-<<li-shi-de-jiao-xun->>/">Show All >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-2016-12-17-mei-qian-liao-,yi-hou-yong-gitxie-bo-ke-ge" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/17/2016-12-17-mei-qian-liao-,yi-hou-yong-gitxie-bo-ke-ge/">Blog Migration!</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/17/2016-12-17-mei-qian-liao-,yi-hou-yong-gitxie-bo-ke-ge/" class="archive-article-date">
-  	<time datetime="2016-12-17T13:53:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>   大四那段时间比较闲租了个服务器和域名，用WordPress搭了个博客，但由于研一是在太忙了，几乎没有管博客。然后到期了，嗯，租期到了，然后博客就被注销了。其实想想一年也写不了多少文字，也没多少人看，花钱来做这个确实性价比不高。</p>
-<p>  之前也确实早就知道octopress的大名，但当时嫌麻烦…… 大四的时候连命令行都不知道是什么，所以那会儿也就没想过用octopress。但是啊，人一旦窘迫后（不问爸妈要钱后），就开始知道生活中的柴米油盐酱醋茶什么都要钱。所以，就开始搬迁到git上了。github+octopress 免费而且不限容量。还能像黑客一样在命令行中写东西，逼格也上来了😊。</p>
-<p>  好了，这篇文章就是新搬家后博客的第一篇文章。往后的第一个工作就是以前那个博客上有点价值的东西搬过来（还好，当时我把内容存在了evernote上😶）</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dairy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/17/2016-12-17-mei-qian-liao-,yi-hou-yong-gitxie-bo-ke-ge/">Show All >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-关于南京的记忆" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/07/关于南京的记忆/">关于南京的记忆</a>
-    </h1>
-  
-
-        
-        <a href="/2015/10/07/关于南京的记忆/" class="archive-article-date">
-  	<time datetime="2015-10-07T10:44:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-10-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这半个月来，前半段时间折腾，后半段时间算是开始慢慢调整自己的生活节奏，适应学校的节奏。和德志、晟晟也进行多次了内容是除妹子之外的、思考人生的夜谈。到了这个年龄，逐渐开始有这么个认知：人，走到哪一步，是不是都是上天注定的呢？只不过是每个人的方式不同而已。努力和天赋，这两个东西，在我以前的认知里是完全两个概念。现在我意识到，一个人能持续不断的努力是不是也是一种天赋？导师、实验室的同学，都是很拼的人。小时候，幼稚地认为，只有笨蛋才会很努力。现在觉得，拼和努力都是为了自己心中的欲望，只不过每个人欲望不同，完全不需要在意别人的看法，别让自己淹没在大众之中。</p>
-        
-          <a class="article-more-a" href="/2015/10/07/关于南京的记忆/#more">More >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dairy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/10/07/关于南京的记忆/">Show All >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-算法导论学习之红黑树-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/22/算法导论学习之红黑树-2/">算法导论学习之红黑树(2)</a>
-    </h1>
-  
-
-        
-        <a href="/2015/07/22/算法导论学习之红黑树-2/" class="archive-article-date">
-  	<time datetime="2015-07-22T10:31:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-07-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><p>这一章具体介绍红黑树的删除操作，以及我对删除一系列操作的理解。</p>
-<p>话不多说，我先直接给出算导上关于删除操作的伪代码（这伪代码几乎就可以当作实现代码了，不过还是要搞懂原理）</p>
-        
-          <a class="article-more-a" href="/2015/07/22/算法导论学习之红黑树-2/#more">More >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/07/22/算法导论学习之红黑树-2/">Show All >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-算法导论学习之红黑树-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/20/算法导论学习之红黑树-1/">算法导论学习之红黑树(1)</a>
-    </h1>
-  
-
-        
-        <a href="/2015/07/20/算法导论学习之红黑树-1/" class="archive-article-date">
-  	<time datetime="2015-07-20T10:24:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-07-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><p>花了三天时间，将将实现了红黑树算法，但还是不能裸写红黑树，起码要看着算导书上的示意图::&gt;_&lt;:: 整个算法确实算比较复杂的，实现代码比普通二叉树多一倍多，但换来的是效率上的提升。废话不多说，总结一下学习心得（基本的细节不会提到，因为可以去翻书，我只写出对书中个别知识点的理解和总结），方便日后会看红黑树时，能立马回忆起来。</p>
-        
-          <a class="article-more-a" href="/2015/07/20/算法导论学习之红黑树-1/#more">More >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/07/20/算法导论学习之红黑树-1/">Show All >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-算法导论学习之二叉查找树的删除操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/14/算法导论学习之二叉查找树的删除操作/">算法导论学习之二叉查找树的删除操作</a>
+    <h1 class="article-title" itemprop="name">
+      算法导论学习之二叉查找树的删除操作
     </h1>
   
 
@@ -565,9 +185,23 @@
       
         <h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><p>虽然二叉树很简单，但是其中的删除操作还是有些麻烦的。看完算导关于本节的内容后，动手实现了一遍，发现自己写的代码虽然功能能实现，但是代码很丑，究其原因就是我并没有仔细总结删除操作中三种情况的共性，所以自己写的代码有很多冗余。回头看算导上的伪代码，发现自己还是太naive，认真总结了下三种情形的共同特点，又重新有了收获，以后也可以裸写二叉树的删除操作了。</p>
 <p>在本篇中，我只会阐述我对于删除操作的理解，因为前面的遍历、插入、查找等操作都十分简单易懂易实现，当然还有一个前提是需要对二叉树的基本性质有起码的理解。</p>
-        
-          <a class="article-more-a" href="/2015/07/14/算法导论学习之二叉查找树的删除操作/#more">More >></a>
-        
+<a id="more"></a>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/erchashu/img1.jpeg">
+<p>图1 二叉树删除操作的三种情况:a)被删除节点z没有任何子女 b)被删节点z有一个子女 c)被删节点z有两个子女</p>
+<p>总共有三种情况：</p>
+<ol>
+<li>被删除节点z没有任何子女。是最简单的情况，将z父节点12的儿子指针置为null，再free掉节点z就好;</li>
+<li>被删节点z有且只有有一个子女。这个情况稍微麻烦点，但说起来比较容易，将节点z的父节点15和其唯一子节点20连接起来就好，然后free掉节点z就好;</li>
+<li>被删节点z有两个子女。这个是最复杂的，但是其基本思想还是没变，将第三种情况转化为第二种情况处理即可。那么怎么做呢？解决方法就是去找z的后继（后继是什么？就是比节点z中关键字5大的所有节点中最小的那个，说起来很拗口是吧，就是图中关键字为6的节点y）。要删除有两个子女的节点z，就去找它的后继节点y，它的后继节点y能保证只有一个右儿子（为什么？如果它的后继节点有左儿子，那么节点y就不可能是z的后继节点。算导书上p155 练习 12.2-5有要求证明，不懂的可以稍微思考下）。基于上述事实，我们找到了z的后继节点y，那么就已经将情况3转化为了情况2了，接下来要做的操作就是将y的父节点10与y的子节点7连起来。这时还没做完，因为z才是待删除的节点，我们要将节点z出的关键字替换为节点y的关键字，如图中所示。然后free掉节点y。</li>
+</ol>
+<p>以上就是对三种情形的处理方法，可以涵盖所有的节点删除可能出现的情形。从上面可以看到，情况2是一般形式，情况1是情况2的最简单形式，情况3是情况2的最复杂形式，但是都可以转化成情况2。有了以上认识，我们就可以看清楚算法导论上伪代码的意图了，也方便我们以后裸写二叉树的删除操作了。下面我解释下伪代码是如何具体实现这些操作的。</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/erchashu/img2.jpeg">
+<p>第2~4行，是判断待删除节点是什么类型的。如果是有且只有一个子节点或没有子节点的节点，那么y=z。若是有两个子节点的节点，那么就去找它的后继，因此y=TREE-SUCCESSOR(z)，（真正要删除的节点是y）；</p>
+<p>第5~7行，是获得节点y的子节点x。因为节点y能保证一定是只有一个儿子的（或者没有儿子，也就是说x==null）；</p>
+<p>第8~14行，便是将节点y的子节点和其父节点“连接起来”。</p>
+<p>第15~16行，是替换关键字的操作。因为y有可能是z的后继，所以要将节点z的关键字替换为节点y的关键字。<br>最后，删除节点y即可。</p>
+<p>finally,贴上我利用c++实现的一系列二叉树操作的代码，请见笑了╭(′▽`)╯：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 二叉查找树.cpp : 定义控制台应用程序的入口点。</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> dataType</div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> key;</div><div class="line">    dataType *p;</div><div class="line">    dataType *left;</div><div class="line">    dataType *right;</div><div class="line">&#125;node;</div><div class="line"></div><div class="line">node *root;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">INORDER_TREE_WALK</span><span class="params">(node *x)</span><span class="comment">//中序遍历</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (x != <span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        INORDER_TREE_WALK(x-&gt;left);</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; x-&gt;key &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">        INORDER_TREE_WALK(x-&gt;right);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">node* <span class="title">TREE_SEARCH</span><span class="params">(node *x, <span class="keyword">int</span> k)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (x == <span class="literal">NULL</span> || k == x-&gt;key)</div><div class="line">        <span class="keyword">return</span> x;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (k &lt; x-&gt;key)</div><div class="line">            x = x-&gt;left;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            x = x-&gt;right;</div><div class="line">        <span class="keyword">return</span> TREE_SEARCH(x, k);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">node* <span class="title">TREE_MAXIMUM</span><span class="params">(node *x)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">while</span> (x-&gt;right != <span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        x = x-&gt;right;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> x;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">node* <span class="title">TREE_MINIMUM</span><span class="params">(node *x)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">while</span> (x-&gt;left != <span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        x = x-&gt;left;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> x;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">node* <span class="title">TREE_SUCCESSOR</span><span class="params">(node *x)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (x-&gt;right != <span class="literal">NULL</span>)</div><div class="line">        <span class="keyword">return</span> TREE_MINIMUM(x-&gt;right);</div><div class="line">    node* y = x-&gt;p;</div><div class="line">    <span class="keyword">while</span> (y!=<span class="literal">NULL</span> &amp;&amp; y-&gt;right==x)</div><div class="line">    &#123;</div><div class="line">        x = y;</div><div class="line">        y = y-&gt;p;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">node* <span class="title">TREE_PREDECESSOR</span><span class="params">(node *x)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (x-&gt;left != <span class="literal">NULL</span>)</div><div class="line">        <span class="keyword">return</span> TREE_MAXIMUM(x-&gt;left);</div><div class="line">    node* y = x-&gt;p;</div><div class="line">    <span class="keyword">while</span> (y != <span class="literal">NULL</span> &amp;&amp; y-&gt;left == x)</div><div class="line">    &#123;</div><div class="line">        x = y;</div><div class="line">        y = y-&gt;p;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">TREE_INSERT</span><span class="params">(node *T, node *z)</span></span></div><div class="line">&#123;</div><div class="line">    node *y = <span class="literal">NULL</span>;</div><div class="line">    node *x = T;</div><div class="line">    <span class="keyword">while</span> (x != <span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        y = x;</div><div class="line">        <span class="keyword">if</span> (z-&gt;key &lt; x-&gt;key)</div><div class="line">            x = x-&gt;left;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            x = x-&gt;right;</div><div class="line">    &#125;</div><div class="line">    z-&gt;p = y;</div><div class="line">    <span class="keyword">if</span> (y == <span class="literal">NULL</span>)<span class="comment">//则新插入的节点作为树根</span></div><div class="line">        T = z;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (y-&gt;key &gt; z-&gt;key)</div><div class="line">            y-&gt;left = z;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            y-&gt;right = z;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">TREE_DELETE</span><span class="params">(node *T, node *z)</span></span></div><div class="line">&#123;</div><div class="line">    node *y,*x;</div><div class="line">    <span class="keyword">if</span> (z-&gt;left == <span class="literal">NULL</span> || z-&gt;right == <span class="literal">NULL</span>)</div><div class="line">        y = z;</div><div class="line">    <span class="keyword">else</span></div><div class="line">        y = TREE_SUCCESSOR(z);</div><div class="line">    <span class="keyword">if</span> (y-&gt;left != <span class="literal">NULL</span>)</div><div class="line">        x = y-&gt;left;</div><div class="line">    <span class="keyword">else</span></div><div class="line">        x = y-&gt;right;</div><div class="line">    <span class="keyword">if</span> (x != <span class="literal">NULL</span>)</div><div class="line">        x-&gt;p = y-&gt;p;</div><div class="line">    <span class="keyword">if</span> (y-&gt;p == <span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        T = x;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (y == y-&gt;p-&gt;left)</div><div class="line">            y-&gt;p-&gt;left = x;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            y-&gt;p-&gt;right = x;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (y != z)</div><div class="line">        z-&gt;key = y-&gt;key;</div><div class="line">    <span class="keyword">delete</span> y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">node* <span class="title">ALLOCATE_NODE</span><span class="params">(<span class="keyword">int</span> k)</span></span></div><div class="line">&#123;</div><div class="line">    node *tmp = <span class="keyword">new</span> node;</div><div class="line">    tmp-&gt;key = k;</div><div class="line">    tmp-&gt;p = <span class="literal">NULL</span>;</div><div class="line">    tmp-&gt;left = <span class="literal">NULL</span>;</div><div class="line">    tmp-&gt;right = <span class="literal">NULL</span>;</div><div class="line">    <span class="keyword">return</span> tmp;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])</div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> a[] = &#123; <span class="number">15</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">16</span>, <span class="number">20</span>, <span class="number">12</span>, <span class="number">10</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">13</span>, <span class="number">18</span>, <span class="number">23</span> &#125;;</div><div class="line">   </div><div class="line">    root = ALLOCATE_NODE(<span class="number">15</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">12</span>; i++)</div><div class="line">    &#123;</div><div class="line">        TREE_INSERT(root, ALLOCATE_NODE(a[i]));</div><div class="line">    &#125;</div><div class="line">    INORDER_TREE_WALK(root);</div><div class="line">    <span class="comment">/*</span></div><div class="line">    cout &lt;&lt; "the MAXIMUM in this tree" &lt;&lt; TREE_MAXIMUM(root)-&gt;key &lt;&lt; endl;</div><div class="line">    cout &lt;&lt; "the MINIMUM in this tree" &lt;&lt; TREE_MINIMUM(root)-&gt;key &lt;&lt; endl;</div><div class="line">    cout &lt;&lt; TREE_PREDECESSOR(TREE_SEARCH(root, 15))-&gt;key &lt;&lt; endl;</div><div class="line">    cout &lt;&lt; TREE_SUCCESSOR(TREE_SEARCH(root, 15))-&gt;key &lt;&lt; endl;*/</div><div class="line">    node *tmp = TREE_SEARCH(root, <span class="number">18</span>);</div><div class="line">    TREE_DELETE(root, tmp);</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"After delete the node 3:"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    INORDER_TREE_WALK(root);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
 
       
@@ -589,18 +223,78 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/07/14/算法导论学习之二叉查找树的删除操作/">Show All >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://xijunlee.github.io/2015/07/14/算法导论学习之二叉查找树的删除操作/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
+  
+<nav id="article-nav">
+  
+    <a href="/2015/07/20/算法导论学习之红黑树-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          算法导论学习之红黑树(1)
+        
+      </div>
+    </a>
+  
+  
+</nav>
 
 
 
@@ -608,11 +302,28 @@
 
 
   
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="算法导论学习之二叉查找树的删除操作" data-title="算法导论学习之二叉查找树的删除操作" data-url="//xijunlee.github.io/2015/07/14/算法导论学习之二叉查找树的删除操作/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"xijun"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
-  
+
+
 
 
           </div>
@@ -634,8 +345,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

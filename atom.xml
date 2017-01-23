@@ -4,9 +4,9 @@
   <subtitle>Exploring with Curiosity!</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="//xijunlee.github.io/"/>
-  <updated>2017-01-23T02:56:43.000Z</updated>
-  <id>//xijunlee.github.io/</id>
+  <link href="https://xijunlee.github.io/"/>
+  <updated>2017-01-23T03:20:35.000Z</updated>
+  <id>https://xijunlee.github.io/</id>
   
   <author>
     <name>Xijun LI</name>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>2016年度总结</title>
-    <link href="//xijunlee.github.io/2017/01/20/2016%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/"/>
-    <id>//xijunlee.github.io/2017/01/20/2016年度总结/</id>
+    <link href="https://xijunlee.github.io/2017/01/20/2016%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/"/>
+    <id>https://xijunlee.github.io/2017/01/20/2016年度总结/</id>
     <published>2017-01-20T08:06:28.000Z</published>
-    <updated>2017-01-23T02:56:43.000Z</updated>
+    <updated>2017-01-23T03:20:35.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>本来该篇应该在<code>2017-1-1</code>写出来的，但那时和高中老友在杭州玩😂，回上海后也忘了这茬，所以拖到了现在。虽然现在已经公历(时间待定)，但是标题还是取成“2016年度总结”，因为从农历看的话，现在还没有到2017嘛。之前还从未写过年度总结，所以这篇2016年度总结顺带也总结一下2015。之所以想写年度总结，其实也是受到师兄师姐的启发，他们真是做到了对自己的过往的数字化管理。以前从未统计和回首过一年发生的事情，感觉每年就这么一路“混”过来了。</p>
 <a id="more"></a>
@@ -28,7 +28,7 @@
 <p>2015上半年，得知自己保研后，就有一种茫然感，觉着人生暂时地失去了一个清晰的追逐目标。所以大四上学期一直到开始做毕设之前，没事就一个人跑到图书馆里看闲书或者在广州城里闲逛拍照。（当时我居然没出去旅游？突然想起来了，当时大家的时间都不太同步，就我比较闲）大四下学期开始后，就和大家一直在打LOL。LOL打的不少，但是发现自己确实没天赋，依旧那么菜。然后，就按部就班的做毕设，拍毕业照，毕业。没有大家那种离开校园的特别伤感。一是觉得自己还要待在校园三年时光，二是觉得现在交通这么发达，想见面还是挺容易的，关键是你有心。</p>
 <p>2015年下半年：毕业到研究生正式入学之间还有将近一个半月假期，没有响应导师的搬砖号召，在家里瘫了一个多月。接着九月份就开学了，来到了上海，一座我很有好感的城市，虽然父辈们总是黑它排外等。在交大，开学头一个月倒是一门课都没有，留给学生和老师处理各种杂事，对，这个月就是各种杂事，我也不想絮叨了，主要说两个事。首先，导师之前分配了一个科研任务，要在十月底交paper，大四倒是写了个初稿，但集群上的大实验还没有做，但那时候我连<code>Linux</code>都没用过😓。其次，上了一门坑爹课——<code>高级软件工程</code>，在这门课上接了一个坑爹的项目<code>Gogou</code>（这个项目就是开发一个同时支持<code>Android</code>和<code>iOS</code>的代购平台，我主要负责<code>iOS</code>前端设计）。这两个事情可谓是我研一一年的主旋律。结果是，前者，paper被拒了一年（其实也就是被拒稿三次）。后者，这个项目写了我整整一年时间。不过，忙归忙，坑归坑，我的coding能力和团队协作能力确实有很大提高，毕竟本科没写过这么大项目，掌握了一些程序猿必须掌握的工具（<code>github</code>,<code>Linux Shell</code>）以及一些<code>iOS</code>开发知识。其次，英语水平也有了一定的提高，一年多下来读了不少paper。</p>
 <p>其实这一年，我的“转变”很是被动，主要是因为大四那段时间太过放松，没有及时做好规划。导致在新环境中有点措手不及。所以，开始慢慢培养自己未雨绸缪的意识。首先说说城市的转变。从广州到上海，一线城市在很多方面都具有工业时代的标准化气息，二者有很多地方极其相似，上海比广州可能更加现代化一些，不多说了。但是，在我眼中，两个城市最大的差别就是生活节奏了。广州，虽然也是一线大城市，但是其骨子里有一种享受生活的慢节奏，从其早茶文化中可见一斑。而上海，节奏明显快了很多。虽然，还没上班，但是在校园里，在地铁站中，总是感受到大家匆忙的脚步。其余的方面，还有待我慢慢体会。再说说思维的转变，从理科思维转变到工科思维。记得大一第一次上数学分析课时，刘老师就讲过：“我们数学系的学生，学四年下来，学会的最有价值的就是数学思维，这个东西可以应用到生活中各个方面去，所以我们数学系的学生活跃在各行各业……” 当时，我就不以为然，尤其是数学思维这个东西，我是一点都不信的。但是当我在数学系浸淫了四年，从数学系转到了软件工程这个工科专业后，我从与工科科班出身的人的共事中发现：人和人的思维方式确实差别很大。比如去解决一个从未遇到的问题时，以前的我（理科思维）：<code>我会从头开始去了解这个问题</code>-&gt;<code>查找类似问题的解决方式</code>-&gt;<code>比较和学习所有的方式方法</code>-&gt;<code>着手解决问题本身</code>-&gt;<code>done</code>。而现在的我（工科思维）:<code>了解问题本身</code>-&gt;<code>找到一种解决类似问题的方法</code>-&gt;<code>学习并掌握这种方法，应用它来解决问题</code>-&gt;<code>如果问题没有得到很好的解决，再回到第二步，寻找其他的方法</code>-&gt;<code>不断修正方法，直到解决问题</code>。</p>
-<h2 id="2016：变强"><a href="#2016：变强" class="headerlink" title="2016：变强"></a>2016：变强</h2><p>虽然说是顺带总结一下2015，但是转变的过程让我思考了很多多，所以“顺带”写得有点多了。经过一学期的转变和适应后，科研和项目也开始轻车熟路，做得越来越得心应手了。我由衷地觉得在适应了环境后，做很多事情都更有效率了，因此我给2016这一年总结为“变强”。下面就以流水账的形式盘点一下我的2016。</p>
+<h2 id="2016：变强"><a href="#2016：变强" class="headerlink" title="2016：变强"></a>2016：变强</h2><p>虽然说是顺带总结一下2015，但是转变的过程让我思考了很多，所以“顺带”写得有点多了。经过一学期的转变和适应后，科研和项目也开始轻车熟路，做得越来越得心应手了。我由衷地觉得在适应了环境后，做很多事情都更有效率了，因此我给2016这一年总结为“变强”。下面就以流水账的形式盘点一下我的2016。</p>
 <p>1月，研一上学期学期末。高级软件工程课程答辩，谢沈阿姨手下留情，让我们项目组顺利通过。这门课程占据了我整个研一上学期60%可能还多的时间，从一个从未接触过<code>iOS</code>开发的小白到能写出一个还像样子的APP（尽管离投入市场有很大距离），我觉着我还是学到不少东西。虽说只是门硕士课程，但是软件开发的基本流程大概是走了一遍，最大收获就是让我明白：我以后肯定不会从事软件开发的工作（其实是不想做纯coding这种重复劳动，而是想做偏分析和市场的数据挖掘工作）。原本，我以为课程项目的代码可以直接当作最后项目的代码交给甲方了事，但是导师跟我们说不行，需要两套代码分开。但是，当时我工程经验不足，很多代码写的可移植性太差。于是，我们相当于需要再从头开始写，还好已经有经验了，但是很多都是重复性工作，让我没有了先前学习的快感。</p>
 <p>2月，回家。照常的聚会、吃饭、走亲戚、过年，在家稍微看了下鸟叔的Linux入门书籍，同时还在继续写<code>Gogou</code>的项目代码。</p>
 <p>3月，返校，开始研一下学期。照例，开学头一个月都是用来处理选课等杂事。继续写项目代码。</p>
@@ -42,6 +42,8 @@
 <p>11月，完成第二篇专利的撰写。思考论文思路，开始撰写第二篇论文。在做第二篇论文的过程中，开始思忖到底要不要继续读博。</p>
 <p>12月，完成第二篇论文的撰写，投稿<code>ICDCS</code>。投完论文后，开始划水了。复习机器学习知识。博客迁移到<code>Octopress</code>（该版本的前身）。开始看auction理论，为第三篇论文做准备。</p>
 <p>1月，和罗威林跑到杭州找中哥玩耍。去江苏靖江，参加徐宇婚礼，第二次婚礼摄像大哥担当。实验室年会，年会摄像大哥担当。这个月就比较划水了，因为后半个月回家了😓。</p>
+<h3 id="娱乐消遣"><a href="#娱乐消遣" class="headerlink" title="娱乐消遣"></a>娱乐消遣</h3><p>“一个脱离了高级趣味的无聊男人”，这是目前我对自己的定位。我在学校生活的主旋律就是paper和项目，周末也不大想出门，因为我在闵行，进个城花在路上的时间就有两三个小时😂。出门玩一趟（除开吃吃吃），我还是觉得宅在屋子里看书和运动最舒服。业余时间的消遣主要就是健身、篮球和电影。下图是我这一年娱乐消遣的频次统计。</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/2016nianduzongjie/%E5%A8%B1%E4%B9%90%E6%B6%88%E9%81%A3%E7%BB%9F%E8%AE%A1.png">
 ]]></content>
     
     <summary type="html">
@@ -51,14 +53,14 @@
     </summary>
     
     
-      <category term="dairy" scheme="//xijunlee.github.io/tags/dairy/"/>
+      <category term="dairy" scheme="https://xijunlee.github.io/tags/dairy/"/>
     
   </entry>
   
   <entry>
     <title>又从octopress迁移到hexo了……</title>
-    <link href="//xijunlee.github.io/2017/01/15/%E5%8F%88%E4%BB%8Eoctopress%E8%BF%81%E7%A7%BB%E5%88%B0hexo%E4%BA%86%E2%80%A6%E2%80%A6/"/>
-    <id>//xijunlee.github.io/2017/01/15/又从octopress迁移到hexo了……/</id>
+    <link href="https://xijunlee.github.io/2017/01/15/%E5%8F%88%E4%BB%8Eoctopress%E8%BF%81%E7%A7%BB%E5%88%B0hexo%E4%BA%86%E2%80%A6%E2%80%A6/"/>
+    <id>https://xijunlee.github.io/2017/01/15/又从octopress迁移到hexo了……/</id>
     <published>2017-01-15T08:59:32.000Z</published>
     <updated>2017-01-17T01:52:41.000Z</updated>
     
@@ -86,14 +88,14 @@
     </summary>
     
     
-      <category term="dairy" scheme="//xijunlee.github.io/tags/dairy/"/>
+      <category term="dairy" scheme="https://xijunlee.github.io/tags/dairy/"/>
     
   </entry>
   
   <entry>
     <title>常见拍卖机制与模型总结</title>
-    <link href="//xijunlee.github.io/2017/01/03/2017-01-03-chang-jian-pai-mai-ji-zhi-yu-mo-xing-zong-jie/"/>
-    <id>//xijunlee.github.io/2017/01/03/2017-01-03-chang-jian-pai-mai-ji-zhi-yu-mo-xing-zong-jie/</id>
+    <link href="https://xijunlee.github.io/2017/01/03/2017-01-03-chang-jian-pai-mai-ji-zhi-yu-mo-xing-zong-jie/"/>
+    <id>https://xijunlee.github.io/2017/01/03/2017-01-03-chang-jian-pai-mai-ji-zhi-yu-mo-xing-zong-jie/</id>
     <published>2017-01-03T08:33:34.000Z</published>
     <updated>2017-01-20T14:26:15.000Z</updated>
     
@@ -131,14 +133,14 @@
     </summary>
     
     
-      <category term="auction" scheme="//xijunlee.github.io/tags/auction/"/>
+      <category term="auction" scheme="https://xijunlee.github.io/tags/auction/"/>
     
   </entry>
   
   <entry>
     <title>泊松分布与指数分布的重新理解</title>
-    <link href="//xijunlee.github.io/2016/12/28/2016-12-28-bo-song-fen-bu-yu-zhi-shu-fen-bu-de-zhong-xin-li-jie/"/>
-    <id>//xijunlee.github.io/2016/12/28/2016-12-28-bo-song-fen-bu-yu-zhi-shu-fen-bu-de-zhong-xin-li-jie/</id>
+    <link href="https://xijunlee.github.io/2016/12/28/2016-12-28-bo-song-fen-bu-yu-zhi-shu-fen-bu-de-zhong-xin-li-jie/"/>
+    <id>https://xijunlee.github.io/2016/12/28/2016-12-28-bo-song-fen-bu-yu-zhi-shu-fen-bu-de-zhong-xin-li-jie/</id>
     <published>2016-12-28T03:01:20.000Z</published>
     <updated>2017-01-16T10:42:34.000Z</updated>
     
@@ -206,14 +208,14 @@
     </summary>
     
     
-      <category term="probability theory" scheme="//xijunlee.github.io/tags/probability-theory/"/>
+      <category term="probability theory" scheme="https://xijunlee.github.io/tags/probability-theory/"/>
     
   </entry>
   
   <entry>
     <title>有逼格的画图从gnuplot说起</title>
-    <link href="//xijunlee.github.io/2016/12/24/2016-12-24-you-bi-ge-de-hua-tu-cong-gnuplotshuo-qi/"/>
-    <id>//xijunlee.github.io/2016/12/24/2016-12-24-you-bi-ge-de-hua-tu-cong-gnuplotshuo-qi/</id>
+    <link href="https://xijunlee.github.io/2016/12/24/2016-12-24-you-bi-ge-de-hua-tu-cong-gnuplotshuo-qi/"/>
+    <id>https://xijunlee.github.io/2016/12/24/2016-12-24-you-bi-ge-de-hua-tu-cong-gnuplotshuo-qi/</id>
     <published>2016-12-24T12:29:04.000Z</published>
     <updated>2017-01-16T10:42:30.000Z</updated>
     
@@ -252,14 +254,14 @@
     </summary>
     
     
-      <category term="academic plotting" scheme="//xijunlee.github.io/tags/academic-plotting/"/>
+      <category term="academic plotting" scheme="https://xijunlee.github.io/tags/academic-plotting/"/>
     
   </entry>
   
   <entry>
     <title>漫谈高维数据聚类(2):子空间聚类</title>
-    <link href="//xijunlee.github.io/2016/12/22/2016-12-22-man-tan-gao-wei-shu-ju-ju-lei-2-zi-kong-jian-ju-lei/"/>
-    <id>//xijunlee.github.io/2016/12/22/2016-12-22-man-tan-gao-wei-shu-ju-ju-lei-2-zi-kong-jian-ju-lei/</id>
+    <link href="https://xijunlee.github.io/2016/12/22/2016-12-22-man-tan-gao-wei-shu-ju-ju-lei-2-zi-kong-jian-ju-lei/"/>
+    <id>https://xijunlee.github.io/2016/12/22/2016-12-22-man-tan-gao-wei-shu-ju-ju-lei-2-zi-kong-jian-ju-lei/</id>
     <published>2016-12-22T01:46:37.000Z</published>
     <updated>2017-01-16T10:42:24.000Z</updated>
     
@@ -319,14 +321,14 @@
     </summary>
     
     
-      <category term="machine learning" scheme="//xijunlee.github.io/tags/machine-learning/"/>
+      <category term="machine learning" scheme="https://xijunlee.github.io/tags/machine-learning/"/>
     
   </entry>
   
   <entry>
     <title>玩Hadoop中遇到的坑</title>
-    <link href="//xijunlee.github.io/2016/12/21/2016-12-21-wan-hadoopzhong-yu-dao-de-keng/"/>
-    <id>//xijunlee.github.io/2016/12/21/2016-12-21-wan-hadoopzhong-yu-dao-de-keng/</id>
+    <link href="https://xijunlee.github.io/2016/12/21/2016-12-21-wan-hadoopzhong-yu-dao-de-keng/"/>
+    <id>https://xijunlee.github.io/2016/12/21/2016-12-21-wan-hadoopzhong-yu-dao-de-keng/</id>
     <published>2016-12-21T02:46:30.000Z</published>
     <updated>2017-01-16T10:42:21.000Z</updated>
     
@@ -346,14 +348,14 @@
     </summary>
     
     
-      <category term="distributed computing" scheme="//xijunlee.github.io/tags/distributed-computing/"/>
+      <category term="distributed computing" scheme="https://xijunlee.github.io/tags/distributed-computing/"/>
     
   </entry>
   
   <entry>
     <title>Markdown Test</title>
-    <link href="//xijunlee.github.io/2016/12/20/2016-12-20-markdown-test/"/>
-    <id>//xijunlee.github.io/2016/12/20/2016-12-20-markdown-test/</id>
+    <link href="https://xijunlee.github.io/2016/12/20/2016-12-20-markdown-test/"/>
+    <id>https://xijunlee.github.io/2016/12/20/2016-12-20-markdown-test/</id>
     <published>2016-12-20T01:33:38.000Z</published>
     <updated>2017-01-15T09:17:48.000Z</updated>
     
@@ -406,14 +408,14 @@
     </summary>
     
     
-      <category term="markdown" scheme="//xijunlee.github.io/tags/markdown/"/>
+      <category term="markdown" scheme="https://xijunlee.github.io/tags/markdown/"/>
     
   </entry>
   
   <entry>
     <title>漫谈高维数据聚类(1)</title>
-    <link href="//xijunlee.github.io/2016/12/18/2016-12-18-man-tan-gao-wei-shu-ju-ju-lei-1/"/>
-    <id>//xijunlee.github.io/2016/12/18/2016-12-18-man-tan-gao-wei-shu-ju-ju-lei-1/</id>
+    <link href="https://xijunlee.github.io/2016/12/18/2016-12-18-man-tan-gao-wei-shu-ju-ju-lei-1/"/>
+    <id>https://xijunlee.github.io/2016/12/18/2016-12-18-man-tan-gao-wei-shu-ju-ju-lei-1/</id>
     <published>2016-12-18T02:25:16.000Z</published>
     <updated>2017-01-16T10:42:12.000Z</updated>
     
@@ -477,14 +479,14 @@
     </summary>
     
     
-      <category term="machine learning" scheme="//xijunlee.github.io/tags/machine-learning/"/>
+      <category term="machine learning" scheme="https://xijunlee.github.io/tags/machine-learning/"/>
     
   </entry>
   
   <entry>
     <title>读书笔记之《历史的教训》</title>
-    <link href="//xijunlee.github.io/2016/12/17/2016-12-17-du-shu-bi-ji-zhi-%3C%3Cli-shi-de-jiao-xun-%3E%3E/"/>
-    <id>//xijunlee.github.io/2016/12/17/2016-12-17-du-shu-bi-ji-zhi-&lt;&lt;li-shi-de-jiao-xun-&gt;&gt;/</id>
+    <link href="https://xijunlee.github.io/2016/12/17/2016-12-17-du-shu-bi-ji-zhi-%3C%3Cli-shi-de-jiao-xun-%3E%3E/"/>
+    <id>https://xijunlee.github.io/2016/12/17/2016-12-17-du-shu-bi-ji-zhi-&lt;&lt;li-shi-de-jiao-xun-&gt;&gt;/</id>
     <published>2016-12-17T15:13:20.000Z</published>
     <updated>2017-01-17T02:34:26.000Z</updated>
     
@@ -529,14 +531,14 @@
     </summary>
     
     
-      <category term="reading" scheme="//xijunlee.github.io/tags/reading/"/>
+      <category term="reading" scheme="https://xijunlee.github.io/tags/reading/"/>
     
   </entry>
   
   <entry>
     <title>Blog Migration!</title>
-    <link href="//xijunlee.github.io/2016/12/17/2016-12-17-mei-qian-liao-,yi-hou-yong-gitxie-bo-ke-ge/"/>
-    <id>//xijunlee.github.io/2016/12/17/2016-12-17-mei-qian-liao-,yi-hou-yong-gitxie-bo-ke-ge/</id>
+    <link href="https://xijunlee.github.io/2016/12/17/2016-12-17-mei-qian-liao-,yi-hou-yong-gitxie-bo-ke-ge/"/>
+    <id>https://xijunlee.github.io/2016/12/17/2016-12-17-mei-qian-liao-,yi-hou-yong-gitxie-bo-ke-ge/</id>
     <published>2016-12-17T13:53:27.000Z</published>
     <updated>2017-01-17T02:34:24.000Z</updated>
     
@@ -553,14 +555,14 @@
     </summary>
     
     
-      <category term="dairy" scheme="//xijunlee.github.io/tags/dairy/"/>
+      <category term="dairy" scheme="https://xijunlee.github.io/tags/dairy/"/>
     
   </entry>
   
   <entry>
     <title>［iOS开发］推荐一个库，还是解决键盘隐藏问题，好用到飞上天！！</title>
-    <link href="//xijunlee.github.io/2016/01/02/%EF%BC%BBiOS%E5%BC%80%E5%8F%91%EF%BC%BD%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%AA%E5%BA%93%EF%BC%8C%E8%BF%98%E6%98%AF%E8%A7%A3%E5%86%B3%E9%94%AE%E7%9B%98%E9%9A%90%E8%97%8F%E9%97%AE%E9%A2%98%EF%BC%8C%E5%A5%BD%E7%94%A8%E5%88%B0%E9%A3%9E%E4%B8%8A%E5%A4%A9%EF%BC%81%EF%BC%81/"/>
-    <id>//xijunlee.github.io/2016/01/02/［iOS开发］推荐一个库，还是解决键盘隐藏问题，好用到飞上天！！/</id>
+    <link href="https://xijunlee.github.io/2016/01/02/%EF%BC%BBiOS%E5%BC%80%E5%8F%91%EF%BC%BD%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%AA%E5%BA%93%EF%BC%8C%E8%BF%98%E6%98%AF%E8%A7%A3%E5%86%B3%E9%94%AE%E7%9B%98%E9%9A%90%E8%97%8F%E9%97%AE%E9%A2%98%EF%BC%8C%E5%A5%BD%E7%94%A8%E5%88%B0%E9%A3%9E%E4%B8%8A%E5%A4%A9%EF%BC%81%EF%BC%81/"/>
+    <id>https://xijunlee.github.io/2016/01/02/［iOS开发］推荐一个库，还是解决键盘隐藏问题，好用到飞上天！！/</id>
     <published>2016-01-02T10:51:33.000Z</published>
     <updated>2017-01-17T14:55:08.000Z</updated>
     
@@ -584,14 +586,14 @@
     </summary>
     
     
-      <category term="iOS development" scheme="//xijunlee.github.io/tags/iOS-development/"/>
+      <category term="iOS development" scheme="https://xijunlee.github.io/tags/iOS-development/"/>
     
   </entry>
   
   <entry>
     <title>关于南京的记忆</title>
-    <link href="//xijunlee.github.io/2015/10/07/%E5%85%B3%E4%BA%8E%E5%8D%97%E4%BA%AC%E7%9A%84%E8%AE%B0%E5%BF%86/"/>
-    <id>//xijunlee.github.io/2015/10/07/关于南京的记忆/</id>
+    <link href="https://xijunlee.github.io/2015/10/07/%E5%85%B3%E4%BA%8E%E5%8D%97%E4%BA%AC%E7%9A%84%E8%AE%B0%E5%BF%86/"/>
+    <id>https://xijunlee.github.io/2015/10/07/关于南京的记忆/</id>
     <published>2015-10-07T10:44:42.000Z</published>
     <updated>2017-01-16T10:49:43.000Z</updated>
     
@@ -615,14 +617,14 @@
     </summary>
     
     
-      <category term="dairy" scheme="//xijunlee.github.io/tags/dairy/"/>
+      <category term="dairy" scheme="https://xijunlee.github.io/tags/dairy/"/>
     
   </entry>
   
   <entry>
     <title>算法导论学习之红黑树(2)</title>
-    <link href="//xijunlee.github.io/2015/07/22/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%BA%A2%E9%BB%91%E6%A0%91-2/"/>
-    <id>//xijunlee.github.io/2015/07/22/算法导论学习之红黑树-2/</id>
+    <link href="https://xijunlee.github.io/2015/07/22/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%BA%A2%E9%BB%91%E6%A0%91-2/"/>
+    <id>https://xijunlee.github.io/2015/07/22/算法导论学习之红黑树-2/</id>
     <published>2015-07-22T10:31:04.000Z</published>
     <updated>2017-01-17T14:54:09.000Z</updated>
     
@@ -661,14 +663,14 @@
     </summary>
     
     
-      <category term="algorithm" scheme="//xijunlee.github.io/tags/algorithm/"/>
+      <category term="algorithm" scheme="https://xijunlee.github.io/tags/algorithm/"/>
     
   </entry>
   
   <entry>
     <title>算法导论学习之红黑树(1)</title>
-    <link href="//xijunlee.github.io/2015/07/20/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%BA%A2%E9%BB%91%E6%A0%91-1/"/>
-    <id>//xijunlee.github.io/2015/07/20/算法导论学习之红黑树-1/</id>
+    <link href="https://xijunlee.github.io/2015/07/20/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%BA%A2%E9%BB%91%E6%A0%91-1/"/>
+    <id>https://xijunlee.github.io/2015/07/20/算法导论学习之红黑树-1/</id>
     <published>2015-07-20T10:24:33.000Z</published>
     <updated>2017-01-17T14:53:39.000Z</updated>
     
@@ -716,14 +718,14 @@
     </summary>
     
     
-      <category term="algorithm" scheme="//xijunlee.github.io/tags/algorithm/"/>
+      <category term="algorithm" scheme="https://xijunlee.github.io/tags/algorithm/"/>
     
   </entry>
   
   <entry>
     <title>算法导论学习之二叉查找树的删除操作</title>
-    <link href="//xijunlee.github.io/2015/07/14/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91%E7%9A%84%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C/"/>
-    <id>//xijunlee.github.io/2015/07/14/算法导论学习之二叉查找树的删除操作/</id>
+    <link href="https://xijunlee.github.io/2015/07/14/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91%E7%9A%84%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C/"/>
+    <id>https://xijunlee.github.io/2015/07/14/算法导论学习之二叉查找树的删除操作/</id>
     <published>2015-07-14T10:13:48.000Z</published>
     <updated>2017-01-17T14:54:04.000Z</updated>
     
@@ -755,7 +757,7 @@
     </summary>
     
     
-      <category term="algorithm" scheme="//xijunlee.github.io/tags/algorithm/"/>
+      <category term="algorithm" scheme="https://xijunlee.github.io/tags/algorithm/"/>
     
   </entry>
   

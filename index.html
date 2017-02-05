@@ -189,6 +189,123 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-linux下杀死进程（kill）的N种方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/05/linux下杀死进程（kill）的N种方法/">linux下杀死进程（kill）的N种方法</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/05/linux下杀死进程（kill）的N种方法/" class="archive-article-date">
+  	<time datetime="2017-02-05T12:39:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##常规篇：</p>
+<p>首先，用ps查看进程，方法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ps -ef</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">……</div><div class="line">smx       1822     1  0 11:38 ?        00:00:49 gnome-terminal</div><div class="line">smx       1823  1822  0 11:38 ?        00:00:00 gnome-pty-helper</div><div class="line">smx       1824  1822  0 11:38 pts/0    00:00:02 bash</div><div class="line">smx       1827     1  4 11:38 ?        00:26:28 /usr/lib/firefox-3.6.18/firefox-bin</div><div class="line">smx       1857  1822  0 11:38 pts/1    00:00:00 bash</div><div class="line">smx       1880  1619  0 11:38 ?        00:00:00 update-notifier</div><div class="line">……</div><div class="line">smx      11946  1824  0 21:41 pts/0    00:00:00 ps -ef</div></pre></td></tr></table></figure>
+<p>或者：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ps -aux</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">……</div><div class="line"></div><div class="line">smx       1822  0.1  0.8  58484 18152 ?        Sl   11:38   0:49 gnome-terminal</div><div class="line">smx       1823  0.0  0.0   1988   712 ?        S    11:38   0:00 gnome-pty-helper</div><div class="line">smx       1824  0.0  0.1   6820  3776 pts/0    Ss   11:38   0:02 bash</div><div class="line">smx       1827  4.3  5.8 398196 119568 ?       Sl   11:38  26:13 /usr/lib/firefox-3.6.18/firefox-bin</div><div class="line">smx       1857  0.0  0.1   6688  3644 pts/1    Ss   11:38   0:00 bash</div><div class="line">smx       1880  0.0  0.6  41536 12620 ?        S    11:38   0:00 update-notifier</div><div class="line">……</div><div class="line">smx      11953  0.0  0.0   2716  1064 pts/0    R+   21:42   0:00 ps -aux</div></pre></td></tr></table></figure>
+<p>此时如果我想杀了火狐的进程就在终端输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">kill</span> <span class="_">-s</span> 9 1827</div></pre></td></tr></table></figure>
+<p>其中<code>-s 9</code> 制定了传递给进程的信号是９，即强制、尽快终止进程。</p>
+<p>1827则是上面ps查到的火狐的PID。</p>
+<p>简单吧，但有个问题，进程少了则无所谓，进程多了，就会觉得痛苦了，无论是<code>ps -ef</code> 还是<code>ps -aux</code>，每次都要在一大串进程信息里面查找到要杀的进程，看的眼都花了。</p>
+<p>进阶篇：</p>
+<p>改进１：</p>
+<p>把ps的查询结果通过管道给grep查找包含特定字符串的进程。管道符“|”用来隔开两个命令，管道符左边命令的输出会作为管道符右边命令的输入。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ps -ef | grep firefox</div><div class="line">smx       1827     1  4 11:38 ?        00:27:33 /usr/lib/firefox-3.6.18/firefox-bin</div><div class="line">smx      12029  1824  0 21:54 pts/0    00:00:00 grep --color=auto firefox</div></pre></td></tr></table></figure>
+<p>这次就清爽了。然后就是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$kill</span> <span class="_">-s</span> 9 1827</div></pre></td></tr></table></figure>
+<p>还是嫌打字多？</p>
+<p>改进２——使用pgrep：</p>
+<p>一看到pgrep首先会想到什么？没错，grep！pgrep的p表明了这个命令是专门用于进程查询的grep。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pgrep firefox</div><div class="line">1827</div></pre></td></tr></table></figure>
+<p>看到了什么？没错火狐的PID，接下来又要打字了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$kill</span> <span class="_">-s</span> 9 1827</div></pre></td></tr></table></figure>
+<p>改进３——使用pidof：</p>
+<p>看到pidof想到啥？没错pid of xx，字面翻译过来就是 xx的PID。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pidof firefox-bin</div><div class="line">1827</div></pre></td></tr></table></figure>
+<p>和pgrep相比稍显不足的是，pidof必须给出进程的全名。然后就是老生常谈：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$kill</span> <span class="_">-s</span> 9 1827</div></pre></td></tr></table></figure>
+<p>无论使用ps 然后慢慢查找进程PID 还是用grep查找包含相应字符串的进程，亦或者用pgrep直接查找包含相应字符串的进程ＰＩＤ，然后手动输入给ｋｉｌｌ杀掉，都稍显麻烦。有没有更方便的方法？有！</p>
+<p>改进４：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ps</span> -ef | grep firefox | grep -v grep | cut -c 9-15 | xargs <span class="built_in">kill</span> <span class="_">-s</span> 9</div></pre></td></tr></table></figure>
+<p>说明：</p>
+<p><code>grep firefox</code>的输出结果是，所有含有关键字<code>firefox</code>的进程。</p>
+<p><code>grep -v grep</code>是在列出的进程中去除含有关键字<code>grep</code>的进程。</p>
+<p><code>cut -c 9-15</code>是截取输入行的第9个字符到第15个字符，而这正好是进程号PID。</p>
+<p><code>xargs kill -s 9</code>中的xargs命令是用来把前面命令的输出结果（PID）作为<code>kill -s 9</code>命令的参数，并执行该命令。<code>kill -s 9</code>会强行杀掉指定进程。</p>
+<p>难道你不想抱怨点什么？没错太长了</p>
+<p>改进５：</p>
+<p>知道pgrep和pidof两个命令，干嘛还要打那么长一串！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pgrep firefox | xargs <span class="built_in">kill</span> <span class="_">-s</span> 9</div></pre></td></tr></table></figure>
+<p>改进６：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ps -ef | grep firefox | awk <span class="string">'&#123;print $2&#125;'</span> | xargs <span class="built_in">kill</span> -9</div><div class="line"><span class="built_in">kill</span>: No such process</div></pre></td></tr></table></figure>
+<p>有一个比较郁闷的地方，进程已经正确找到并且终止了，但是执行完却提示找不到进程。</p>
+<p>其中<code>awk &#39;{print $2}&#39;</code> 的作用就是打印（print）出第二列的内容。根据常规篇，可以知道ps输出的第二列正好是PID。就把进程相应的PID通过xargs传递给kill作参数，杀掉对应的进程。</p>
+<p>改进７：<br>难道每次都要调用xargs把PID传递给kill？答案是否定的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$kill</span> <span class="_">-s</span> 9 `ps -aux | grep firefox | awk <span class="string">'&#123;print $2&#125;'</span>`</div></pre></td></tr></table></figure>
+<p>改进８：</p>
+<p>没错，命令依然有点长，换成pgrep。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$kill</span> <span class="_">-s</span> 9 `pgrep firefox`</div></pre></td></tr></table></figure>
+<p>改进9——pkill：</p>
+<p>看到pkill想到了什么？没错pgrep和kill！pkill＝pgrep+kill。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$pkill</span> -９ firefox</div></pre></td></tr></table></figure>
+<p>说明：”-9” 即发送的信号是9，pkill与kill在这点的差别是：pkill无须 “ｓ”，终止信号等级直接跟在 “-“ 后面。之前我一直以为是 “-s 9”，结果每次运行都无法终止进程。</p>
+<p>改进10——killall：</p>
+<p>killall和pkill是相似的,不过如果给出的进程名不完整，killall会报错。pkill或者pgrep只要给出进程名的一部分就可以终止进程。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$killall</span> -9 firefox</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/05/linux下杀死进程（kill）的N种方法/">Show All >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-2016年度总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -641,74 +758,9 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2016-12-20-markdown-test" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/20/2016-12-20-markdown-test/">Markdown Test</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/20/2016-12-20-markdown-test/" class="archive-article-date">
-  	<time datetime="2016-12-20T01:33:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>虽然博客搭好还是蛮快的，但是添加一些plugin，却花费了一些时间。对于我一个不会前端的人（只接触过html，js, etc.） 要我fix网页的bug还是挺为难我的。</p>
-<p>作为一个以后的ML的从业者，那我的博文里就必须少不了各种公式，所以就必须借助<code>MathJax.js</code>帮助渲染公式。按照一系列的tutorial，安装好了<code>MathJax.js</code>，但是发现并不能work，花了两天解决了这个问题。其问题在于这个博客是通过https安全访问的，而<code>MathJax.js</code>的加载是通过http。所以在localhost访问时，<code>Markdown.js</code>能够顺利渲染<code>LaTeX</code>数学公式，而当真正deploy后，却无法访问。后面在script中将<code>http</code>改成了<code>https</code>才能正常加载o(╯□╰)o</p>
-        
-          <a class="article-more-a" href="/2016/12/20/2016-12-20-markdown-test/#more">More >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/20/2016-12-20-markdown-test/">Show All >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -808,14 +860,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">machine learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">dairy</a>
               </li>
              
@@ -824,11 +868,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">distributed computing</a>
+                <a href="javascript:void(0)" class="js-tag color3">reading</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">academic plotting</a>
+                <a href="javascript:void(0)" class="js-tag color2">machine learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">distributed computing</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -836,11 +884,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">auction</a>
+                <a href="javascript:void(0)" class="js-tag color3">academic plotting</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">auction</a>
               </li>
              
               <li class="article-tag-list-item">

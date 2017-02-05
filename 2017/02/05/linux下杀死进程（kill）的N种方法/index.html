@@ -7,14 +7,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xijunlee.github.io">
-  <title>Archives: 2017 | XSafari</title>
+  <title>linux下杀死进程（kill）的N种方法 | XSafari</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="XSafari">
-<meta property="og:url" content="https://xijunlee.github.io/archives/2017/index.html">
+  <meta name="description" content="##常规篇：
+首先，用ps查看进程，方法如下：
+1$ ps -ef
+123456789……smx       1822     1  0 11:38 ?        00:00:49 gnome-terminalsmx       1823  1822  0 11:38 ?        00:00:00 gnome-pty-helpersmx       1824  1822  0 11:38">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux下杀死进程（kill）的N种方法">
+<meta property="og:url" content="https://xijunlee.github.io/2017/02/05/linux下杀死进程（kill）的N种方法/index.html">
 <meta property="og:site_name" content="XSafari">
+<meta property="og:description" content="##常规篇：
+首先，用ps查看进程，方法如下：
+1$ ps -ef
+123456789……smx       1822     1  0 11:38 ?        00:00:49 gnome-terminalsmx       1823  1822  0 11:38 ?        00:00:00 gnome-pty-helpersmx       1824  1822  0 11:38">
+<meta property="og:updated_time" content="2017-02-05T12:49:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XSafari">
+<meta name="twitter:title" content="linux下杀死进程（kill）的N种方法">
+<meta name="twitter:description" content="##常规篇：
+首先，用ps查看进程，方法如下：
+1$ ps -ef
+123456789……smx       1822     1  0 11:38 ?        00:00:49 gnome-terminalsmx       1823  1822  0 11:38 ?        00:00:00 gnome-pty-helpersmx       1824  1822  0 11:38">
   
     <link rel="alternative" href="/atom.xml" title="XSafari" type="application/atom+xml">
   
@@ -187,36 +200,90 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-linux下杀死进程（kill）的N种方法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/05/linux下杀死进程（kill）的N种方法/" class="archive-article-date">
-  	<time datetime="2017-02-05T12:39:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-05</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/05/linux下杀死进程（kill）的N种方法/">linux下杀死进程（kill）的N种方法</a>
+    <h1 class="article-title" itemprop="name">
+      linux下杀死进程（kill）的N种方法
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/02/05/linux下杀死进程（kill）的N种方法/" class="archive-article-date">
+  	<time datetime="2017-02-05T12:39:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##常规篇：</p>
+<p>首先，用ps查看进程，方法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ps -ef</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">……</div><div class="line">smx       1822     1  0 11:38 ?        00:00:49 gnome-terminal</div><div class="line">smx       1823  1822  0 11:38 ?        00:00:00 gnome-pty-helper</div><div class="line">smx       1824  1822  0 11:38 pts/0    00:00:02 bash</div><div class="line">smx       1827     1  4 11:38 ?        00:26:28 /usr/lib/firefox-3.6.18/firefox-bin</div><div class="line">smx       1857  1822  0 11:38 pts/1    00:00:00 bash</div><div class="line">smx       1880  1619  0 11:38 ?        00:00:00 update-notifier</div><div class="line">……</div><div class="line">smx      11946  1824  0 21:41 pts/0    00:00:00 ps -ef</div></pre></td></tr></table></figure>
+<p>或者：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ps -aux</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">……</div><div class="line"></div><div class="line">smx       1822  0.1  0.8  58484 18152 ?        Sl   11:38   0:49 gnome-terminal</div><div class="line">smx       1823  0.0  0.0   1988   712 ?        S    11:38   0:00 gnome-pty-helper</div><div class="line">smx       1824  0.0  0.1   6820  3776 pts/0    Ss   11:38   0:02 bash</div><div class="line">smx       1827  4.3  5.8 398196 119568 ?       Sl   11:38  26:13 /usr/lib/firefox-3.6.18/firefox-bin</div><div class="line">smx       1857  0.0  0.1   6688  3644 pts/1    Ss   11:38   0:00 bash</div><div class="line">smx       1880  0.0  0.6  41536 12620 ?        S    11:38   0:00 update-notifier</div><div class="line">……</div><div class="line">smx      11953  0.0  0.0   2716  1064 pts/0    R+   21:42   0:00 ps -aux</div></pre></td></tr></table></figure>
+<p>此时如果我想杀了火狐的进程就在终端输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">kill</span> <span class="_">-s</span> 9 1827</div></pre></td></tr></table></figure>
+<p>其中<code>-s 9</code> 制定了传递给进程的信号是９，即强制、尽快终止进程。</p>
+<p>1827则是上面ps查到的火狐的PID。</p>
+<p>简单吧，但有个问题，进程少了则无所谓，进程多了，就会觉得痛苦了，无论是<code>ps -ef</code> 还是<code>ps -aux</code>，每次都要在一大串进程信息里面查找到要杀的进程，看的眼都花了。</p>
+<p>进阶篇：</p>
+<p>改进１：</p>
+<p>把ps的查询结果通过管道给grep查找包含特定字符串的进程。管道符“|”用来隔开两个命令，管道符左边命令的输出会作为管道符右边命令的输入。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ps -ef | grep firefox</div><div class="line">smx       1827     1  4 11:38 ?        00:27:33 /usr/lib/firefox-3.6.18/firefox-bin</div><div class="line">smx      12029  1824  0 21:54 pts/0    00:00:00 grep --color=auto firefox</div></pre></td></tr></table></figure>
+<p>这次就清爽了。然后就是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$kill</span> <span class="_">-s</span> 9 1827</div></pre></td></tr></table></figure>
+<p>还是嫌打字多？</p>
+<p>改进２——使用pgrep：</p>
+<p>一看到pgrep首先会想到什么？没错，grep！pgrep的p表明了这个命令是专门用于进程查询的grep。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pgrep firefox</div><div class="line">1827</div></pre></td></tr></table></figure>
+<p>看到了什么？没错火狐的PID，接下来又要打字了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$kill</span> <span class="_">-s</span> 9 1827</div></pre></td></tr></table></figure>
+<p>改进３——使用pidof：</p>
+<p>看到pidof想到啥？没错pid of xx，字面翻译过来就是 xx的PID。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pidof firefox-bin</div><div class="line">1827</div></pre></td></tr></table></figure>
+<p>和pgrep相比稍显不足的是，pidof必须给出进程的全名。然后就是老生常谈：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$kill</span> <span class="_">-s</span> 9 1827</div></pre></td></tr></table></figure>
+<p>无论使用ps 然后慢慢查找进程PID 还是用grep查找包含相应字符串的进程，亦或者用pgrep直接查找包含相应字符串的进程ＰＩＤ，然后手动输入给ｋｉｌｌ杀掉，都稍显麻烦。有没有更方便的方法？有！</p>
+<p>改进４：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ps</span> -ef | grep firefox | grep -v grep | cut -c 9-15 | xargs <span class="built_in">kill</span> <span class="_">-s</span> 9</div></pre></td></tr></table></figure>
+<p>说明：</p>
+<p><code>grep firefox</code>的输出结果是，所有含有关键字<code>firefox</code>的进程。</p>
+<p><code>grep -v grep</code>是在列出的进程中去除含有关键字<code>grep</code>的进程。</p>
+<p><code>cut -c 9-15</code>是截取输入行的第9个字符到第15个字符，而这正好是进程号PID。</p>
+<p><code>xargs kill -s 9</code>中的xargs命令是用来把前面命令的输出结果（PID）作为<code>kill -s 9</code>命令的参数，并执行该命令。<code>kill -s 9</code>会强行杀掉指定进程。</p>
+<p>难道你不想抱怨点什么？没错太长了</p>
+<p>改进５：</p>
+<p>知道pgrep和pidof两个命令，干嘛还要打那么长一串！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pgrep firefox | xargs <span class="built_in">kill</span> <span class="_">-s</span> 9</div></pre></td></tr></table></figure>
+<p>改进６：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ps -ef | grep firefox | awk <span class="string">'&#123;print $2&#125;'</span> | xargs <span class="built_in">kill</span> -9</div><div class="line"><span class="built_in">kill</span>: No such process</div></pre></td></tr></table></figure>
+<p>有一个比较郁闷的地方，进程已经正确找到并且终止了，但是执行完却提示找不到进程。</p>
+<p>其中<code>awk &#39;{print $2}&#39;</code> 的作用就是打印（print）出第二列的内容。根据常规篇，可以知道ps输出的第二列正好是PID。就把进程相应的PID通过xargs传递给kill作参数，杀掉对应的进程。</p>
+<p>改进７：<br>难道每次都要调用xargs把PID传递给kill？答案是否定的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$kill</span> <span class="_">-s</span> 9 `ps -aux | grep firefox | awk <span class="string">'&#123;print $2&#125;'</span>`</div></pre></td></tr></table></figure>
+<p>改进８：</p>
+<p>没错，命令依然有点长，换成pgrep。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$kill</span> <span class="_">-s</span> 9 `pgrep firefox`</div></pre></td></tr></table></figure>
+<p>改进9——pkill：</p>
+<p>看到pkill想到了什么？没错pgrep和kill！pkill＝pgrep+kill。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$pkill</span> -９ firefox</div></pre></td></tr></table></figure>
+<p>说明：”-9” 即发送的信号是9，pkill与kill在这点的差别是：pkill无须 “ｓ”，终止信号等级直接跟在 “-“ 后面。之前我一直以为是 “-s 9”，结果每次运行都无法终止进程。</p>
+<p>改进10——killall：</p>
+<p>killall和pkill是相似的,不过如果给出的进程名不完整，killall会报错。pkill或者pgrep只要给出进程名的一部分就可以终止进程。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$killall</span> -9 firefox</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -228,133 +295,106 @@ var _hmt = _hmt || [];
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://xijunlee.github.io/2017/02/05/linux下杀死进程（kill）的N种方法/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/24/2016年度总结/" class="archive-article-date">
-  	<time datetime="2017-01-24T08:06:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-24</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/24/2016年度总结/">2016年度总结</a>
-    </h1>
+  
+    <a href="/2017/01/24/2016年度总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2016年度总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="linux下杀死进程（kill）的N种方法" data-title="linux下杀死进程（kill）的N种方法" data-url="https://xijunlee.github.io/2017/02/05/linux下杀死进程（kill）的N种方法/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"xijun"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dairy</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/15/又从octopress迁移到hexo了……/" class="archive-article-date">
-  	<time datetime="2017-01-15T08:59:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/15/又从octopress迁移到hexo了……/">又从octopress迁移到hexo了……</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dairy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/03/2017-01-03-chang-jian-pai-mai-ji-zhi-yu-mo-xing-zong-jie/" class="archive-article-date">
-  	<time datetime="2017-01-03T08:33:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/03/2017-01-03-chang-jian-pai-mai-ji-zhi-yu-mo-xing-zong-jie/">常见拍卖机制与模型总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">auction</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -377,8 +417,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

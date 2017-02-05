@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-02-05T12:49:45.000Z</updated>
+  <updated>2017-02-05T12:52:48.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,12 +20,13 @@
     <link href="https://xijunlee.github.io/2017/02/05/linux%E4%B8%8B%E6%9D%80%E6%AD%BB%E8%BF%9B%E7%A8%8B%EF%BC%88kill%EF%BC%89%E7%9A%84N%E7%A7%8D%E6%96%B9%E6%B3%95/"/>
     <id>https://xijunlee.github.io/2017/02/05/linux下杀死进程（kill）的N种方法/</id>
     <published>2017-02-05T12:39:52.000Z</published>
-    <updated>2017-02-05T12:49:45.000Z</updated>
+    <updated>2017-02-05T12:52:48.000Z</updated>
     
-    <content type="html"><![CDATA[<p>##常规篇：</p>
-<p>首先，用ps查看进程，方法如下：</p>
+    <content type="html"><![CDATA[<p>首先说明这是转载的，作为笔记整理成下文。</p>
+<h2 id="常规篇："><a href="#常规篇：" class="headerlink" title="常规篇："></a>常规篇：</h2><p>首先，用ps查看进程，方法如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ps -ef</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">……</div><div class="line">smx       1822     1  0 11:38 ?        00:00:49 gnome-terminal</div><div class="line">smx       1823  1822  0 11:38 ?        00:00:00 gnome-pty-helper</div><div class="line">smx       1824  1822  0 11:38 pts/0    00:00:02 bash</div><div class="line">smx       1827     1  4 11:38 ?        00:26:28 /usr/lib/firefox-3.6.18/firefox-bin</div><div class="line">smx       1857  1822  0 11:38 pts/1    00:00:00 bash</div><div class="line">smx       1880  1619  0 11:38 ?        00:00:00 update-notifier</div><div class="line">……</div><div class="line">smx      11946  1824  0 21:41 pts/0    00:00:00 ps -ef</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>或者：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ps -aux</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">……</div><div class="line"></div><div class="line">smx       1822  0.1  0.8  58484 18152 ?        Sl   11:38   0:49 gnome-terminal</div><div class="line">smx       1823  0.0  0.0   1988   712 ?        S    11:38   0:00 gnome-pty-helper</div><div class="line">smx       1824  0.0  0.1   6820  3776 pts/0    Ss   11:38   0:02 bash</div><div class="line">smx       1827  4.3  5.8 398196 119568 ?       Sl   11:38  26:13 /usr/lib/firefox-3.6.18/firefox-bin</div><div class="line">smx       1857  0.0  0.1   6688  3644 pts/1    Ss   11:38   0:00 bash</div><div class="line">smx       1880  0.0  0.6  41536 12620 ?        S    11:38   0:00 update-notifier</div><div class="line">……</div><div class="line">smx      11953  0.0  0.0   2716  1064 pts/0    R+   21:42   0:00 ps -aux</div></pre></td></tr></table></figure>
@@ -34,57 +35,48 @@
 <p>其中<code>-s 9</code> 制定了传递给进程的信号是９，即强制、尽快终止进程。</p>
 <p>1827则是上面ps查到的火狐的PID。</p>
 <p>简单吧，但有个问题，进程少了则无所谓，进程多了，就会觉得痛苦了，无论是<code>ps -ef</code> 还是<code>ps -aux</code>，每次都要在一大串进程信息里面查找到要杀的进程，看的眼都花了。</p>
-<p>进阶篇：</p>
-<p>改进１：</p>
-<p>把ps的查询结果通过管道给grep查找包含特定字符串的进程。管道符“|”用来隔开两个命令，管道符左边命令的输出会作为管道符右边命令的输入。</p>
+<h2 id="进阶篇："><a href="#进阶篇：" class="headerlink" title="进阶篇："></a>进阶篇：</h2><h3 id="改进１："><a href="#改进１：" class="headerlink" title="改进１："></a>改进１：</h3><p>把ps的查询结果通过管道给grep查找包含特定字符串的进程。管道符“|”用来隔开两个命令，管道符左边命令的输出会作为管道符右边命令的输入。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ps -ef | grep firefox</div><div class="line">smx       1827     1  4 11:38 ?        00:27:33 /usr/lib/firefox-3.6.18/firefox-bin</div><div class="line">smx      12029  1824  0 21:54 pts/0    00:00:00 grep --color=auto firefox</div></pre></td></tr></table></figure>
 <p>这次就清爽了。然后就是</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$kill</span> <span class="_">-s</span> 9 1827</div></pre></td></tr></table></figure>
 <p>还是嫌打字多？</p>
-<p>改进２——使用pgrep：</p>
-<p>一看到pgrep首先会想到什么？没错，grep！pgrep的p表明了这个命令是专门用于进程查询的grep。</p>
+<h3 id="改进２——使用pgrep："><a href="#改进２——使用pgrep：" class="headerlink" title="改进２——使用pgrep："></a>改进２——使用pgrep：</h3><p>一看到pgrep首先会想到什么？没错，grep！pgrep的p表明了这个命令是专门用于进程查询的grep。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pgrep firefox</div><div class="line">1827</div></pre></td></tr></table></figure>
 <p>看到了什么？没错火狐的PID，接下来又要打字了：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$kill</span> <span class="_">-s</span> 9 1827</div></pre></td></tr></table></figure>
-<p>改进３——使用pidof：</p>
-<p>看到pidof想到啥？没错pid of xx，字面翻译过来就是 xx的PID。</p>
+<h3 id="改进３——使用pidof："><a href="#改进３——使用pidof：" class="headerlink" title="改进３——使用pidof："></a>改进３——使用pidof：</h3><p>看到pidof想到啥？没错pid of xx，字面翻译过来就是 xx的PID。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pidof firefox-bin</div><div class="line">1827</div></pre></td></tr></table></figure>
 <p>和pgrep相比稍显不足的是，pidof必须给出进程的全名。然后就是老生常谈：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$kill</span> <span class="_">-s</span> 9 1827</div></pre></td></tr></table></figure>
 <p>无论使用ps 然后慢慢查找进程PID 还是用grep查找包含相应字符串的进程，亦或者用pgrep直接查找包含相应字符串的进程ＰＩＤ，然后手动输入给ｋｉｌｌ杀掉，都稍显麻烦。有没有更方便的方法？有！</p>
-<p>改进４：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ps</span> -ef | grep firefox | grep -v grep | cut -c 9-15 | xargs <span class="built_in">kill</span> <span class="_">-s</span> 9</div></pre></td></tr></table></figure>
+<h3 id="改进４："><a href="#改进４：" class="headerlink" title="改进４："></a>改进４：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ps</span> -ef | grep firefox | grep -v grep | cut -c 9-15 | xargs <span class="built_in">kill</span> <span class="_">-s</span> 9</div></pre></td></tr></table></figure>
 <p>说明：</p>
 <p><code>grep firefox</code>的输出结果是，所有含有关键字<code>firefox</code>的进程。</p>
 <p><code>grep -v grep</code>是在列出的进程中去除含有关键字<code>grep</code>的进程。</p>
 <p><code>cut -c 9-15</code>是截取输入行的第9个字符到第15个字符，而这正好是进程号PID。</p>
 <p><code>xargs kill -s 9</code>中的xargs命令是用来把前面命令的输出结果（PID）作为<code>kill -s 9</code>命令的参数，并执行该命令。<code>kill -s 9</code>会强行杀掉指定进程。</p>
 <p>难道你不想抱怨点什么？没错太长了</p>
-<p>改进５：</p>
-<p>知道pgrep和pidof两个命令，干嘛还要打那么长一串！</p>
+<h3 id="改进５："><a href="#改进５：" class="headerlink" title="改进５："></a>改进５：</h3><p>知道pgrep和pidof两个命令，干嘛还要打那么长一串！</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pgrep firefox | xargs <span class="built_in">kill</span> <span class="_">-s</span> 9</div></pre></td></tr></table></figure>
-<p>改进６：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ps -ef | grep firefox | awk <span class="string">'&#123;print $2&#125;'</span> | xargs <span class="built_in">kill</span> -9</div><div class="line"><span class="built_in">kill</span>: No such process</div></pre></td></tr></table></figure>
+<h3 id="改进６："><a href="#改进６：" class="headerlink" title="改进６："></a>改进６：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ps -ef | grep firefox | awk <span class="string">'&#123;print $2&#125;'</span> | xargs <span class="built_in">kill</span> -9</div><div class="line"><span class="built_in">kill</span>: No such process</div></pre></td></tr></table></figure>
 <p>有一个比较郁闷的地方，进程已经正确找到并且终止了，但是执行完却提示找不到进程。</p>
 <p>其中<code>awk &#39;{print $2}&#39;</code> 的作用就是打印（print）出第二列的内容。根据常规篇，可以知道ps输出的第二列正好是PID。就把进程相应的PID通过xargs传递给kill作参数，杀掉对应的进程。</p>
-<p>改进７：<br>难道每次都要调用xargs把PID传递给kill？答案是否定的：</p>
+<h3 id="改进７："><a href="#改进７：" class="headerlink" title="改进７："></a>改进７：</h3><p>难道每次都要调用xargs把PID传递给kill？答案是否定的：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$kill</span> <span class="_">-s</span> 9 `ps -aux | grep firefox | awk <span class="string">'&#123;print $2&#125;'</span>`</div></pre></td></tr></table></figure>
-<p>改进８：</p>
-<p>没错，命令依然有点长，换成pgrep。</p>
+<h3 id="改进８："><a href="#改进８：" class="headerlink" title="改进８："></a>改进８：</h3><p>没错，命令依然有点长，换成pgrep。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$kill</span> <span class="_">-s</span> 9 `pgrep firefox`</div></pre></td></tr></table></figure>
-<p>改进9——pkill：</p>
-<p>看到pkill想到了什么？没错pgrep和kill！pkill＝pgrep+kill。</p>
+<h3 id="改进9——pkill："><a href="#改进9——pkill：" class="headerlink" title="改进9——pkill："></a>改进9——pkill：</h3><p>看到pkill想到了什么？没错pgrep和kill！pkill＝pgrep+kill。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$pkill</span> -９ firefox</div></pre></td></tr></table></figure>
 <p>说明：”-9” 即发送的信号是9，pkill与kill在这点的差别是：pkill无须 “ｓ”，终止信号等级直接跟在 “-“ 后面。之前我一直以为是 “-s 9”，结果每次运行都无法终止进程。</p>
-<p>改进10——killall：</p>
-<p>killall和pkill是相似的,不过如果给出的进程名不完整，killall会报错。pkill或者pgrep只要给出进程名的一部分就可以终止进程。</p>
+<h3 id="改进10——killall："><a href="#改进10——killall：" class="headerlink" title="改进10——killall："></a>改进10——killall：</h3><p>killall和pkill是相似的,不过如果给出的进程名不完整，killall会报错。pkill或者pgrep只要给出进程名的一部分就可以终止进程。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$killall</span> -9 firefox</div></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;##常规篇：&lt;/p&gt;
-&lt;p&gt;首先，用ps查看进程，方法如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;
+      &lt;p&gt;首先说明这是转载的，作为笔记整理成下文。&lt;/p&gt;
+&lt;h2 id=&quot;常规篇：&quot;&gt;&lt;a href=&quot;#常规篇：&quot; class=&quot;headerlink&quot; title=&quot;常规篇：&quot;&gt;&lt;/a&gt;常规篇：&lt;/h2&gt;&lt;p&gt;首先，用ps查看进程，方法如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ ps -ef&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;……&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;smx       1822     1  0 11:38 ?        00:00:49 gnome-terminal&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;smx       1823  1822  0 11:38 ?        00:00:00 gnome-pty-helper&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;smx       1824  1822  0 11:38 pts/0    00:00:02 bash&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;smx       1827     1  4 11:38 ?        00:26:28 /usr/lib/firefox-3.6.18/firefox-bin&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;smx       1857  1822  0 11:38 pts/1    00:00:00 bash&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;smx       1880  1619  0 11:38 ?        00:00:00 update-notifier&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;……&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;smx      11946  1824  0 21:41 pts/0    00:00:00 ps -ef&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     

@@ -7,14 +7,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xijunlee.github.io">
-  <title>Archives | XSafari</title>
+  <title>python虚拟环境安装与使用(转) | XSafari</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="XSafari">
-<meta property="og:url" content="https://xijunlee.github.io/archives/page/2/index.html">
+  <meta name="description" content="在开发Python应用程序的时候，系统安装的Python3只有一个版本：3.4。所有第三方的包都会被pip安装到Python3的site-packages目录下。
+如果我们要同时开发多个应用程序，那这些应用程序都会共用一个Python，就是安装在系统的Python 3。如果应用A需要jinja 2.7，而应用B需要jinja 2.6怎么办？
+这种情况下，每个应用可能需要各自拥有一套“独立”的Pyt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python虚拟环境安装与使用(转)">
+<meta property="og:url" content="https://xijunlee.github.io/2017/02/10/python虚拟环境安装与使用/index.html">
 <meta property="og:site_name" content="XSafari">
+<meta property="og:description" content="在开发Python应用程序的时候，系统安装的Python3只有一个版本：3.4。所有第三方的包都会被pip安装到Python3的site-packages目录下。
+如果我们要同时开发多个应用程序，那这些应用程序都会共用一个Python，就是安装在系统的Python 3。如果应用A需要jinja 2.7，而应用B需要jinja 2.6怎么办？
+这种情况下，每个应用可能需要各自拥有一套“独立”的Pyt">
+<meta property="og:updated_time" content="2017-02-10T03:19:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XSafari">
+<meta name="twitter:title" content="python虚拟环境安装与使用(转)">
+<meta name="twitter:description" content="在开发Python应用程序的时候，系统安装的Python3只有一个版本：3.4。所有第三方的包都会被pip安装到Python3的site-packages目录下。
+如果我们要同时开发多个应用程序，那这些应用程序都会共用一个Python，就是安装在系统的Python 3。如果应用A需要jinja 2.7，而应用B需要jinja 2.6怎么办？
+这种情况下，每个应用可能需要各自拥有一套“独立”的Pyt">
   
     <link rel="alternative" href="/atom.xml" title="XSafari" type="application/atom+xml">
   
@@ -187,340 +197,170 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-python虚拟环境安装与使用" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python虚拟环境安装与使用(转)
+    </h1>
+  
+
+        
+        <a href="/2017/02/10/python虚拟环境安装与使用/" class="archive-article-date">
+  	<time datetime="2017-02-10T03:15:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-10</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在开发<code>Python</code>应用程序的时候，系统安装的<code>Python3</code>只有一个版本：3.4。所有第三方的包都会被<code>pip</code>安装到<code>Python3</code>的<code>site-packages</code>目录下。</p>
+<p>如果我们要同时开发多个应用程序，那这些应用程序都会共用一个<code>Python</code>，就是安装在系统的Python 3。如果应用A需要<code>jinja 2.7</code>，而应用B需要<code>jinja 2.6</code>怎么办？</p>
+<p>这种情况下，每个应用可能需要各自拥有一套“独立”的<code>Python</code>运行环境。<code>virtualenv</code>就是用来为一个应用创建一套“隔离”的<code>Python</code>运行环境。</p>
+<p>首先，我们用<code>pip</code>安装<code>virtualenv</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip3 install virtualenv</div></pre></td></tr></table></figure>
+<p>然后，假定我们要开发一个新的项目，需要一套独立的Python运行环境，可以这么做：</p>
+<p>第一步，创建目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Mac:~ michael$ mkdir myproject</div><div class="line">Mac:~ michael$ <span class="built_in">cd</span> myproject/</div><div class="line">Mac:myproject michael$</div></pre></td></tr></table></figure>
+<p>第二步，创建一个独立的<code>Python</code>运行环境，命名为<code>venv</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Mac:myproject michael$ virtualenv --no-site-packages venv</div><div class="line">Using base prefix <span class="string">'/usr/local/.../Python.framework/Versions/3.4'</span>New python executable <span class="keyword">in</span> venv/bin/python3.4Also creating executable <span class="keyword">in</span> venv/bin/python</div><div class="line">Installing setuptools, pip, wheel...done.</div></pre></td></tr></table></figure>
+<p>命令<code>virtualenv</code>就可以创建一个独立的<code>Python</code>运行环境，我们还加上了参数<code>--no-site-packages</code>，这样，已经安装到系统Python环境中的所有第三方包都不会复制过来，这样，我们就得到了一个不带任何第三方包的“干净”的<code>Python</code>运行环境。</p>
+<p>新建的<code>Python</code>环境被放到当前目录下的<code>venv</code>目录。有了<code>venv</code>这个<code>Python</code>环境，可以用<code>source</code>进入该环境：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Mac:myproject michael$ <span class="built_in">source</span> venv/bin/activate</div><div class="line">(venv)Mac:myproject michael$</div></pre></td></tr></table></figure>
+<p>注意到命令提示符变了，有个<code>(venv)</code>前缀，表示当前环境是一个名为<code>venv</code>的<code>Python</code>环境。</p>
+<p>下面正常安装各种第三方包，并运行<code>python</code>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(venv)Mac:myproject michael$ pip install jinja2</div><div class="line">...</div><div class="line">Successfully installed jinja2-2.7.3 markupsafe-0.23</div><div class="line">(venv)Mac:myproject michael$ python myapp.py</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>在<code>venv</code>环境下，用<code>pip</code>安装的包都被安装到<code>venv</code>这个环境下，系统<code>Python</code>环境不受任何影响。也就是说，<code>venv</code>环境是专门针对myproject这个应用创建的。</p>
+<p>退出当前的<code>venv</code>环境，使用<code>deactivate</code>命令：</p>
+<p><code>bash
+(venv)Mac:myproject michael$ deactivate 
+Mac:myproject michael$</code>bash</p>
+<p>此时就回到了正常的环境，现在pip或python均是在系统Python环境下执行。</p>
+<p>完全可以针对每个应用创建独立的Python运行环境，这样就可以对每个应用的Python环境进行隔离。</p>
+<p>virtualenv是如何创建“独立”的Python运行环境的呢？原理很简单，就是把系统Python复制一份到virtualenv的环境，用命令<code>source venv/bin/activate</code>进入一个virtualenv环境时，virtualenv会修改相关环境变量，让命令<code>python</code>和<code>pip</code>均指向当前的virtualenv环境。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>virtualenv为应用提供了隔离的Python运行环境，解决了不同应用间多版本的冲突问题。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/21/2016-12-21-wan-hadoopzhong-yu-dao-de-keng/" class="archive-article-date">
-  	<time datetime="2016-12-21T02:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/21/2016-12-21-wan-hadoopzhong-yu-dao-de-keng/">玩Hadoop中遇到的坑</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">distributed computing</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python virtual environment</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/20/2016-12-20-markdown-test/" class="archive-article-date">
-  	<time datetime="2016-12-20T01:33:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/20/2016-12-20-markdown-test/">Markdown Test</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/18/2016-12-18-man-tan-gao-wei-shu-ju-ju-lei-1/" class="archive-article-date">
-  	<time datetime="2016-12-18T02:25:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/18/2016-12-18-man-tan-gao-wei-shu-ju-ju-lei-1/">漫谈高维数据聚类(1)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/17/2016-12-17-du-shu-bi-ji-zhi-<<li-shi-de-jiao-xun->>/" class="archive-article-date">
-  	<time datetime="2016-12-17T15:13:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/17/2016-12-17-du-shu-bi-ji-zhi-<<li-shi-de-jiao-xun->>/">读书笔记之《历史的教训》</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">reading</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/17/2016-12-17-mei-qian-liao-,yi-hou-yong-gitxie-bo-ke-ge/" class="archive-article-date">
-  	<time datetime="2016-12-17T13:53:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/17/2016-12-17-mei-qian-liao-,yi-hou-yong-gitxie-bo-ke-ge/">Blog Migration!</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dairy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/01/02/［iOS开发］推荐一个库，还是解决键盘隐藏问题，好用到飞上天！！/" class="archive-article-date">
-  	<time datetime="2016-01-02T10:51:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/02/［iOS开发］推荐一个库，还是解决键盘隐藏问题，好用到飞上天！！/">［iOS开发］推荐一个库，还是解决键盘隐藏问题，好用到飞上天！！</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">iOS development</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/10/07/关于南京的记忆/" class="archive-article-date">
-  	<time datetime="2015-10-07T10:44:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-10-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/10/07/关于南京的记忆/">关于南京的记忆</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dairy</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://xijunlee.github.io/2017/02/10/python虚拟环境安装与使用/" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/07/22/算法导论学习之红黑树-2/" class="archive-article-date">
-  	<time datetime="2015-07-22T10:31:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-07-22</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/07/22/算法导论学习之红黑树-2/">算法导论学习之红黑树(2)</a>
-    </h1>
+  
+    <a href="/2017/02/05/linux下杀死进程（kill）的N种方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">linux下杀死进程（kill）的N种方法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="python虚拟环境安装与使用" data-title="python虚拟环境安装与使用(转)" data-url="https://xijunlee.github.io/2017/02/10/python虚拟环境安装与使用/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"xijun"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/3/">Next &raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -543,8 +383,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

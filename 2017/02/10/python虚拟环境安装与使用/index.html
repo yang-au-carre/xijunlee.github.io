@@ -7,7 +7,7 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xijunlee.github.io">
-  <title>python虚拟环境安装与使用(转) | XSafari</title>
+  <title>python虚拟环境安装与使用(转) | Xijun LI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="在开发Python应用程序的时候，系统安装的Python3只有一个版本：3.4。所有第三方的包都会被pip安装到Python3的site-packages目录下。
 如果我们要同时开发多个应用程序，那这些应用程序都会共用一个Python，就是安装在系统的Python 3。如果应用A需要jinja 2.7，而应用B需要jinja 2.6怎么办？
@@ -15,18 +15,18 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="python虚拟环境安装与使用(转)">
 <meta property="og:url" content="https://xijunlee.github.io/2017/02/10/python虚拟环境安装与使用/index.html">
-<meta property="og:site_name" content="XSafari">
+<meta property="og:site_name" content="Xijun LI">
 <meta property="og:description" content="在开发Python应用程序的时候，系统安装的Python3只有一个版本：3.4。所有第三方的包都会被pip安装到Python3的site-packages目录下。
 如果我们要同时开发多个应用程序，那这些应用程序都会共用一个Python，就是安装在系统的Python 3。如果应用A需要jinja 2.7，而应用B需要jinja 2.6怎么办？
 这种情况下，每个应用可能需要各自拥有一套“独立”的Pyt">
-<meta property="og:updated_time" content="2017-02-10T03:22:03.000Z">
+<meta property="og:updated_time" content="2017-02-13T13:39:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python虚拟环境安装与使用(转)">
 <meta name="twitter:description" content="在开发Python应用程序的时候，系统安装的Python3只有一个版本：3.4。所有第三方的包都会被pip安装到Python3的site-packages目录下。
 如果我们要同时开发多个应用程序，那这些应用程序都会共用一个Python，就是安装在系统的Python 3。如果应用A需要jinja 2.7，而应用B需要jinja 2.6怎么办？
 这种情况下，每个应用可能需要各自拥有一套“独立”的Pyt">
   
-    <link rel="alternative" href="/atom.xml" title="XSafari" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Xijun LI" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -236,9 +236,7 @@ var _hmt = _hmt || [];
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(venv)Mac:myproject michael$ pip install jinja2</div><div class="line">...</div><div class="line">Successfully installed jinja2-2.7.3 markupsafe-0.23</div><div class="line">(venv)Mac:myproject michael$ python myapp.py</div><div class="line">...</div></pre></td></tr></table></figure>
 <p>在<code>venv</code>环境下，用<code>pip</code>安装的包都被安装到<code>venv</code>这个环境下，系统<code>Python</code>环境不受任何影响。也就是说，<code>venv</code>环境是专门针对myproject这个应用创建的。</p>
 <p>退出当前的<code>venv</code>环境，使用<code>deactivate</code>命令：</p>
-<p><code>bash
-(venv)Mac:myproject michael$ deactivate 
-Mac:myproject michael$</code>bash</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(venv)Mac:myproject michael$ deactivate </div><div class="line">Mac:myproject michael$</div></pre></td></tr></table></figure>
 <p>此时就回到了正常的环境，现在pip或python均是在系统Python环境下执行。</p>
 <p>完全可以针对每个应用创建独立的Python运行环境，这样就可以对每个应用的Python环境进行隔离。</p>
 <p>virtualenv是如何创建“独立”的Python运行环境的呢？原理很简单，就是把系统Python复制一份到virtualenv的环境，用命令<code>source venv/bin/activate</code>进入一个virtualenv环境时，virtualenv会修改相关环境变量，让命令<code>python</code>和<code>pip</code>均指向当前的virtualenv环境。</p>

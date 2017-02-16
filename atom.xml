@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-02-16T08:38:43.000Z</updated>
+  <updated>2017-02-16T08:39:02.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,15 +20,15 @@
     <link href="https://xijunlee.github.io/2017/02/16/%E7%88%AC%E8%99%AB%E7%BB%83%E6%89%8B%E4%B8%80%EF%BC%9A%E7%88%AC%E4%B8%8B%E6%96%B0%E6%B5%AA%E7%88%B1%E9%97%AE%E6%89%80%E6%9C%89%E9%97%AE%E9%A2%98%EF%BC%81/"/>
     <id>https://xijunlee.github.io/2017/02/16/爬虫练手一：爬下新浪爱问所有问题！/</id>
     <published>2017-02-16T07:33:43.000Z</published>
-    <updated>2017-02-16T08:38:43.000Z</updated>
+    <updated>2017-02-16T08:39:02.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>老早就想写爬虫了，只奈何以前总是空有一颗写爬虫的心。很多事情不可能全部都准备好才动手做，而是在边做的过程中边学。看着<a href="http://cuiqingcai.com/1052.html" target="_blank" rel="external">大神的博客</a>，学了五天，写了几个小demo，遂准备自己动手从头写一个爬虫来练手。这篇博文不是教程，相当于一个<code>readme</code>文档吧。</p>
-<a id="more"></a>
 <h2 id="爬的对象-–-新浪爱问"><a href="#爬的对象-–-新浪爱问" class="headerlink" title="爬的对象 – 新浪爱问"></a>爬的对象 – 新浪爱问</h2><p>选择<a href="http://iask.sina.com.cn" target="_blank" rel="external">新浪爱问</a>作为爬虫对象的原因如下：</p>
 <ol>
 <li>大神博客中虽然有对该网站爬的教程，但是因为网站改版了，大神的正则表达式代码失效，很多读者都在求代码。既然没人来做，那就我来做好了；</li>
 <li>这个网站比较简单，不需要密码登录验证，不反爬虫。这对于我这么一个爬虫新手，是相当友好的练手对象。</li>
 </ol>
+<a id="more"></a>
 <h2 id="爬的目标"><a href="#爬的目标" class="headerlink" title="爬的目标"></a>爬的目标</h2><p>爱问某一个专题下所有问题，以及问题下的最佳答案（当然，有的问题也可能没有最佳答案）</p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>我是用<code>python</code>实现的这个爬虫（人生苦短，我用python。实现起来真是高效到没朋友）</p>
 <h3 id="需要挖掘的部分"><a href="#需要挖掘的部分" class="headerlink" title="需要挖掘的部分"></a>需要挖掘的部分</h3><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/iask_spider/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-16%2015.56.22.png">
@@ -60,6 +60,11 @@
     <summary type="html">
     
       &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;老早就想写爬虫了，只奈何以前总是空有一颗写爬虫的心。很多事情不可能全部都准备好才动手做，而是在边做的过程中边学。看着&lt;a href=&quot;http://cuiqingcai.com/1052.html&quot;&gt;大神的博客&lt;/a&gt;，学了五天，写了几个小demo，遂准备自己动手从头写一个爬虫来练手。这篇博文不是教程，相当于一个&lt;code&gt;readme&lt;/code&gt;文档吧。&lt;/p&gt;
+&lt;h2 id=&quot;爬的对象-–-新浪爱问&quot;&gt;&lt;a href=&quot;#爬的对象-–-新浪爱问&quot; class=&quot;headerlink&quot; title=&quot;爬的对象 – 新浪爱问&quot;&gt;&lt;/a&gt;爬的对象 – 新浪爱问&lt;/h2&gt;&lt;p&gt;选择&lt;a href=&quot;http://iask.sina.com.cn&quot;&gt;新浪爱问&lt;/a&gt;作为爬虫对象的原因如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;大神博客中虽然有对该网站爬的教程，但是因为网站改版了，大神的正则表达式代码失效，很多读者都在求代码。既然没人来做，那就我来做好了；&lt;/li&gt;
+&lt;li&gt;这个网站比较简单，不需要密码登录验证，不反爬虫。这对于我这么一个爬虫新手，是相当友好的练手对象。&lt;/li&gt;
+&lt;/ol&gt;
     
     </summary>
     

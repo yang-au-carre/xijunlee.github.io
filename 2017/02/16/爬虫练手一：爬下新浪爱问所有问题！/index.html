@@ -9,17 +9,26 @@
   <link rel="dns-prefetch" href="https://xijunlee.github.io">
   <title>爬虫练手(一)：爬下新浪爱问所有问题！ | Xijun LI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="写在前面老早就想写爬虫了，只奈何以前总是空有一颗写爬虫的心。很多事情不可能全部都准备好才动手做，而是在边做的过程中边学。看着大神的博客，学了五天，写了几个小demo，遂准备自己动手从头写一个爬虫来练手。这篇博文不是教程，相当于一个readme文档吧。">
+  <meta name="description" content="写在前面老早就想写爬虫了，只奈何以前总是空有一颗写爬虫的心。很多事情不可能全部都准备好才动手做，而是在边做的过程中边学。看着大神的博客，学了五天，写了几个小demo，遂准备自己动手从头写一个爬虫来练手。这篇博文不是教程，相当于一个readme文档吧。
+爬的对象 – 新浪爱问选择新浪爱问作为爬虫对象的原因如下：
+
+大神博客中虽然有对该网站爬的教程，但是因为网站改版了，大神的正则表达式代码失效，很多读">
 <meta property="og:type" content="article">
 <meta property="og:title" content="爬虫练手(一)：爬下新浪爱问所有问题！">
 <meta property="og:url" content="https://xijunlee.github.io/2017/02/16/爬虫练手一：爬下新浪爱问所有问题！/index.html">
 <meta property="og:site_name" content="Xijun LI">
-<meta property="og:description" content="写在前面老早就想写爬虫了，只奈何以前总是空有一颗写爬虫的心。很多事情不可能全部都准备好才动手做，而是在边做的过程中边学。看着大神的博客，学了五天，写了几个小demo，遂准备自己动手从头写一个爬虫来练手。这篇博文不是教程，相当于一个readme文档吧。">
+<meta property="og:description" content="写在前面老早就想写爬虫了，只奈何以前总是空有一颗写爬虫的心。很多事情不可能全部都准备好才动手做，而是在边做的过程中边学。看着大神的博客，学了五天，写了几个小demo，遂准备自己动手从头写一个爬虫来练手。这篇博文不是教程，相当于一个readme文档吧。
+爬的对象 – 新浪爱问选择新浪爱问作为爬虫对象的原因如下：
+
+大神博客中虽然有对该网站爬的教程，但是因为网站改版了，大神的正则表达式代码失效，很多读">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/iask_spider/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-16%2015.56.22.png">
-<meta property="og:updated_time" content="2017-02-16T08:38:43.000Z">
+<meta property="og:updated_time" content="2017-02-16T08:39:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="爬虫练手(一)：爬下新浪爱问所有问题！">
-<meta name="twitter:description" content="写在前面老早就想写爬虫了，只奈何以前总是空有一颗写爬虫的心。很多事情不可能全部都准备好才动手做，而是在边做的过程中边学。看着大神的博客，学了五天，写了几个小demo，遂准备自己动手从头写一个爬虫来练手。这篇博文不是教程，相当于一个readme文档吧。">
+<meta name="twitter:description" content="写在前面老早就想写爬虫了，只奈何以前总是空有一颗写爬虫的心。很多事情不可能全部都准备好才动手做，而是在边做的过程中边学。看着大神的博客，学了五天，写了几个小demo，遂准备自己动手从头写一个爬虫来练手。这篇博文不是教程，相当于一个readme文档吧。
+爬的对象 – 新浪爱问选择新浪爱问作为爬虫对象的原因如下：
+
+大神博客中虽然有对该网站爬的教程，但是因为网站改版了，大神的正则表达式代码失效，很多读">
 <meta name="twitter:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/iask_spider/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-16%2015.56.22.png">
   
     <link rel="alternative" href="/atom.xml" title="Xijun LI" type="application/atom+xml">
@@ -214,12 +223,12 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>老早就想写爬虫了，只奈何以前总是空有一颗写爬虫的心。很多事情不可能全部都准备好才动手做，而是在边做的过程中边学。看着<a href="http://cuiqingcai.com/1052.html" target="_blank" rel="external">大神的博客</a>，学了五天，写了几个小demo，遂准备自己动手从头写一个爬虫来练手。这篇博文不是教程，相当于一个<code>readme</code>文档吧。</p>
-<a id="more"></a>
 <h2 id="爬的对象-–-新浪爱问"><a href="#爬的对象-–-新浪爱问" class="headerlink" title="爬的对象 – 新浪爱问"></a>爬的对象 – 新浪爱问</h2><p>选择<a href="http://iask.sina.com.cn" target="_blank" rel="external">新浪爱问</a>作为爬虫对象的原因如下：</p>
 <ol>
 <li>大神博客中虽然有对该网站爬的教程，但是因为网站改版了，大神的正则表达式代码失效，很多读者都在求代码。既然没人来做，那就我来做好了；</li>
 <li>这个网站比较简单，不需要密码登录验证，不反爬虫。这对于我这么一个爬虫新手，是相当友好的练手对象。</li>
 </ol>
+<a id="more"></a>
 <h2 id="爬的目标"><a href="#爬的目标" class="headerlink" title="爬的目标"></a>爬的目标</h2><p>爱问某一个专题下所有问题，以及问题下的最佳答案（当然，有的问题也可能没有最佳答案）</p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>我是用<code>python</code>实现的这个爬虫（人生苦短，我用python。实现起来真是高效到没朋友）</p>
 <h3 id="需要挖掘的部分"><a href="#需要挖掘的部分" class="headerlink" title="需要挖掘的部分"></a>需要挖掘的部分</h3><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/iask_spider/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-16%2015.56.22.png">

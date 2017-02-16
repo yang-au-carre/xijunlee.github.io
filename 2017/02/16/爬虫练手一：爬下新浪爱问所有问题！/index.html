@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Xijun LI">
 <meta property="og:description" content="写在前面老早就想写爬虫了，只奈何以前总是空有一颗写爬虫的心。很多事情不可能全部都准备好才动手做，而是在边做的过程中边学。看着大神的博客，学了五天，写了几个小demo，遂准备自己动手从头写一个爬虫来练手。这篇博文不是教程，相当于一个readme文档吧。">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/iask_spider/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-16%2015.56.22.png">
-<meta property="og:updated_time" content="2017-02-16T08:34:53.000Z">
+<meta property="og:updated_time" content="2017-02-16T08:35:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="爬虫练手(一)：爬下新浪爱问所有问题！">
 <meta name="twitter:description" content="写在前面老早就想写爬虫了，只奈何以前总是空有一颗写爬虫的心。很多事情不可能全部都准备好才动手做，而是在边做的过程中边学。看着大神的博客，学了五天，写了几个小demo，遂准备自己动手从头写一个爬虫来练手。这篇博文不是教程，相当于一个readme文档吧。">
@@ -225,9 +225,9 @@ var _hmt = _hmt || [];
 <h3 id="需要挖掘的部分"><a href="#需要挖掘的部分" class="headerlink" title="需要挖掘的部分"></a>需要挖掘的部分</h3><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/iask_spider/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-16%2015.56.22.png">
 <p>从上图可以看出，我必须要挖出来的有两部分：<code>每一页的链接</code>，<code>每一页的所有问题</code>。进一步延伸，在爬下每一页的某一个问题后，要进入该问题详情页面中将最佳答案的内容爬下来。</p>
 <h3 id="使用的库"><a href="#使用的库" class="headerlink" title="使用的库"></a>使用的库</h3><ol>
-<li><p>urllib &amp; urllib2 – 这两个库是用来访问网页获得网页源码的，具体使用方法见最后的代码或者官方文档。</p>
+<li><p><code>urllib</code> &amp; <code>urllib2</code> – 这两个库是用来访问网页获得网页源码的，具体使用方法见最后的代码或者官方文档。</p>
 </li>
-<li><p>re &amp; bs4 – 这两个库用来解析网页源码，挖出我所需要的<code>每一页的链接</code>，<code>每一页的所有问题</code></p>
+<li><p><code>re</code> &amp; <code>bs4</code> – 这两个库用来解析网页源码，挖出我所需要的<code>每一页的链接</code>，<code>每一页的所有问题</code></p>
 </li>
 </ol>
 <h3 id="具体实现的几个重要函数"><a href="#具体实现的几个重要函数" class="headerlink" title="具体实现的几个重要函数"></a>具体实现的几个重要函数</h3><p>一、获得网页源码</p>

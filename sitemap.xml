@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xijunlee.github.io/about/index.html</loc>
+    
+    <lastmod>2017-03-06T15:45:15.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://xijunlee.github.io/2017/02/21/GitMemo-Working-with-Git-on-Windows-repost/</loc>
     
     <lastmod>2017-02-21T14:11:44.000Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>https://xijunlee.github.io/2017/02/05/linux%E4%B8%8B%E6%9D%80%E6%AD%BB%E8%BF%9B%E7%A8%8B%EF%BC%88kill%EF%BC%89%E7%9A%84N%E7%A7%8D%E6%96%B9%E6%B3%95/</loc>
     
     <lastmod>2017-02-10T03:21:37.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xijunlee.github.io/about/index.html</loc>
-    
-    <lastmod>2017-01-31T05:54:10.000Z</lastmod>
     
   </url>
   

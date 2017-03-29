@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-03-13T05:45:24.000Z</updated>
+  <updated>2017-03-29T13:10:22.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -14,6 +14,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>sklearn中SVM调参说明及经验总结</title>
+    <link href="https://xijunlee.github.io/2017/03/29/sklearn%E4%B8%ADSVM%E8%B0%83%E5%8F%82%E8%AF%B4%E6%98%8E%E5%8F%8A%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/"/>
+    <id>https://xijunlee.github.io/2017/03/29/sklearn中SVM调参说明及经验总结/</id>
+    <published>2017-03-29T12:47:23.000Z</published>
+    <updated>2017-03-29T13:10:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>之前只停留在理论上，没有实际沉下心去调参，实际去做了后，发现调参是个大工程（玄学）。于是这篇来总结一下<code>sklearn</code>中svm的参数说明以及调参经验。方便以后查询和回忆。</p>
+<h2 id="常用核函数"><a href="#常用核函数" class="headerlink" title="常用核函数"></a>常用核函数</h2><p>1.linear核函数: $$K(x_i,x_j)=x_i^Tx_j$$<br>2.polynomial核函数: $$K(x_i,x_j)=(\gamma x_i^Tx_j + r)^d, d&gt;1$$<br>3.RBF核函数（高斯核函数）: $$K(x_i,x_j)=exp(-\gamma ||x_i-x_j||^2),\gamma&gt;0$$<br>4.sigmoid核函数: $$K(x_i,x_j)=tanh(\gamma x_i^Tx_j + r ), \gamma&gt;0, r&lt;0$$</p>
+<a id="more"></a>
+<h2 id="sklearn-svm-相关参数的官方说明"><a href="#sklearn-svm-相关参数的官方说明" class="headerlink" title="sklearn svm 相关参数的官方说明"></a>sklearn svm 相关参数的官方说明</h2><p>Parameters:<br><code>C</code> : float, optional (default=1.0). Penalty parameter C of the error term.<br><code>kernel</code> : string, optional (default=’rbf’). Specifies the kernel type to be used in the algorithm. It must be one of ‘linear’, ‘poly’, ‘rbf’, ‘sigmoid’, ‘precomputed’ or a callable. If none is given, ‘rbf’ will be used. If a callable is given it is used to pre-compute the kernel matrix from data matrices; that matrix should be an array of shape (n_samples, n_samples).<br><code>degree</code> : int, optional (default=3). Degree of the polynomial kernel function (‘poly’). Ignored by all other kernels.<br><code>gamma</code> : float, optional (default=’auto’). Kernel coefficient for ‘rbf’, ‘poly’ and ‘sigmoid’. If gamma is ‘auto’ then 1/n_features will be used instead.<br><code>coef0</code> : float, optional (default=0.0). Independent term in kernel function. It is only significant in ‘poly’ and ‘sigmoid’.<br><code>probability</code> : boolean, optional (default=False). Whether to enable probability estimates. This must be enabled prior to calling fit, and will slow down that method.<br><code>shrinking</code> : boolean, optional (default=True). Whether to use the shrinking heuristic.<br><code>tol</code> : float, optional (default=1e-3). Tolerance for stopping criterion.<br><code>cache_size</code> : float, optional. Specify the size of the kernel cache (in MB).<br><code>class_weight</code> : {dict, ‘balanced’}, optional. Set the parameter C of class i to class_weight[i]<em>C for SVC. If not given, all classes are supposed to have weight one. The “balanced” mode uses the values of y to automatically adjust weights inversely proportional to class frequencies in the input data as n_samples / (n_classes </em> np.bincount(y))<br><code>verbose</code> : bool, default: False. Enable verbose output. Note that this setting takes advantage of a per-process runtime setting in libsvm that, if enabled, may not work properly in a multithreaded context.<br><code>max_iter</code> : int, optional (default=-1). Hard limit on iterations within solver, or -1 for no limit.<br><code>decision_function_shape</code> : ‘ovo’, ‘ovr’ or None, default=None. Whether to return a one-vs-rest (‘ovr’) decision function of shape (n_samples, n_classes) as all other classifiers, or the original one-vs-one (‘ovo’) decision function of libsvm which has shape (n_samples, n_classes * (n_classes - 1) / 2). The default of None will currently behave as ‘ovo’ for backward compatibility and raise a deprecation warning, but will change ‘ovr’ in 0.19.<br>New in version 0.17: decision_function_shape=’ovr’ is recommended.<br>Changed in version 0.17: Deprecated decision_function_shape=’ovo’ and None.<br><code>random_state</code> : int seed, RandomState instance, or None (default). The seed of the pseudo random number generator to use when shuffling the data for probability estimation.</p>
+<h2 id="libsvm中参数说明"><a href="#libsvm中参数说明" class="headerlink" title="libsvm中参数说明"></a>libsvm中参数说明</h2><p>因为sklearn底层是调用libsvm的，因此sklearn中svm参数说明是可以直接参考libsvm中的。</p>
+<p>1.linear核函数: $$K(x_i,x_j)=x_i^Tx_j$$<br>2.polynomial核函数: $$K(x_i,x_j)=(\gamma x_i^Tx_j + r)^d, d&gt;1$$<br>3.RBF核函数（高斯核函数）: $$K(x_i,x_j)=exp(-\gamma ||x_i-x_j||^2),\gamma&gt;0$$<br>4.sigmoid核函数: $$K(x_i,x_j)=tanh(\gamma x_i^Tx_j + r ), \gamma&gt;0, r&lt;0$$</p>
+<p>首先介绍下与核函数相对应的参数：<br>1）对于线性核函数，没有专门需要设置的参数<br>2）对于多项式核函数，有三个参数。-d用来设置多项式核函数的最高次项次数，也就是公式中的d，默认值是3。-g用来设置核函数中的gamma参数设置，也就是公式中的gamma，默认值是1/k（特征数）。-r用来设置核函数中的coef0，也就是公式中的第二个r，默认值是0。<br>3）对于RBF核函数，有一个参数。-g用来设置核函数中的gamma参数设置，也就是公式中gamma，默认值是1/k（k是特征数）。<br>4）对于sigmoid核函数，有两个参数。-g用来设置核函数中的gamma参数设置，也就是公式中gamma，默认值是1/k（k是特征数）。-r用来设置核函数中的coef0，也就是公式中的第二个r，默认值是0。</p>
+<p><strong> 具体来说说rbf核函数中C和gamma </strong>：</p>
+<p>SVM模型有两个非常重要的参数C与gamma。其中 C是惩罚系数，即对误差的宽容度。c越高，说明越不能容忍出现误差,容易过拟合。C越小，容易欠拟合。C过大或过小，泛化能力变差</p>
+<p>gamma是选择RBF函数作为kernel后，该函数自带的一个参数。隐含地决定了数据映射到新的特征空间后的分布，gamma越大，支持向量越少，gamma值越小，支持向量越多。支持向量的个数影响训练与预测的速度。</p>
+<p>这里面大家需要注意的就是gamma的物理意义，大家提到很多的RBF的幅宽，它会影响每个支持向量对应的高斯的作用范围，从而影响泛化性能。我的理解：如果gamma设的太大，方差会很小，方差很小的高斯分布长得又高又瘦， 会造成只会作用于支持向量样本附近，对于未知样本分类效果很差，存在训练准确率可以很高，(如果让方差无穷小，则理论上，高斯核的SVM可以拟合任何非线性数据，但容易过拟合)而测试准确率不高的可能，就是通常说的过训练；而如果设的过小，则会造成平滑效应太大，无法在训练集上得到特别高的准确率，也会影响测试集的准确率。</p>
+<p>此外，可以明确的两个结论是：<br>结论1：样本数目少于特征维度并不一定会导致过拟合，这可以参考余凯老师的这句评论：<br>“这不是原因啊，呵呵。用RBF kernel, 系统的dimension实际上不超过样本数，与特征维数没有一个trivial的关系。”</p>
+<p>结论2：RBF核应该可以得到与线性核相近的效果（按照理论，RBF核可以模拟线性核），可能好于线性核，也可能差于，但是，不应该相差太多。<br>当然，很多问题中，比如维度过高，或者样本海量的情况下，大家更倾向于用线性核，因为效果相当，但是在速度和模型大小方面，线性核会有更好的表现。</p>
+<hr>
+<p>Reference:</p>
+<p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC" target="_blank" rel="external">http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC</a></p>
+<p><a href="http://blog.csdn.net/lqhbupt/article/details/8610443" target="_blank" rel="external">http://blog.csdn.net/lqhbupt/article/details/8610443</a></p>
+<p><a href="http://blog.csdn.net/lujiandong1/article/details/46386201" target="_blank" rel="external">http://blog.csdn.net/lujiandong1/article/details/46386201</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;之前只停留在理论上，没有实际沉下心去调参，实际去做了后，发现调参是个大工程（玄学）。于是这篇来总结一下&lt;code&gt;sklearn&lt;/code&gt;中svm的参数说明以及调参经验。方便以后查询和回忆。&lt;/p&gt;
+&lt;h2 id=&quot;常用核函数&quot;&gt;&lt;a href=&quot;#常用核函数&quot; class=&quot;headerlink&quot; title=&quot;常用核函数&quot;&gt;&lt;/a&gt;常用核函数&lt;/h2&gt;&lt;p&gt;1.linear核函数: $$K(x_i,x_j)=x_i^Tx_j$$&lt;br&gt;2.polynomial核函数: $$K(x_i,x_j)=(\gamma x_i^Tx_j + r)^d, d&amp;gt;1$$&lt;br&gt;3.RBF核函数（高斯核函数）: $$K(x_i,x_j)=exp(-\gamma ||x_i-x_j||^2),\gamma&amp;gt;0$$&lt;br&gt;4.sigmoid核函数: $$K(x_i,x_j)=tanh(\gamma x_i^Tx_j + r ), \gamma&amp;gt;0, r&amp;lt;0$$&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="SVM" scheme="https://xijunlee.github.io/tags/SVM/"/>
+    
+  </entry>
   
   <entry>
     <title>reddit上有趣的SVM图解</title>
@@ -949,61 +988,6 @@
     
       &lt;h2 id=&quot;写在前面的话&quot;&gt;&lt;a href=&quot;#写在前面的话&quot; class=&quot;headerlink&quot; title=&quot;写在前面的话&quot;&gt;&lt;/a&gt;写在前面的话&lt;/h2&gt;&lt;p&gt;这一章具体介绍红黑树的删除操作，以及我对删除一系列操作的理解。&lt;/p&gt;
 &lt;p&gt;话不多说，我先直接给出算导上关于删除操作的伪代码（这伪代码几乎就可以当作实现代码了，不过还是要搞懂原理）&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="algorithm" scheme="https://xijunlee.github.io/tags/algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>算法导论学习之红黑树(1)</title>
-    <link href="https://xijunlee.github.io/2015/07/20/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%BA%A2%E9%BB%91%E6%A0%91-1/"/>
-    <id>https://xijunlee.github.io/2015/07/20/算法导论学习之红黑树-1/</id>
-    <published>2015-07-20T10:24:33.000Z</published>
-    <updated>2017-01-17T14:53:39.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><p>花了三天时间，将将实现了红黑树算法，但还是不能裸写红黑树，起码要看着算导书上的示意图::&gt;_&lt;:: 整个算法确实算比较复杂的，实现代码比普通二叉树多一倍多，但换来的是效率上的提升。废话不多说，总结一下学习心得（基本的细节不会提到，因为可以去翻书，我只写出对书中个别知识点的理解和总结），方便日后会看红黑树时，能立马回忆起来。</p>
-<a id="more"></a>
-<h3 id="红黑树的性质"><a href="#红黑树的性质" class="headerlink" title="红黑树的性质"></a>红黑树的性质</h3><ol>
-<li>每个节点要么是红的， 要么是黑的；</li>
-<li>根节点是黑的；</li>
-<li>每个叶节点（NIL）是黑的；</li>
-<li>如果一个节点是红的，那么它的两个儿子是黑的；</li>
-<li>对每个节点，从该节点到其子孙节点的所有路径上包含数目相同的黑节点。</li>
-</ol>
-<p>以上四条性质都很好理解，唯独就是第五条不好理解，我觉得是翻译的不好。如果不亲自去实现一遍这个算法，对第五条性质中的“子孙节点”的理解是会有歧义的。比如，我初次看到这条性质的时候，我将该节点的子孙节点理解成为该节点的儿子节点+孙子节点+曾孙子节点+……+叶节点，汉语中确实是这么个意思嘛，但实际上是指沿着该节点下去的能达到的所有叶子节点。</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree1/img1.jpeg">
-<p>图1 一棵标准的红黑树</p>
-<p>如图所示，这是一棵标准的红黑树。针对性质5），我们从图中根节点26出发，很容易验证到达其叶子节点nil[T]的所有路径中经过的黑节点数都是4（当然包括它本身）。再拿节点21做例子，从节点21出发到达叶子节点的所有路径中经过的黑节点数都是3。这才是性质5）想要表达的意思，因此，我将性质5）转述成了如下：<br>性质5）对于每个节点，从该节点到叶子节点nil[T]的所有路径上包含相同数目的黑节点。<br>有了对上述五条性质的正确理解，才能搞得懂后面那些操作算法，因为这些算法的正确性需要有这些性质做保证。</p>
-<h3 id="局部旋转"><a href="#局部旋转" class="headerlink" title="局部旋转"></a>局部旋转</h3><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree1/img2.jpeg">
-<p>图2 旋转操作</p>
-<p>旋转操作还是很简单的，所以不去赘述其细节，但在具体实现的时候要注意两点：</p>
-<ol>
-<li>节点之间的连接关系的建立与删除最好是成对地去处理；</li>
-<li>若旋转前的父节点x是整棵树的根节点，旋转之后，要记得将树的根节点置为y。</li>
-</ol>
-<h3 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h3><p>先给出算法导论书上的伪代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">RB-INSERT(T,z)伪代码</div><div class="line">  y &lt;- nil[T]</div><div class="line">  x &lt;- root[T]</div><div class="line">  <span class="keyword">while</span> x != nil[T]</div><div class="line">  y &lt;- x</div><div class="line">  <span class="keyword">if</span> key[x] &gt; key[z]</div><div class="line">    then x &lt;- left[x]</div><div class="line">    <span class="keyword">else</span> x&lt;- right[x]</div><div class="line">  p[z] &lt;- y</div><div class="line">  <span class="keyword">if</span> y == nil[T]</div><div class="line">  then root[T] &lt;- z</div><div class="line">  <span class="keyword">else</span> <span class="keyword">if</span> key[z] &lt; key[y]</div><div class="line">      then left[y] &lt;- z</div><div class="line">      <span class="keyword">else</span> right[y] &lt;- z</div><div class="line"> left[z] &lt;- nil[T]</div><div class="line"> right[z] &lt;- nil[T]</div><div class="line"> color[z] &lt;- RED</div><div class="line"> RB-INSERT-FIXUP(T,z)</div></pre></td></tr></table></figure>
-<p>从上述伪代码可以看出，红黑树的插入操作与普通二叉树的插入操作的差别很小，我们可以注意到插入的新节点的颜色居然是红色，为什么是红色呢？其实很容易想得通，如果插入的新节点就是黑色的话，那么会改变某个节点的黑高度，因此违反了性质5），往往涉及到黑节点的处理都会比较复杂。因此算导选择插入的新节点一开始就将它设置为红色的，但这样子也可能违反性质2）、4），因此需要有一个辅助程序RB-INSERT-FIXUP来修补可能违反的性质。</p>
-<p>RB-INSERT-FIXUP修补可能违反的性质4），z指向插入的红色节点，因为违反了性质4），所以p[z]也是红的。可以将违反性质4）的情况归结为三种（其实，不止三种，是六种，另外三种可以通过对称关系得到。）</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">RB-INSERT-FIXUP(T,z)伪代码</div><div class="line">  <span class="keyword">while</span> color[p[z]] == RED</div><div class="line">  <span class="keyword">if</span> p[z] == left[p[p[z]]</div><div class="line">    then y &lt;- right[p[p[z]]</div><div class="line">     <span class="keyword">if</span> color[y] == RED                                                    <span class="comment">//case1</span></div><div class="line">       then color[p[z]] &lt;- BLACK                                           <span class="comment">//case1</span></div><div class="line">           color[y] &lt;- BLACK                                             <span class="comment">//case1</span></div><div class="line">           color[p[p[z]] &lt;- RED                                            <span class="comment">//case1</span></div><div class="line">           z &lt;- p[p[z]]                                                    <span class="comment">//case1</span></div><div class="line">       <span class="keyword">else</span> <span class="keyword">if</span> z == right[p[z]]                                               <span class="comment">//case2</span></div><div class="line">           then z &lt;- p[z]                                                 <span class="comment">//case2</span></div><div class="line">           LEFT-ROTATE(T,z)                                            <span class="comment">//case2</span></div><div class="line">              color[p[z]] &lt;- BLACK                                      <span class="comment">//case 3</span></div><div class="line">              color[p[p[z]] &lt;- RED                                       <span class="comment">//case 3</span></div><div class="line">              RIGHT-ROTATE(T,p[p[z]])                                 <span class="comment">//case 3</span></div><div class="line">     <span class="keyword">else</span> (same as then clause with “right” and “lefet” exchange)</div><div class="line">  color[root[T]] &lt;- BLACK</div></pre></td></tr></table></figure>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree1/img3.jpeg">
-<p>图3 插入操作中可能遇到的三种情况</p>
-<ol>
-<li>z的叔叔y是红色的。<br>处理方法：很简单，将z的祖父染成红色，将其父亲和叔父染成黑色，这样就解决了z的红色与其父亲也是红色的冲突。（那么其祖父先前就会是黑色的吗？答案是一定的，因为z的父亲和叔叔都是红色的，而未加入红节点z之前该树是满足红黑性质的，因此z的祖父一定是黑色的，如果z的祖父也是红的话，那么就与z父亲是红色的冲突了。）z指向其原来祖父，这样指针沿着树上升了两层。并且所有情况中，只有情况1会使得指针z上升两层。</li>
-<li>z的叔叔y是黑色的，z是其父亲的右孩子。<br>处理方法：将z的父亲右旋即可，z指向原先z的父亲。经过旋转变换后，现在的z是其父亲的左儿子，并且它的叔叔是黑色的，那么情况2就转换为了情况3。</li>
-<li>z的叔叔y是黑色的，z是其父亲的左孩子。<br>处理方法：通过情况1或者情况2都可能进到情况3。因为在这个情况下，z及其父亲p[z]都是红色。故先将其父亲p[z]染成黑色，将其祖父p[p[z]]染成红色，然后对祖父节点p[p[z]]做右旋。</li>
-</ol>
-<p>其余的三种情况与上述三种情况是相互对称的。上述三种情况的转化关系如下：</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree1/img4.jpeg">
-<p>最后，值得注意的是退出while循环时，需要置根节点的颜色为黑色。因为while循环条件是z的父亲p[z]为红色的，当z指向树的根时，z的父亲是nil[T]为黑色，故会退出循环，但是z的颜色为红色，因此需要置其颜色为黑色，这样就不违反性质2）了。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;写在前面的话&quot;&gt;&lt;a href=&quot;#写在前面的话&quot; class=&quot;headerlink&quot; title=&quot;写在前面的话&quot;&gt;&lt;/a&gt;写在前面的话&lt;/h2&gt;&lt;p&gt;花了三天时间，将将实现了红黑树算法，但还是不能裸写红黑树，起码要看着算导书上的示意图::&amp;gt;_&amp;lt;:: 整个算法确实算比较复杂的，实现代码比普通二叉树多一倍多，但换来的是效率上的提升。废话不多说，总结一下学习心得（基本的细节不会提到，因为可以去翻书，我只写出对书中个别知识点的理解和总结），方便日后会看红黑树时，能立马回忆起来。&lt;/p&gt;
     
     </summary>
     

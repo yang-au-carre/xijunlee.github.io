@@ -7,14 +7,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xijunlee.github.io">
-  <title>Tag: python virtual environment | Xijun LI</title>
+  <title>A Summary of Bit Manipulation (reposted from leetcode discussion) | Xijun LI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Xijun LI">
-<meta property="og:url" content="https://xijunlee.github.io/tags/python-virtual-environment/index.html">
+  <meta name="description" content="WIKIBit manipulation is the act of algorithmically manipulating bits or other pieces of data shorter than a word. Computer programming tasks that require bit manipulation include low-level device cont">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Summary of Bit Manipulation (reposted from leetcode discussion)">
+<meta property="og:url" content="https://xijunlee.github.io/2017/04/01/efficiently/index.html">
 <meta property="og:site_name" content="Xijun LI">
+<meta property="og:description" content="WIKIBit manipulation is the act of algorithmically manipulating bits or other pieces of data shorter than a word. Computer programming tasks that require bit manipulation include low-level device cont">
+<meta property="og:updated_time" content="2017-04-01T10:33:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xijun LI">
+<meta name="twitter:title" content="A Summary of Bit Manipulation (reposted from leetcode discussion)">
+<meta name="twitter:description" content="WIKIBit manipulation is the act of algorithmically manipulating bits or other pieces of data shorter than a word. Computer programming tasks that require bit manipulation include low-level device cont">
   
     <link rel="alternative" href="/atom.xml" title="Xijun LI" type="application/atom+xml">
   
@@ -187,60 +191,190 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="a-efficiently" class="article article-type-a " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/10/python虚拟环境安装与使用/" class="archive-article-date">
-  	<time datetime="2017-02-10T03:15:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-10</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/10/python虚拟环境安装与使用/">python虚拟环境安装与使用(转)</a>
+    <h1 class="article-title" itemprop="name">
+      A Summary of Bit Manipulation (reposted from leetcode discussion)
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/04/01/efficiently/" class="archive-article-date">
+  	<time datetime="2017-04-01T05:46:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="WIKI"><a href="#WIKI" class="headerlink" title="WIKI"></a>WIKI</h2><p>Bit manipulation is the act of algorithmically manipulating bits or other pieces of data shorter than a word. Computer programming tasks that require bit manipulation include low-level device control, error detection and correction algorithms, data compression, encryption algorithms, and optimization. For most other tasks, modern programming languages allow the programmer to work directly with abstractions instead of bits that represent those abstractions. Source code that does bit manipulation makes use of the bitwise operations: AND, OR, XOR, NOT, and bit shifts.</p>
+<p>Bit manipulation, in some cases, can obviate or reduce the need to loop over a data structure and can give many-fold speed ups, as bit manipulations are processed in parallel, but the code can become more difficult to write and maintain.</p>
+<a id="more"></a>
+<h2 id="DETAILS"><a href="#DETAILS" class="headerlink" title="DETAILS"></a>DETAILS</h2><h3 id="Basics"><a href="#Basics" class="headerlink" title="Basics"></a>Basics</h3><p>At the heart of bit manipulation are the bit-wise operators &amp; (and), | (or), ~ (not) and ^ (exclusive-or, xor) and shift operators a &lt;&lt; b and a &gt;&gt; b.</p>
+<blockquote>
+<p>There is no boolean operator counterpart to bitwise exclusive-or, but there is a simple explanation. The exclusive-or operation takes two inputs and returns a 1 if either one or the other of the inputs is a 1, but not if both are. That is, if both inputs are 1 or both inputs are 0, it returns 0. Bitwise exclusive-or, with the operator of a caret, ^, performs the exclusive-or operation on each pair of bits. Exclusive-or is commonly abbreviated XOR.</p>
+</blockquote>
+<ol>
+<li>Set union A | B</li>
+<li>Set intersection A &amp; B</li>
+<li>Set subtraction A &amp; ~B</li>
+<li>Set negation ALL_BITS ^ A or ~A</li>
+<li>Set bit A |= 1 &lt;&lt; bit</li>
+<li>Clear bit A &amp;= ~(1 &lt;&lt; bit)</li>
+<li>Test bit (A &amp; 1 &lt;&lt; bit) != 0</li>
+<li>Extract last bit A&amp;-A or A&amp;~(A-1) or x^(x&amp;(x-1))</li>
+<li>Remove last bit A&amp;(A-1)</li>
+<li>Get all 1-bits ~0</li>
+</ol>
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><p>Count the number of ones in the binary representation of the given number</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">count_one</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">while</span>(n) &#123;</div><div class="line">        n = n&amp;(n<span class="number">-1</span>);</div><div class="line">        count++;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> count;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Is power of four (actually map-checking, iterative and recursive methods can do the same)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isPowerOfFour</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> !(n&amp;(n<span class="number">-1</span>)) &amp;&amp; (n&amp;<span class="number">0x55555555</span>);</div><div class="line">    <span class="comment">//check the 1-bit location;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="tricks"><a href="#tricks" class="headerlink" title="^ tricks"></a><code>^</code> tricks</h3><p>Use <code>^</code> to remove even exactly same numbers and save the odd, or save the distinct bits and remove the same.</p>
+<h4 id="SUM-OF-TWO-INTEGERS"><a href="#SUM-OF-TWO-INTEGERS" class="headerlink" title="SUM OF TWO INTEGERS"></a>SUM OF TWO INTEGERS</h4><p>Use <code>^</code> and <code>&amp;</code> to add two integers</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> b==<span class="number">0</span>? a:getSum(a^b, (a&amp;b)&lt;&lt;<span class="number">1</span>); <span class="comment">//be careful about the terminating condition;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="MISSING-NUMBER"><a href="#MISSING-NUMBER" class="headerlink" title="MISSING NUMBER"></a>MISSING NUMBER</h4><p>Given an array containing n distinct numbers taken from 0, 1, 2, …, n, find the one that is missing from the array. For example, Given nums = [0, 1, 3] return 2. (Of course, you can do this by math.)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">missingNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); ++i) &#123;</div><div class="line">        ret ^= i;</div><div class="line">        ret ^= nums[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ret^=nums.size();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="tricks-1"><a href="#tricks-1" class="headerlink" title="| tricks"></a><code>|</code> tricks</h3><p>Keep as many 1-bits as possible</p>
+<p>Find the largest power of 2 (most significant bit in binary form), which is less than or equal to the given number N.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">long</span> <span class="title">largest_power</span><span class="params">(<span class="keyword">long</span> N)</span> </span>&#123;</div><div class="line">    <span class="comment">//changing all right side bits to 1.</span></div><div class="line">    N = N | (N&gt;&gt;<span class="number">1</span>);</div><div class="line">    N = N | (N&gt;&gt;<span class="number">2</span>);</div><div class="line">    N = N | (N&gt;&gt;<span class="number">4</span>);</div><div class="line">    N = N | (N&gt;&gt;<span class="number">8</span>);</div><div class="line">    N = N | (N&gt;&gt;<span class="number">16</span>);</div><div class="line">    <span class="keyword">return</span> (N+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="REVERSE-BITS"><a href="#REVERSE-BITS" class="headerlink" title="REVERSE BITS"></a>REVERSE BITS</h4><p>Reverse bits of a given 32 bits unsigned integer.</p>
+<p>Solution</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">uint32_t</span> reverseBits(<span class="keyword">uint32_t</span> n) &#123;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> mask = <span class="number">1</span>&lt;&lt;<span class="number">31</span>, res = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; ++i) &#123;</div><div class="line">        <span class="keyword">if</span>(n &amp; <span class="number">1</span>) res |= mask;</div><div class="line">        mask &gt;&gt;= <span class="number">1</span>;</div><div class="line">        n &gt;&gt;= <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">uint32_t</span> reverseBits(<span class="keyword">uint32_t</span> n) &#123;</div><div class="line">	<span class="keyword">uint32_t</span> mask = <span class="number">1</span>, ret = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; ++i)&#123;</div><div class="line">		ret &lt;&lt;= <span class="number">1</span>;</div><div class="line">		<span class="keyword">if</span>(mask &amp; n) ret |= <span class="number">1</span>;</div><div class="line">		mask &lt;&lt;= <span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ret;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="amp-tricks"><a href="#amp-tricks" class="headerlink" title="&amp; tricks"></a><code>&amp;</code> tricks</h3><p>Just selecting certain bits</p>
+<p>Reversing the bits in integer</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">x = ((x &amp; <span class="number">0xaaaaaaaa</span>) &gt;&gt; <span class="number">1</span>) | ((x &amp; <span class="number">0x55555555</span>) &lt;&lt; <span class="number">1</span>);</div><div class="line">x = ((x &amp; <span class="number">0xcccccccc</span>) &gt;&gt; <span class="number">2</span>) | ((x &amp; <span class="number">0x33333333</span>) &lt;&lt; <span class="number">2</span>);</div><div class="line">x = ((x &amp; <span class="number">0xf0f0f0f0</span>) &gt;&gt; <span class="number">4</span>) | ((x &amp; <span class="number">0x0f0f0f0f</span>) &lt;&lt; <span class="number">4</span>);</div><div class="line">x = ((x &amp; <span class="number">0xff00ff00</span>) &gt;&gt; <span class="number">8</span>) | ((x &amp; <span class="number">0x00ff00ff</span>) &lt;&lt; <span class="number">8</span>);</div><div class="line">x = ((x &amp; <span class="number">0xffff0000</span>) &gt;&gt; <span class="number">16</span>) | ((x &amp; <span class="number">0x0000ffff</span>) &lt;&lt; <span class="number">16</span>);</div></pre></td></tr></table></figure>
+<h4 id="BITWISE-AND-OF-NUMBERS-RANGE"><a href="#BITWISE-AND-OF-NUMBERS-RANGE" class="headerlink" title="BITWISE AND OF NUMBERS RANGE"></a>BITWISE AND OF NUMBERS RANGE</h4><p>Given a range [m, n] where 0 &lt;= m &lt;= n &lt;= 2147483647, return the bitwise AND of all numbers in this range, inclusive. For example, given the range [5, 7], you should return 4.</p>
+<p>Solution<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">rangeBitwiseAnd</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(m != n) &#123;</div><div class="line">        m &gt;&gt;= <span class="number">1</span>;</div><div class="line">        n &gt;&gt;= <span class="number">1</span>;</div><div class="line">        a++;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> m&lt;&lt;a; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="NUMBER-OF-1-BITS"><a href="#NUMBER-OF-1-BITS" class="headerlink" title="NUMBER OF 1 BITS"></a>NUMBER OF 1 BITS</h4><p>Write a function that takes an unsigned integer and returns the number of ’1’ bits it has (also known as the Hamming weight).</p>
+<p>Solution<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">uint32_t</span> n)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">	<span class="keyword">while</span>(n) &#123;</div><div class="line">		n = n&amp;(n<span class="number">-1</span>);</div><div class="line">		count++;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> count;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">uint32_t</span> n)</span> </span>&#123;</div><div class="line">    ulong mask = <span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; ++i)&#123; <span class="comment">//31 will not do, delicate;</span></div><div class="line">        <span class="keyword">if</span>(mask &amp; n) count++;</div><div class="line">        mask &lt;&lt;= <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> count;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<p>Reference:</p>
+<p><a href="https://discuss.leetcode.com/topic/50315/a-summary-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently" target="_blank" rel="external">https://discuss.leetcode.com/topic/50315/a-summary-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python virtual environment</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">bit manipulation</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://xijunlee.github.io/2017/04/01/efficiently/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/03/29/sklearn中SVM调参说明及经验总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">sklearn中SVM调参说明及经验总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="efficiently" data-title="A Summary of Bit Manipulation (reposted from leetcode discussion)" data-url="https://xijunlee.github.io/2017/04/01/efficiently/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"xijun"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-    
+
 
 
           </div>
@@ -263,9 +397,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

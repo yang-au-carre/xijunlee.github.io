@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-04-16T13:10:25.000Z</updated>
+  <updated>2017-04-17T13:40:13.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>关于Python语法的一些笔记（递增式）</title>
+    <title>关于Python语法的一些笔记（持续更新）</title>
     <link href="https://xijunlee.github.io/2017/04/16/%E5%85%B3%E4%BA%8EPython%E8%AF%AD%E6%B3%95%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/"/>
     <id>https://xijunlee.github.io/2017/04/16/关于Python语法的一些笔记/</id>
     <published>2017-04-16T12:56:37.000Z</published>
-    <updated>2017-04-16T13:10:25.000Z</updated>
+    <updated>2017-04-17T13:40:13.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>记录一些Python使用过程中的没见过或者优化的使用方法……</p>
 <h3 id="range和xrange的区别"><a href="#range和xrange的区别" class="headerlink" title="range和xrange的区别"></a>range和xrange的区别</h3><p><strong>range</strong><br>    函数说明：range([start,] stop[, step])，根据start与stop指定的范围以及step设定的步长，生成一个<strong>list</strong>。<br>range示例:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>range(<span class="number">5</span>) </div><div class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>] </div><div class="line"><span class="meta">&gt;&gt;&gt; </span>range(<span class="number">1</span>,<span class="number">5</span>) </div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>] </div><div class="line"><span class="meta">&gt;&gt;&gt; </span>range(<span class="number">0</span>,<span class="number">6</span>,<span class="number">2</span>)</div><div class="line">[<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>]</div></pre></td></tr></table></figure></p>

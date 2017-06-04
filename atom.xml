@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-06-04T15:41:21.000Z</updated>
+  <updated>2017-06-04T15:42:47.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,11 +20,11 @@
     <link href="https://xijunlee.github.io/2017/06/03/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
     <id>https://xijunlee.github.io/2017/06/03/集成学习总结/</id>
     <published>2017-06-03T08:18:51.000Z</published>
-    <updated>2017-06-04T15:41:21.000Z</updated>
+    <updated>2017-06-04T15:42:47.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>看了不少集成学习的资料，很多算法都有相似之处，看了之后没有进行比较和整理，太容易忘记了，所以这篇来做个笔记。</p>
-<a id="more"></a>
 <p>集成学习，（就我目前所学习到的）主要可以分为三大类，Boosting, Bagging, Stacking。Boosting的代表有AdaBoost, gbdt, xgboost。而Bagging的代表则是随机森林 (Random Forest)。Stacking 的话，好像还没有著名的代表，可以视其为一种集成的套路。</p>
+<a id="more"></a>
 <h2 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h2><p>首先，Boosting是一个迭代提升的过程，所以它肯定是串行的算法（尽管xgboost可以在节点分裂属性选择上做并行计算）。基于训练集，先训练弱学习器，然后根据前一个弱学习器分错的样本，改变样本的概率分布构成新的训练集，从而可以训练出一个更强的学习器。这样反复迭代提升，就能得到一系列分类器。最后，将这些分类器组合起来，就能构成一个很强的学习器。</p>
 <h3 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h3><p>给定一个二分类的训练数据集</p>
 <p>T={(x1,y1),…,(xN,yN)}</p>
@@ -105,6 +105,7 @@
     <summary type="html">
     
       &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;看了不少集成学习的资料，很多算法都有相似之处，看了之后没有进行比较和整理，太容易忘记了，所以这篇来做个笔记。&lt;/p&gt;
+&lt;p&gt;集成学习，（就我目前所学习到的）主要可以分为三大类，Boosting, Bagging, Stacking。Boosting的代表有AdaBoost, gbdt, xgboost。而Bagging的代表则是随机森林 (Random Forest)。Stacking 的话，好像还没有著名的代表，可以视其为一种集成的套路。&lt;/p&gt;
     
     </summary>
     

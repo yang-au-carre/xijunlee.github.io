@@ -17,11 +17,11 @@
 <meta property="og:description" content="写在前面看了不少集成学习的资料，很多算法都有相似之处，看了之后没有进行比较和整理，太容易忘记了，所以这篇来做个笔记。">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p1.png">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p2.png">
-<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p3.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p3.jpg">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p4.png">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p5.png">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p6.png">
-<meta property="og:updated_time" content="2017-06-04T09:09:56.000Z">
+<meta property="og:updated_time" content="2017-06-04T09:12:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="集成学习总结">
 <meta name="twitter:description" content="写在前面看了不少集成学习的资料，很多算法都有相似之处，看了之后没有进行比较和整理，太容易忘记了，所以这篇来做个笔记。">
@@ -233,7 +233,7 @@ var _hmt = _hmt || [];
 <p>回归树算法如下图（截图来自《统计学习方法》5.5.1 CART生成）：</p>
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p2.png">
 <h4 id="Boosting-Decision-Tree：提升树算法"><a href="#Boosting-Decision-Tree：提升树算法" class="headerlink" title="Boosting Decision Tree：提升树算法"></a>Boosting Decision Tree：提升树算法</h4><p>  提升树是迭代多棵回归树来共同决策。当采用平方误差损失函数时，每一棵回归树学习的是之前所有树的结论和残差，拟合得到一个当前的残差回归树，残差的意义如公式：残差 = 真实值 - 预测值 。提升树即是整个迭代过程生成的回归树的累加。<br>  举个例子，参考自一篇博客（参考文献 4），该博客举出的例子较直观地展现出多棵决策树线性求和过程以及残差的意义。<br>  训练一个提升树模型来预测年龄：<br>  训练集是4个人，A，B，C，D年龄分别是14，16，24，26。样本中有购物金额、上网时长、经常到百度知道提问等特征。提升树的过程如下：</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p3.png">
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p3.jpg">
 <p>该例子很直观的能看到，预测值等于所有树值得累加，如A的预测值 = 树1左节点 值 15 + 树2左节点 -1 = 14。<br>  因此，给定当前模型 fm-1(x)，只需要简单的拟合当前模型的残差。现将回归问题的提升树算法叙述如下：</p>
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p4.png">
 <h4 id="Gradient-Boosting-Decision-Tree：梯度提升决策树"><a href="#Gradient-Boosting-Decision-Tree：梯度提升决策树" class="headerlink" title="Gradient Boosting Decision Tree：梯度提升决策树"></a>Gradient Boosting Decision Tree：梯度提升决策树</h4><p>  提升树利用加法模型和前向分步算法实现学习的优化过程。当损失函数时平方损失和指数损失函数时，每一步的优化很简单，如平方损失函数学习残差回归树。</p>

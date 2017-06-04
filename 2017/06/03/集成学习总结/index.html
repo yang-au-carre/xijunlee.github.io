@@ -21,7 +21,12 @@
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p4.png">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p5.png">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p6.png">
-<meta property="og:updated_time" content="2017-06-04T09:17:42.000Z">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p7.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p8.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p9.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p10.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p11.png">
+<meta property="og:updated_time" content="2017-06-04T09:52:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="集成学习总结">
 <meta name="twitter:description" content="写在前面看了不少集成学习的资料，很多算法都有相似之处，看了之后没有进行比较和整理，太容易忘记了，所以这篇来做个笔记。">
@@ -221,10 +226,10 @@ var _hmt = _hmt || [];
         <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>看了不少集成学习的资料，很多算法都有相似之处，看了之后没有进行比较和整理，太容易忘记了，所以这篇来做个笔记。</p>
 <a id="more"></a>
 <p>集成学习，（就我目前所学习到的）主要可以分为三大类，Boosting, Bagging, Stacking。Boosting的代表有AdaBoost, gbdt, xgboost。而Bagging的代表则是随机森林 (Random Forest)。Stacking 的话，好像还没有著名的代表，可以视其为一种集成的套路。</p>
-<h2 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h2><p>首先，Boosting是一个迭代提升的过程。基于训练集，先训练弱学习器，然后根据前一个弱学习器分错的样本，改变样本的概率分布构成新的训练集，从而可以训练出一个更强的学习器。这样反复迭代提升，就能得到一系列分类器。最后，将这些分类器组合起来，就能构成一个很强的学习器。</p>
+<h2 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h2><p>首先，Boosting是一个迭代提升的过程，所以它肯定是串行的算法（尽管xgboost可以在节点分裂属性选择上做并行计算）。基于训练集，先训练弱学习器，然后根据前一个弱学习器分错的样本，改变样本的概率分布构成新的训练集，从而可以训练出一个更强的学习器。这样反复迭代提升，就能得到一系列分类器。最后，将这些分类器组合起来，就能构成一个很强的学习器。</p>
 <h3 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h3><p>给定一个二分类的训练数据集</p>
-<p>$$ T={(x_1,y_1),…,(x_N,y_N)}$$</p>
-<p>其中,$x_i \subseteq R^n$,类标$y_i={-1,+1}$</p>
+<p>T={(x1,y1),…,(xN,yN)}</p>
+<p>其中,x_i 是n维的, 类标y_i={-1,+1}</p>
 <p>AdaBoost算法的步骤：<br>(1) 初始化训练数据的权值分布：D1=(w11,…,wi1,…,w1N),w1i=1/N,i=1,2,…,N(即初始时，每个样本视为一样的)<br>(2) 对m=1,2,…,M<br>(2a) 对具有权值分布Dm的训练数据集学习，得到一个基本分类器Gm(x)<br>(2b) 计算Gm(x)在训练数据集上的分类错误率:em=P(Gm(xi)!=yi)<br>(2c) 根据分类错误率计算Gm(x)的加权系数：am<br>(2d) 根据加权系数更新训练数据集的权值分布Dm+1<br>(3)以上学到了M个“弱”学习器，将这M个弱学习器加权求和：f(x)=sum(am*Gm(x)),最终的分类器为G(x)=sign(f(x))</p>
 <p>总之，AdaBoost的主要思想就是在不改变训练数据的情况下，通过在迭代训练弱学习器中，不断提升被错分类样本的权重（也就是使被错分的样本在下一轮训练时得到更多的重视），不断减少正确分类样本的权重。最后通过加权线性组合M个弱分类器得到最终的分类器，正确率越高的弱分类器的投票权数越高，正确率低的弱分类器自然投票权数就低。</p>
 <h3 id="GBDT"><a href="#GBDT" class="headerlink" title="GBDT"></a>GBDT</h3><p>GBDT的基本原理是boosting里面的 boosting tree（提升树），并使用gradient boost。GBDT中的树都是<strong>回归树</strong>，不是<strong>分类树</strong> ，因为<strong>gradient boost</strong> 需要按照<strong>损失函数</strong>的梯度近似的拟合残差，这样拟合的是连续数值，因此只有回归树。Gradient Boosting是一种Boosting的方法，其与传统的Boosting的区别是，每一次的计算是为了减少上一次的残差(residual)，而为了消除残差，可以在残差减少的梯度(Gradient)方向上建立一个新的模型。所以说，在Gradient Boosting中，每个新的模型的建立是为了使得之前模型的残差往梯度方向减少，与传统Boosting对正确、错误样本进行加权有着很大的区别。这个梯度代表上一轮学习器损失函数对预测值求导。与Boosting Tree的区别：Boosting Tree的适合于损失函数为<strong>平方损失</strong>或者<strong>指数损失</strong>。而Gradient Boosting适合<strong>各类损失函数</strong>（损失函数为：平方损失则相当于Boosting Tree拟合残差、损失函数为：使用指数损失则可以近似于Adaboost，但树是回归树）</p>
@@ -242,11 +247,46 @@ var _hmt = _hmt || [];
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p5.png">
 <p>但对于一般的损失函数，往往每一步优化没那么容易，如上图中的绝对值损失函数和Huber损失函数。针对这一问题，Freidman提出了梯度提升算法：利用最速下降的近似方法，即利用损失函数的负梯度在当前模型的值，作为回归问题中提升树算法的残差的近似值，拟合一个回归树。（注：鄙人私以为，与其说负梯度作为残差的近似值，不如说残差是负梯度的一种特例）算法如下（截图来自《The Elements of Statistical Learning》）：</p>
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p6.png">
-<h2 id="知乎上关于xgboost-gbdt讨论的经典问答"><a href="#知乎上关于xgboost-gbdt讨论的经典问答" class="headerlink" title="知乎上关于xgboost/gbdt讨论的经典问答"></a>知乎上关于xgboost/gbdt讨论的经典问答</h2><p>【问】xgboost/gbdt在调参时为什么树的深度很少就能达到很高的精度？<br>  用xgboost/gbdt在在调参的时候把树的最大深度调成6就有很高的精度了。但是用DecisionTree/RandomForest的时候需要把树的深度调到15或更高。用RandomForest所需要的树的深度和DecisionTree一样我能理解，因为它是用bagging的方法把DecisionTree组合在一起，相当于做了多次DecisionTree一样。但是xgboost/gbdt仅仅用梯度上升法就能用6个节点的深度达到很高的预测精度，使我惊讶到怀疑它是黑科技了。请问下xgboost/gbdt是怎么做到的？它的节点和一般的DecisionTree不同吗？<br>【答】<br>  这是一个非常好的问题，题主对各算法的学习非常细致透彻，问的问题也关系到这两个算法的本质。这个问题其实并不是一个很简单的问题，我尝试用我浅薄的机器学习知识对这个问题进行回答。<br>  一句话的解释，来自周志华老师的机器学习教科书（ 机器学习-周志华）：Boosting主要关注降低偏差，因此Boosting能基于泛化性能相当弱的学习器构建出很强的集成；Bagging主要关注降低方差，因此它在不剪枝的决策树、神经网络等学习器上效用更为明显。<br>  随机森林(random forest)和GBDT都是属于集成学习（ensemble learning)的范畴。集成学习下有两个重要的策略Bagging和Boosting。<br>  Bagging算法是这样做的：每个分类器都随机从原样本中做有放回的采样，然后分别在这些采样后的样本上训练分类器，然后再把这些分类器组合起来。简单的多数投票一般就可以。其代表算法是随机森林。Boosting的意思是这样，他通过迭代地训练一系列的分类器，每个分类器采用的样本分布都和上一轮的学习结果有关。其代表算法是AdaBoost, GBDT。<br>  其实就机器学习算法来说，其泛化误差可以分解为两部分，偏差（bias)和方差(variance)。这个可由下图的式子导出（这里用到了概率论公式D(X)=E(X^2)-[E(X)]^2）。偏差指的是算法的期望预测与真实预测之间的偏差程度，反应了模型本身的拟合能力；方差度量了同等大小的训练集的变动导致学习性能的变化，刻画了数据扰动所导致的影响。这个有点儿绕，不过你一定知道过拟合。<br>  如下图所示，当模型越复杂时，拟合的程度就越高，模型的训练偏差就越小。但此时如果换一组数据可能模型的变化就会很大，即模型的方差很大。所以模型过于复杂的时候会导致过拟合。<br>  当模型越简单时，即使我们再换一组数据，最后得出的学习器和之前的学习器的差别就不那么大，模型的方差很小。还是因为模型简单，所以偏差会很大。</p>
+<h2 id="xgboost"><a href="#xgboost" class="headerlink" title="xgboost"></a>xgboost</h2><p>xgboost类似于gbdt，但是很多地方经过了Tianqi Chen大牛的优化，因此不论是精度还是效率上都有了提升。与gbdt相比，具体的优点有：</p>
+<p>1.损失函数是用泰勒展式二项逼近，而不是像gbdt里就是一阶导数<br>2.对树的结构进行了正则化约束，防止模型过度复杂，降低了过拟合的可能性<br>3.节点分裂的方式不同，gbdt是用的gini系数，xgboost是经过优化推导后的</p>
+<p>xgboost是GB算法的高效实现，xgboost中的基学习器除了可以是CART（gbtree）也可以是线性分类器（gblinear）。下面所有的内容来自原始paper，包括公式。</p>
+<p>(1) xgboost在目标函数中显示的加上了正则化项，基学习器为CART时，正则化项与树的叶子节点的数量T和叶子节点的值有关。</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p7.png">
+<p>(2) GB中使用Loss Function对f(x)的一阶导数计算出伪残差用于学习生成fm(x)，xgboost不仅使用到了一阶导数，还使用二阶导数。第t次的loss：</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p8.png">
+<p>对上式做二阶泰勒展开：</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p9.png">
+<p>(3) 上面提到CART回归树中寻找最佳分割点的衡量标准是<strong>最小化均方差</strong>，xgboost寻找分割点的标准是最大化Lsplit</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p10.png">
+<p>xgboost算法的步骤和GB基本相同，都是首先初始化为一个常数，gb是根据一阶导数ri，xgboost是根据一阶导数gi和二阶导数hi，迭代生成基学习器，相加更新学习器。</p>
+<p>xgboost与gdbt除了上述三点的不同，xgboost在实现时还做了许多优化：</p>
+<ol>
+<li>在寻找最佳分割点时，考虑传统的<strong>枚举每个特征的所有可能分割点的贪心法效率太低</strong>，xgboost实现了一种近似的算法。大致的思想是根据<strong>百分位</strong>法列举几个可能成为分割点的候选者，然后从候选者中根据上面求分割点的公式计算找出最佳的分割点。</li>
+<li>xgboost考虑了训练数据为稀疏值的情况，可以为缺失值或者指定的值指定分支的默认方向，这能大大提升算法的效率，paper提到50倍。</li>
+<li>xgboost借鉴了随机森林中的列（特征）采样技术，即在某个节点分裂时，不是在当前节点中所有属性中选取最佳分裂属性，而是在当前属性集合中的某些属性中来选择最优分裂属性。这种方法降低了过拟合的可能性。</li>
+<li><p>特征列排序后以块的形式存储在内存中，在迭代中可以<strong>重复使用</strong>；虽然boosting算法迭代<strong>必须串行</strong>，但是在<strong>处理每个特征列</strong>时可以做到并行。</p>
+</li>
+<li><p>按照特征列方式存储能优化寻找最佳的分割点，但是当以行计算梯度数据时会导致内存的不连续访问，严重时会导致cache miss，降低算法效率。paper中提到，可先将数据收集到线程内部的buffer，然后再计算，提高算法的效率。</p>
+</li>
+<li>xgboost还考虑了当数据量比较大，内存不够时怎么有效的使用磁盘，主要是结合多线程、数据压缩、分片的方法，尽可能的提高算法的效率。</li>
+</ol>
+<h2 id="知乎上关于xgboost-gbdt讨论的经典问答"><a href="#知乎上关于xgboost-gbdt讨论的经典问答" class="headerlink" title="知乎上关于xgboost/gbdt讨论的经典问答"></a>知乎上关于xgboost/gbdt讨论的经典问答</h2><p>【问】xgboost/gbdt在调参时为什么树的深度很少就能达到很高的精度？<br>  用xgboost/gbdt在在调参的时候把树的最大深度调成6就有很高的精度了。但是用DecisionTree/RandomForest的时候需要把树的深度调到15或更高。用RandomForest所需要的树的深度和DecisionTree一样我能理解，因为它是用bagging的方法把DecisionTree组合在一起，相当于做了多次DecisionTree一样。但是xgboost/gbdt仅仅用梯度上升法就能用6个节点的深度达到很高的预测精度，使我惊讶到怀疑它是黑科技了。请问下xgboost/gbdt是怎么做到的？它的节点和一般的DecisionTree不同吗？<br>【答】<br>  这是一个非常好的问题，题主对各算法的学习非常细致透彻，问的问题也关系到这两个算法的本质。这个问题其实并不是一个很简单的问题，我尝试用我浅薄的机器学习知识对这个问题进行回答。<br>  一句话的解释，来自周志华老师的机器学习教科书（ 机器学习-周志华）：Boosting主要关注降低偏差，因此Boosting能基于泛化性能相当弱的学习器构建出很强的集成；Bagging主要关注降低方差，因此它在不剪枝的决策树、神经网络等学习器上效用更为明显。<br>  随机森林(random forest)和GBDT都是属于集成学习（ensemble learning)的范畴。集成学习下有两个重要的策略Bagging和Boosting。<br>  Bagging算法是这样做的：每个分类器都随机从原样本中做有放回的采样，然后分别在这些采样后的样本上训练分类器，然后再把这些分类器组合起来。简单的多数投票一般就可以。其代表算法是随机森林。Boosting的意思是这样，他通过迭代地训练一系列的分类器，每个分类器采用的样本分布都和上一轮的学习结果有关。其代表算法是AdaBoost, GBDT。<br>  其实就机器学习算法来说，其泛化误差可以分解为两部分，偏差（bias)和方差(variance)。这个可由下图的式子导出（这里用到了概率论公式D(X)=E(X^2)-[E(X)]^2）。偏差指的是算法的期望预测与真实预测之间的偏差程度，反应了模型本身的拟合能力；方差度量了同等大小的训练集的变动导致学习性能的变化，刻画了数据扰动所导致的影响。这个有点儿绕，不过你一定知道过拟合。<br>  如下图所示，当模型越复杂时，拟合的程度就越高，模型的训练偏差就越小。但此时如果换一组数据可能模型的变化就会很大，即模型的方差很大。所以模型过于复杂的时候会导致过拟合。</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p11.png">
+<p>  当模型越简单时，即使我们再换一组数据，最后得出的学习器和之前的学习器的差别就不那么大，模型的方差很小。还是因为模型简单，所以偏差会很大。</p>
 <p>  也就是说，当我们训练一个模型时，偏差和方差都得照顾到，漏掉一个都不行。<br>  对于Bagging算法来说，由于我们会并行地训练很多不同的分类器的目的就是降低这个方差(variance) ,因为采用了相互独立的基分类器多了以后，h的值自然就会靠近.所以对于每个基分类器来说，目标就是如何降低这个偏差（bias),所以我们会采用深度很深甚至不剪枝的决策树。<br>  对于Boosting来说，每一步我们都会在上一轮的基础上更加拟合原数据，所以可以保证偏差（bias）,所以对于每个基分类器来说，问题就在于如何选择variance更小的分类器，即更简单的分类器，所以我们选择了深度很浅的决策树。</p>
-<hr>
-<p>Reference:</p>
-<p>1、《The Elements of Statistical Learning》<br>2、《统计学习方法》<br>3、 <a href="http://blog.csdn.net/puqutogether/article/details/44593647" target="_blank" rel="external">http://blog.csdn.net/puqutogether/article/details/44593647</a><br>4、 <a href="http://blog.csdn.net/suranxu007/article/details/49910323" target="_blank" rel="external">http://blog.csdn.net/suranxu007/article/details/49910323</a><br>5、 <a href="http://blog.csdn.net/lilyth_lilyth/article/details/48032119" target="_blank" rel="external">http://blog.csdn.net/lilyth_lilyth/article/details/48032119</a><br>6、《Practical Lessons from Predicting Clicks on Ads at Facebook》<br>7、 <a href="http://www.searchtb.com/2010/12/an-introduction-to-treelink.html" target="_blank" rel="external">http://www.searchtb.com/2010/12/an-introduction-to-treelink.html</a><br>8、 <a href="https://www.zhihu.com/question/45487317" target="_blank" rel="external">https://www.zhihu.com/question/45487317</a><br>9、 <a href="http://wakemeup.space/?p=187" target="_blank" rel="external">http://wakemeup.space/?p=187</a></p>
+<p>【问】机器学习算法中GBDT和XGBOOST的区别有哪些？<br>【答】<br>传统GBDT以CART作为基分类器，xgboost还支持线性分类器，这个时候xgboost相当于带L1和L2正则化项的逻辑斯蒂回归（分类问题）或者线性回归（回归问题）。<br>传统GBDT在优化时只用到一阶导数信息，xgboost则对代价函数进行了二阶泰勒展开，同时用到了一阶和二阶导数。顺便提一下，xgboost工具支持自定义代价函数，只要函数可一阶和二阶求导。<br>xgboost在代价函数里加入了正则项，用于控制模型的复杂度。正则项里包含了树的叶子节点个数、每个叶子节点上输出的score的L2模的平方和。从Bias-variance tradeoff角度来讲，正则项降低了模型的variance，使学习出来的模型更加简单，防止过拟合，这也是xgboost优于传统GBDT的一个特性。<br>Shrinkage（缩减），相当于学习速率（xgboost中的eta）。xgboost在进行完一次迭代后，会将叶子节点的权重乘上该系数，主要是为了削弱每棵树的影响，让后面有更大的学习空间。实际应用中，一般把eta设置得小一点，然后迭代次数设置得大一点。（补充：传统GBDT的实现也有学习速率）<br>列抽样（column subsampling）即特征抽样。xgboost借鉴了随机森林的做法，支持列抽样，不仅能降低过拟合，还能减少计算，这也是xgboost异于传统gbdt的一个特性。<br>对缺失值的处理。对于特征的值有缺失的样本，xgboost可以自动学习出它的分裂方向。<br>xgboost工具支持并行。boosting不是一种串行的结构吗?怎么并行的？注意xgboost的并行不是tree粒度的并行，xgboost也是一次迭代完才能进行下一次迭代的（第t次迭代的代价函数里包含了前面t-1次迭代的预测值）。xgboost的并行是在特征粒度上的。我们知道，决策树的学习最耗时的一个步骤就是对特征的值进行排序（因为要确定最佳分割点），xgboost在训练之前，预先对数据进行了排序，然后保存为block结构，后面的迭代中重复地使用这个结构，大大减小计算量。这个block结构也使得并行成为了可能，在进行节点的分裂时，需要计算每个特征的增益，最终选增益最大的那个特征去做分裂，那么各个特征的增益计算就可以开多线程进行。<br>可并行的近似直方图算法。树节点在进行分裂时，我们需要计算每个特征的每个分割点对应的增益，即用贪心法枚举所有可能的分割点。当数据无法一次载入内存或者在分布式情况下，贪心算法效率就会变得很低，所以xgboost还提出了一种可并行的近似直方图算法，用于高效地生成候选的分割点。</p>
+<h2 id="多种语言封装支持。"><a href="#多种语言封装支持。" class="headerlink" title="多种语言封装支持。"></a>多种语言封装支持。</h2><p>Reference:</p>
+<p>1.《The Elements of Statistical Learning》<br>2.《统计学习方法》</p>
+<ol>
+<li><a href="http://blog.csdn.net/puqutogether/article/details/44593647" target="_blank" rel="external">http://blog.csdn.net/puqutogether/article/details/44593647</a></li>
+<li><a href="http://blog.csdn.net/suranxu007/article/details/49910323" target="_blank" rel="external">http://blog.csdn.net/suranxu007/article/details/49910323</a></li>
+<li><a href="http://blog.csdn.net/lilyth_lilyth/article/details/48032119" target="_blank" rel="external">http://blog.csdn.net/lilyth_lilyth/article/details/48032119</a><br>6.《Practical Lessons from Predicting Clicks on Ads at Facebook》</li>
+<li><a href="http://www.searchtb.com/2010/12/an-introduction-to-treelink.html" target="_blank" rel="external">http://www.searchtb.com/2010/12/an-introduction-to-treelink.html</a></li>
+<li><a href="https://www.zhihu.com/question/45487317" target="_blank" rel="external">https://www.zhihu.com/question/45487317</a></li>
+<li><a href="http://wakemeup.space/?p=187" target="_blank" rel="external">http://wakemeup.space/?p=187</a></li>
+<li><a href="http://www.jianshu.com/p/005a4e6ac775" target="_blank" rel="external">http://www.jianshu.com/p/005a4e6ac775</a></li>
+<li><a href="https://www.zhihu.com/question/41354392/answer/98658997" target="_blank" rel="external">https://www.zhihu.com/question/41354392/answer/98658997</a></li>
+</ol>
 
       
 

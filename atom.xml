@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-06-04T15:42:47.000Z</updated>
+  <updated>2017-06-04T15:48:37.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xijunlee.github.io/2017/06/03/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
     <id>https://xijunlee.github.io/2017/06/03/集成学习总结/</id>
     <published>2017-06-03T08:18:51.000Z</published>
-    <updated>2017-06-04T15:42:47.000Z</updated>
+    <updated>2017-06-04T15:48:37.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>看了不少集成学习的资料，很多算法都有相似之处，看了之后没有进行比较和整理，太容易忘记了，所以这篇来做个笔记。</p>
 <p>集成学习，（就我目前所学习到的）主要可以分为三大类，Boosting, Bagging, Stacking。Boosting的代表有AdaBoost, gbdt, xgboost。而Bagging的代表则是随机森林 (Random Forest)。Stacking 的话，好像还没有著名的代表，可以视其为一种集成的套路。</p>
@@ -89,17 +89,7 @@
 <p>以上Stacking只做了一层，据kaggle上的大神反馈，Stacking可以做好多层，会有神奇的效果。</p>
 <hr>
 <p>Reference:</p>
-<p>1.《The Elements of Statistical Learning》<br>2.《统计学习方法》</p>
-<ol>
-<li><a href="http://blog.csdn.net/puqutogether/article/details/44593647" target="_blank" rel="external">http://blog.csdn.net/puqutogether/article/details/44593647</a></li>
-<li><a href="http://blog.csdn.net/suranxu007/article/details/49910323" target="_blank" rel="external">http://blog.csdn.net/suranxu007/article/details/49910323</a></li>
-<li><a href="http://blog.csdn.net/lilyth_lilyth/article/details/48032119" target="_blank" rel="external">http://blog.csdn.net/lilyth_lilyth/article/details/48032119</a><br>6.《Practical Lessons from Predicting Clicks on Ads at Facebook》</li>
-<li><a href="http://www.searchtb.com/2010/12/an-introduction-to-treelink.html" target="_blank" rel="external">http://www.searchtb.com/2010/12/an-introduction-to-treelink.html</a></li>
-<li><a href="https://www.zhihu.com/question/45487317" target="_blank" rel="external">https://www.zhihu.com/question/45487317</a></li>
-<li><a href="http://wakemeup.space/?p=187" target="_blank" rel="external">http://wakemeup.space/?p=187</a></li>
-<li><a href="http://www.jianshu.com/p/005a4e6ac775" target="_blank" rel="external">http://www.jianshu.com/p/005a4e6ac775</a></li>
-<li><a href="https://www.zhihu.com/question/41354392/answer/98658997" target="_blank" rel="external">https://www.zhihu.com/question/41354392/answer/98658997</a></li>
-</ol>
+<p>《The Elements of Statistical Learning》<br>《统计学习方法》<br>《Practical Lessons from Predicting Clicks on Ads at Facebook》<br><a href="http://blog.csdn.net/puqutogether/article/details/44593647" target="_blank" rel="external">http://blog.csdn.net/puqutogether/article/details/44593647</a><br><a href="http://blog.csdn.net/suranxu007/article/details/49910323" target="_blank" rel="external">http://blog.csdn.net/suranxu007/article/details/49910323</a><br><a href="http://blog.csdn.net/lilyth_lilyth/article/details/48032119" target="_blank" rel="external">http://blog.csdn.net/lilyth_lilyth/article/details/48032119</a><br><a href="http://www.searchtb.com/2010/12/an-introduction-to-treelink.html" target="_blank" rel="external">http://www.searchtb.com/2010/12/an-introduction-to-treelink.html</a><br><a href="https://www.zhihu.com/question/45487317" target="_blank" rel="external">https://www.zhihu.com/question/45487317</a><br><a href="http://wakemeup.space/?p=187" target="_blank" rel="external">http://wakemeup.space/?p=187</a><br><a href="http://www.jianshu.com/p/005a4e6ac775" target="_blank" rel="external">http://www.jianshu.com/p/005a4e6ac775</a><br><a href="https://www.zhihu.com/question/41354392/answer/98658997" target="_blank" rel="external">https://www.zhihu.com/question/41354392/answer/98658997</a></p>
 ]]></content>
     
     <summary type="html">

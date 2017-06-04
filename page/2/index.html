@@ -189,6 +189,74 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-python虚拟环境安装与使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/10/python虚拟环境安装与使用/">python虚拟环境安装与使用(转)</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/10/python虚拟环境安装与使用/" class="archive-article-date">
+  	<time datetime="2017-02-10T03:15:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在开发<code>Python</code>应用程序的时候，系统安装的<code>Python3</code>只有一个版本：3.4。所有第三方的包都会被<code>pip</code>安装到<code>Python3</code>的<code>site-packages</code>目录下。</p>
+<p>如果我们要同时开发多个应用程序，那这些应用程序都会共用一个<code>Python</code>，就是安装在系统的Python 3。如果应用A需要<code>jinja 2.7</code>，而应用B需要<code>jinja 2.6</code>怎么办？</p>
+<p>这种情况下，每个应用可能需要各自拥有一套“独立”的<code>Python</code>运行环境。<code>virtualenv</code>就是用来为一个应用创建一套“隔离”的<code>Python</code>运行环境。</p>
+<p>首先，我们用<code>pip</code>安装<code>virtualenv</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip3 install virtualenv</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2017/02/10/python虚拟环境安装与使用/#more">More >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python virtual environment</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/10/python虚拟环境安装与使用/">Show All >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-linux下杀死进程（kill）的N种方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -643,71 +711,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2016-12-21-wan-hadoopzhong-yu-dao-de-keng" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/21/2016-12-21-wan-hadoopzhong-yu-dao-de-keng/">玩Hadoop中遇到的坑</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/21/2016-12-21-wan-hadoopzhong-yu-dao-de-keng/" class="archive-article-date">
-  	<time datetime="2016-12-21T02:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>专门开一篇记录在玩Hadoop中遇到的坑，既给自己做个笔记，也为后来者做个提醒。</p>
-<p>按照<a href="http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/SingleCluster.html">官方指南</a>所给的步骤，一直执行到step 5之前都没什么问题，但是当执行到<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bin/hdfs dfs -put etc/hadoop input</div></pre></td></tr></table></figure></p>
-        
-          <a class="article-more-a" href="/2016/12/21/2016-12-21-wan-hadoopzhong-yu-dao-de-keng/#more">More >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">distributed computing</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/21/2016-12-21-wan-hadoopzhong-yu-dao-de-keng/">Show All >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -814,7 +817,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">machine learning</a>
+                <a href="javascript:void(0)" class="js-tag color3">reading</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -822,7 +825,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">reading</a>
+                <a href="javascript:void(0)" class="js-tag color2">machine learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -834,15 +837,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">auction</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">probability theory</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
+                <a href="javascript:void(0)" class="js-tag color3">auction</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -850,15 +849,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">bit manipulation</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python virtual environment</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">python virtual environment</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -874,11 +877,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spider</a>
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color1">Ensembling</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spider</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -19,7 +19,7 @@ TF-IDF对于一篇文档，TF-IDF（词频-逆文档频率）能为其中的词�
 TF-IDF对于一篇文档，TF-IDF（词频-逆文档频率）能为其中的词赋予权重，它度量的是词语与文本的相关性，而非简单的词频。因此TF-IDF能用来判断文章主题。对于一个文本而言，想要知道其主题或是想知道这篇文档是关于哪个方面的，那么最容易想到的方法就是提取关键字了。TF-IDF可以认为是分为两步来做这个事情：">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/NLP_foundation/p1.png">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/NLP_foundation/p2.png">
-<meta property="og:updated_time" content="2017-06-06T07:23:50.000Z">
+<meta property="og:updated_time" content="2017-06-06T07:25:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自然语言处理基础">
 <meta name="twitter:description" content="写在前面自然语言处理中基本和经典模型的总结
@@ -249,18 +249,15 @@ var _hmt = _hmt || [];
 <p>词袋法会列出每个词及其在每份文档中出现的次数。实质上已经向量化的词和文档被存储到表格中，表格的每一行对应一个词，每一列对应一份文档，而每个单元格则是一项词频数。语料库中的每份文档都以长度相等的列来表示。这也就是<strong>词频向量</strong>，一种脱离了上下文的输出。</p>
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/NLP_foundation/p2.png">
 <p>通常在应用之前，每个词频向量都需要进行标准化，确保向量的所有元素之和为1。如此就相当于将每个词的频率转换为该词在文档中出现的概率。</p>
-<h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2><p>2.1 词向量</p>
-<p>NLP（Natural Language Processing）问题要转化为机器学习的问题，首先就要把单词数学化表示,就是用n维实数向量来代表一个单词，常见的词向量有以下两种：</p>
-<p>One-hot Representation</p>
-<p>例如： </p>
+<h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2><p>NLP（Natural Language Processing）问题要转化为机器学习的问题，首先就要把单词数学化表示,就是用n维实数向量来代表一个单词，常见的词向量有以下两种：</p>
+<h3 id="One-hot-Representation"><a href="#One-hot-Representation" class="headerlink" title="One-hot Representation"></a>One-hot Representation</h3><p>例如： </p>
 <p>“话筒”表示为 [0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 …]</p>
 <p>“麦克”表示为 [0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 …]</p>
 <p>One-hot表示使用了单词在词表中的编号信息，编码方式如下：向量长度为词表大小，单词在词表中的编号对应的那一个维度为1，其余为0。</p>
 <p>One-hot表示存在两个问题：</p>
 <p>（1）维度比较大,尤其在用于神经网络的一些算法时，出现“维数灾难”。</p>
 <p>（2）词汇鸿沟：任意两个词之间都是孤立的，不能体现词和词之间的关系（因为编码过程仅仅使用了它们在词表中的编号信息）。</p>
-<p>Distributional Representation</p>
-<p>例如： [0.792, −0.177, −0.107, 0.109, 0.542, …]，每个维度用一个实数值表示</p>
+<h3 id="Distributional-Representation"><a href="#Distributional-Representation" class="headerlink" title="Distributional Representation"></a>Distributional Representation</h3><p>例如： [0.792, −0.177, −0.107, 0.109, 0.542, …]，每个维度用一个实数值表示</p>
 <p>克服了One-hot表示存在的两个问题：</p>
 <p>（1）解决了维度大的问题：常见维度50或者100。</p>
 <p>（2）解决了“词汇鸿沟”问题：可以通过计算向量之间的距离（欧式距离、余弦距离等）来体现词与词的相似性。</p>

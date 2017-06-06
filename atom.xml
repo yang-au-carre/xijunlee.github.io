@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-06-06T07:25:31.000Z</updated>
+  <updated>2017-06-06T07:26:18.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xijunlee.github.io/2017/06/06/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E5%9F%BA%E7%A1%80/"/>
     <id>https://xijunlee.github.io/2017/06/06/自然语言处理基础/</id>
     <published>2017-06-06T03:01:32.000Z</published>
-    <updated>2017-06-06T07:25:31.000Z</updated>
+    <updated>2017-06-06T07:26:18.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>自然语言处理中基本和经典模型的总结</p>
 <h2 id="TF-IDF"><a href="#TF-IDF" class="headerlink" title="TF-IDF"></a>TF-IDF</h2><p>对于一篇文档，TF-IDF（词频-逆文档频率）能为其中的词赋予权重，它度量的是词语与文本的相关性，而非简单的词频。因此TF-IDF能用来<strong>判断文章主题</strong>。对于一个文本而言，想要知道其主题或是想知道这篇文档是关于哪个方面的，那么最容易想到的方法就是提取关键字了。TF-IDF可以认为是分为两步来做这个事情：</p>
@@ -69,7 +69,7 @@
 <p>这样的词向量称为词嵌入（word-embedding），那么如何训练这样的词向量呢？我们可以通过训练语言模型的同时，得到词向量。</p>
 <hr>
 <p>Reference:</p>
-<p><a href="http://www.ruanyifeng.com/blog/2013/03/tf-idf.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2013/03/tf-idf.html</a><br><a href="http://www.ruanyifeng.com/blog/2013/03/cosine_similarity.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2013/03/cosine_similarity.html</a><br><a href="https://deeplearning4j.org/cn/bagofwords-tf-idf" target="_blank" rel="external">https://deeplearning4j.org/cn/bagofwords-tf-idf</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2013/03/tf-idf.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2013/03/tf-idf.html</a><br><a href="http://www.ruanyifeng.com/blog/2013/03/cosine_similarity.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2013/03/cosine_similarity.html</a><br><a href="https://deeplearning4j.org/cn/bagofwords-tf-idf" target="_blank" rel="external">https://deeplearning4j.org/cn/bagofwords-tf-idf</a><br><a href="http://www.nustm.cn/blog/index.php/archives/842" target="_blank" rel="external">http://www.nustm.cn/blog/index.php/archives/842</a></p>
 ]]></content>
     
     <summary type="html">

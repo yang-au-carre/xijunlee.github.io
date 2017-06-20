@@ -20,7 +20,7 @@
 正则表达式相关注解（1）数量词的贪婪模式与非贪婪模式
 正则表达式通常用于在文本中查找匹配的字符串。Python里数量词默认是贪婪的（在少数语言里也可能是默认非贪婪），总是尝试匹配尽可能多的字符；非贪婪的则相反，总是尝试匹配尽可能少的字符。例如：正则表达式”ab”如果用于查找”abbbc”，将找到”abbb”。而如果使用非贪婪的数量词”ab?”">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/re_summary/pic1.png">
-<meta property="og:updated_time" content="2017-06-20T13:58:37.000Z">
+<meta property="og:updated_time" content="2017-06-20T13:58:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式总结">
 <meta name="twitter:description" content="写在前面正则表达式笔记，特指python中的re模块。
@@ -223,6 +223,7 @@ var _hmt = _hmt || [];
 <h2 id="正则表达式相关注解"><a href="#正则表达式相关注解" class="headerlink" title="正则表达式相关注解"></a>正则表达式相关注解</h2><p>（1）数量词的贪婪模式与非贪婪模式</p>
 <p>正则表达式通常用于在文本中查找匹配的字符串。Python里数量词默认是贪婪的（在少数语言里也可能是默认非贪婪），总是尝试匹配尽可能多的字符；非贪婪的则相反，总是尝试匹配尽可能少的字符。例如：正则表达式”ab<em>”如果用于查找”abbbc”，将找到”abbb”。而如果使用非贪婪的数量词”ab</em>?”，将找到”a”。</p>
 <p>注：我们一般使用非贪婪模式来提取。</p>
+<a id="more"></a>
 <p>（2）反斜杠问题</p>
 <p>与大多数编程语言相同，正则表达式里使用”\”作为转义字符，这就可能造成反斜杠困扰。假如你需要匹配文本中的字符”\”，那么使用编程语言表示的正则表达式里将需要4个反斜杠”\\”：前两个和后两个分别用于在编程语言里转义成反斜杠，转换成两个反斜杠后再在正则表达式里转义成一个反斜杠。</p>
 <p>Python里的原生字符串很好地解决了这个问题，这个例子中的正则表达式可以使用r”\”表示。同样，匹配一个数字的”\d”可以写成r”\d”。</p>

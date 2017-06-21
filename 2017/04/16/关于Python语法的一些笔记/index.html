@@ -10,21 +10,21 @@
   <title>关于Python语法的一些笔记（持续更新） | A Notebook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="写在前面记录一些Python使用过程中的没见过或者优化的使用方法……
-什么是args和*kwargs？先来看个例子：
-12345678910def foo(*args, **kwargs):    print &apos;args = &apos;, args    print &apos;kwargs = &apos;, kwargs    print &apos;---------------------------------------&apos;">
+什么是*args和**kwargs？先来看个例子：
+12345678910def foo(*args, **kwargs):    print &apos;args = &apos;, args    print &apos;kwargs = &apos;, kwargs    print &apos;--------------------------------------">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于Python语法的一些笔记（持续更新）">
 <meta property="og:url" content="https://xijunlee.github.io/2017/04/16/关于Python语法的一些笔记/index.html">
 <meta property="og:site_name" content="A Notebook">
 <meta property="og:description" content="写在前面记录一些Python使用过程中的没见过或者优化的使用方法……
-什么是args和*kwargs？先来看个例子：
-12345678910def foo(*args, **kwargs):    print &apos;args = &apos;, args    print &apos;kwargs = &apos;, kwargs    print &apos;---------------------------------------&apos;">
-<meta property="og:updated_time" content="2017-06-21T08:52:19.000Z">
+什么是*args和**kwargs？先来看个例子：
+12345678910def foo(*args, **kwargs):    print &apos;args = &apos;, args    print &apos;kwargs = &apos;, kwargs    print &apos;--------------------------------------">
+<meta property="og:updated_time" content="2017-06-21T08:53:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Python语法的一些笔记（持续更新）">
 <meta name="twitter:description" content="写在前面记录一些Python使用过程中的没见过或者优化的使用方法……
-什么是args和*kwargs？先来看个例子：
-12345678910def foo(*args, **kwargs):    print &apos;args = &apos;, args    print &apos;kwargs = &apos;, kwargs    print &apos;---------------------------------------&apos;">
+什么是*args和**kwargs？先来看个例子：
+12345678910def foo(*args, **kwargs):    print &apos;args = &apos;, args    print &apos;kwargs = &apos;, kwargs    print &apos;--------------------------------------">
   
     <link rel="alternative" href="/atom.xml" title="A Notebook" type="application/atom+xml">
   
@@ -218,7 +218,7 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>记录一些Python使用过程中的没见过或者优化的使用方法……</p>
-<h3 id="什么是args和-kwargs？"><a href="#什么是args和-kwargs？" class="headerlink" title="什么是args和*kwargs？"></a>什么是<em>args和*</em>kwargs？</h3><p>先来看个例子：</p>
+<h3 id="什么是-args和-kwargs？"><a href="#什么是-args和-kwargs？" class="headerlink" title="什么是*args和**kwargs？"></a>什么是*args和**kwargs？</h3><p>先来看个例子：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(*args, **kwargs)</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'args = '</span>, args</div><div class="line">    <span class="keyword">print</span> <span class="string">'kwargs = '</span>, kwargs</div><div class="line">    <span class="keyword">print</span> <span class="string">'---------------------------------------'</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    foo(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</div><div class="line">    foo(a=<span class="number">1</span>,b=<span class="number">2</span>,c=<span class="number">3</span>)</div><div class="line">    foo(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>, a=<span class="number">1</span>,b=<span class="number">2</span>,c=<span class="number">3</span>)</div><div class="line">    foo(<span class="string">'a'</span>, <span class="number">1</span>, <span class="keyword">None</span>, a=<span class="number">1</span>, b=<span class="string">'2'</span>, c=<span class="number">3</span>)</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>输出结果如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">args =  (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>) </div><div class="line">kwargs =  &#123;&#125; </div><div class="line">--------------------------------------- </div><div class="line">args =  () </div><div class="line">kwargs =  &#123;<span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'c'</span>: <span class="number">3</span>, <span class="string">'b'</span>: <span class="number">2</span>&#125; </div><div class="line">--------------------------------------- </div><div class="line">args =  (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>) </div><div class="line">kwargs =  &#123;<span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'c'</span>: <span class="number">3</span>, <span class="string">'b'</span>: <span class="number">2</span>&#125; </div><div class="line">--------------------------------------- </div><div class="line">args =  (<span class="string">'a'</span>, <span class="number">1</span>, <span class="keyword">None</span>) </div><div class="line">kwargs =  &#123;<span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'c'</span>: <span class="number">3</span>, <span class="string">'b'</span>: <span class="string">'2'</span>&#125; </div><div class="line">---------------------------------------</div></pre></td></tr></table></figure></p>

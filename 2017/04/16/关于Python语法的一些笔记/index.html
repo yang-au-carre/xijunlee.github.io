@@ -10,24 +10,21 @@
   <title>关于Python语法的一些笔记（持续更新） | A Notebook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="写在前面记录一些Python使用过程中的没见过或者优化的使用方法……
-lambda表达式以及实例lambda表达式可以理解成为匿名函数，其功能就是定义了一个函数，不过这个函数形式非常简单，通常是一行。过于复杂的函数还是正经定义的好。
-sorted函数中使用lambda表达式的例子：下面这个例子在很多list排序中使用到，故单独列出来。
-123points = [[10,16], [2,8], [1">
+什么是args和*kwargs？先来看个例子：
+12345678910def foo(*args, **kwargs):    print &apos;args = &apos;, args    print &apos;kwargs = &apos;, kwargs    print &apos;---------------------------------------&apos;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于Python语法的一些笔记（持续更新）">
 <meta property="og:url" content="https://xijunlee.github.io/2017/04/16/关于Python语法的一些笔记/index.html">
 <meta property="og:site_name" content="A Notebook">
 <meta property="og:description" content="写在前面记录一些Python使用过程中的没见过或者优化的使用方法……
-lambda表达式以及实例lambda表达式可以理解成为匿名函数，其功能就是定义了一个函数，不过这个函数形式非常简单，通常是一行。过于复杂的函数还是正经定义的好。
-sorted函数中使用lambda表达式的例子：下面这个例子在很多list排序中使用到，故单独列出来。
-123points = [[10,16], [2,8], [1">
-<meta property="og:updated_time" content="2017-05-04T14:43:04.000Z">
+什么是args和*kwargs？先来看个例子：
+12345678910def foo(*args, **kwargs):    print &apos;args = &apos;, args    print &apos;kwargs = &apos;, kwargs    print &apos;---------------------------------------&apos;">
+<meta property="og:updated_time" content="2017-06-21T08:52:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Python语法的一些笔记（持续更新）">
 <meta name="twitter:description" content="写在前面记录一些Python使用过程中的没见过或者优化的使用方法……
-lambda表达式以及实例lambda表达式可以理解成为匿名函数，其功能就是定义了一个函数，不过这个函数形式非常简单，通常是一行。过于复杂的函数还是正经定义的好。
-sorted函数中使用lambda表达式的例子：下面这个例子在很多list排序中使用到，故单独列出来。
-123points = [[10,16], [2,8], [1">
+什么是args和*kwargs？先来看个例子：
+12345678910def foo(*args, **kwargs):    print &apos;args = &apos;, args    print &apos;kwargs = &apos;, kwargs    print &apos;---------------------------------------&apos;">
   
     <link rel="alternative" href="/atom.xml" title="A Notebook" type="application/atom+xml">
   
@@ -221,10 +218,16 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>记录一些Python使用过程中的没见过或者优化的使用方法……</p>
+<h3 id="什么是args和-kwargs？"><a href="#什么是args和-kwargs？" class="headerlink" title="什么是args和*kwargs？"></a>什么是<em>args和*</em>kwargs？</h3><p>先来看个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(*args, **kwargs)</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'args = '</span>, args</div><div class="line">    <span class="keyword">print</span> <span class="string">'kwargs = '</span>, kwargs</div><div class="line">    <span class="keyword">print</span> <span class="string">'---------------------------------------'</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    foo(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</div><div class="line">    foo(a=<span class="number">1</span>,b=<span class="number">2</span>,c=<span class="number">3</span>)</div><div class="line">    foo(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>, a=<span class="number">1</span>,b=<span class="number">2</span>,c=<span class="number">3</span>)</div><div class="line">    foo(<span class="string">'a'</span>, <span class="number">1</span>, <span class="keyword">None</span>, a=<span class="number">1</span>, b=<span class="string">'2'</span>, c=<span class="number">3</span>)</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>输出结果如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">args =  (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>) </div><div class="line">kwargs =  &#123;&#125; </div><div class="line">--------------------------------------- </div><div class="line">args =  () </div><div class="line">kwargs =  &#123;<span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'c'</span>: <span class="number">3</span>, <span class="string">'b'</span>: <span class="number">2</span>&#125; </div><div class="line">--------------------------------------- </div><div class="line">args =  (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>) </div><div class="line">kwargs =  &#123;<span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'c'</span>: <span class="number">3</span>, <span class="string">'b'</span>: <span class="number">2</span>&#125; </div><div class="line">--------------------------------------- </div><div class="line">args =  (<span class="string">'a'</span>, <span class="number">1</span>, <span class="keyword">None</span>) </div><div class="line">kwargs =  &#123;<span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'c'</span>: <span class="number">3</span>, <span class="string">'b'</span>: <span class="string">'2'</span>&#125; </div><div class="line">---------------------------------------</div></pre></td></tr></table></figure></p>
+<p>可以看到，这两个是python中的可变参数。<em>args表示任何多个无名参数，它是一个tuple；**kwargs表示关键字参数，它是一个dict。并且同时使用</em>args和<strong>kwargs时，必须*args参数列要在</strong>kwargs前，像foo(a=1, b=’2’, c=3, a’, 1, None, )这样调用的话，会提示语法错误“SyntaxError: non-keyword arg after keyword arg”。</p>
+<p> 还有一个很漂亮的用法，就是创建字典：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">kw_dict</span><span class="params">(**kwargs)</span>:</span></div><div class="line">    <span class="keyword">return</span> kwargs</div><div class="line"><span class="keyword">print</span> kw_dict(a=<span class="number">1</span>,b=<span class="number">2</span>,c=<span class="number">3</span>) == &#123;<span class="string">'a'</span>:<span class="number">1</span>, <span class="string">'b'</span>:<span class="number">2</span>, <span class="string">'c'</span>:<span class="number">3</span>&#125;</div></pre></td></tr></table></figure></p>
+<p>其实python中就带有dict类，使用dict(a=1,b=2,c=3)即可创建一个字典了。</p>
 <h3 id="lambda表达式以及实例"><a href="#lambda表达式以及实例" class="headerlink" title="lambda表达式以及实例"></a>lambda表达式以及实例</h3><p>lambda表达式可以理解成为匿名函数，其功能就是定义了一个函数，不过这个函数形式非常简单，通常是一行。过于复杂的函数还是正经定义的好。</p>
 <h4 id="sorted函数中使用lambda表达式的例子："><a href="#sorted函数中使用lambda表达式的例子：" class="headerlink" title="sorted函数中使用lambda表达式的例子："></a>sorted函数中使用lambda表达式的例子：</h4><p>下面这个例子在很多list排序中使用到，故单独列出来。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">points = [[<span class="number">10</span>,<span class="number">16</span>], [<span class="number">2</span>,<span class="number">8</span>], [<span class="number">1</span>,<span class="number">6</span>], [<span class="number">7</span>,<span class="number">12</span>]]</div><div class="line"><span class="comment">#用sorted函数来为list中的元素按照元素的第二位进行排序，key是排序的比较关键字，这里通过lambda表达式来给出关键字。</span></div><div class="line">points = sorted(points, key = <span class="keyword">lambda</span> x: x[<span class="number">1</span>])</div></pre></td></tr></table></figure>
-<a id="more"></a>
 <h4 id="简单例子"><a href="#简单例子" class="headerlink" title="简单例子:"></a>简单例子:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">g = <span class="keyword">lambda</span> x:x+<span class="number">1</span></div></pre></td></tr></table></figure>
 <p>执行结果：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">g(<span class="number">1</span>)</div><div class="line">&gt;&gt;&gt;<span class="number">2</span></div><div class="line">g(<span class="number">2</span>)</div><div class="line">&gt;&gt;&gt;<span class="number">3</span></div></pre></td></tr></table></figure></p>
 <p>另外一种使用方式:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">lambda</span> x:x+<span class="number">1</span>(<span class="number">1</span>)</div><div class="line">&gt;&gt;&gt;<span class="number">2</span></div></pre></td></tr></table></figure></p>
@@ -243,6 +246,9 @@ var _hmt = _hmt || [];
 <p>如果循环中block不需要用到迭代值的话，我们可以不用给迭代值命名，用<code>_</code>就好。</p>
 <h3 id="if-else语句的简单赋值"><a href="#if-else语句的简单赋值" class="headerlink" title="if-else语句的简单赋值"></a>if-else语句的简单赋值</h3><p>示例:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a = <span class="number">20</span> <span class="keyword">if</span> b == <span class="number">2</span> <span class="keyword">else</span> <span class="number">3</span> <span class="comment">#如果b==2,则a被赋值为20，否则被赋值为3</span></div></pre></td></tr></table></figure></p>
 <p>很多其他语言，如C++, Java都有这种赋值语句:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a = b==<span class="number">2</span>? <span class="number">20</span>:<span class="number">3</span></div></pre></td></tr></table></figure></p>
+<hr>
+<p>Reference:</p>
+<p><a href="http://www.cnblogs.com/fengmk2/archive/2008/04/21/1163766.html" target="_blank" rel="external">http://www.cnblogs.com/fengmk2/archive/2008/04/21/1163766.html</a></p>
 
       
 

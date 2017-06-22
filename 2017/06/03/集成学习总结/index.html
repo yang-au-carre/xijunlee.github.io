@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p9.png">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p10.png">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Ensembling/p11.png">
-<meta property="og:updated_time" content="2017-06-22T02:19:11.000Z">
+<meta property="og:updated_time" content="2017-06-22T02:20:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="集成学习总结">
 <meta name="twitter:description" content="写在前面看了不少集成学习的资料，很多算法都有相似之处，看了之后没有进行比较和整理，太容易忘记了，所以这篇来做个笔记。
@@ -332,7 +332,7 @@ var _hmt = _hmt || [];
 <h1 id="Load-in-our-libraries"><a href="#Load-in-our-libraries" class="headerlink" title="Load in our libraries"></a>Load in our libraries</h1><p>import pandas as pd<br>import numpy as np<br>import re<br>import sklearn<br>import xgboost as xgb<br>import seaborn as sns<br>import matplotlib.pyplot as plt<br>import pdb</p>
 <p>#%matplotlib inline</p>
 <h1 id="Going-to-use-these-5-base-models-for-the-stacking"><a href="#Going-to-use-these-5-base-models-for-the-stacking" class="headerlink" title="Going to use these 5 base models for the stacking"></a>Going to use these 5 base models for the stacking</h1><p>from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier, ExtraTreesClassifier<br>from sklearn.svm import SVC<br>from sklearn.cross_validation import KFold;</p>
-<p>‘’’<br>The code of feature engineering are emitted due to the space limitation.<br>‘’’</p>
+<p>#The code of feature engineering are emitted due to the space limitation.</p>
 <h1 id="Some-useful-parameters-which-will-come-in-handy-later-on"><a href="#Some-useful-parameters-which-will-come-in-handy-later-on" class="headerlink" title="Some useful parameters which will come in handy later on"></a>Some useful parameters which will come in handy later on</h1><p>ntrain = train.shape[0]<br>ntest = test.shape[0]<br>SEED = 0 # for reproducibility<br>NFOLDS = 5 # set folds for out-of-fold prediction<br>kf = KFold(ntrain, n_folds= NFOLDS, random_state=SEED)</p>
 <h1 id="Class-to-extend-the-Sklearn-classifier"><a href="#Class-to-extend-the-Sklearn-classifier" class="headerlink" title="Class to extend the Sklearn classifier"></a>Class to extend the Sklearn classifier</h1><p>class SklearnHelper(object):<br>    def <strong>init</strong>(self, clf, seed=0, params=None):<br>        params[‘random_state’] = seed<br>        self.clf = clf(**params)</p>
 <pre><code>def train(self, x_train, y_train):

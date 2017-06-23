@@ -7,14 +7,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xijunlee.github.io">
-  <title>Tag: reading | A Notebook</title>
+  <title>卷积神经网络实践之MNIST手写数字体识别 | A Notebook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="A Notebook">
-<meta property="og:url" content="https://xijunlee.github.io/tags/reading/index.html">
+  <meta name="description" content="写在前面之前一直都是只看理论，没有动手，现在终于把理论付诸实践了。话不多说，这篇博文记录一下我在kaggle上实践过程。
+任务描述MNIST (“Modified National Institute of Standards and Technology”) is the de facto “hello world” dataset of computer vision. Since its r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="卷积神经网络实践之MNIST手写数字体识别">
+<meta property="og:url" content="https://xijunlee.github.io/2017/06/23/CNN实践之手写数字体识别/index.html">
 <meta property="og:site_name" content="A Notebook">
+<meta property="og:description" content="写在前面之前一直都是只看理论，没有动手，现在终于把理论付诸实践了。话不多说，这篇博文记录一下我在kaggle上实践过程。
+任务描述MNIST (“Modified National Institute of Standards and Technology”) is the de facto “hello world” dataset of computer vision. Since its r">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/pic1.png">
+<meta property="og:updated_time" content="2017-06-23T08:55:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A Notebook">
+<meta name="twitter:title" content="卷积神经网络实践之MNIST手写数字体识别">
+<meta name="twitter:description" content="写在前面之前一直都是只看理论，没有动手，现在终于把理论付诸实践了。话不多说，这篇博文记录一下我在kaggle上实践过程。
+任务描述MNIST (“Modified National Institute of Standards and Technology”) is the de facto “hello world” dataset of computer vision. Since its r">
+<meta name="twitter:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/pic1.png">
   
     <link rel="alternative" href="/atom.xml" title="A Notebook" type="application/atom+xml">
   
@@ -187,60 +196,157 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-CNN实践之手写数字体识别" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/17/2016-12-17-du-shu-bi-ji-zhi-<<li-shi-de-jiao-xun->>/" class="archive-article-date">
-  	<time datetime="2016-12-17T15:13:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-17</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/17/2016-12-17-du-shu-bi-ji-zhi-<<li-shi-de-jiao-xun->>/">读书笔记之《历史的教训》</a>
+    <h1 class="article-title" itemprop="name">
+      卷积神经网络实践之MNIST手写数字体识别
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/06/23/CNN实践之手写数字体识别/" class="archive-article-date">
+  	<time datetime="2017-06-23T07:46:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>之前一直都是只看理论，没有动手，现在终于把理论付诸实践了。话不多说，这篇博文记录一下我在kaggle上实践过程。</p>
+<h2 id="任务描述"><a href="#任务描述" class="headerlink" title="任务描述"></a>任务描述</h2><p>MNIST (“Modified National Institute of Standards and Technology”) is the de facto “hello world” dataset of computer vision. Since its release in 1999, this classic dataset of handwritten images has served as the basis for benchmarking classification algorithms. As new machine learning techniques emerge, MNIST remains a reliable resource for researchers and learners alike.</p>
+<a id="more"></a>
+<p>In this competition, your goal is to correctly identify digits from a dataset of tens of thousands of handwritten images. We’ve curated a set of tutorial-style kernels which cover everything from regression to neural networks. We encourage you to experiment with different algorithms to learn first-hand what works well and how techniques compare.</p>
+<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><p>其实这就是个多分类问题，所以常见的分类器都能解决上述问题。kaggle上的大神们也给出了卷积神经网络以外的思路：比如PCA+SVM。类似的还有很多，比如可以PCA+RandomForest, PCA+Xgboost, PCA+blahblahblah … </p>
+<p>但最牛逼的解决方案还是CNN，我自己写了一个PCA+SVM的kernel，得分比CNN低很多。当然，如果做好feature engeering和好好调参的话，应该还是能取得不错的效果。但是肯定不如CNN厉害，不然现在CNN为什么会在图像识别领域大火呢？</p>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p>要我手写一个CNN是不可能的，既太花时间，我也暂时没那个本事。所以，我就用了Keras+ TensorFlow来实现一个卷积神经网络。</p>
+<p>官网介绍：<a href="https://keras.io" target="_blank" rel="external">Keras</a> is a high-level neural networks API, written in Python and capable of running on top of either TensorFlow, CNTK or Theano. It was developed with a focus on enabling fast experimentation. Being able to go from idea to result with the least possible delay is key to doing good research.</p>
+<p>官网介绍：<a href="https://www.tensorflow.org" target="_blank" rel="external">TensorFlow</a> 是一个采用数据流图（data flow graphs），用于数值计算的开源软件库。节点（Nodes）在图中表示数学操作，图中的线（edges）则表示在节点间相互联系的多维数据数组，即张量（tensor）。它灵活的架构让你可以在多种平台上展开计算，例如台式计算机中的一个或多个CPU（或GPU），服务器，移动设备等等。TensorFlow 最初由Google大脑小组（隶属于Google机器智能研究机构）的研究员和工程师们开发出来，用于机器学习和深度神经网络方面的研究，但这个系统的通用性使其也可广泛用于其他计算领域。</p>
+<p>Keras是一个高层次抽象的卷积神经网络python库，但它本身是不会做矩阵计算等任务的，需要以TensorFlow作为后端来进行复杂的底层计算。在TensorFlow的基础上，Keras能非常方便地调用各种api来完成卷积神经网络的搭建。下面，简单地记录一下安装Kera+TensorFlow的过程。</p>
+<h3 id="TensorFlow安装-on-Ubuntu-without-GPU-support"><a href="#TensorFlow安装-on-Ubuntu-without-GPU-support" class="headerlink" title="TensorFlow安装 (on Ubuntu without GPU support)"></a>TensorFlow安装 (on Ubuntu without GPU support)</h3><p>这里，我用的系统是Ubuntu 14.04.1 LTS (GNU/Linux 3.13.0-32-generic x86_64), python是3.4.3，GCC是4.8.4。所以下面的安装就是基于以上环境。建议采用pip的方式安装TensorFlow，下面keras也一样，简直是太方便了。因为实验室服务器没有GPU，所以我就只能安装CPU版本的TensorFlow了。</p>
+<ol>
+<li>创建虚拟环境</li>
+</ol>
+<p>首先要养成良好的习惯，就是不同的python虚拟环境来做不同的事，以免不同项目的环境相互影响了。以下两行代码分别是安装python 2.7和python 3.4+虚拟环境的命令，任君选择。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install python-pip python-dev python-virtualenv    <span class="comment"># python 2.7</span></div><div class="line">$ sudo apt-get install python3-pip python3-dev python3-virtualenv <span class="comment"># python 3.4+</span></div></pre></td></tr></table></figure></p>
+<p>2.启动虚拟环境<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ virtualenv --system-site-packages ~/tensorflow</div><div class="line">$ <span class="built_in">source</span> ~/tensorflow/bin/activate</div></pre></td></tr></table></figure></p>
+<p>3.安装TensorFlow<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Python 2</span></div><div class="line">$ sudo pip install --upgrade tensorflow</div><div class="line"> </div><div class="line"><span class="comment"># Python 3</span></div><div class="line">$ sudo pip3 install --upgrade tensorflow</div></pre></td></tr></table></figure></p>
+<h3 id="Keras安装"><a href="#Keras安装" class="headerlink" title="Keras安装"></a>Keras安装</h3><p>1.安装所需要的包和keras</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ pip install numpy scipy</div><div class="line">$ pip install scikit-learn</div><div class="line">$ pip install pillow</div><div class="line">$ pip install h5py</div><div class="line">$ pip install keras</div></pre></td></tr></table></figure>
+<p>2.编辑配置文件keras.json，将keras的计算后端设置为TensorFlow：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim ~/.keras/keras.json</div></pre></td></tr></table></figure></p>
+<p>确保上述文件内容为:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"image_dim_ordering"</span>: <span class="string">"tf"</span>, </div><div class="line">    <span class="attr">"epsilon"</span>: <span class="number">1e-07</span>, </div><div class="line">    <span class="attr">"floatx"</span>: <span class="string">"float32"</span>, </div><div class="line">    <span class="attr">"backend"</span>: <span class="string">"tensorflow"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>image_dim_ordering：TensorFlow是使用NumPy数组 (height, width, depth)。如果你用Theano，数组表示方法(depth, height, width)。</p>
+<p>打开python，输入以下代码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Keras</div></pre></td></tr></table></figure></p>
+<p>如果出现以下代码，表示基于TensorFlow的Keras安装成功！！<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> keras</div><div class="line">Using TensorFlow backend.</div></pre></td></tr></table></figure></p>
+<h2 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h2><p>这里给出我利用keras实现的一个多层卷积神经网络，该网络的结构如下：<br><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/pic1.png"></p>
+<p>我是故意把这个搞的比较复杂，最后kaggle上LB得分为0.98971, rank 652/1924，很多人做到了score为1的地步……</p>
+<p>source code:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> keras.layers.core <span class="keyword">as</span> core</div><div class="line"><span class="keyword">import</span> keras.layers.convolutional <span class="keyword">as</span> conv</div><div class="line"><span class="keyword">import</span> keras.models <span class="keyword">as</span> models</div><div class="line"><span class="keyword">import</span> keras.utils.np_utils <span class="keyword">as</span> kutils</div><div class="line"><span class="keyword">import</span> pdb</div><div class="line"></div><div class="line"><span class="comment"># The competition datafiles are in the directory ../input</span></div><div class="line"><span class="comment"># Read competition data files:</span></div><div class="line">train_df = pd.read_csv(<span class="string">"../../train.csv"</span>)</div><div class="line">test_df  = pd.read_csv(<span class="string">"../../test.csv"</span>)</div><div class="line"></div><div class="line">train = train_df.values</div><div class="line">test = test_df.values</div><div class="line"></div><div class="line"></div><div class="line">nb_epoch = <span class="number">10</span> <span class="comment"># Change to 100</span></div><div class="line"></div><div class="line">batch_size = <span class="number">128</span></div><div class="line">img_rows, img_cols = <span class="number">28</span>, <span class="number">28</span></div><div class="line"></div><div class="line">nb_filters_1 = <span class="number">32</span> <span class="comment"># 64</span></div><div class="line">nb_filters_2 = <span class="number">64</span> <span class="comment"># 128</span></div><div class="line">nb_filters_3 = <span class="number">128</span> <span class="comment"># 256</span></div><div class="line">nb_filters_4 = <span class="number">256</span></div><div class="line">nb_conv = <span class="number">3</span></div><div class="line"></div><div class="line"><span class="comment"># Standardize data into zero mean, unit variance</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">standardize</span><span class="params">(x)</span>:</span></div><div class="line">    mean = x.mean().astype(np.float32)</div><div class="line">    std = x.std().astype(np.float32)</div><div class="line">    <span class="keyword">return</span> (x-mean)/std</div><div class="line"></div><div class="line">trainX = train[:, <span class="number">1</span>:].reshape(train.shape[<span class="number">0</span>], img_rows, img_cols, <span class="number">1</span>)</div><div class="line">trainX = trainX.astype(float)</div><div class="line">trainX = standardize(trainX)</div><div class="line"></div><div class="line"><span class="comment"># convert the class label to one-hot vector</span></div><div class="line">trainY = kutils.to_categorical(train[:, <span class="number">0</span>])</div><div class="line">nb_classes = trainY.shape[<span class="number">1</span>]</div><div class="line"></div><div class="line">cnn = models.Sequential()</div><div class="line"></div><div class="line">cnn.add(conv.Conv2D(nb_filters_1, nb_conv, nb_conv,  activation=<span class="string">"relu"</span>, input_shape=(<span class="number">28</span>, <span class="number">28</span>, <span class="number">1</span>), border_mode=<span class="string">'same'</span>))</div><div class="line">cnn.add(conv.Conv2D(nb_filters_1, nb_conv, nb_conv, activation=<span class="string">"relu"</span>, border_mode=<span class="string">'same'</span>))</div><div class="line">cnn.add(conv.MaxPooling2D(strides=(<span class="number">2</span>,<span class="number">2</span>)))</div><div class="line"></div><div class="line">cnn.add(conv.Conv2D(nb_filters_2, nb_conv, nb_conv, activation=<span class="string">"relu"</span>, border_mode=<span class="string">'same'</span>))</div><div class="line">cnn.add(conv.Conv2D(nb_filters_2, nb_conv, nb_conv, activation=<span class="string">"relu"</span>, border_mode=<span class="string">'same'</span>))</div><div class="line">cnn.add(conv.MaxPooling2D(strides=(<span class="number">2</span>,<span class="number">2</span>)))</div><div class="line"></div><div class="line">cnn.add(conv.Convolution2D(nb_filters_3, nb_conv, nb_conv, activation=<span class="string">"relu"</span>, border_mode=<span class="string">'same'</span>))</div><div class="line">cnn.add(conv.Convolution2D(nb_filters_3, nb_conv, nb_conv, activation=<span class="string">"relu"</span>, border_mode=<span class="string">'same'</span>))</div><div class="line">cnn.add(conv.Convolution2D(nb_filters_3, nb_conv, nb_conv, activation=<span class="string">"relu"</span>, border_mode=<span class="string">'same'</span>))</div><div class="line">cnn.add(conv.Convolution2D(nb_filters_3, nb_conv, nb_conv, activation=<span class="string">"relu"</span>, border_mode=<span class="string">'same'</span>))</div><div class="line">cnn.add(conv.MaxPooling2D(strides=(<span class="number">2</span>,<span class="number">2</span>)))</div><div class="line"></div><div class="line">cnn.add(conv.Convolution2D(nb_filters_4, nb_conv, nb_conv, activation=<span class="string">"relu"</span>, border_mode=<span class="string">'same'</span>))</div><div class="line">cnn.add(conv.Convolution2D(nb_filters_4, nb_conv, nb_conv, activation=<span class="string">"relu"</span>, border_mode=<span class="string">'same'</span>))</div><div class="line">cnn.add(conv.Convolution2D(nb_filters_4, nb_conv, nb_conv, activation=<span class="string">"relu"</span>, border_mode=<span class="string">'same'</span>))</div><div class="line">cnn.add(conv.Convolution2D(nb_filters_4, nb_conv, nb_conv, activation=<span class="string">"relu"</span>, border_mode=<span class="string">'same'</span>))</div><div class="line">cnn.add(conv.MaxPooling2D(strides=(<span class="number">2</span>,<span class="number">2</span>)))</div><div class="line"></div><div class="line">cnn.add(core.Flatten())</div><div class="line">cnn.add(core.Dropout(<span class="number">0.2</span>)) <span class="comment"># mitigate overfitting</span></div><div class="line">cnn.add(core.Dense(<span class="number">128</span>, activation=<span class="string">"relu"</span>)) <span class="comment"># 4096 fully-connected forward neuro</span></div><div class="line">cnn.add(core.Dense(nb_classes, activation=<span class="string">"softmax"</span>))</div><div class="line"></div><div class="line">cnn.summary()</div><div class="line">cnn.compile(loss=<span class="string">"categorical_crossentropy"</span>, optimizer=<span class="string">"adam"</span>, metrics=[<span class="string">"accuracy"</span>])</div><div class="line"></div><div class="line">cnn.fit(trainX, trainY, batch_size=batch_size, nb_epoch=nb_epoch, verbose=<span class="number">1</span>)</div><div class="line"></div><div class="line">testX = test.reshape(test.shape[<span class="number">0</span>], <span class="number">28</span>, <span class="number">28</span>, <span class="number">1</span>)</div><div class="line">testX = testX.astype(float)</div><div class="line"><span class="comment">#testX /= 255.0</span></div><div class="line">testX = standardize(testX)</div><div class="line"></div><div class="line">yPred = cnn.predict_classes(testX)</div><div class="line"></div><div class="line">imageId = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(yPred)+<span class="number">1</span>)]</div><div class="line">Submission = pd.DataFrame(&#123;<span class="string">'ImageId'</span>:imageId,<span class="string">'Label'</span>:yPred&#125;)</div><div class="line">Submission.to_csv(<span class="string">'Submission.csv'</span>, index = <span class="keyword">False</span>)</div><div class="line"><span class="keyword">print</span> (<span class="string">'Results saved to .csv successfully!'</span>)</div></pre></td></tr></table></figure></p>
+<p>最后，再给出一个丑陋的PCA+SVM模型的源码，该模型最后的LB得分为0.49743……<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> decomposition</div><div class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</div><div class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</div><div class="line"></div><div class="line"><span class="comment"># The competition datafiles are in the directory ../input</span></div><div class="line"><span class="comment"># Read competition data files:</span></div><div class="line">train_df = pd.read_csv(<span class="string">"../../train.csv"</span>)</div><div class="line">test_df  = pd.read_csv(<span class="string">"../../test.csv"</span>)</div><div class="line"></div><div class="line">train = train_df.values</div><div class="line">test = test_df.values</div><div class="line"></div><div class="line">train_x, train_y = train[:,<span class="number">1</span>:].astype(np.float32), train[:,<span class="number">0</span>]</div><div class="line">test_x = test.astype(np.float32)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">standardize</span><span class="params">(x)</span>:</span></div><div class="line">    mean = x.mean().astype(np.float32)</div><div class="line">    std = x.std().astype(np.float32)</div><div class="line">    <span class="keyword">return</span> (x-mean)/std</div><div class="line"></div><div class="line"><span class="keyword">print</span> (<span class="string">'Standardizing the original data ...'</span>)</div><div class="line"><span class="comment"># Standardizing the original data</span></div><div class="line">train_x = standardize(train_x)</div><div class="line">test_x = standardize(test_x)</div><div class="line"></div><div class="line"><span class="keyword">print</span> (<span class="string">'PCA ...'</span>)</div><div class="line">nb_components = <span class="number">15</span>*<span class="number">15</span></div><div class="line"><span class="comment"># Principle component analysis</span></div><div class="line">pca = decomposition.PCA(n_components = nb_components)</div><div class="line">pca.fit(train_x)</div><div class="line">train_x = pca.transform(train_x)</div><div class="line"><span class="keyword">print</span> (train_x.shape)</div><div class="line"></div><div class="line"><span class="keyword">print</span> (<span class="string">'Model fitting ...'</span>)</div><div class="line">clf = SVC(kernel=<span class="string">'rbf'</span>, C=<span class="number">1</span>)</div><div class="line"><span class="comment">#scores = cross_val_score(clf,train_x,train_y,cv=5)</span></div><div class="line">clf.fit(train_x,train_y)</div><div class="line"><span class="keyword">print</span> (<span class="string">'PCA fit on test_x ... '</span>)</div><div class="line">pca.fit(test_x)</div><div class="line">test_x = pca.transform(test_x)</div><div class="line"><span class="keyword">print</span> (<span class="string">'Predicting ...'</span>)</div><div class="line">yPreds = clf.predict(test_x)</div><div class="line">imageId = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(yPreds)+<span class="number">1</span>)]</div><div class="line">submission = pd.DataFrame(&#123;<span class="string">'ImageId'</span>:imageId,<span class="string">'Label'</span>:yPreds&#125;)</div><div class="line">submission.to_csv(<span class="string">'submission_svm.csv'</span>,index = <span class="keyword">False</span>)</div><div class="line"><span class="keyword">print</span> (<span class="string">'Result saved to .csv successfully!'</span>)</div></pre></td></tr></table></figure></p>
+<hr>
+<p>Reference<br><a href="https://www.kaggle.com/poonaml/deep-neural-network-keras-way" target="_blank" rel="external">https://www.kaggle.com/poonaml/deep-neural-network-keras-way</a><br><a href="http://blog.topspeedsnail.com/archives/10427" target="_blank" rel="external">http://blog.topspeedsnail.com/archives/10427</a><br><a href="https://keras.io" target="_blank" rel="external">https://keras.io</a><br><a href="https://www.kaggle.com/somshubramajumdar/deep-convolutional-network-using-keras" target="_blank" rel="external">https://www.kaggle.com/somshubramajumdar/deep-convolutional-network-using-keras</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">reading</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CNN</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://xijunlee.github.io/2017/06/23/CNN实践之手写数字体识别/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/06/20/正则表达式总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">正则表达式总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-    
+
 
 
           </div>
@@ -263,9 +369,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

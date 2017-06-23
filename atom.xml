@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-06-23T09:02:27.000Z</updated>
+  <updated>2017-06-23T09:04:31.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xijunlee.github.io/2017/06/23/CNN%E5%AE%9E%E8%B7%B5%E4%B9%8B%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E4%BD%93%E8%AF%86%E5%88%AB/"/>
     <id>https://xijunlee.github.io/2017/06/23/CNN实践之手写数字体识别/</id>
     <published>2017-06-23T07:46:26.000Z</published>
-    <updated>2017-06-23T09:02:27.000Z</updated>
+    <updated>2017-06-23T09:04:31.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>之前一直都是只看理论，没有动手，现在终于把理论付诸实践了。话不多说，这篇博文记录一下我在kaggle上实践过程。</p>
 <h2 id="任务描述"><a href="#任务描述" class="headerlink" title="任务描述"></a>任务描述</h2><p>MNIST (“Modified National Institute of Standards and Technology”) is the de facto “hello world” dataset of computer vision. Since its release in 1999, this classic dataset of handwritten images has served as the basis for benchmarking classification algorithms. As new machine learning techniques emerge, MNIST remains a reliable resource for researchers and learners alike.</p>
@@ -46,47 +46,7 @@
 <p>image_dim_ordering：TensorFlow是使用NumPy数组 (height, width, depth)。如果你用Theano，数组表示方法(depth, height, width)。</p>
 <p>打开python，输入以下代码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Keras</div></pre></td></tr></table></figure></p>
 <p>如果出现以下代码，表示基于TensorFlow的Keras安装成功！！<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> keras</div><div class="line">Using TensorFlow backend.</div></pre></td></tr></table></figure></p>
-<h2 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h2><p>这里给出我利用keras实现的一个多层卷积神经网络，源码戳<a href="https://github.com/xijunlee/kaggle-solution/blob/master/DigitRecognizer/DigitRec_CNN.py" target="_blank" rel="external">这里</a>，该网络的结构如下：</p>
-<hr>
-<h1 id="Layer-type-Output-Shape-Param"><a href="#Layer-type-Output-Shape-Param" class="headerlink" title="Layer (type)                 Output Shape              Param #"></a>Layer (type)                 Output Shape              Param #</h1><p>conv2d_1 (Conv2D)            (None, 28, 28, 32)        320</p>
-<hr>
-<p>conv2d_2 (Conv2D)            (None, 28, 28, 32)        9248</p>
-<hr>
-<p>max_pooling2d_1 (MaxPooling2 (None, 14, 14, 32)        0</p>
-<hr>
-<p>conv2d_3 (Conv2D)            (None, 14, 14, 64)        18496</p>
-<hr>
-<p>conv2d_4 (Conv2D)            (None, 14, 14, 64)        36928</p>
-<hr>
-<p>max_pooling2d_2 (MaxPooling2 (None, 7, 7, 64)          0</p>
-<hr>
-<p>conv2d_5 (Conv2D)            (None, 7, 7, 128)         73856</p>
-<hr>
-<p>conv2d_6 (Conv2D)            (None, 7, 7, 128)         147584</p>
-<hr>
-<p>conv2d_7 (Conv2D)            (None, 7, 7, 128)         147584</p>
-<hr>
-<p>conv2d_8 (Conv2D)            (None, 7, 7, 128)         147584</p>
-<hr>
-<p>max_pooling2d_3 (MaxPooling2 (None, 3, 3, 128)         0</p>
-<hr>
-<p>conv2d_9 (Conv2D)            (None, 3, 3, 256)         295168</p>
-<hr>
-<p>conv2d_10 (Conv2D)           (None, 3, 3, 256)         590080</p>
-<hr>
-<p>conv2d_11 (Conv2D)           (None, 3, 3, 256)         590080</p>
-<hr>
-<p>conv2d_12 (Conv2D)           (None, 3, 3, 256)         590080</p>
-<hr>
-<p>max_pooling2d_4 (MaxPooling2 (None, 1, 1, 256)         0</p>
-<hr>
-<p>flatten_1 (Flatten)          (None, 256)               0</p>
-<hr>
-<p>dropout_1 (Dropout)          (None, 256)               0</p>
-<hr>
-<p>dense_1 (Dense)              (None, 128)               32896</p>
-<hr>
-<h1 id="dense-2-Dense-None-10-1290"><a href="#dense-2-Dense-None-10-1290" class="headerlink" title="dense_2 (Dense)              (None, 10)                1290"></a>dense_2 (Dense)              (None, 10)                1290</h1><p>Total params: 2,681,194<br>Trainable params: 2,681,194<br>Non-trainable params: 0</p>
+<h2 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h2><p>这里给出我利用keras实现的一个多层卷积神经网络，源码戳<a href="https://github.com/xijunlee/kaggle-solution/blob/master/DigitRecognizer/DigitRec_CNN.py" target="_blank" rel="external">这里</a>，该网络的结构如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">_________________________________________________________________</div><div class="line">Layer (type)                 Output Shape              Param #</div><div class="line">=================================================================</div><div class="line">conv2d_1 (Conv2D)            (None, 28, 28, 32)        320</div><div class="line">_________________________________________________________________</div><div class="line">conv2d_2 (Conv2D)            (None, 28, 28, 32)        9248</div><div class="line">_________________________________________________________________</div><div class="line">max_pooling2d_1 (MaxPooling2 (None, 14, 14, 32)        0</div><div class="line">_________________________________________________________________</div><div class="line">conv2d_3 (Conv2D)            (None, 14, 14, 64)        18496</div><div class="line">_________________________________________________________________</div><div class="line">conv2d_4 (Conv2D)            (None, 14, 14, 64)        36928</div><div class="line">_________________________________________________________________</div><div class="line">max_pooling2d_2 (MaxPooling2 (None, 7, 7, 64)          0</div><div class="line">_________________________________________________________________</div><div class="line">conv2d_5 (Conv2D)            (None, 7, 7, 128)         73856</div><div class="line">_________________________________________________________________</div><div class="line">conv2d_6 (Conv2D)            (None, 7, 7, 128)         147584</div><div class="line">_________________________________________________________________</div><div class="line">conv2d_7 (Conv2D)            (None, 7, 7, 128)         147584</div><div class="line">_________________________________________________________________</div><div class="line">conv2d_8 (Conv2D)            (None, 7, 7, 128)         147584</div><div class="line">_________________________________________________________________</div><div class="line">max_pooling2d_3 (MaxPooling2 (None, 3, 3, 128)         0</div><div class="line">_________________________________________________________________</div><div class="line">conv2d_9 (Conv2D)            (None, 3, 3, 256)         295168</div><div class="line">_________________________________________________________________</div><div class="line">conv2d_10 (Conv2D)           (None, 3, 3, 256)         590080</div><div class="line">_________________________________________________________________</div><div class="line">conv2d_11 (Conv2D)           (None, 3, 3, 256)         590080</div><div class="line">_________________________________________________________________</div><div class="line">conv2d_12 (Conv2D)           (None, 3, 3, 256)         590080</div><div class="line">_________________________________________________________________</div><div class="line">max_pooling2d_4 (MaxPooling2 (None, 1, 1, 256)         0</div><div class="line">_________________________________________________________________</div><div class="line">flatten_1 (Flatten)          (None, 256)               0</div><div class="line">_________________________________________________________________</div><div class="line">dropout_1 (Dropout)          (None, 256)               0</div><div class="line">_________________________________________________________________</div><div class="line">dense_1 (Dense)              (None, 128)               32896</div><div class="line">_________________________________________________________________</div><div class="line">dense_2 (Dense)              (None, 10)                1290</div><div class="line">=================================================================</div><div class="line">Total params: 2,681,194</div><div class="line">Trainable params: 2,681,194</div><div class="line">Non-trainable params: 0</div></pre></td></tr></table></figure></p>
 <p>我是故意把这个搞的比较复杂，最后kaggle上LB得分为0.98971, rank 652/1924，很多人做到了score为1的地步……</p>
 <p>之后，我又尝试了PCA+SVM的模型，源码戳<a href="https://github.com/xijunlee/kaggle-solution/blob/master/DigitRecognizer/DigitRec_SVM.py" target="_blank" rel="external">这里</a>。因为没有专门去调参数，所以LB得分很低，才0.49743…… 不过，我想就算找到了最优参数，其效果也应该比不上卷积神经网络。</p>
 <hr>

@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="A Notebook">
 <meta property="og:description" content="写在前面之前一直都是只看理论，没有动手，现在终于把理论付诸实践了。话不多说，这篇博文记录一下我在kaggle上实践过程。
 任务描述MNIST (“Modified National Institute of Standards and Technology”) is the de facto “hello world” dataset of computer vision. Since its r">
-<meta property="og:updated_time" content="2017-06-23T09:04:31.000Z">
+<meta property="og:updated_time" content="2017-06-23T09:05:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="卷积神经网络实践之MNIST手写数字体识别">
 <meta name="twitter:description" content="写在前面之前一直都是只看理论，没有动手，现在终于把理论付诸实践了。话不多说，这篇博文记录一下我在kaggle上实践过程。
@@ -225,9 +225,7 @@ var _hmt = _hmt || [];
 <p>官网介绍：<a href="https://www.tensorflow.org" target="_blank" rel="external">TensorFlow</a> 是一个采用数据流图（data flow graphs），用于数值计算的开源软件库。节点（Nodes）在图中表示数学操作，图中的线（edges）则表示在节点间相互联系的多维数据数组，即张量（tensor）。它灵活的架构让你可以在多种平台上展开计算，例如台式计算机中的一个或多个CPU（或GPU），服务器，移动设备等等。TensorFlow 最初由Google大脑小组（隶属于Google机器智能研究机构）的研究员和工程师们开发出来，用于机器学习和深度神经网络方面的研究，但这个系统的通用性使其也可广泛用于其他计算领域。</p>
 <p>Keras是一个高层次抽象的卷积神经网络python库，但它本身是不会做矩阵计算等任务的，需要以TensorFlow作为后端来进行复杂的底层计算。在TensorFlow的基础上，Keras能非常方便地调用各种api来完成卷积神经网络的搭建。下面，简单地记录一下安装Kera+TensorFlow的过程。</p>
 <h3 id="TensorFlow安装-on-Ubuntu-without-GPU-support"><a href="#TensorFlow安装-on-Ubuntu-without-GPU-support" class="headerlink" title="TensorFlow安装 (on Ubuntu without GPU support)"></a>TensorFlow安装 (on Ubuntu without GPU support)</h3><p>这里，我用的系统是Ubuntu 14.04.1 LTS (GNU/Linux 3.13.0-32-generic x86_64), python是3.4.3，GCC是4.8.4。所以下面的安装就是基于以上环境。建议采用pip的方式安装TensorFlow，下面keras也一样，简直是太方便了。因为实验室服务器没有GPU，所以我就只能安装CPU版本的TensorFlow了。</p>
-<ol>
-<li>创建虚拟环境</li>
-</ol>
+<p>1.创建虚拟环境</p>
 <p>首先要养成良好的习惯，就是不同的python虚拟环境来做不同的事，以免不同项目的环境相互影响了。以下两行代码分别是安装python 2.7和python 3.4+虚拟环境的命令，任君选择。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install python-pip python-dev python-virtualenv    <span class="comment"># python 2.7</span></div><div class="line">$ sudo apt-get install python3-pip python3-dev python3-virtualenv <span class="comment"># python 3.4+</span></div></pre></td></tr></table></figure></p>
 <p>2.启动虚拟环境<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ virtualenv --system-site-packages ~/tensorflow</div><div class="line">$ <span class="built_in">source</span> ~/tensorflow/bin/activate</div></pre></td></tr></table></figure></p>
 <p>3.安装TensorFlow<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Python 2</span></div><div class="line">$ sudo pip install --upgrade tensorflow</div><div class="line"> </div><div class="line"><span class="comment"># Python 3</span></div><div class="line">$ sudo pip3 install --upgrade tensorflow</div></pre></td></tr></table></figure></p>

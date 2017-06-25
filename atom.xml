@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-06-25T15:22:06.000Z</updated>
+  <updated>2017-06-25T15:24:59.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xijunlee.github.io/2017/06/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%B8%B8%E8%A7%81%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93/"/>
     <id>https://xijunlee.github.io/2017/06/25/机器学习中常见激活函数总结/</id>
     <published>2017-06-25T13:58:32.000Z</published>
-    <updated>2017-06-25T15:22:06.000Z</updated>
+    <updated>2017-06-25T15:24:59.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>机器学习中很多场合都用到了激活函数 (Activation Function)，但激活函数主要是在神经网络中提出来的，很多场合下其实就是函数。这篇总结一下常见的激活函数以及它们的优缺点。</p>
 <h2 id="激活函数起源与性质"><a href="#激活函数起源与性质" class="headerlink" title="激活函数起源与性质"></a>激活函数起源与性质</h2><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/ActivationFunction/pic0.png">
@@ -35,9 +35,8 @@
 <p>常见的激活函数总结如下图：<br><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/ActivationFunction/pic1.png"></p>
 <h2 id="Sigmoid系激活函数"><a href="#Sigmoid系激活函数" class="headerlink" title="Sigmoid系激活函数"></a>Sigmoid系激活函数</h2><p>Sigmoid系激活函数是一大类函数，其函数形状是S型的，因此而得名。代表有Sigmoid函数和tanh函数。</p>
 <p>$$sigmoid: f(x)=\frac{1}{1+e^{-x}}$$<br>$$tanh: f(x)=\frac{2}{1+e^{-2x}}-1=2Sigmoid(2x)-1$$</p>
-<p>Sigmoid系是之前使用的最多的激活函数，它在物理意义上最为接近生物神经元，能够把输入的连续实值“压缩”到[0,1]或者[-1,1]。此外，[0,1]的输出还可以被表示作概率，或用于输入的归一化，代表性的如Sigmoid交叉熵损失函数。此外，Sigmoid函数还被用在逻辑斯蒂回归中，在那里，它被叫做逻辑斯蒂函数 (Logistic Function)。所以我怎么老是看到这个函数的身影，到不同场景就换了个马甲。既然提到了回归，那么就再提一下逻辑斯蒂回归的一般形式Softmax回归中的Softmax函数。（逻辑斯蒂回归是种类数k=2时的Softmax回归,有关二者更多详情请戳<a href="http://www.cnblogs.com/maybe2030/p/5678387.html" target="_blank" rel="external">这里</a>和<a href="http://ufldl.stanford.edu/wiki/index.php/Softmax回归" target="_blank" rel="external">这里</a>)</p>
-<p>$$Softmax: \sigma (z)_j=\frac{e^{z<em>j}}{\sum</em> {k=1}^{K} e^{z_k}}$$</p>
-<p>回到Sigmoid系函数。近年来，用它的人越来越少了。主要是因为它的一些缺点：<br>1.饱和性：从sigmoid函数图像中可以看到，其两侧增长十分缓慢，即越靠近两侧导数趋近于0。那么这在神经网络中训练的会带来梯度弥散 (Gradient Disperse) 的问题，使得训练一个神经网络十分缓慢，或者根本无法收敛。具体来说，在训练神经网络的反向传播算法中，需要计算梯度$\nabla=\sigma^{‘}\delta x$。其中$\sigma^{‘}$是sigmoid函数的导数。每经过一个sigmoid神经元，梯度就要乘上一个$\sigma^{‘}$。从下图可以看到，sigmoid函数导数的最大值是0.25。那么连续的乘以sigmoid的导数，会导致梯度越来越小。一般来说， sigmoid 网络在5层之内就会产生梯度消失现象这就是梯度弥散问题。这对于深层网络的训练是很大的问题，因此在如今大火的DNN中，sigmoid遭到抛弃。<br>2.sigmoid函数的输出均大于0：这使得输出不是0均值，这称为偏移现象，这会导致后一层的神经元将得到上一层输出的非0均值的信号作为输入。（关于这一点，我不是很理解）</p>
+<p>Sigmoid系是之前使用的最多的激活函数，它在物理意义上最为接近生物神经元，能够把输入的连续实值“压缩”到[0,1]或者[-1,1]。此外，[0,1]的输出还可以被表示作概率，或用于输入的归一化，代表性的如Sigmoid交叉熵损失函数。此外，Sigmoid函数还被用在逻辑斯蒂回归中，在那里，它被叫做逻辑斯蒂函数 (Logistic Function)。所以我怎么老是看到这个函数的身影，原来它在不同场景中穿的马甲不同。既然提到了回归，那么就再提一下逻辑斯蒂回归的一般形式Softmax回归中的Softmax函数。逻辑斯蒂回归是种类数k=2时的Softmax回归,有关二者更多详情请戳<a href="http://www.cnblogs.com/maybe2030/p/5678387.html" target="_blank" rel="external">这里</a>和<a href="http://ufldl.stanford.edu/wiki/index.php/Softmax回归" target="_blank" rel="external">这里</a>。</p>
+<p>回到Sigmoid系函数。近年来，用它的人越来越少了。主要是因为它的一些缺点：<br>1.饱和性：从sigmoid函数图像中可以看到，其两侧增长十分缓慢，即越靠近两侧导数趋近于0。那么这在神经网络中训练的会带来梯度弥散 (Gradient Disperse) 的问题，使得训练一个神经网络十分缓慢，或者根本无法收敛。具体来说，在训练神经网络的反向传播算法中，需要计算梯度$\nabla=\sigma’\delta x$。其中$\sigma’$是sigmoid函数的导数。每经过一个sigmoid神经元，梯度就要乘上一个$\sigma’$。从下图可以看到，sigmoid函数导数的最大值是0.25。那么连续的乘以sigmoid的导数，会导致梯度越来越小。一般来说， sigmoid 网络在5层之内就会产生梯度消失现象这就是梯度弥散问题。这对于深层网络的训练是很大的问题，因此在如今大火的DNN中，sigmoid遭到抛弃。<br>2.sigmoid函数的输出均大于0：这使得输出不是0均值，这称为偏移现象，这会导致后一层的神经元将得到上一层输出的非0均值的信号作为输入。（关于这一点，我不是很理解）</p>
 <p>tanh也是一种非常常见的激活函数。与sigmoid相比，它的输出均值是0，使得其收敛速度要比sigmoid快，减少迭代次数。然而，从途中可以看出，tanh一样具有软饱和性，从而造成梯度弥散。</p>
 <h2 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h2><p>最近几年卷积神经网络中，激活函数往往不选择sigmoid或tanh函数，而是选择relu函数。Relu函数的定义是：</p>
 <p>$$ReLU: f(x)=\max(0,x)$$</p>

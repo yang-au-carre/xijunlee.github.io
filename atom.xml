@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-06-23T09:11:15.000Z</updated>
+  <updated>2017-06-25T02:52:25.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -14,6 +14,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>机器学习中激活函数总结</title>
+    <link href="https://xijunlee.github.io/2017/06/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93/"/>
+    <id>https://xijunlee.github.io/2017/06/25/机器学习中激活函数总结/</id>
+    <published>2017-06-25T02:52:25.000Z</published>
+    <updated>2017-06-25T02:52:25.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>卷积神经网络实践之MNIST手写数字体识别</title>
@@ -1145,33 +1159,6 @@
     
     
       <category term="machine learning" scheme="https://xijunlee.github.io/tags/machine-learning/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>玩Hadoop中遇到的坑</title>
-    <link href="https://xijunlee.github.io/2016/12/21/2016-12-21-wan-hadoopzhong-yu-dao-de-keng/"/>
-    <id>https://xijunlee.github.io/2016/12/21/2016-12-21-wan-hadoopzhong-yu-dao-de-keng/</id>
-    <published>2016-12-21T02:46:30.000Z</published>
-    <updated>2017-01-16T10:42:21.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>专门开一篇记录在玩Hadoop中遇到的坑，既给自己做个笔记，也为后来者做个提醒。</p>
-<p>按照<a href="http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/SingleCluster.html" target="_blank" rel="external">官方指南</a>所给的步骤，一直执行到step 5之前都没什么问题，但是当执行到<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bin/hdfs dfs -put etc/hadoop input</div></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<p>就报出如下错误:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">put: 'input': No such file or directory</div></pre></td></tr></table></figure></p>
-<p>我的解决方案：<br>在step 4中,<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ bin/hdfs dfs -mkdir /user $ bin/hdfs dfs -mkdir /user/&lt;username&gt; </div><div class="line">``` 这里就要注意了，```&lt;username&gt;```这里最好填你当前登录```ubuntu```的用户名(比如```root```)，因为后面使用 </div><div class="line">```c</div><div class="line">$ bin/hdfs dfs -put etc/hadoop input</div></pre></td></tr></table></figure></p>
-<p>不指明绝对路径的话，<code>Hadoop</code>的相对路径默认的是从<code>/home/[username]</code>开始的，也就是<code>/home/root/etc/hadoop</code>, 如果创建文件夹时不是<code>root</code>的话，那自然找不到文件咯。所以，要么填当前操作<code>ubuntu</code>的用户名，要么乖乖地写全路径。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;专门开一篇记录在玩Hadoop中遇到的坑，既给自己做个笔记，也为后来者做个提醒。&lt;/p&gt;
-&lt;p&gt;按照&lt;a href=&quot;http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/SingleCluster.html&quot;&gt;官方指南&lt;/a&gt;所给的步骤，一直执行到step 5之前都没什么问题，但是当执行到&lt;br&gt;&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ bin/hdfs dfs -put etc/hadoop input&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="distributed computing" scheme="https://xijunlee.github.io/tags/distributed-computing/"/>
     
   </entry>
   

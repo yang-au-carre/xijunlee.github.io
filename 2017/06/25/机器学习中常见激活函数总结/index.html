@@ -7,14 +7,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xijunlee.github.io">
-  <title>A Notebook</title>
+  <title>机器学习中常见激活函数总结 | A Notebook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="A Notebook">
-<meta property="og:url" content="https://xijunlee.github.io/page/4/index.html">
+  <meta name="description" content="写在前面机器学习中很多场合都用到了激活函数 (Activation Function)，但激活函数主要是在神经网络中提出来的，很多场合下其实就是函数。这篇总结一下常见的激活函数以及它们的优缺点。
+激活函数的性质
+一个人工神经元就是对生物神经元的数学建模。人工神经元就是用一个数学模型简单模拟神经细胞。神经细胞有多个树突和一个伸长的轴突。一个神经元的轴突连接到其他神经元的树突，并向其传导神经脉冲。神经">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习中常见激活函数总结">
+<meta property="og:url" content="https://xijunlee.github.io/2017/06/25/机器学习中常见激活函数总结/index.html">
 <meta property="og:site_name" content="A Notebook">
+<meta property="og:description" content="写在前面机器学习中很多场合都用到了激活函数 (Activation Function)，但激活函数主要是在神经网络中提出来的，很多场合下其实就是函数。这篇总结一下常见的激活函数以及它们的优缺点。
+激活函数的性质
+一个人工神经元就是对生物神经元的数学建模。人工神经元就是用一个数学模型简单模拟神经细胞。神经细胞有多个树突和一个伸长的轴突。一个神经元的轴突连接到其他神经元的树突，并向其传导神经脉冲。神经">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/ActivationFunction/pic0.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/ActivationFunction/pic1.png">
+<meta property="og:updated_time" content="2017-06-25T15:18:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A Notebook">
+<meta name="twitter:title" content="机器学习中常见激活函数总结">
+<meta name="twitter:description" content="写在前面机器学习中很多场合都用到了激活函数 (Activation Function)，但激活函数主要是在神经网络中提出来的，很多场合下其实就是函数。这篇总结一下常见的激活函数以及它们的优缺点。
+激活函数的性质
+一个人工神经元就是对生物神经元的数学建模。人工神经元就是用一个数学模型简单模拟神经细胞。神经细胞有多个树突和一个伸长的轴突。一个神经元的轴突连接到其他神经元的树突，并向其传导神经脉冲。神经">
+<meta name="twitter:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/ActivationFunction/pic0.png">
   
     <link rel="alternative" href="/atom.xml" title="A Notebook" type="application/atom+xml">
   
@@ -187,31 +200,51 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-2016-12-17-mei-qian-liao-,yi-hou-yong-gitxie-bo-ke-ge" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-机器学习中常见激活函数总结" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/17/2016-12-17-mei-qian-liao-,yi-hou-yong-gitxie-bo-ke-ge/">Blog Migration!</a>
+    <h1 class="article-title" itemprop="name">
+      机器学习中常见激活函数总结
     </h1>
   
 
         
-        <a href="/2016/12/17/2016-12-17-mei-qian-liao-,yi-hou-yong-gitxie-bo-ke-ge/" class="archive-article-date">
-  	<time datetime="2016-12-17T13:53:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-17</time>
+        <a href="/2017/06/25/机器学习中常见激活函数总结/" class="archive-article-date">
+  	<time datetime="2017-06-25T13:58:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>   大四那段时间比较闲租了个服务器和域名，用WordPress搭了个博客，但由于研一是在太忙了，几乎没有管博客。然后到期了，嗯，租期到了，然后博客就被注销了。其实想想一年也写不了多少文字，也没多少人看，花钱来做这个确实性价比不高。</p>
-<p>  之前也确实早就知道octopress的大名，但当时嫌麻烦…… 大四的时候连命令行都不知道是什么，所以那会儿也就没想过用octopress。但是啊，人一旦窘迫后（不问爸妈要钱后），就开始知道生活中的柴米油盐酱醋茶什么都要钱。所以，就开始搬迁到git上了。github+octopress 免费而且不限容量。还能像黑客一样在命令行中写东西，逼格也上来了😊。</p>
-<p>  好了，这篇文章就是新搬家后博客的第一篇文章。往后的第一个工作就是以前那个博客上有点价值的东西搬过来（还好，当时我把内容存在了evernote上😶）</p>
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>机器学习中很多场合都用到了激活函数 (Activation Function)，但激活函数主要是在神经网络中提出来的，很多场合下其实就是函数。这篇总结一下常见的激活函数以及它们的优缺点。</p>
+<h2 id="激活函数的性质"><a href="#激活函数的性质" class="headerlink" title="激活函数的性质"></a>激活函数的性质</h2><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/ActivationFunction/pic0.png">
+<p>一个人工神经元就是对生物神经元的数学建模。人工神经元就是用一个数学模型简单模拟神经细胞。神经细胞有多个树突和一个伸长的轴突。一个神经元的轴突连接到其他神经元的树突，并向其传导神经脉冲。神经元会根据来自它的若干树突的信号决定是否从其轴突向其他神经元发出神经脉冲。而激活函数就是这个神经元的数学模型，它决定是否将经过变换后的上一层输入信号传递给下一层神经元。激活函数的性质有：</p>
+<ol>
+<li>非线性： 当激活函数是线性的时候，一个两层的神经网络就可以逼近基本上所有的函数了。但是，如果激活函数是恒等激活函数的时候（即f(x)=x），就不满足这个性质了，而且如果MLP使用的是恒等激活函数，那么其实整个网络跟单层神经网络是等价的。</li>
+<li>可微性： 当优化方法是基于梯度的时候，这个性质是必须的。</li>
+<li>单调性： 当激活函数是单调的时候，单层网络能够保证是凸函数。<br>f(x)≈x： 当激活函数满足这个性质的时候，如果参数的初始化是random的很小的值，那么神经网络的训练将会很高效；如果不满足这个性质，那么就需要很用心的去设置初始值。</li>
+<li>输出值的范围： 当激活函数输出值是 有限 的时候，基于梯度的优化方法会更加稳定，因为特征的表示受有限权值的影响更显著；当激活函数的输出是 无限的时候，模型的训练会更加高效，不过在这种情况小，一般需要更小的learning rate.</li>
+</ol>
+<p>常见的激活函数总结如下图：<br><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/ActivationFunction/pic1.png"></p>
+<h2 id="Sigmoid系激活函数"><a href="#Sigmoid系激活函数" class="headerlink" title="Sigmoid系激活函数"></a>Sigmoid系激活函数</h2><p>Sigmoid系激活函数是一大类函数，其函数形状是S型的，因此而得名。代表有Sigmoid函数和tanh函数。</p>
+<p>$$sigmoid: f(x)=\frac{1}{1+e^{-x}}$$<br>$$tanh: f(x)=\frac{2}{1+e^{-2x}}-1=2Sigmoid(2x)-1$$</p>
+<p>Sigmoid系是之前使用的最多的激活函数，它在物理意义上最为接近生物神经元，能够把输入的连续实值“压缩”到[0,1]或者[-1,1]。此外，[0,1]的输出还可以被表示作概率，或用于输入的归一化，代表性的如Sigmoid交叉熵损失函数。此外，Sigmoid函数还被用在逻辑斯蒂回归中，在那里，它被叫做逻辑斯蒂函数 (Logistic Function)。所以我怎么老是看到这个函数的身影，到不同场景就换了个马甲。既然提到了回归，那么就再提一下逻辑斯蒂回归的一般形式Softmax回归中的Softmax函数。（逻辑斯蒂回归是种类数k=2时的Softmax回归,有关二者更多详情请戳<a href="http://www.cnblogs.com/maybe2030/p/5678387.html" target="_blank" rel="external">这里</a>和<a href="http://ufldl.stanford.edu/wiki/index.php/Softmax回归" target="_blank" rel="external">这里</a>)</p>
+<p>$$Softmax: \sigma (z)_j=\frac{e^{z<em>j}}{\sum</em>{k=1}^{K}e^{z_k}}$$</p>
+<p>回到Sigmoid系函数。近年来，用它的人越来越少了。主要是因为它的一些缺点：<br>1.饱和性：从sigmoid函数图像中可以看到，其两侧增长十分缓慢，即越靠近两侧导数趋近于0。那么这在神经网络中训练的会带来梯度弥散 (Gradient Disperse) 的问题，使得训练一个神经网络十分缓慢，或者根本无法收敛。具体来说，在训练神经网络的反向传播算法中，需要计算梯度$\nabla=\sigma^{‘}\delta x$。其中$\sigma^{‘}$是sigmoid函数的导数。每经过一个sigmoid神经元，梯度就要乘上一个$\sigma^{‘}$。从下图可以看到，sigmoid函数导数的最大值是0.25。那么连续的乘以sigmoid的导数，会导致梯度越来越小。一般来说， sigmoid 网络在5层之内就会产生梯度消失现象这就是梯度弥散问题。这对于深层网络的训练是很大的问题，因此在如今大火的DNN中，sigmoid遭到抛弃。<br>2.sigmoid函数的输出均大于0：这使得输出不是0均值，这称为偏移现象，这会导致后一层的神经元将得到上一层输出的非0均值的信号作为输入。（关于这一点，我不是很理解）</p>
+<p>tanh也是一种非常常见的激活函数。与sigmoid相比，它的输出均值是0，使得其收敛速度要比sigmoid快，减少迭代次数。然而，从途中可以看出，tanh一样具有软饱和性，从而造成梯度弥散。</p>
+<h2 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h2><p>最近几年卷积神经网络中，激活函数往往不选择sigmoid或tanh函数，而是选择relu函数。Relu函数的定义是：</p>
+<p>$$ReLU: f(x)=\max(0,x)$$</p>
+<p>Relu函数作为激活函数，有下面几大优势：</p>
+<p>1.速度快：和sigmoid函数需要计算指数和倒数相比，relu函数其实就是一个max(0,x)，计算代价小很多。<br>2.减轻梯度消失问题：relu函数在大于零的一侧其导数大于零，不会导致梯度变小。当然，激活函数仅仅是导致梯度减小的一个因素，但无论如何在这方面relu的表现强于sigmoid。使用relu激活函数可以让你训练更深的网络。</p>
+<p>然而，随着训练的推进，部分输入会落入x&lt;0的区域，其梯度等于0，导致对应权重无法更新。这种现象被称为“神经元死亡”。与sigmoid类似，ReLU的输出均值也大于0，偏移现象和 神经元死亡会共同影响网络的收敛性。对此，相应的改进有Leaky-ReLU，ELU，见<a href="http://blog.csdn.net/u014595019/article/details/52562159" target="_blank" rel="external">参考链接</a></p>
+<h2 id="Maxout"><a href="#Maxout" class="headerlink" title="Maxout"></a>Maxout</h2><p>$$Maxout: f(x)=\max(w^T_1x+b_1,w^T_2x+b_2,⋯,w^T_2x+b_2)$$</p>
+<p>Maxout出现在ICML2013上，作者Goodfellow将maxout和dropout结合后，号称在MNIST, CIFAR-10, CIFAR-100, SVHN这4个数据上都取得了start-of-art的识别率。可以注意到，ReLU 和 Leaky ReLU 都是它的一个变形。这个激活函数有点大一统的感觉，因为maxout网络能够近似任意连续函数，且当w2,b2,…,wn,bn为0时，退化为ReLU。Maxout能够缓解梯度弥散，同时又规避了ReLU神经元死亡的缺点，但增加了参数和计算量。</p>
+<hr>
+<p>Reference<br><a href="http://blog.csdn.net/cyh_24/article/details/50593400" target="_blank" rel="external">http://blog.csdn.net/cyh_24/article/details/50593400</a><br><a href="http://blog.csdn.net/u014595019/article/details/52562159" target="_blank" rel="external">http://blog.csdn.net/u014595019/article/details/52562159</a><br><a href="https://www.zybuluo.com/hanbingtao/note/485480" target="_blank" rel="external">https://www.zybuluo.com/hanbingtao/note/485480</a><br><a href="http://ufldl.stanford.edu/wiki/index.php/Softmax回归" target="_blank" rel="external">http://ufldl.stanford.edu/wiki/index.php/Softmax回归</a><br><a href="http://www.cnblogs.com/maybe2030/p/5678387.html" target="_blank" rel="external">http://www.cnblogs.com/maybe2030/p/5678387.html</a></p>
 
       
 
@@ -220,32 +253,77 @@ var _hmt = _hmt || [];
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dairy</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/17/2016-12-17-mei-qian-liao-,yi-hou-yong-gitxie-bo-ke-ge/">Show All >></a>
-        </p>
-      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
 
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://xijunlee.github.io/2017/06/25/机器学习中常见激活函数总结/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2017/06/23/CNN实践之手写数字体识别/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">卷积神经网络实践之MNIST手写数字体识别</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
@@ -253,333 +331,10 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-［iOS开发］推荐一个库，还是解决键盘隐藏问题，好用到飞上天！！" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/02/［iOS开发］推荐一个库，还是解决键盘隐藏问题，好用到飞上天！！/">［iOS开发］推荐一个库，还是解决键盘隐藏问题，好用到飞上天！！</a>
-    </h1>
+    <div class="duoshuo"></div>
   
 
-        
-        <a href="/2016/01/02/［iOS开发］推荐一个库，还是解决键盘隐藏问题，好用到飞上天！！/" class="archive-article-date">
-  	<time datetime="2016-01-02T10:51:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近的这个项目，也是自己第一个iOS开发的项目，开发过程中最头疼的事情就是键盘弹出会遮挡到其他控件的问题。iOS不像android的键盘专门有一个隐藏键盘的按钮，因此给iOS开发者带来很多困扰。昨天刚刚转载了一个方法，但是今天遇到的一个问题就是：当键盘已弹出的情况下，点击另外一个uitextfield弹出一个新的view时（我设置了点击这个uitextfield是不会弹出键盘的，因此这个键盘是已经弹出的键盘），键盘遮挡住了view，试了很多方法都隐藏不了键盘。遇到问题，去git上搜搜总有解决办法，看到github上的一位开发者为iOS开发的模仿android键盘上隐藏键盘的按钮，这下是真的彻底解决了键盘隐藏问题吧！！！</p>
-        
-          <a class="article-more-a" href="/2016/01/02/［iOS开发］推荐一个库，还是解决键盘隐藏问题，好用到飞上天！！/#more">More >></a>
-        
-      
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">iOS development</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/01/02/［iOS开发］推荐一个库，还是解决键盘隐藏问题，好用到飞上天！！/">Show All >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-关于南京的记忆" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/07/关于南京的记忆/">关于南京的记忆</a>
-    </h1>
-  
-
-        
-        <a href="/2015/10/07/关于南京的记忆/" class="archive-article-date">
-  	<time datetime="2015-10-07T10:44:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-10-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这半个月来，前半段时间折腾，后半段时间算是开始慢慢调整自己的生活节奏，适应学校的节奏。和德志、晟晟也进行多次了内容是除妹子之外的、思考人生的夜谈。到了这个年龄，逐渐开始有这么个认知：人，走到哪一步，是不是都是上天注定的呢？只不过是每个人的方式不同而已。努力和天赋，这两个东西，在我以前的认知里是完全两个概念。现在我意识到，一个人能持续不断的努力是不是也是一种天赋？导师、实验室的同学，都是很拼的人。小时候，幼稚地认为，只有笨蛋才会很努力。现在觉得，拼和努力都是为了自己心中的欲望，只不过每个人欲望不同，完全不需要在意别人的看法，别让自己淹没在大众之中。</p>
-        
-          <a class="article-more-a" href="/2015/10/07/关于南京的记忆/#more">More >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dairy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/10/07/关于南京的记忆/">Show All >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-算法导论学习之红黑树-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/22/算法导论学习之红黑树-2/">算法导论学习之红黑树(2)</a>
-    </h1>
-  
-
-        
-        <a href="/2015/07/22/算法导论学习之红黑树-2/" class="archive-article-date">
-  	<time datetime="2015-07-22T10:31:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-07-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><p>这一章具体介绍红黑树的删除操作，以及我对删除一系列操作的理解。</p>
-<p>话不多说，我先直接给出算导上关于删除操作的伪代码（这伪代码几乎就可以当作实现代码了，不过还是要搞懂原理）</p>
-        
-          <a class="article-more-a" href="/2015/07/22/算法导论学习之红黑树-2/#more">More >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/07/22/算法导论学习之红黑树-2/">Show All >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-算法导论学习之红黑树-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/20/算法导论学习之红黑树-1/">算法导论学习之红黑树(1)</a>
-    </h1>
-  
-
-        
-        <a href="/2015/07/20/算法导论学习之红黑树-1/" class="archive-article-date">
-  	<time datetime="2015-07-20T10:24:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-07-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><p>花了三天时间，将将实现了红黑树算法，但还是不能裸写红黑树，起码要看着算导书上的示意图::&gt;_&lt;:: 整个算法确实算比较复杂的，实现代码比普通二叉树多一倍多，但换来的是效率上的提升。废话不多说，总结一下学习心得（基本的细节不会提到，因为可以去翻书，我只写出对书中个别知识点的理解和总结），方便日后会看红黑树时，能立马回忆起来。</p>
-        
-          <a class="article-more-a" href="/2015/07/20/算法导论学习之红黑树-1/#more">More >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/07/20/算法导论学习之红黑树-1/">Show All >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-算法导论学习之二叉查找树的删除操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/14/算法导论学习之二叉查找树的删除操作/">算法导论学习之二叉查找树的删除操作</a>
-    </h1>
-  
-
-        
-        <a href="/2015/07/14/算法导论学习之二叉查找树的删除操作/" class="archive-article-date">
-  	<time datetime="2015-07-14T10:13:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-07-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><p>虽然二叉树很简单，但是其中的删除操作还是有些麻烦的。看完算导关于本节的内容后，动手实现了一遍，发现自己写的代码虽然功能能实现，但是代码很丑，究其原因就是我并没有仔细总结删除操作中三种情况的共性，所以自己写的代码有很多冗余。回头看算导上的伪代码，发现自己还是太naive，认真总结了下三种情形的共同特点，又重新有了收获，以后也可以裸写二叉树的删除操作了。</p>
-<p>在本篇中，我只会阐述我对于删除操作的理解，因为前面的遍历、插入、查找等操作都十分简单易懂易实现，当然还有一个前提是需要对二叉树的基本性质有起码的理解。</p>
-        
-          <a class="article-more-a" href="/2015/07/14/算法导论学习之二叉查找树的删除操作/#more">More >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/07/14/算法导论学习之二叉查找树的删除操作/">Show All >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
-    </nav>
-  
 
 
           </div>
@@ -601,8 +356,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

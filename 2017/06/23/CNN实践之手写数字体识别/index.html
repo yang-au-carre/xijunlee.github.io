@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="A Notebook">
 <meta property="og:description" content="写在前面之前一直都是只看理论，没有动手，现在终于把理论付诸实践了。话不多说，这篇博文记录一下我在kaggle上实践过程。
 任务描述MNIST (“Modified National Institute of Standards and Technology”) is the de facto “hello world” dataset of computer vision. Since its r">
-<meta property="og:updated_time" content="2017-07-02T12:56:30.000Z">
+<meta property="og:updated_time" content="2017-07-02T13:20:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="卷积神经网络实践之MNIST手写数字体识别">
 <meta name="twitter:description" content="写在前面之前一直都是只看理论，没有动手，现在终于把理论付诸实践了。话不多说，这篇博文记录一下我在kaggle上实践过程。
@@ -245,7 +245,7 @@ var _hmt = _hmt || [];
 <p>可能con2d_2的参数数量说明的让人头晕，更详细和生动的说明可以参见<a href="https://www.zybuluo.com/hanbingtao/note/485480" target="_blank" rel="external">博文</a>，里面有动图说明了对于深度大于1的卷积核的卷积操作。</p>
 <h3 id="关于引入冲量"><a href="#关于引入冲量" class="headerlink" title="关于引入冲量"></a>关于引入冲量</h3><p>本小节内容转载自 @辛淼 CaffeCN社区（caffecn.cn）</p>
 <p>随机梯度下降（SGD）是按batch来进行更新，通常来说下降速度比较快，但却容易造成另一个问题，就是更新过程不稳定，容易出现震荡。</p>
-<p>引入momentum的idea是很直接的，就是在更新下降方向的时候不仅要考虑到当前的方向，也要考虑到上一次的更新方向，两者加权，某些情况下可以避免震荡。冲量，就是上一次更新方向所占的权值。</p>
+<p>引入momentum的idea是很直接的，就是在更新下降方向的时候不仅要考虑到当前的方向，也要考虑到上一次的更新方向，两者加权，某些情况下可以避免震荡。冲量，就是<strong>上一次更新方向所占的权值</strong>。</p>
 <p>一个小的trick是，当刚开始训练的时候，把冲量设小，或者直接就置为0，然后慢慢增大冲量，有时候效果比较好。</p>
 <h3 id="PCA-SVM的实现"><a href="#PCA-SVM的实现" class="headerlink" title="PCA+SVM的实现"></a>PCA+SVM的实现</h3><p>之后，我又尝试了PCA+SVM的模型，源码戳<a href="https://github.com/xijunlee/kaggle-solution/blob/master/DigitRecognizer/DigitRec_SVM.py" target="_blank" rel="external">这里</a>。因为没有专门去调参数，所以LB得分很低，才0.49743…… 不过，我想就算找到了最优参数，其效果也应该比不上卷积神经网络。</p>
 <hr>

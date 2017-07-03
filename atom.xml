@@ -66,7 +66,7 @@
     <link href="https://xijunlee.github.io/2017/06/23/CNN%E5%AE%9E%E8%B7%B5%E4%B9%8B%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E4%BD%93%E8%AF%86%E5%88%AB/"/>
     <id>https://xijunlee.github.io/2017/06/23/CNN实践之手写数字体识别/</id>
     <published>2017-06-23T07:46:26.000Z</published>
-    <updated>2017-07-02T13:20:00.000Z</updated>
+    <updated>2017-07-03T02:11:45.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>之前一直都是只看理论，没有动手，现在终于把理论付诸实践了。话不多说，这篇博文记录一下我在kaggle上实践过程。</p>
 <h2 id="任务描述"><a href="#任务描述" class="headerlink" title="任务描述"></a>任务描述</h2><p>MNIST (“Modified National Institute of Standards and Technology”) is the de facto “hello world” dataset of computer vision. Since its release in 1999, this classic dataset of handwritten images has served as the basis for benchmarking classification algorithms. As new machine learning techniques emerge, MNIST remains a reliable resource for researchers and learners alike.</p>
@@ -102,6 +102,8 @@
 <p>引入momentum的idea是很直接的，就是在更新下降方向的时候不仅要考虑到当前的方向，也要考虑到上一次的更新方向，两者加权，某些情况下可以避免震荡。冲量，就是<strong>上一次更新方向所占的权值</strong>。</p>
 <p>一个小的trick是，当刚开始训练的时候，把冲量设小，或者直接就置为0，然后慢慢增大冲量，有时候效果比较好。</p>
 <h3 id="PCA-SVM的实现"><a href="#PCA-SVM的实现" class="headerlink" title="PCA+SVM的实现"></a>PCA+SVM的实现</h3><p>之后，我又尝试了PCA+SVM的模型，源码戳<a href="https://github.com/xijunlee/kaggle-solution/blob/master/DigitRecognizer/DigitRec_SVM.py" target="_blank" rel="external">这里</a>。因为没有专门去调参数，所以LB得分很低，才0.49743…… 不过，我想就算找到了最优参数，其效果也应该比不上卷积神经网络。</p>
+<h2 id="DNN零基础入门教程推荐"><a href="#DNN零基础入门教程推荐" class="headerlink" title="DNN零基础入门教程推荐"></a>DNN零基础入门教程推荐</h2><p>最后，推荐一组深度学习的入门教程，我认为还不错。</p>
+<p><a href="https://www.zybuluo.com/hanbingtao/note/433855" target="_blank" rel="external">零基础入门深度学习(1) - 感知器</a><br><a href="https://www.zybuluo.com/hanbingtao/note/448086" target="_blank" rel="external">零基础入门深度学习(2) - 线性单元和梯度下降</a><br><a href="https://www.zybuluo.com/hanbingtao/note/476663" target="_blank" rel="external">零基础入门深度学习(3) - 神经网络和反向传播算法</a><br><a href="https://www.zybuluo.com/hanbingtao/note/485480" target="_blank" rel="external">零基础入门深度学习(4) - 卷积神经网络</a><br><a href="https://zybuluo.com/hanbingtao/note/541458" target="_blank" rel="external">零基础入门深度学习(5) - 循环神经网络</a><br><a href="https://zybuluo.com/hanbingtao/note/581764" target="_blank" rel="external">零基础入门深度学习(6) - 长短时记忆网络(LSTM)</a><br><a href="https://zybuluo.com/hanbingtao/note/626300" target="_blank" rel="external">零基础入门深度学习(7) - 递归神经网络</a></p>
 <hr>
 <p>Reference<br><a href="https://www.kaggle.com/poonaml/deep-neural-network-keras-way" target="_blank" rel="external">https://www.kaggle.com/poonaml/deep-neural-network-keras-way</a><br><a href="http://blog.topspeedsnail.com/archives/10427" target="_blank" rel="external">http://blog.topspeedsnail.com/archives/10427</a><br><a href="https://keras.io" target="_blank" rel="external">https://keras.io</a><br><a href="https://www.kaggle.com/somshubramajumdar/deep-convolutional-network-using-keras" target="_blank" rel="external">https://www.kaggle.com/somshubramajumdar/deep-convolutional-network-using-keras</a><br><a href="https://www.zybuluo.com/hanbingtao/note/485480" target="_blank" rel="external">https://www.zybuluo.com/hanbingtao/note/485480</a></p>
 ]]></content>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-06-25T15:29:35.000Z</updated>
+  <updated>2017-08-11T16:27:07.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -14,6 +14,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Bye Shanghai, Hello Shenzhen</title>
+    <link href="https://xijunlee.github.io/2017/08/11/Shenzhen/"/>
+    <id>https://xijunlee.github.io/2017/08/11/Shenzhen/</id>
+    <published>2017-08-11T15:20:17.000Z</published>
+    <updated>2017-08-11T16:27:07.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>随着infocom 2018的ddl的结束，我也暂时结束了导师手底下的搬砖生涯，被他“贩卖”到了Noah继续搬砖。当然我还是很感谢我老板，如果不是他，估计我也不会这么顺利进入Noah实习。本来这篇应该在离开上海之前就应该写下的，但我一贯的尿性就是拖。实习了一周，几乎处理完所有的杂事，终于可以说是安顿下来，所以现在有闲心写写东西了。</p>
+<h2 id="离开上海之前"><a href="#离开上海之前" class="headerlink" title="离开上海之前"></a>离开上海之前</h2><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/WechatIMG10.jpeg">
+<p>这张图是7月10日在上海环球中心94楼拍摄的，当天刚好是我生日。想着要离开上海一段时间了，所以跑上环球中心来留个纪念。</p>
+<p>这个学期吧，在得知自己中了ICDCS后，我就有点划水了。把中的那篇论文加了实验加了篇幅就投到TKDE，虽然我觉着应该中不了。然后就开始准备找一波实习了，结果被阿里拒绝了两次，缘由就是我做的东西不符合他们的需求……也没什么好说的，一是确实科研做的那点东西有些不接地气，国内大公司都没这个需求，二是还是自己能力不太够，技能点没点够。所以，最后找到的实习也是类似研究所性质——Noah’s Ark Lab。当然了，我还是觉得我很幸运能进来，毕竟我只是一个国内渣硕。走之前，被老板催着干完了auction的论文，硬是给投了infocom，我觉着还是中不了。老板一直忽悠我读博，我的态度也是模棱两可，内心并不抗拒继续做研究，但是对未来有种深深的不确定感。还有，就是觉得在学校过得太舒服了，我深知一旦自己舒服下来，就很难进步。正是这种不确定感和想push自己的想法，让我跟导师说决定去企业做研究性质的工作。</p>
+<h2 id="来到深圳之后"><a href="#来到深圳之后" class="headerlink" title="来到深圳之后"></a>来到深圳之后</h2><p>其实，对广东并不陌生，毕竟在广州上了四年大学。但是对深圳，我还是相当陌生的，虽然这里有很多同学和朋友。而上海，在生活了两年之后，我是迷恋上了它的精致，它的海派文化，它的国际化。但是，我还是要清楚地认识到这座海派城市可能并不太适合我。</p>
+<p>两年前，离开广州，来到上海。如今，机缘巧合之下又来了深圳。相比之下，深圳最大的特色就是没有特色，它什么都有，什么都包容，你高雅也好，低俗也罢，这个城市都欢迎你（当然只是欢迎你来打工）。</p>
+<p>8月3日晚上，坐了11个小时的高铁（这怕是一趟假高铁？从上海沿着东南沿海走一圈到深圳）到了深圳。当晚借宿高中同学的“民工房”一晚。第二天，报完到，确认实习生入职。</p>
+<p>接着的一个周六，就是特么顶着烈日找房子。老铁翔总还是够哥们儿，陪我找了一天，终于下午找到了一间我很中意的单身公寓。不管是价钱还是装修，我都很满意。于是没多想，就签了合同搬了进来。虽然只是一笔带过，但是找房子确实是个麻烦事。很感谢翔总和亮哥的帮助，真的是应了那句话，在家靠父母，出门靠自己和朋友！</p>
+<p>接下来的一周，主要就是慢慢整理自己的小窝和适应公司环境。整理嘛，无非就是搞卫生，添置各种生活用品，这个过程就是一个迭代开发啦，每天都有相应的改善，今天算是一个完整的形态了吧。</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/WechatIMG12.jpeg">
+<p>这以后可能就是我想要的生活方式和环境了吧。</p>
+<p>说到工作，Noah确实名不虚传。打听了一番后，我还真是全组学历最低，学校最差的……每天跟同事聊天和讨论工作，都会发现巨大的知识差距（毕竟人家比你多读了好几年），每天都要学习新东西，才能跟上工作节奏。除此以外，组内的人际关系，我也相当中意。小组boss是以前苏大的教授，其余的大部分都是博士，所以氛围就很像校园的感觉。如果不是公司人为地给我们划分等级，我还真感受不出每个人的级别差异。当然，在企业里做研究还是和学校不一样，学校当然很轻松，没有KPI，做的研究可以不接地气。企业往往是解决问题为导向来做研究，发论文和专利是附加产物。体验了一个礼拜后，我是真的觉得很幸运能来到Noah。因为，周围都是比我强的人，这样才能逼迫我快速进步。更重要的是他们都很nice，这样能工作才舒心嘛。</p>
+<p>最后，谈一个老生常谈，男默女泪的话题——房价。很不幸，不管是我离开的城市，还是我现在所在的城市，其房价太不让人幸福，闵行和龙岗特么居然都快均价5w了。我可能需要掏空父母的积蓄，然后自己攒两三年工资，才可能攒的上这边的首付，然后牺牲自己以后三十年的生活质量来还房贷。之前，在学校胡思乱想的时候，还为这个郁闷过一天。想想自己也是觉得可爱。不过，现在的我还是不肯低头，不愿被绑架。因为我认为，真正的聪明人，会用脑子选择自己安居乐业的地方，会用脚投票的。</p>
+<p>所以，李希君，请继续努力。</p>
+<p>Push you out of comfortable zone!</p>
+<p>12, Aug, 2017 @ Shenzhen</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;随着infocom 2018的ddl的结束，我也暂时结束了导师手底下的搬砖生涯，被他“贩卖”到了Noah继续搬砖。当然我还是很感谢我老板，如果不是他，估计我也不会这么顺利进入Noah实习。本来这篇应该在离开上海之前就应该写下的，但我一贯的尿性就是拖。实习了一周，几乎处理完所
+    
+    </summary>
+    
+    
+      <category term="dairy" scheme="https://xijunlee.github.io/tags/dairy/"/>
+    
+  </entry>
   
   <entry>
     <title>机器学习中常见激活函数总结</title>
@@ -1135,73 +1171,6 @@
     
     
       <category term="academic plotting" scheme="https://xijunlee.github.io/tags/academic-plotting/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>漫谈高维数据聚类(2):子空间聚类</title>
-    <link href="https://xijunlee.github.io/2016/12/22/2016-12-22-man-tan-gao-wei-shu-ju-ju-lei-2-zi-kong-jian-ju-lei/"/>
-    <id>https://xijunlee.github.io/2016/12/22/2016-12-22-man-tan-gao-wei-shu-ju-ju-lei-2-zi-kong-jian-ju-lei/</id>
-    <published>2016-12-22T01:46:37.000Z</published>
-    <updated>2017-01-16T10:42:24.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>如今处理高维数据的问题往往会有两座“大山”，分别是存储成本高和计算时间过长。显然，这是因为数据的高维数造成的。面对大规模的高维数据的聚类任务，传统的聚类算法有点hold不住了，正因此，子空间分割算法应运而生。</p>
-<p>前面的一篇文章应该是解释清楚了啥是聚类，也安利了一个经典的聚类算法——K均值聚类。本篇开始正式介绍一些子空间聚类算法，以及这些聚类算法的应用实例。</p>
-<a id="more"></a>
-<h2 id="1-什么是子空间聚类"><a href="#1-什么是子空间聚类" class="headerlink" title="1.什么是子空间聚类"></a>1.什么是子空间聚类</h2><blockquote>
-<p>给定一个n个样本构成的矩阵$X=[x_1, x_2, …, x_n]\in R^{m*n},x_i \in  R^m$，并且已知这n个样本是分别来自k个子空间${S_i},i=1, …, k$。令${d_i&lt;m,i=1,…,k}$表示k个子空间的维度（其中$d_i$是未知的）。子空间聚类的目的是将这个n个样本正确地划归到各自所属的子空间中去，即将n个样本聚成k类，每一个类就是一个子空间。</p>
-</blockquote>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/C83B7ACE-76BC-4D9C-A24B-DFA41C1244D1.png">
-<p>从上图可以看到，总共有三个子空间，每个子空间上都有一些样本，位于同一个子空间内的样本就可以说是同一类的。每一个子空间有其相应的维数d,和一组基$[b_1,b_2,…,b_d]$，由这组基可以表示该子空间中任意一个向量。</p>
-<h2 id="2-稀疏表示模型和低秩表示模型"><a href="#2-稀疏表示模型和低秩表示模型" class="headerlink" title="2.稀疏表示模型和低秩表示模型"></a>2.稀疏表示模型和低秩表示模型</h2><p>目前，有四大类主流的求解子空间聚类问题的算法，分别是：</p>
-<p>（1）基于统计的方法：混合数据假设是从服从某一概率分布（如混合高斯分布）中抽取出的独立样本集，于是数据的分割问题就转化为一模型估计问题。代表性的工作有凝聚有损压缩[2]和随机抽样一致[1]；</p>
-<p>（2）基于矩阵分解的方法：将数据矩阵分解为一正交基矩阵和一低秩矩阵的乘积，从分解结果的结构来揭示聚类的特性。当子空间含有噪声和奇异值，或者独立子空间的假设不成立时，此类方法的效果不尽人意。代表性的工作有K子空间分割[4]；</p>
-<p>（3）基于代数的方法：可以处理子空间不是相互独立的情况，但计算量大，且对噪声和奇异值敏感。代表性的工作有Generalized PCA(GPCA)[3]；</p>
-<p>（4）基于谱聚类的方法：谱聚类算法是一种对高维数据进行聚类的技术。基于谱聚类的子空间分割算法先根据观测样本求得一个相似矩阵，然后对这个相似矩阵进行谱聚类获得最终的聚类结果。代表性的工作有稀疏子空间聚类[5]和低秩表示子空间聚类[6][7]。</p>
-<p>而我要安利的是基于谱聚类的两个算法：稀疏表示子空间聚类算法和低秩表示子空间聚类算法，这两个算法都是比较简单和直观的，是子空间聚类研究这一块的基石性的算法，很多新算法都是在这两个算法的基础上加以改进而提出来的。当然，想要弄清楚这两个算法，还是需要一些简单的线性代数知识的。</p>
-<h3 id="稀疏表示-Sparse-Representation"><a href="#稀疏表示-Sparse-Representation" class="headerlink" title="稀疏表示(Sparse Representation)"></a>稀疏表示(Sparse Representation)</h3><p>稀疏表示这一概念的提出，说到底还是受到压缩感知理论[8][9]的启发。该理论认为很多高维数据是冗余的，如果其具有可压缩性，那么可以只需要通过少量的采样便可恢复原始高维数据。更简单地说就是，许多高维数据是存在其低维表示的。</p>
-<p>学过线性代数的都应该知道线性相关这一概念，即向量组$X=[x_1,x_2,…,x_n]$,其中$x_i$是$X$的列向量，若存在不全为0 的系数$a_1,a_2,…,a_n$，使得$a_1<em>x_1+a_2</em>x_2+…+a_n<em>x_n=0$成立，则说$x_1,x_2,…,x_n$是线性相关的，如若$a_i$不等于零，那$x_i$就可以被其余向量线性表示，即$x_i=-(a_1</em>x_1+a_2<em>x<em>2+…a</em>{i-1}</em>x<em>{i-1}+a</em>{i+1}<em>x_{i+1}+…+a_n</em>x_n)/a_i$。</p>
-<p>有了以上两个认知，就可以理解稀疏表示了。在前面提到过位于同一个子空间中的样本，如果样本数足够多，那么某一个样本$x_i$是可以被与它位于同一个子空间中的其他样本线性表示的，而我们希望用尽量少的样本来表示$x_i$$，这就是稀疏表示的简单理解，用数学语言描述该模型如下：</p>
-<p>给定一个n个样本构成的矩阵$X=[x_1,x_2,…,x_n]\in R^{m<em>n},x<em>i\in R^m$,其中每一列是一个样本，由$X$中d个样本构成一个“字典”$D=[x</em>{i1},x<em>{i2},…,x</em>{id}]\in R^{m</em>d}$,$D$中每一列成为原子。那么，每一个样本都可以表示成“字典”中原子的线性组合：</p>
-<p>$$X=DZ$$</p>
-<p>其中,$Z=[z_1,z_2,…,z_n]$是系数矩阵，$z_i$是样本$x_i$的“表示”。而字典$D$通常是过完备的，因为经常是选取全部样本作为字典，即$d=n$。因此，上市会有多个解。但是如给系数矩阵加上约束，则会有唯一解。稀疏表示即是要求系数矩阵$Z$是最稀疏的，即</p>
-<p>$$\min \Arrowvert Z \Arrowvert_1$$</p>
-<p>$$s.t.\quad X=DZ$$</p>
-<p>其中，$\Arrowvert \cdot\Arrowvert_1$是求矩阵所有元素的绝对值的和。进一步，这个模型还可以加上噪声，即</p>
-<p>$$\min \Arrowvert Z \Arrowvert_1+\lambda\Arrowvert E\Arrowvert_F$$</p>
-<p>$$s.t.\quad X=DZ+E$$</p>
-<h3 id="低秩表示-Low-rank-Representation"><a href="#低秩表示-Low-rank-Representation" class="headerlink" title="低秩表示(Low-rank Representation)"></a>低秩表示(Low-rank Representation)</h3><p>低秩表示模型和稀疏表示模型几乎一样，区别仅在于对系数矩阵的约束不同，在低秩表示中，它期望系数表示矩阵Z尽可能的低秩，用数学语言描述如下:</p>
-<p>$$ \min rank(Z)$$</p>
-<p>$$s.t.\quad X=DZ$$</p>
-<p>其中,$rank(Z)$表示矩阵$Z$的秩。与$\ell _0$范数一样，秩函数也具有离散组合性质，因此求解上式是一个NP难得。但是如果上式存在一个较低秩的解的话，秩优化问题可以被松弛为核范数最小化问题，即:</p>
-<p>$$\min \Arrowvert Z \Arrowvert_*$$</p>
-<p>$$s.t.\quad X=DZ$$</p>
-<p>其中，$\Arrowvert \cdot \Arrowvert_*$是矩阵的核范数。松弛的原理可以这么理解，一个矩阵的秩等于其非零奇异值的个数。那么矩阵的秩最小化等价于矩阵的奇异值非零个数尽量少，进一步可以松弛为矩阵的所有奇异值的和尽量小。</p>
-<p>低秩表示模型是在稀疏表示模型之后提出来的，当然它比稀疏表示模型的性能更好，这是因为低秩表示模型中的核函数自带聚集属性，具体的原因我推荐论文[10]中的讲解（在其第五章中）。</p>
-<p>##上述两个模型的求解</p>
-<p>求解这两个模型的方法有很多，有兴趣的朋友可以参阅论文[11]。</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1]Fischler M., Bolles R. RANSAC random sample consensus: a paradigm for model fitting with applications to image analysis and automated cartography. Journal of ACM, 1981, 24(6): 381–395.</p>
-<p>[2]Ma Y., Derksen H., Hong W., Wright J. Segmentation of multivariate mixed data via lossy coding and compression. IEEE Trans. Pattern Analysis and Machine Intelligence, 2007, 29(9): 1546–1562.</p>
-<p>[3]Vidal R., Ma Y., Sastry S. Generalized principal component analysis (GPCA). IEEE Trans. Pattern Analysis and Machine Intelligence, 2005, 27(12): 1–15.</p>
-<p>[4]Lu L., Vidal R. Combined central and subspace clustering on computer vision applications. In: Proc. 23rd Int’l Conf. Machine Learning (ICML), 2006, pp.593–600.</p>
-<p>[5] Elhamifar E, Vidal R. Sparse subspace clustering[J]. IEEE Conference on Computer Vision and Pattern Recognition, Cvpr, 2009:2790 - 2797.</p>
-<p>[6]G L, Z L, S Y, et al. Robust Recovery of Subspace Structures by LowRank Representation[J]. Pattern Analysis &amp; Machine Intelligence IEEE Transactions on, 2010, 35(1):171 - 184.</p>
-<p>[7]X G, K Z, D T, et al. Image SuperResolution With Sparse Neighbor Embedding[J]. IEEE Transactions on Image Processing, 2012, 21(7):3194 - 3205.</p>
-<p>[8]Donoho D L． Compressed sensing． IEEE Transactions on Information Theory,2006 52(4)：1289-1306．</p>
-<p>[9]Cand6s E．Compressive sampling．Proceedings of Proceedings of Inter-national Congress of Mathematicians，2006．1433-1452．</p>
-<p>[10] 卢参义. 基于稀疏表示的人脸分类与聚类[D]. 中国科学技术大学, 2012. DOI:10.7666/d.y2126052.</p>
-<p>[11]Lin Z, Chen M, Ma Y. The Augmented Lagrange Multiplier Method for Exact Recovery of Corrupted Low-Rank Matrices[J]. Eprint Arxiv, 2010.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;p&gt;如今处理高维数据的问题往往会有两座“大山”，分别是存储成本高和计算时间过长。显然，这是因为数据的高维数造成的。面对大规模的高维数据的聚类任务，传统的聚类算法有点hold不住了，正因此，子空间分割算法应运而生。&lt;/p&gt;
-&lt;p&gt;前面的一篇文章应该是解释清楚了啥是聚类，也安利了一个经典的聚类算法——K均值聚类。本篇开始正式介绍一些子空间聚类算法，以及这些聚类算法的应用实例。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="machine learning" scheme="https://xijunlee.github.io/tags/machine-learning/"/>
     
   </entry>
   

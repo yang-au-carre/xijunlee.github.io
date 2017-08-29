@@ -7,14 +7,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xijunlee.github.io">
-  <title>Archives: 2016 | A Notebook</title>
+  <title>多目标优化方法之MOEA-D | A Notebook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="A Notebook">
-<meta property="og:url" content="https://xijunlee.github.io/archives/2016/index.html">
+  <meta name="description" content="最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution —— MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition，这篇paper出自两位华人之手Qingfu Zhang和Hui Li。下面用我组会slides上的两张图简单介绍问题和这篇paper提">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多目标优化方法之MOEA-D">
+<meta property="og:url" content="https://xijunlee.github.io/2017/08/29/多目标优化方法之MOEA-D/index.html">
 <meta property="og:site_name" content="A Notebook">
+<meta property="og:description" content="最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution —— MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition，这篇paper出自两位华人之手Qingfu Zhang和Hui Li。下面用我组会slides上的两张图简单介绍问题和这篇paper提">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/MOEAD/MOEAD%20summary.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/MOEAD/MOEAD%20flow%20chart.png">
+<meta property="og:updated_time" content="2017-08-29T15:17:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A Notebook">
+<meta name="twitter:title" content="多目标优化方法之MOEA-D">
+<meta name="twitter:description" content="最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution —— MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition，这篇paper出自两位华人之手Qingfu Zhang和Hui Li。下面用我组会slides上的两张图简单介绍问题和这篇paper提">
+<meta name="twitter:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/MOEAD/MOEAD%20summary.png">
   
     <link rel="alternative" href="/atom.xml" title="A Notebook" type="application/atom+xml">
   
@@ -187,330 +194,131 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-多目标优化方法之MOEA-D" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      多目标优化方法之MOEA-D
+    </h1>
+  
+
+        
+        <a href="/2017/08/29/多目标优化方法之MOEA-D/" class="archive-article-date">
+  	<time datetime="2017-08-29T14:57:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-29</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution-——-MOEA-D-A-Multiobjective-Evolutionary-Algorithm-Based-on-Decomposition，这篇paper出自两位华人之手Qingfu-Zhang和Hui-Li。下面用我组会slides上的两张图简单介绍问题和这篇paper提出的解决思路。"><a href="#最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution-——-MOEA-D-A-Multiobjective-Evolutionary-Algorithm-Based-on-Decomposition，这篇paper出自两位华人之手Qingfu-Zhang和Hui-Li。下面用我组会slides上的两张图简单介绍问题和这篇paper提出的解决思路。" class="headerlink" title="最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution —— MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition，这篇paper出自两位华人之手Qingfu Zhang和Hui Li。下面用我组会slides上的两张图简单介绍问题和这篇paper提出的解决思路。"></a>最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution —— <a href="原文地址：http://ieeexplore.ieee.org/document/4358754/">MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition</a>，这篇paper出自两位华人之手Qingfu Zhang和Hui Li。下面用我组会slides上的两张图简单介绍问题和这篇paper提出的解决思路。</h2><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/MOEAD/MOEAD%20summary.png">
+<a id="more"></a>
+<p>对于多目标优化问题F，MOEA/D的解决思路非常之简单，就是通过权重向量lamda将多个单优化目标组合到一起，将该问题转为单目标优化问题。乍一看，非常简单呢。但是其通过权重向量lambda为遗传算法中的候选解定义了邻居的概念，通过与邻居共同进化的思想，寻找pareto最优。但我觉得其缺点还是需要人为地去设置权重向量们，权重向量设置的好坏将决定最后解的质量。以下是具体算法的一个简单流程图：</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/MOEAD/MOEAD%20flow%20chart.png">
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/28/2016-12-28-bo-song-fen-bu-yu-zhi-shu-fen-bu-de-zhong-xin-li-jie/" class="archive-article-date">
-  	<time datetime="2016-12-28T03:01:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/28/2016-12-28-bo-song-fen-bu-yu-zhi-shu-fen-bu-de-zhong-xin-li-jie/">泊松分布与指数分布的重新理解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">probability theory</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Multiobjective Optimization</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://xijunlee.github.io/2017/08/29/多目标优化方法之MOEA-D/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/24/2016-12-24-you-bi-ge-de-hua-tu-cong-gnuplotshuo-qi/" class="archive-article-date">
-  	<time datetime="2016-12-24T12:29:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-24</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/24/2016-12-24-you-bi-ge-de-hua-tu-cong-gnuplotshuo-qi/">有逼格的画图从gnuplot说起</a>
-    </h1>
+  
+    <a href="/2017/08/11/Shenzhen/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Bye Shanghai, Hello Shenzhen</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">academic plotting</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/22/2016-12-22-man-tan-gao-wei-shu-ju-ju-lei-2-zi-kong-jian-ju-lei/" class="archive-article-date">
-  	<time datetime="2016-12-22T01:46:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/22/2016-12-22-man-tan-gao-wei-shu-ju-ju-lei-2-zi-kong-jian-ju-lei/">漫谈高维数据聚类(2):子空间聚类</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/21/2016-12-21-wan-hadoopzhong-yu-dao-de-keng/" class="archive-article-date">
-  	<time datetime="2016-12-21T02:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/21/2016-12-21-wan-hadoopzhong-yu-dao-de-keng/">玩Hadoop中遇到的坑</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">distributed computing</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/20/2016-12-20-markdown-test/" class="archive-article-date">
-  	<time datetime="2016-12-20T01:33:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/20/2016-12-20-markdown-test/">Markdown Test</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/18/2016-12-18-man-tan-gao-wei-shu-ju-ju-lei-1/" class="archive-article-date">
-  	<time datetime="2016-12-18T02:25:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/18/2016-12-18-man-tan-gao-wei-shu-ju-ju-lei-1/">漫谈高维数据聚类(1)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/17/2016-12-17-du-shu-bi-ji-zhi-<<li-shi-de-jiao-xun->>/" class="archive-article-date">
-  	<time datetime="2016-12-17T15:13:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/17/2016-12-17-du-shu-bi-ji-zhi-<<li-shi-de-jiao-xun->>/">读书笔记之《历史的教训》</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">reading</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/17/2016-12-17-mei-qian-liao-,yi-hou-yong-gitxie-bo-ke-ge/" class="archive-article-date">
-  	<time datetime="2016-12-17T13:53:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/17/2016-12-17-mei-qian-liao-,yi-hou-yong-gitxie-bo-ke-ge/">Blog Migration!</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dairy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2016/page/2/">2</a><a class="extend next" rel="next" href="/archives/2016/page/2/">Next &raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -533,8 +341,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

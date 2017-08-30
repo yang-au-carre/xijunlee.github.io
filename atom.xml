@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-08-30T13:48:07.000Z</updated>
+  <updated>2017-08-30T13:55:46.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="https://xijunlee.github.io/2017/08/29/%E5%A4%9A%E7%9B%AE%E6%A0%87%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95%E4%B9%8BMOEA-D/"/>
     <id>https://xijunlee.github.io/2017/08/29/多目标优化方法之MOEA-D/</id>
     <published>2017-08-29T14:57:35.000Z</published>
-    <updated>2017-08-30T13:48:07.000Z</updated>
+    <updated>2017-08-30T13:55:46.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution —— <a href="原文地址：http://ieeexplore.ieee.org/document/4358754/">MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition</a>，这篇paper出自两位华人之手Qingfu Zhang和Hui Li。</p>
+    <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution —— <a href="http://ieeexplore.ieee.org/document/4358754/" target="_blank" rel="external">MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition</a>，这篇paper出自两位华人之手Qingfu Zhang和Hui Li。</p>
 <hr>
 <p>下面用我组会slides上的两张图简单介绍问题和这篇paper提出的解决思路。</p>
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/MOEAD/MOEAD%20summary.png">
@@ -33,7 +33,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution —— &lt;a href=&quot;原文地址：http://ieeexplore.ieee.org/document/4358754/&quot;&gt;MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition&lt;/a&gt;，这篇paper出自两位华人之手Qingfu Zhang和Hui Li。&lt;/p&gt;
+      &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution —— &lt;a href=&quot;http://ieeexplore.ieee.org/document/4358754/&quot;&gt;MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition&lt;/a&gt;，这篇paper出自两位华人之手Qingfu Zhang和Hui Li。&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;下面用我组会slides上的两张图简单介绍问题和这篇paper提出的解决思路。&lt;/p&gt;
 &lt;img src=&quot;http://xijun-album.oss-cn-hangzhou.aliyuncs.com/MOEAD/MOEAD%20summary.png&quot;&gt;

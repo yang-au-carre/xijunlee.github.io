@@ -9,18 +9,24 @@
   <link rel="dns-prefetch" href="https://xijunlee.github.io">
   <title>多目标优化方法之MOEA-D | A Notebook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution —— MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition，这篇paper出自两位华人之手Qingfu Zhang和Hui Li。下面用我组会slides上的两张图简单介绍问题和这篇paper提">
+  <meta name="description" content="写在前面最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution —— MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition，这篇paper出自两位华人之手Qingfu Zhang和Hui Li。
+
+下面用我组会slides上的两张图简单介绍问题和这篇">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多目标优化方法之MOEA-D">
 <meta property="og:url" content="https://xijunlee.github.io/2017/08/29/多目标优化方法之MOEA-D/index.html">
 <meta property="og:site_name" content="A Notebook">
-<meta property="og:description" content="最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution —— MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition，这篇paper出自两位华人之手Qingfu Zhang和Hui Li。下面用我组会slides上的两张图简单介绍问题和这篇paper提">
+<meta property="og:description" content="写在前面最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution —— MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition，这篇paper出自两位华人之手Qingfu Zhang和Hui Li。
+
+下面用我组会slides上的两张图简单介绍问题和这篇">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/MOEAD/MOEAD%20summary.png">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/MOEAD/MOEAD%20flow%20chart.png">
-<meta property="og:updated_time" content="2017-08-30T13:46:50.000Z">
+<meta property="og:updated_time" content="2017-08-30T13:48:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多目标优化方法之MOEA-D">
-<meta name="twitter:description" content="最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution —— MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition，这篇paper出自两位华人之手Qingfu Zhang和Hui Li。下面用我组会slides上的两张图简单介绍问题和这篇paper提">
+<meta name="twitter:description" content="写在前面最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution —— MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition，这篇paper出自两位华人之手Qingfu Zhang和Hui Li。
+
+下面用我组会slides上的两张图简单介绍问题和这篇">
 <meta name="twitter:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/MOEAD/MOEAD%20summary.png">
   
     <link rel="alternative" href="/atom.xml" title="A Notebook" type="application/atom+xml">
@@ -214,7 +220,9 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution —— <a href="原文地址：http://ieeexplore.ieee.org/document/4358754/">MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition</a>，这篇paper出自两位华人之手Qingfu Zhang和Hui Li。下面用我组会slides上的两张图简单介绍问题和这篇paper提出的解决思路。</p>
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution —— <a href="原文地址：http://ieeexplore.ieee.org/document/4358754/">MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition</a>，这篇paper出自两位华人之手Qingfu Zhang和Hui Li。</p>
+<hr>
+<p>下面用我组会slides上的两张图简单介绍问题和这篇paper提出的解决思路。</p>
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/MOEAD/MOEAD%20summary.png">
 <a id="more"></a>
 <p>对于多目标优化问题F，MOEA/D的解决思路非常之简单，就是通过权重向量lamda将多个单优化目标组合到一起，将该问题转为单目标优化问题。乍一看，非常简单呢。但是其通过权重向量lambda为遗传算法中的候选解定义了邻居的概念，通过与邻居共同进化的思想，寻找pareto最优。但我觉得其缺点还是需要人为地去设置权重向量们，权重向量设置的好坏将决定最后解的质量。以下是具体算法的一个简单流程图：</p>

@@ -7,21 +7,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xijunlee.github.io">
-  <title>读书笔记之《历史的教训》 | A Notebook</title>
+  <title>通俗理解Dirichlet分布与Beta分布及其实践 | A Notebook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="历来就喜欢读历史书籍，高中以前读的大多是中国古代史，到了大学以后，才以多种方式接触了欧洲近现代史和中国近现代史。但多多少少都觉得是以一种听故事的心态在读历史，从没思考过历史为什么会是这样子以及其中的规律，然而杜兰特这本精简的《历史的教训》简直是带我飞起来了，俯瞰过往的历史，原来这一切离散的历史都是有迹可循的。
-这本书的作者——杜兰特夫妇是大有来头的，两人花了50年的时间写成了11卷的《世界文明史》">
+  <meta name="description" content="写在前面最近项目中有一部分用到了Dirichlet分布及其采样，这个分布应该是本科阶段的概率论没有教过的吧（也可能是我上课走神😓）。于是，从头学习，整理如下。
+Beta分布要说Dirichlet分布之前，先了解下其特殊情况Beta分布。一言以蔽之，Beta分布是二项分布的分布。二项分布中的参数theta在Beta分布中，也被认为是一个随机变量，因此Beta分布是用来描述这个随机变量theta的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="读书笔记之《历史的教训》">
-<meta property="og:url" content="https://xijunlee.github.io/2016/12/17/2016-12-17-du-shu-bi-ji-zhi-<<li-shi-de-jiao-xun->>/index.html">
+<meta property="og:title" content="通俗理解Dirichlet分布与Beta分布及其实践">
+<meta property="og:url" content="https://xijunlee.github.io/2017/09/09/Dirichlet分布与Beta分布/index.html">
 <meta property="og:site_name" content="A Notebook">
-<meta property="og:description" content="历来就喜欢读历史书籍，高中以前读的大多是中国古代史，到了大学以后，才以多种方式接触了欧洲近现代史和中国近现代史。但多多少少都觉得是以一种听故事的心态在读历史，从没思考过历史为什么会是这样子以及其中的规律，然而杜兰特这本精简的《历史的教训》简直是带我飞起来了，俯瞰过往的历史，原来这一切离散的历史都是有迹可循的。
-这本书的作者——杜兰特夫妇是大有来头的，两人花了50年的时间写成了11卷的《世界文明史》">
-<meta property="og:updated_time" content="2017-01-17T02:34:26.000Z">
+<meta property="og:description" content="写在前面最近项目中有一部分用到了Dirichlet分布及其采样，这个分布应该是本科阶段的概率论没有教过的吧（也可能是我上课走神😓）。于是，从头学习，整理如下。
+Beta分布要说Dirichlet分布之前，先了解下其特殊情况Beta分布。一言以蔽之，Beta分布是二项分布的分布。二项分布中的参数theta在Beta分布中，也被认为是一个随机变量，因此Beta分布是用来描述这个随机变量theta的。">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/dirichlet/1.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/dirichlet/2.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/dirichlet/3.png">
+<meta property="og:updated_time" content="2017-09-09T14:13:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="读书笔记之《历史的教训》">
-<meta name="twitter:description" content="历来就喜欢读历史书籍，高中以前读的大多是中国古代史，到了大学以后，才以多种方式接触了欧洲近现代史和中国近现代史。但多多少少都觉得是以一种听故事的心态在读历史，从没思考过历史为什么会是这样子以及其中的规律，然而杜兰特这本精简的《历史的教训》简直是带我飞起来了，俯瞰过往的历史，原来这一切离散的历史都是有迹可循的。
-这本书的作者——杜兰特夫妇是大有来头的，两人花了50年的时间写成了11卷的《世界文明史》">
+<meta name="twitter:title" content="通俗理解Dirichlet分布与Beta分布及其实践">
+<meta name="twitter:description" content="写在前面最近项目中有一部分用到了Dirichlet分布及其采样，这个分布应该是本科阶段的概率论没有教过的吧（也可能是我上课走神😓）。于是，从头学习，整理如下。
+Beta分布要说Dirichlet分布之前，先了解下其特殊情况Beta分布。一言以蔽之，Beta分布是二项分布的分布。二项分布中的参数theta在Beta分布中，也被认为是一个随机变量，因此Beta分布是用来描述这个随机变量theta的。">
+<meta name="twitter:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/dirichlet/1.png">
   
     <link rel="alternative" href="/atom.xml" title="A Notebook" type="application/atom+xml">
   
@@ -194,57 +198,61 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2016-12-17-du-shu-bi-ji-zhi-&lt;&lt;li-shi-de-jiao-xun-&gt;&gt;" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Dirichlet分布与Beta分布" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      读书笔记之《历史的教训》
+      通俗理解Dirichlet分布与Beta分布及其实践
     </h1>
   
 
         
-        <a href="/2016/12/17/2016-12-17-du-shu-bi-ji-zhi-<<li-shi-de-jiao-xun->>/" class="archive-article-date">
-  	<time datetime="2016-12-17T15:13:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-17</time>
+        <a href="/2017/09/09/Dirichlet分布与Beta分布/" class="archive-article-date">
+  	<time datetime="2017-09-09T13:17:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>历来就喜欢读历史书籍，高中以前读的大多是中国古代史，到了大学以后，才以多种方式接触了欧洲近现代史和中国近现代史。但多多少少都觉得是以一种听故事的心态在读历史，从没思考过历史为什么会是这样子以及其中的规律，然而杜兰特这本精简的《历史的教训》简直是带我飞起来了，俯瞰过往的历史，原来这一切离散的历史都是有迹可循的。</p>
-<p>这本书的作者——杜兰特夫妇是大有来头的，两人花了50年的时间写成了11卷的《世界文明史》，但因为这套书卷帙浩繁，比较学术，所以二人于1968年出了这套巨作的精简版《历史的教训》，方便一般读者阅读。因为作者是活跃于20世纪的人，因此他们的部分观点是有点过时和不客观的，大家去读了就知道。</p>
-<a id="more"></a>
-<p>下面，偷个懒，我就直接摘取书中让我停下来思考过的段落：</p>
-<p>1、“一个人，无论他是如何光彩夺目或者见识广博，在他的有生之年，也不可能无所不知，总是能对他所在社会的习惯和礼俗做出明智的判断与取舍。因为这些习惯和礼俗，是无数代人在许多个世纪的历史长河中形成的智慧与经验的结晶。一个荷尔蒙旺盛的青年或许会问，为什么他不能充分享有性欲发泄的自由？假如他不遵守习俗、道德与法律的规范，在他足够成熟之前，还不明白性是一条充满烈火的欲河，必须处处设防，严加限制，约束自己，那么将会导致个人和团体的大混乱，并毁掉自己的一生。”</p>
-<p>——摘自第五章 性格与历史</p>
-<p>我的思考：其实这段简而言之就是“不听老人言吃亏在眼前”，我们现在确实是处在血气方刚的年纪，觉得不叛逆、墨守成规就是一点没有年轻人的朝气。但是，我们是否想过前人的这些规矩和制度为什么会留下来。举个栗子，古文明时期存在过多种婚姻制度，但为什么现代社会唯独推崇一夫一妻制？因为这是最有利于经济稳定和财产继承的婚姻制度，因此它留下来了。人类社会也同样适用适者生存的规则，现代社会推崇的价值观和制度不是某某领导人的意志，也不是上帝的神谕，而是长期社会发展优胜劣汰下来的人类经验之谈。当然，也不是要求我们每个人都要墨守成规，反正我觉得经过时间和社会认可的规律和制度都是值得年轻人遵循的。</p>
-<p>2、“即使是持怀疑论的历史学家也对宗教保持谦卑的尊重，因为他看到了宗教在每一块土地、每一个时代，都发挥着似乎不可或缺的作用，宗教让社会最底层的人有了存在的意义和尊严；通过宗教的一些仪式，人间习俗变成与上帝的神圣关系，从而形成稳定的力量。宗教使穷人不会再去谋害富人（拿破仑语）。因为人生而不平等，所以注定我们有许多人经受贫穷和失败，对于失意的人而言，某种不可思议的超自然希望是替代绝望的唯一选择。摧毁了希望，阶级斗争就会愈演愈烈。天堂和乌托邦，就像一个井中的两个水桶：当一个下降时，另一个就会升上来；当宗教衰退时，共产主义就会兴起。</p>
-<p>在我们这个时代以前的历史中，还找不到一个显著的例子表明，在没有宗教的帮助下，一个社会的道德生活也能成功地维持。法国、美国和其他一些国家，已经是他们的政府脱离了教会，但是他们仍然需要宗教在维数社会秩序方面给予帮助。只有少数几个共产主义国家，不仅已经与宗教脱离关系，并且还拒绝其援助。或许，这个实验在俄罗斯取得了明显而暂时的成功，在很大程度上归功于人们暂时将共产主义当成了人民的宗教，它取代了教会，成为了安慰与希望的供应者。如果社会主义政权不能消灭民众的相对贫穷，这个新的宗教就将失去它的狂热和效果，国家也许就会默许恢复超自然的信仰，以此来缓和不满。“只要有贫穷，就会有神灵。” ’</p>
-<p>——摘自第七章 宗教与历史</p>
-<p>我的思考：嘘……</p>
-<p>3、“财富集中是自然的和不可避免的，可以借助暴力的或者是和平的部分再分配而得到周期性的缓解。就此而论，所有的经济史都是这个社会有机体缓慢的心脏跳动，财富的集中和强制再分配，便是它巨大的收缩与扩张运动。 ”</p>
-<p> ——摘自第八章 经济与历史</p>
-<p> 4、“对资本主义的恐惧，迫使社会主义不断扩大自由；而对社会主义的恐惧，则迫使资本主义不断增加平等。东方就是西方，西方就是东方，这一对双胞胎很快就会团聚。”</p>
-<p> ——摘自第九章 社会主义与历史</p>
-<p>我的思考：虽然我们总是喊着要平等，要自由，其实仔细想想这二者是根本就是对立的嘛。社会从来就是不公平的，最集中的体现就是财富不均，如果要求人人平等，那么富人的自由势必受到限制。如果要求人人自由，那么穷人和富人会因为财富的差异造成享受不平等的自由权利。当代每个国家的政府无不都是在二者之中找平衡，一旦失衡，管你什么主义都势将倒闭。</p>
-<p>5、“由于财富是一种生产和交换的秩序和过程，而不是囤积货物；是一种个人或机构的信托，而不是纸币或支票的内在价值。因此，暴力革命对财富所做的再分配，并不会多过对财富的损坏。对土地可以进行再分配，但是人们之间的天然不平等，很快就会产生新的占有和特权的不平等，形成新的少数人权力，他们的本能从本质上说和过去的少数一样。唯一真正的革命，是对心灵的启蒙和个性的提升；唯一真正的解放，是个人的解放；唯一真正的革命者，是哲学家和圣人。</p>
-<p>如果教育机会平等能够建立起来，民主政治将会是真实和公平的。因为这才是它的口号背后至关重要的真理：虽然人们不能做到生而平等，但是教育和机会的获得会让他们越来越接近平等。民权不是去从政和行使权力，而是他们有选择每一种生活方式的权力，这种选择也可以检验一个人是否合适做官或者执政。”</p>
-<p>——摘自第十章 政府与历史</p>
-<p>我的思考：正因为生而不平等，所以人类社会才需要教育来弥补这种不平等。但是当代社会，教育资源和机会的多少却越来越与财富的多少挂钩，这个现象是在全球范围都有的，这到底是人为的还是社会发展必须的呢？</p>
-<p>6、“战争或冲突是万物之父，是各种观念、发明、制度和国家强有力的来源。和平只是一种不稳定的平衡，只能靠公认的霸权或势力均衡来维持。</p>
-<p>…………</p>
-<p>英国在十九世纪很好地履行了保护西方文明免受外来威胁的职责，美国今天必须接过这一职责。新兴国家渴望通过一次工业革命，来获得经济的繁荣与军事力量的壮大，他们对苏联在政府管制下迅速工业化的过程印象深刻。也许最终西方资本主义国家会有更高的生产力，但是发展速度似乎较慢；一些新的执政者热衷于控制他们国家的资源与命脉，很可能被共产主义的宣传等活动所俘获。”</p>
-<p>——摘自第十一章 历史与战争</p>
-<p>我的思考：这一段的内容是与我以往所受到的教育相违背的，其中关于战争与和平的阐述既让我耳目一新，也是我思考了之后所认同的，但是这段中后半部分的内容就见仁见智了。</p>
-<p>7、“在一个社会中，因为经济的发展产生了不平等，就会分化成两个阶层，一个是少数的文化精英，一个是多数的芸芸众生，他们十分不幸，因为天生的原因或者环境的关系，无法继承或者发展出高贵典雅的水准。随着这个多数的增长，它会对少数的文化起到拖累作用；它的谈吐、服饰、娱乐、感情、价值判断会向上扩散，多数内部的野蛮化是少数控制教育和经济机会所要付出的代价之一。”</p>
-<p>——摘自第十二章 增长与衰退</p>
-<p>我的思考：举个栗子，古罗马人的文化与制度是如此的令人赞叹，他们的文化是精致和伟大的。但是这些东西全部都建立在他们对周边蛮族的残酷剥削和统治之上。罗马周边的蛮族被逐渐罗马化了，但是是更多蛮族的习俗影响了罗马人，到了罗马后期，其军队中竟有四分之三是外族人。到最后，相对落后的日耳曼人竟征服了罗马，还是令人扼腕。</p>
-<p>8、“从历史的过程中，我们认为，人类的本性并没有发生实质性的改变，所有的技术成就，都不得不被看成是用新方法完成就目标——取得财货，追求异性（或者同性），在竞争中取胜，发动战争。”</p>
-<p>——摘自第十三章 真有进步吗？</p>
-<p>写在最后：我觉得这本书的每一章都值得大书特书，都值得深思。我也从来不认为读历史类书籍就立马会给人以启发，或者带来现实生中的好处。读历史，尤其是这种总结性质的历史书，给了我们一个机会从宏观的角度观察人类社会的运作，这往往是我们大陆学生所欠缺的，所以推荐此书，与诸君共勉。</p>
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近项目中有一部分用到了Dirichlet分布及其采样，这个分布应该是本科阶段的概率论没有教过的吧（也可能是我上课走神😓）。于是，从头学习，整理如下。</p>
+<h2 id="Beta分布"><a href="#Beta分布" class="headerlink" title="Beta分布"></a>Beta分布</h2><p>要说Dirichlet分布之前，先了解下其特殊情况Beta分布。一言以蔽之，Beta分布是二项分布的分布。二项分布中的参数theta在Beta分布中，也被认为是一个随机变量，因此Beta分布是用来描述这个随机变量theta的。下面用知乎上一个通俗的例子来说明（我觉得这个例子讲得相当好）。更严谨的叙述参看<a href="https://mqshen.gitbooks.io/prml/Chapter2/binary/beta_distribute.html" target="_blank" rel="external">PRML中相关章节</a></p>
+<p>用一句话来说，beta分布可以看作一个概率的概率分布，当你不知道一个东西的具体概率是多少时，它可以给出了所有概率出现的可能性大小。</p>
+<p>举一个简单的例子，熟悉棒球运动的都知道有一个指标就是棒球击球率(batting average)，就是用一个运动员击中的球数除以击球的总数，我们一般认为0.266是正常水平的击球率，而如果击球率高达0.3就被认为是非常优秀的。现在有一个棒球运动员，我们希望能够预测他在这一赛季中的棒球击球率是多少。你可能就会直接计算棒球击球率，用击中的数除以击球数，但是如果这个棒球运动员只打了一次，而且还命中了，那么他就击球率就是100%了，这显然是不合理的，因为根据棒球的历史信息，我们知道这个击球率应该是0.215到0.36之间才对啊。对于这个问题，我们可以用一个二项分布表示（一系列成功或失败），一个最好的方法来表示这些经验（在统计中称为先验信息）就是用beta分布，这表示在我们没有看到这个运动员打球之前，我们就有了一个大概的范围。beta分布的定义域是(0,1)这就跟概率的范围是一样的。接下来我们将这些先验信息转换为beta分布的参数，我们知道一个击球率应该是平均0.27左右，而他的范围是0.21到0.35，那么根据这个信息，我们可以取α=81,β=219</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/dirichlet/1.png">
+<p>这是因为：</p>
+<ol>
+<li>beta分布的均值是$$\frac{\alpha}{\alpha+\beta}=\frac{81}{81+219}=0.27$$；</li>
+<li>从上图中，我们可以看到该分布主要落在(0.2,0.35)间，这就是从先验中得到的知识。</li>
+</ol>
+<p>在这个例子里，我们的x轴就表示各个击球率的取值，x对应的y值就是这个击球率所对应的概率。也就是说beta分布可以看作一个<strong>概率的概率分布</strong>。那么有了先验信息后，现在我们考虑一个运动员只打一次球，那么他现在的数据就是”1中;1击”。这时候我们就可以<strong>更新我们的分布</strong>了，让这个曲线<strong>做一些移动去适应我们的新信息</strong>。beta分布在数学上就给我们提供了这一性质，他与二项分布是<strong>共轭先验</strong>的（Conjugate_prior）。所谓共轭先验就是先验分布是beta分布，而后验分布同样是beta分布。结果很简单：</p>
+<p>$$ \mbox{Beta}(\alpha_0+\mbox{hits}, \beta_0+\mbox{misses})$$<br>其中α0和β0是一开始的参数，在这里是81和219。所以在这一例子里，α增加了1(击中了一次)。β没有增加(没有漏球)。这就是我们的新的beta分布Beta(81+1,219)，我们跟原来的比较一下：</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/dirichlet/2.png">
+<p>可以看到这个分布其实没多大变化，这是因为只打了1次球并不能说明什么问题。但是如果我们得到了更多的数据，假设一共打了300次，其中击中了100次，200次没击中，那么这一新分布就是：</p>
+<p>$$\mbox{Beta}(81+100, 219+200)$$</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/dirichlet/3.png">
+<p>注意到这个曲线变得更加尖，并且平移到了一个右边的位置，表示比平均水平要高。</p>
+<p>一个有趣的事情是，根据这个新的beta分布，我们可以得出他的数学期望为：</p>
+<p>$$\frac{\alpha}{\alpha+\beta}=\frac{82+100}{82+100+219+200}=.303$$，</p>
+<p>这一结果要比直接的估计要小 </p>
+<p>$$\frac{100}{100+200}=.333$$</p>
+<p>你可能已经意识到，我们事实上就是在这个运动员在击球之前可以理解为他已经成功了81次，失败了219次这样一个<strong>先验信息</strong>。</p>
+<p>因此，对于一个我们不知道概率theta是什么的二项分布，而又有一些合理的猜测时，beta分布能很好的作为描述该概率theta的概率分布。</p>
+<p><strong>结论1</strong>：二项分布与Beta分布是<strong>共轭先验</strong>的。</p>
+<p>关于其的证明，可以参考reference中的链接。</p>
+<h2 id="Dirichlet分布"><a href="#Dirichlet分布" class="headerlink" title="Dirichlet分布"></a>Dirichlet分布</h2><p>先给出一个结论:</p>
+<p><strong>结论2</strong>：Dirichlet分布就是由2种结果bernoulli trial导出的Beta分布外推到k种的一般情形。</p>
+<p>详细一点地说，二项分布的分布是Beta分布，而二项分布的推广形式多项分布的分布就是Dirichlet分布。</p>
+<p><strong>结论3</strong>：Dirichlet分布与多项分布是共轭先验的。</p>
+<p>严谨的叙述参考<a href="https://mqshen.gitbooks.io/prml/Chapter2/multinomial/dirichlet_distribute.html" target="_blank" rel="external">PRML相关章节</a>。</p>
+<h2 id="实践：Dirichlet分布的估计"><a href="#实践：Dirichlet分布的估计" class="headerlink" title="实践：Dirichlet分布的估计"></a>实践：Dirichlet分布的估计</h2><p>即在给定多项分布中概率向量p的一些样本后，如何估计Dirichlet分布中的参数alpha。关于这个问题，Microsoft Research的<a href="https://tminka.github.io" target="_blank" rel="external">Tom Minka</a>给出了两种解决办法。无外乎都是极大似然法，两种方法的差异在于第一种方法是采用拟牛顿法来迭代求最大似然估计，而第二种方法则是稍微曲线救国了一下，先定义两个与alpha相关的值，通过先求这两个值从而求得alpha的最大似然估计，其中采用了EM的思想。具体细节可以参考其<a href="https://tminka.github.io/papers/dirichlet/minka-dirichlet.pdf" target="_blank" rel="external">论文</a></p>
+<p>Minka大神同时也实现了其提出的两种方法的<a href="https://github.com/tminka/fastfit" target="_blank" rel="external">Matlab源码</a>，而<a href="http://www.ericsuh.com" target="_blank" rel="external">Eric J. Suh</a>将这些算法又用Python实现了一遍，做成了一个独立的<a href="https://github.com/ericsuh/dirichlet" target="_blank" rel="external">Python Package</a>。我项目中就是直接用的这个，跪谢两位大神Orz!</p>
+<hr>
+<p>Reference:</p>
+<p><a href="https://github.com/tminka/fastfit" target="_blank" rel="external">https://github.com/tminka/fastfit</a><br><a href="https://tminka.github.io/papers/dirichlet/minka-dirichlet.pdf" target="_blank" rel="external">https://tminka.github.io/papers/dirichlet/minka-dirichlet.pdf</a><br><a href="https://www.zhihu.com/question/30269898" target="_blank" rel="external">https://www.zhihu.com/question/30269898</a><br><a href="https://mqshen.gitbooks.io/prml/Chapter2/multinomial/dirichlet_distribute.html" target="_blank" rel="external">https://mqshen.gitbooks.io/prml/Chapter2/multinomial/dirichlet_distribute.html</a><br><a href="https://mqshen.gitbooks.io/prml/Chapter2/binary/beta_distribute.html" target="_blank" rel="external">https://mqshen.gitbooks.io/prml/Chapter2/binary/beta_distribute.html</a></p>
 
       
 
@@ -258,7 +266,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">reading</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Probability Theory</a>
         		</li>
       		
 		</ul>
@@ -314,7 +322,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://xijunlee.github.io/2016/12/17/2016-12-17-du-shu-bi-ji-zhi-<<li-shi-de-jiao-xun->>/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://xijunlee.github.io/2017/09/09/Dirichlet分布与Beta分布/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -328,18 +336,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2016/12/18/2016-12-18-man-tan-gao-wei-shu-ju-ju-lei-1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          漫谈高维数据聚类(1)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/12/17/2016-12-17-mei-qian-liao-,yi-hou-yong-gitxie-bo-ke-ge/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Blog Migration!</div>
+    <a href="/2017/08/29/多目标优化方法之MOEA-D/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">多目标优化方法之MOEA-D</div>
       <i class="icon-circle-right"></i>
     </a>
   

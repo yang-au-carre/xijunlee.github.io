@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-08-30T13:55:46.000Z</updated>
+  <updated>2017-09-09T14:13:51.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -14,6 +14,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>通俗理解Dirichlet分布与Beta分布及其实践</title>
+    <link href="https://xijunlee.github.io/2017/09/09/Dirichlet%E5%88%86%E5%B8%83%E4%B8%8EBeta%E5%88%86%E5%B8%83/"/>
+    <id>https://xijunlee.github.io/2017/09/09/Dirichlet分布与Beta分布/</id>
+    <published>2017-09-09T13:17:26.000Z</published>
+    <updated>2017-09-09T14:13:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近项目中有一部分用到了Dirichlet分布及其采样，这个分布应该是本科阶段的概率论没有教过的吧（也可能是我上课走神😓）。于是，从头学习，整理如下。</p>
+<h2 id="Beta分布"><a href="#Beta分布" class="headerlink" title="Beta分布"></a>Beta分布</h2><p>要说Dirichlet分布之前，先了解下其特殊情况Beta分布。一言以蔽之，Beta分布是二项分布的分布。二项分布中的参数theta在Beta分布中，也被认为是一个随机变量，因此Beta分布是用来描述这个随机变量theta的。下面用知乎上一个通俗的例子来说明（我觉得这个例子讲得相当好）。更严谨的叙述参看<a href="https://mqshen.gitbooks.io/prml/Chapter2/binary/beta_distribute.html" target="_blank" rel="external">PRML中相关章节</a></p>
+<p>用一句话来说，beta分布可以看作一个概率的概率分布，当你不知道一个东西的具体概率是多少时，它可以给出了所有概率出现的可能性大小。</p>
+<p>举一个简单的例子，熟悉棒球运动的都知道有一个指标就是棒球击球率(batting average)，就是用一个运动员击中的球数除以击球的总数，我们一般认为0.266是正常水平的击球率，而如果击球率高达0.3就被认为是非常优秀的。现在有一个棒球运动员，我们希望能够预测他在这一赛季中的棒球击球率是多少。你可能就会直接计算棒球击球率，用击中的数除以击球数，但是如果这个棒球运动员只打了一次，而且还命中了，那么他就击球率就是100%了，这显然是不合理的，因为根据棒球的历史信息，我们知道这个击球率应该是0.215到0.36之间才对啊。对于这个问题，我们可以用一个二项分布表示（一系列成功或失败），一个最好的方法来表示这些经验（在统计中称为先验信息）就是用beta分布，这表示在我们没有看到这个运动员打球之前，我们就有了一个大概的范围。beta分布的定义域是(0,1)这就跟概率的范围是一样的。接下来我们将这些先验信息转换为beta分布的参数，我们知道一个击球率应该是平均0.27左右，而他的范围是0.21到0.35，那么根据这个信息，我们可以取α=81,β=219</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/dirichlet/1.png">
+<p>这是因为：</p>
+<ol>
+<li>beta分布的均值是$$\frac{\alpha}{\alpha+\beta}=\frac{81}{81+219}=0.27$$；</li>
+<li>从上图中，我们可以看到该分布主要落在(0.2,0.35)间，这就是从先验中得到的知识。</li>
+</ol>
+<p>在这个例子里，我们的x轴就表示各个击球率的取值，x对应的y值就是这个击球率所对应的概率。也就是说beta分布可以看作一个<strong>概率的概率分布</strong>。那么有了先验信息后，现在我们考虑一个运动员只打一次球，那么他现在的数据就是”1中;1击”。这时候我们就可以<strong>更新我们的分布</strong>了，让这个曲线<strong>做一些移动去适应我们的新信息</strong>。beta分布在数学上就给我们提供了这一性质，他与二项分布是<strong>共轭先验</strong>的（Conjugate_prior）。所谓共轭先验就是先验分布是beta分布，而后验分布同样是beta分布。结果很简单：</p>
+<p>$$ \mbox{Beta}(\alpha_0+\mbox{hits}, \beta_0+\mbox{misses})$$<br>其中α0和β0是一开始的参数，在这里是81和219。所以在这一例子里，α增加了1(击中了一次)。β没有增加(没有漏球)。这就是我们的新的beta分布Beta(81+1,219)，我们跟原来的比较一下：</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/dirichlet/2.png">
+<p>可以看到这个分布其实没多大变化，这是因为只打了1次球并不能说明什么问题。但是如果我们得到了更多的数据，假设一共打了300次，其中击中了100次，200次没击中，那么这一新分布就是：</p>
+<p>$$\mbox{Beta}(81+100, 219+200)$$</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/dirichlet/3.png">
+<p>注意到这个曲线变得更加尖，并且平移到了一个右边的位置，表示比平均水平要高。</p>
+<p>一个有趣的事情是，根据这个新的beta分布，我们可以得出他的数学期望为：</p>
+<p>$$\frac{\alpha}{\alpha+\beta}=\frac{82+100}{82+100+219+200}=.303$$，</p>
+<p>这一结果要比直接的估计要小 </p>
+<p>$$\frac{100}{100+200}=.333$$</p>
+<p>你可能已经意识到，我们事实上就是在这个运动员在击球之前可以理解为他已经成功了81次，失败了219次这样一个<strong>先验信息</strong>。</p>
+<p>因此，对于一个我们不知道概率theta是什么的二项分布，而又有一些合理的猜测时，beta分布能很好的作为描述该概率theta的概率分布。</p>
+<p><strong>结论1</strong>：二项分布与Beta分布是<strong>共轭先验</strong>的。</p>
+<p>关于其的证明，可以参考reference中的链接。</p>
+<h2 id="Dirichlet分布"><a href="#Dirichlet分布" class="headerlink" title="Dirichlet分布"></a>Dirichlet分布</h2><p>先给出一个结论:</p>
+<p><strong>结论2</strong>：Dirichlet分布就是由2种结果bernoulli trial导出的Beta分布外推到k种的一般情形。</p>
+<p>详细一点地说，二项分布的分布是Beta分布，而二项分布的推广形式多项分布的分布就是Dirichlet分布。</p>
+<p><strong>结论3</strong>：Dirichlet分布与多项分布是共轭先验的。</p>
+<p>严谨的叙述参考<a href="https://mqshen.gitbooks.io/prml/Chapter2/multinomial/dirichlet_distribute.html" target="_blank" rel="external">PRML相关章节</a>。</p>
+<h2 id="实践：Dirichlet分布的估计"><a href="#实践：Dirichlet分布的估计" class="headerlink" title="实践：Dirichlet分布的估计"></a>实践：Dirichlet分布的估计</h2><p>即在给定多项分布中概率向量p的一些样本后，如何估计Dirichlet分布中的参数alpha。关于这个问题，Microsoft Research的<a href="https://tminka.github.io" target="_blank" rel="external">Tom Minka</a>给出了两种解决办法。无外乎都是极大似然法，两种方法的差异在于第一种方法是采用拟牛顿法来迭代求最大似然估计，而第二种方法则是稍微曲线救国了一下，先定义两个与alpha相关的值，通过先求这两个值从而求得alpha的最大似然估计，其中采用了EM的思想。具体细节可以参考其<a href="https://tminka.github.io/papers/dirichlet/minka-dirichlet.pdf" target="_blank" rel="external">论文</a></p>
+<p>Minka大神同时也实现了其提出的两种方法的<a href="https://github.com/tminka/fastfit" target="_blank" rel="external">Matlab源码</a>，而<a href="http://www.ericsuh.com" target="_blank" rel="external">Eric J. Suh</a>将这些算法又用Python实现了一遍，做成了一个独立的<a href="https://github.com/ericsuh/dirichlet" target="_blank" rel="external">Python Package</a>。我项目中就是直接用的这个，跪谢两位大神Orz!</p>
+<hr>
+<p>Reference:</p>
+<p><a href="https://github.com/tminka/fastfit" target="_blank" rel="external">https://github.com/tminka/fastfit</a><br><a href="https://tminka.github.io/papers/dirichlet/minka-dirichlet.pdf" target="_blank" rel="external">https://tminka.github.io/papers/dirichlet/minka-dirichlet.pdf</a><br><a href="https://www.zhihu.com/question/30269898" target="_blank" rel="external">https://www.zhihu.com/question/30269898</a><br><a href="https://mqshen.gitbooks.io/prml/Chapter2/multinomial/dirichlet_distribute.html" target="_blank" rel="external">https://mqshen.gitbooks.io/prml/Chapter2/multinomial/dirichlet_distribute.html</a><br><a href="https://mqshen.gitbooks.io/prml/Chapter2/binary/beta_distribute.html" target="_blank" rel="external">https://mqshen.gitbooks.io/prml/Chapter2/binary/beta_distribute.html</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;最近项目中有一部分用到了Dirichlet分布及其采样，这个分布应该是本科阶段的概率论没有教过的吧（也可能是我上课走神😓）
+    
+    </summary>
+    
+    
+      <category term="Probability Theory" scheme="https://xijunlee.github.io/tags/Probability-Theory/"/>
+    
+  </entry>
   
   <entry>
     <title>多目标优化方法之MOEA-D</title>
@@ -321,7 +376,7 @@
     <link href="https://xijunlee.github.io/2017/06/03/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
     <id>https://xijunlee.github.io/2017/06/03/集成学习总结/</id>
     <published>2017-06-03T08:18:51.000Z</published>
-    <updated>2017-06-24T14:57:50.000Z</updated>
+    <updated>2017-09-09T14:15:53.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>看了不少集成学习的资料，很多算法都有相似之处，看了之后没有进行比较和整理，太容易忘记了，所以这篇来做个笔记。</p>
 <p>集成学习，（就我目前所学习到的）主要可以分为三大类，Boosting, Bagging, Stacking。Boosting的代表有AdaBoost, gbdt, xgboost。而Bagging的代表则是随机森林 (Random Forest)。Stacking 的话，好像还没有著名的代表，可以视其为一种集成的套路。</p>
@@ -422,10 +477,9 @@
 <h2 id="Stacking"><a href="#Stacking" class="headerlink" title="Stacking"></a>Stacking</h2><p>Stacking还没有代表性的算法，我姑且把它理解成一个集成的思想吧。具体做法是：</p>
 <p>(1) 先将训练集D拆成k个大小相似但互不相交的子集D1,D2,…,Dk；<br>(2) 令Dj’= D - Dj，在Dj’上训练一个弱学习器Lj。将Dj作为测试集，获得Lj在Dj上的输出Dj’’；<br>(3) 步骤2可以得到k个弱学习器以及k个相应的输出Dj’’,这个k个输出加上原本的类标构成新的训练集Dn；<br>(4) 在Dn训练次学习器L，L即为最后的学习器。</p>
 <p>以上Stacking只做了一层，据kaggle上的大神反馈，Stacking可以做好多层，会有神奇的效果。</p>
-<p>下面给出kaggle中一个Stacking的实例，就是入门级的titanic那道题单层stacking的源码（只给出了stacking 的过程，前面特征工程处理的代码被省略掉了）。Stacking后的xgboost（得分:0.77990)比我之前只用xgboost时(得分:0.77512)提高了一点，排名上升了396……</p>
+<p>下面给出kaggle中一个Stacking的实例，就是入门级的titanic那道题单层stacking的源码（只给出了stacking 的过程，前面特征工程处理的代码被省略掉了）。Stacking后的xgboost（得分:0.77990)比我之前只用xgboost时(得分:0.77512)提高了一点，排名上升了396…… <a href="https://github.com/xijunlee/kaggle-solution/blob/master/DigitRecognizer/DigitRec_CNN.py" target="_blank" rel="external">源码戳这</a></p>
 <p>Log on 2017-6-22: Stacking了两次之后，得分从单次stacking的0.77990上升到了0.79904</p>
 <p>Log on 2017-6-22: Stacking了三次之后，得分从两次stacking的0.77990降低到了0.78469。所以，Stacking并不是越多层越好，反而会变坏。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Load in our libraries</span></div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="keyword">import</span> sklearn</div><div class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</div><div class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> pdb</div><div class="line"><span class="comment">#%matplotlib inline</span></div><div class="line"></div><div class="line"><span class="comment"># Going to use these 5 base models for the stacking</span></div><div class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier, ExtraTreesClassifier</div><div class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</div><div class="line"><span class="keyword">from</span> sklearn.cross_validation <span class="keyword">import</span> KFold;</div><div class="line"></div><div class="line"><span class="comment">#The code of feature engineering are emitted due to the space limitation.</span></div><div class="line"></div><div class="line"><span class="comment"># Some useful parameters which will come in handy later on</span></div><div class="line">ntrain = train.shape[<span class="number">0</span>]</div><div class="line">ntest = test.shape[<span class="number">0</span>]</div><div class="line">SEED = <span class="number">0</span> <span class="comment"># for reproducibility</span></div><div class="line">NFOLDS = <span class="number">5</span> <span class="comment"># set folds for out-of-fold prediction</span></div><div class="line">kf = KFold(ntrain, n_folds= NFOLDS, random_state=SEED)</div><div class="line"></div><div class="line"><span class="comment"># Class to extend the Sklearn classifier</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SklearnHelper</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, clf, seed=<span class="number">0</span>, params=None)</span>:</span></div><div class="line">        params[<span class="string">'random_state'</span>] = seed</div><div class="line">        self.clf = clf(**params)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(self, x_train, y_train)</span>:</span></div><div class="line">        self.clf.fit(x_train, y_train)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self, x)</span>:</span></div><div class="line">        <span class="keyword">return</span> self.clf.predict(x)</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self,x,y)</span>:</span></div><div class="line">        <span class="keyword">return</span> self.clf.fit(x,y)</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">feature_importances</span><span class="params">(self,x,y)</span>:</span></div><div class="line">        print(self.clf.fit(x,y).feature_importances_)</div><div class="line">    </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_oof</span><span class="params">(clf, x_train, y_train, x_test)</span>:</span></div><div class="line">    oof_train = np.zeros((ntrain,))</div><div class="line">    oof_test = np.zeros((ntest,))</div><div class="line">    oof_test_skf = np.empty((NFOLDS, ntest))</div><div class="line">    <span class="comment">#pdb.set_trace()</span></div><div class="line">    <span class="keyword">for</span> i, (train_index, test_index) <span class="keyword">in</span> enumerate(kf):</div><div class="line">        x_tr = x_train[train_index]</div><div class="line">        y_tr = y_train[train_index]</div><div class="line">        x_te = x_train[test_index]</div><div class="line"></div><div class="line">        clf.train(x_tr, y_tr)</div><div class="line"></div><div class="line">        oof_train[test_index] = clf.predict(x_te)</div><div class="line">        oof_test_skf[i, :] = clf.predict(x_test)</div><div class="line"></div><div class="line">    oof_test[:] = oof_test_skf.mean(axis=<span class="number">0</span>)</div><div class="line">    <span class="keyword">return</span> oof_train.reshape(<span class="number">-1</span>, <span class="number">1</span>), oof_test.reshape(<span class="number">-1</span>, <span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="comment"># Put in our parameters for said classifiers</span></div><div class="line"><span class="comment"># Random Forest parameters</span></div><div class="line">rf_params = &#123;</div><div class="line">    <span class="string">'n_jobs'</span>: <span class="number">-1</span>,</div><div class="line">    <span class="string">'n_estimators'</span>: <span class="number">500</span>,</div><div class="line">     <span class="string">'warm_start'</span>: <span class="keyword">True</span>, </div><div class="line">     <span class="comment">#'max_features': 0.2,</span></div><div class="line">    <span class="string">'max_depth'</span>: <span class="number">6</span>,</div><div class="line">    <span class="string">'min_samples_leaf'</span>: <span class="number">2</span>,</div><div class="line">    <span class="string">'max_features'</span> : <span class="string">'sqrt'</span>,</div><div class="line">    <span class="string">'verbose'</span>: <span class="number">0</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment"># Extra Trees Parameters</span></div><div class="line">et_params = &#123;</div><div class="line">    <span class="string">'n_jobs'</span>: <span class="number">-1</span>,</div><div class="line">    <span class="string">'n_estimators'</span>:<span class="number">500</span>,</div><div class="line">    <span class="comment">#'max_features': 0.5,</span></div><div class="line">    <span class="string">'max_depth'</span>: <span class="number">8</span>,</div><div class="line">    <span class="string">'min_samples_leaf'</span>: <span class="number">2</span>,</div><div class="line">    <span class="string">'verbose'</span>: <span class="number">0</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment"># AdaBoost parameters</span></div><div class="line">ada_params = &#123;</div><div class="line">    <span class="string">'n_estimators'</span>: <span class="number">500</span>,</div><div class="line">    <span class="string">'learning_rate'</span> : <span class="number">0.75</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment"># Gradient Boosting parameters</span></div><div class="line">gb_params = &#123;</div><div class="line">    <span class="string">'n_estimators'</span>: <span class="number">500</span>,</div><div class="line">     <span class="comment">#'max_features': 0.2,</span></div><div class="line">    <span class="string">'max_depth'</span>: <span class="number">5</span>,</div><div class="line">    <span class="string">'min_samples_leaf'</span>: <span class="number">2</span>,</div><div class="line">    <span class="string">'verbose'</span>: <span class="number">0</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment"># Support Vector Classifier parameters </span></div><div class="line">svc_params = &#123;</div><div class="line">    <span class="string">'kernel'</span> : <span class="string">'linear'</span>,</div><div class="line">    <span class="string">'C'</span> : <span class="number">0.025</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="comment"># Create 5 objects that represent our 4 models</span></div><div class="line">rf = SklearnHelper(clf=RandomForestClassifier, seed=SEED, params=rf_params)</div><div class="line">et = SklearnHelper(clf=ExtraTreesClassifier, seed=SEED, params=et_params)</div><div class="line">ada = SklearnHelper(clf=AdaBoostClassifier, seed=SEED, params=ada_params)</div><div class="line">gb = SklearnHelper(clf=GradientBoostingClassifier, seed=SEED, params=gb_params)</div><div class="line">svc = SklearnHelper(clf=SVC, seed=SEED, params=svc_params)</div><div class="line"></div><div class="line"><span class="comment"># Create Numpy arrays of train, test and target ( Survived) dataframes to feed into our models</span></div><div class="line">y_train = train[<span class="string">'Survived'</span>].ravel()</div><div class="line">train = train.drop([<span class="string">'Survived'</span>], axis=<span class="number">1</span>)</div><div class="line">x_train = train.values <span class="comment"># Creates an array of the train data</span></div><div class="line">x_test = test.values <span class="comment"># Creats an array of the test data</span></div><div class="line"></div><div class="line"><span class="comment"># Create our OOF train and test predictions. These base results will be used as new features</span></div><div class="line">et_oof_train, et_oof_test = get_oof(et, x_train, y_train, x_test) <span class="comment"># Extra Trees</span></div><div class="line">rf_oof_train, rf_oof_test = get_oof(rf,x_train, y_train, x_test) <span class="comment"># Random Forest</span></div><div class="line">ada_oof_train, ada_oof_test = get_oof(ada, x_train, y_train, x_test) <span class="comment"># AdaBoost </span></div><div class="line">gb_oof_train, gb_oof_test = get_oof(gb,x_train, y_train, x_test) <span class="comment"># Gradient Boost</span></div><div class="line">svc_oof_train, svc_oof_test = get_oof(svc,x_train, y_train, x_test) <span class="comment"># Support Vector Classifier</span></div><div class="line"><span class="comment">#pdb.set_trace()</span></div><div class="line">print(<span class="string">"Training is complete"</span>)</div><div class="line"></div><div class="line">x_train = np.concatenate(( et_oof_train, rf_oof_train, ada_oof_train, gb_oof_train, svc_oof_train), axis=<span class="number">1</span>)</div><div class="line">x_test = np.concatenate(( et_oof_test, rf_oof_test, ada_oof_test, gb_oof_test, svc_oof_test), axis=<span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="comment"># The second level xgboost classifer</span></div><div class="line"></div><div class="line">gbm = xgb.XGBClassifier(</div><div class="line">    <span class="comment">#learning_rate = 0.02,</span></div><div class="line"> n_estimators= <span class="number">2000</span>,</div><div class="line"> max_depth= <span class="number">4</span>,</div><div class="line"> min_child_weight= <span class="number">2</span>,</div><div class="line"> <span class="comment">#gamma=1,</span></div><div class="line"> gamma=<span class="number">0.9</span>,                        </div><div class="line"> subsample=<span class="number">0.8</span>,</div><div class="line"> colsample_bytree=<span class="number">0.8</span>,</div><div class="line"> objective= <span class="string">'binary:logistic'</span>,</div><div class="line"> nthread= <span class="number">-1</span>,</div><div class="line"> scale_pos_weight=<span class="number">1</span>).fit(x_train, y_train)</div><div class="line">predictions = gbm.predict(x_test)</div></pre></td></tr></table></figure>
 <hr>
 <p>Reference:</p>
 <p>《The Elements of Statistical Learning》<br>《统计学习方法》<br>《Practical Lessons from Predicting Clicks on Ads at Facebook》<br><a href="http://blog.csdn.net/puqutogether/article/details/44593647" target="_blank" rel="external">http://blog.csdn.net/puqutogether/article/details/44593647</a><br><a href="http://blog.csdn.net/suranxu007/article/details/49910323" target="_blank" rel="external">http://blog.csdn.net/suranxu007/article/details/49910323</a><br><a href="http://blog.csdn.net/lilyth_lilyth/article/details/48032119" target="_blank" rel="external">http://blog.csdn.net/lilyth_lilyth/article/details/48032119</a><br><a href="http://www.searchtb.com/2010/12/an-introduction-to-treelink.html" target="_blank" rel="external">http://www.searchtb.com/2010/12/an-introduction-to-treelink.html</a><br><a href="https://www.zhihu.com/question/45487317" target="_blank" rel="external">https://www.zhihu.com/question/45487317</a><br><a href="http://wakemeup.space/?p=187" target="_blank" rel="external">http://wakemeup.space/?p=187</a><br><a href="http://www.jianshu.com/p/005a4e6ac775" target="_blank" rel="external">http://www.jianshu.com/p/005a4e6ac775</a><br><a href="https://www.zhihu.com/question/41354392/answer/98658997" target="_blank" rel="external">https://www.zhihu.com/question/41354392/answer/98658997</a></p>
@@ -448,7 +502,7 @@
     <link href="https://xijunlee.github.io/2017/04/16/%E5%85%B3%E4%BA%8EPython%E8%AF%AD%E6%B3%95%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/"/>
     <id>https://xijunlee.github.io/2017/04/16/关于Python语法的一些笔记/</id>
     <published>2017-04-16T12:56:37.000Z</published>
-    <updated>2017-08-29T14:56:09.000Z</updated>
+    <updated>2017-08-30T13:37:16.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>记录一些Python使用过程中的没见过或者优化的使用方法……</p>
 <h3 id="什么是args和-kwargs？"><a href="#什么是args和-kwargs？" class="headerlink" title="什么是args和*kwargs？"></a>什么是<strong>args和*</strong>kwargs？</h3><p>先来看个例子：</p>
@@ -1104,81 +1158,6 @@
     
     
       <category term="auction" scheme="https://xijunlee.github.io/tags/auction/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>泊松分布与指数分布的重新理解</title>
-    <link href="https://xijunlee.github.io/2016/12/28/2016-12-28-bo-song-fen-bu-yu-zhi-shu-fen-bu-de-zhong-xin-li-jie/"/>
-    <id>https://xijunlee.github.io/2016/12/28/2016-12-28-bo-song-fen-bu-yu-zhi-shu-fen-bu-de-zhong-xin-li-jie/</id>
-    <published>2016-12-28T03:01:20.000Z</published>
-    <updated>2017-06-06T03:03:44.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><p>组会上有人提到了几种概率分布，当时我听到的感觉就是“啊，我每一个都听过，也学过，但是都忘记了细节😭”。于是，会后又跑去wiki了一番，回忆了以前概率课上学的东西。记得当时学概率分布时，有几种分布是真的无法理解（至少在当时的思维下，我感觉是没有理解的），而且做题时常常陷入一种局部思维，把几种分布搞混淆。过了一两年，重新来看以前学过的东西，发现顿时有了更深的理解（我也不知道为什么，可能这就是所谓的“书读百遍其义自见”，但是也不是读一百遍就一定能懂，我觉得当时我把概念背了很熟，但有些还是不能很好地理解。</p>
-<p>所以，现在重新整理下以前似懂非懂或者没注意的概念。</p>
-<hr>
-<a id="more"></a>
-<h3 id="随机变量"><a href="#随机变量" class="headerlink" title="随机变量"></a>随机变量</h3><p>如果说要举出在概率论中出现频次最高的术语，随机变量绝对是位列三甲的。但是一个出现频次这么高的术语，而且也是概率论这门课一上来老师就强调的概念，我对其的理解却是很肤浅的。</p>
-<p>从初等概率论出发。</p>
-<blockquote>
-<p>如果$X$指定概率空间$S$中每一个事件$e$都有一个实数$X(e)$，同时针对每一个实数$r$都有一个事件集合$A_r$与其相对应，其中$A_r={e:X(e)\leq r}$，那么$X$被称为随机变量。 – wikipedia</p>
-</blockquote>
-<p>从上面的定义可以看到，随机变量其实不是一个变量，而是一个函数，是将概率空间$S$中每一个事件$e$映射到一个实数$r$上的函数。如下图所示：</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Zufall.png">
-<h4 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h4><p>随机投掷两个骰子，那么整个样本空间可以由36个元素组成：</p>
-<p>$$S={(i,j)|i=1,…,6;j=1,…,6}$$</p>
-<p>很明显这里可以构成多个随机变量。比如随机变量$X$（投掷后两个骰子的点数之和）或者$Y$（投掷后两个骰子的点数之差），随机变量$X$可以有11个整数值，而随机变量$Y$只有6个。</p>
-<p>$$X(i,j):=i+j,x=2,3,…,12$$</p>
-<p>$$Y(i,j):=|i-j|,y=0,1,2,3,4,5.$$</p>
-<p>从上面的这个例子可以看到，随机变量们将原样本空间中的事件映射到了整数空间。</p>
-<p>下面就正式进入正题来讲下我对泊松分布和指数分布的重新理解。因为其他几个分布还比较简单易懂，而泊松分布和指数分布不好懂而且它们也相似，故单独挑这两个出来。</p>
-<h3 id="泊松分布"><a href="#泊松分布" class="headerlink" title="泊松分布"></a>泊松分布</h3><blockquote>
-<p>Poisson分布，是一种统计与概率论中常见的<strong>离散</strong>概率分布，由法国数学家Siméon-Denis Poisson在1838年发表。其适合于描述<strong>单位时间内随机事件发生的次数</strong>的概率分布。如某一服务设施在一定时间内受到的服务请求的次数，电话交换机接到呼叫的次数、汽车站台的候客人数、机器出现的故障数、自然灾害发生的次数、DNA序列的变异数、放射性原子核的衰变数、激光的光子数分布等等。 –wikipedia</p>
-</blockquote>
-<p>泊松分布的概率质量函数：</p>
-<p>$$P(X=k)=\frac{e^{-\lambda}\lambda^k}{k!}$$</p>
-<p>泊松分布的参数$\lambda$是<strong>单位时间（或单位面积）内随机事件的平均发生率</strong>。</p>
-<blockquote>
-<p>在概率论中，概率质量函数（probability mass function，简写为pmf）是离散随机变量在各特定取值上的概率。概率质量函数和概率密度函数不同之处在于：概率质量函数是对离散随机变量定义的，本身代表该值的概率；概率密度函数是对连续随机变量定义的，本身不是概率，只有对连续随机变量的概率密度函数在某区间内进行积分后才是概率。</p>
-</blockquote>
-<p>泊松分布的累积分布函数:</p>
-<p>$$P(X\leq k)=e^{-\lambda}\sum_{i=0}^{k}\frac{\lambda_i}{i!}$$</p>
-<p>下面分别给出其概率质量函数和累积分布函数的图像：</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Poisson_pmf.png">
-<p>对着上述图像解释，每个点的意义就是单位时间或面积内随机事件发生k次的概率。</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/Poisson_cdf.png">
-<p>对着上述图像解释，每个点的意义就是单位时间或面积内随机事件发生次数小于等于k次的概率。</p>
-<h3 id="指数分布"><a href="#指数分布" class="headerlink" title="指数分布"></a>指数分布</h3><p>泊松分布，我觉得相对来说还好理解一些。而指数分布就有点那么绕了，不过我觉得结合其概率密度函数图和累积分布函数图来看，就好理解一些了。</p>
-<blockquote>
-<p>在概率论和统计学中，指数分配（Exponential distribution）是一种<strong>连续概率分布</strong>。指数分配可以用来表示独立随机事件发生的时间间隔，比如旅客进入机场的时间间隔、打进客服中心电话的时间间隔、中文维基百科新条目出现的时间间隔等等。  –wikipedia</p>
-</blockquote>
-<p>首先注意到，与泊松分布相比，其最大的差异就是指数分布是针对连续随机变量定义，即时间这个变量。时间必须是连续的。而泊松分布是针对随机事件发生次数定义的，发生次数是离散的。粗略地可以认为这两个分布之间有一种“倒数”的关系。</p>
-<p>指数函数的概率密度函数:</p>
-<p>$$p(x;\lambda)=\lambda e^{-\lambda x},x \in [0,+\infty)$$</p>
-<p>其中，$\lambda &gt; 0$是该分布的一个参数，称为率参数(rate parameter)。即每单位时间内发生该事件的次数。读到这里，可能因为这个率参数被搞得一头雾水，容易跟泊松分布混淆。</p>
-<p>指数分布的累积分布函数：</p>
-<p>$$p(x;\lambda)=1- e^{-\lambda x},x \in [0,+\infty)$$</p>
-<p>估计还是一头雾水😓，下面结合指数分布的概率密度曲线和累积分布曲线图，就稍微能理解下了（至少我是这么认为：</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/650px-Exponential_distribution_pdf.png">
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/650px-Exponential_distribution_cdf.png">
-<p>上述第二幅图像正是指数分布的累积分布函数图，对着图来看能更好的理解指数分布。</p>
-<p>1.先看$\lambda=1.0$这条曲线。关注到这条曲线上横坐标为1的点，其意义是1个单位时间该事件发生1次的概率。如果是横坐标为2的点，则其意义便是2个单位时间内该事件发生1次的概率。换个方法说，就是第k次该事件发生后隔2个单位时间发生第k+1次该事件的概率。</p>
-<p>2.再看$\lambda=1.5$这条曲线。与上述描述类似，先关注到这曲线上横坐标为1的点，其意义是1个单位时间内该事件发生1.5次的概率（次数居然是1.5次？？？理论上确实可以这么说，只是不好理解，如果换成整数次就可能更好理解）。如果是横坐标为2的点，其意义便是2个单位时间内该事件发生1.5次的概率。同样地，换个说法，也就是第k次该事件发生后隔2个单位时间该事件发生第k+1.5次的概率。</p>
-<p>我觉得通过上述对图的表述，能进一步加深对指数分布的理解了。</p>
-<hr>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>首先，这两个分布最大的不同是，泊松分布是针对随机事件发生次数的定义的<strong>离散随机变量</strong>，而指数分布是针对随机事件发生的间隔时间定义的<strong>连续随机变量</strong>，这是二者最大的区别。切莫因为参数$\lambda$把二者混淆了。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;写在前面的话&quot;&gt;&lt;a href=&quot;#写在前面的话&quot; class=&quot;headerlink&quot; title=&quot;写在前面的话&quot;&gt;&lt;/a&gt;写在前面的话&lt;/h2&gt;&lt;p&gt;组会上有人提到了几种概率分布，当时我听到的感觉就是“啊，我每一个都听过，也学过，但是都忘记了细节😭”。于是，会后又跑去wiki了一番，回忆了以前概率课上学的东西。记得当时学概率分布时，有几种分布是真的无法理解（至少在当时的思维下，我感觉是没有理解的），而且做题时常常陷入一种局部思维，把几种分布搞混淆。过了一两年，重新来看以前学过的东西，发现顿时有了更深的理解（我也不知道为什么，可能这就是所谓的“书读百遍其义自见”，但是也不是读一百遍就一定能懂，我觉得当时我把概念背了很熟，但有些还是不能很好地理解。&lt;/p&gt;
-&lt;p&gt;所以，现在重新整理下以前似懂非懂或者没注意的概念。&lt;/p&gt;
-&lt;hr&gt;
-    
-    </summary>
-    
-    
-      <category term="probability theory" scheme="https://xijunlee.github.io/tags/probability-theory/"/>
     
   </entry>
   

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-09-09T14:21:15.000Z</updated>
+  <updated>2017-09-16T13:25:10.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xijunlee.github.io/2017/09/09/Dirichlet%E5%88%86%E5%B8%83%E4%B8%8EBeta%E5%88%86%E5%B8%83/"/>
     <id>https://xijunlee.github.io/2017/09/09/Dirichlet分布与Beta分布/</id>
     <published>2017-09-09T13:17:26.000Z</published>
-    <updated>2017-09-09T14:21:15.000Z</updated>
+    <updated>2017-09-16T13:25:10.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近项目中有一部分用到了Dirichlet分布及其采样，这个分布应该是本科阶段的概率论没有教过的吧（也可能是我上课走神😓）。于是，从头学习，整理如下。</p>
 <h2 id="Beta分布"><a href="#Beta分布" class="headerlink" title="Beta分布"></a>Beta分布</h2><p>要说Dirichlet分布之前，先了解下其特殊情况Beta分布。一言以蔽之，Beta分布是二项分布的分布。二项分布中的参数theta在Beta分布中，也被认为是一个随机变量，因此Beta分布是用来描述这个随机变量theta的。下面用知乎上一个通俗的例子来说明（我觉得这个例子讲得相当好）。更严谨的叙述参看<a href="https://mqshen.gitbooks.io/prml/Chapter2/binary/beta_distribute.html" target="_blank" rel="external">PRML中相关章节</a>。</p>
@@ -53,7 +53,7 @@
 <p>详细一点地说，二项分布的分布是Beta分布，而二项分布的推广形式多项分布的分布就是Dirichlet分布。</p>
 <p><strong>结论3</strong>：Dirichlet分布与多项分布是共轭先验的。</p>
 <p>严谨的叙述参考<a href="https://mqshen.gitbooks.io/prml/Chapter2/multinomial/dirichlet_distribute.html" target="_blank" rel="external">PRML相关章节</a>。</p>
-<h2 id="实践：Dirichlet分布的估计"><a href="#实践：Dirichlet分布的估计" class="headerlink" title="实践：Dirichlet分布的估计"></a>实践：Dirichlet分布的估计</h2><p>即在给定多项分布中概率向量p的一些样本后，如何估计Dirichlet分布中的参数alpha。关于这个问题，Microsoft Research的<a href="https://tminka.github.io" target="_blank" rel="external">Tom Minka</a>给出了两种解决办法。无外乎都是极大似然法，两种方法的差异在于第一种方法是采用拟牛顿法来迭代求最大似然估计，而第二种方法则是稍微曲线救国了一下，先定义两个与alpha相关的值，通过先求这两个值从而求得alpha的最大似然估计，其中采用了EM的思想。具体细节可以参考其<a href="https://tminka.github.io/papers/dirichlet/minka-dirichlet.pdf" target="_blank" rel="external">论文</a><br>。</p>
+<h2 id="实践：Dirichlet分布的估计"><a href="#实践：Dirichlet分布的估计" class="headerlink" title="实践：Dirichlet分布的估计"></a>实践：Dirichlet分布的估计</h2><p>即在给定多项分布中概率向量p的一些样本后，如何估计Dirichlet分布中的参数alpha。关于这个问题，Microsoft Research的<a href="https://tminka.github.io" target="_blank" rel="external">Tom Minka</a>给出了两种解决办法。无外乎都是极大似然法，两种方法的差异在于第一种方法是采用拟牛顿法来迭代求最大似然估计，而第二种方法则是稍微曲线救国了一下，先定义两个与alpha相关的值，通过先求这两个值从而求得alpha的最大似然估计，其中采用了EM的思想。具体细节可以参考其<a href="https://tminka.github.io/papers/dirichlet/minka-dirichlet.pdf" target="_blank" rel="external">论文</a>。</p>
 <p>Minka大神同时也实现了其提出的两种方法的<a href="https://github.com/tminka/fastfit" target="_blank" rel="external">Matlab源码</a>，而<a href="http://www.ericsuh.com" target="_blank" rel="external">Eric J. Suh</a>将这些算法又用Python实现了一遍，做成了一个独立的<a href="https://github.com/ericsuh/dirichlet" target="_blank" rel="external">Python Package</a>。我项目中就是直接用的这个，跪谢两位大神Orz!</p>
 <hr>
 <p>Reference:</p>

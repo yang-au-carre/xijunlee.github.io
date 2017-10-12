@@ -7,14 +7,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xijunlee.github.io">
-  <title>Archives: 2017 | A Notebook</title>
+  <title>初步认识列生成算法 | A Notebook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="A Notebook">
-<meta property="og:url" content="https://xijunlee.github.io/archives/2017/page/2/index.html">
+  <meta name="description" content="写在前面最近在做混合整数规划相关的调研，主要是关于列生成算法 (Column Generation Algorithm)，搜了一圈，发现网路上并有很多相关的中文资料，难道这个算法太难了？还是普及度不够高？后来找到了一份相关的不错的英文讲义，从头看下来，也就知道了列生成算法大概是在干什么，但是其中原因还是不得要领。该篇总结了一个列生成算法的例子，主要参考Reference的讲义。
+（最近一直用图片的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初步认识列生成算法">
+<meta property="og:url" content="https://xijunlee.github.io/2017/10/12/初步认识列生成算法/index.html">
 <meta property="og:site_name" content="A Notebook">
+<meta property="og:description" content="写在前面最近在做混合整数规划相关的调研，主要是关于列生成算法 (Column Generation Algorithm)，搜了一圈，发现网路上并有很多相关的中文资料，难道这个算法太难了？还是普及度不够高？后来找到了一份相关的不错的英文讲义，从头看下来，也就知道了列生成算法大概是在干什么，但是其中原因还是不得要领。该篇总结了一个列生成算法的例子，主要参考Reference的讲义。
+（最近一直用图片的">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%872.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%873.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%874.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%875.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%876.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%877.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%878.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%879.png">
+<meta property="og:updated_time" content="2017-10-12T06:58:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A Notebook">
+<meta name="twitter:title" content="初步认识列生成算法">
+<meta name="twitter:description" content="写在前面最近在做混合整数规划相关的调研，主要是关于列生成算法 (Column Generation Algorithm)，搜了一圈，发现网路上并有很多相关的中文资料，难道这个算法太难了？还是普及度不够高？后来找到了一份相关的不错的英文讲义，从头看下来，也就知道了列生成算法大概是在干什么，但是其中原因还是不得要领。该篇总结了一个列生成算法的例子，主要参考Reference的讲义。
+（最近一直用图片的">
+<meta name="twitter:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%872.png">
   
     <link rel="alternative" href="/atom.xml" title="A Notebook" type="application/atom+xml">
   
@@ -185,330 +201,139 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-初步认识列生成算法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      初步认识列生成算法
+    </h1>
+  
+
+        
+        <a href="/2017/10/12/初步认识列生成算法/" class="archive-article-date">
+  	<time datetime="2017-10-12T06:49:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-12</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近在做混合整数规划相关的调研，主要是关于列生成算法 (Column Generation Algorithm)，搜了一圈，发现网路上并有很多相关的中文资料，难道这个算法太难了？还是普及度不够高？后来找到了一份相关的不错的英文讲义，从头看下来，也就知道了列生成算法大概是在干什么，但是其中原因还是不得要领。该篇总结了一个列生成算法的例子，主要参考Reference的讲义。</p>
+<p>（最近一直用图片的形式记录，是因为这些总结都是组会上的slides😅</p>
+<h2 id="Cutting-Stock-Problem-amp-Column-Generation-Algorithm"><a href="#Cutting-Stock-Problem-amp-Column-Generation-Algorithm" class="headerlink" title="Cutting Stock Problem &amp; Column Generation Algorithm"></a>Cutting Stock Problem &amp; Column Generation Algorithm</h2><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%872.png">
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%873.png">
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%874.png">
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%875.png">
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%876.png">
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%877.png">
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%878.png">
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%879.png">
+<hr>
+<p>Reference<br><a href="http://www.or.rwth-aachen.de/research/publications/primer.pdf" target="_blank" rel="external">http://www.or.rwth-aachen.de/research/publications/primer.pdf</a><br><a href="https://optimization.mccormick.northwestern.edu/index.php/Column_generation_algorithms" target="_blank" rel="external">https://optimization.mccormick.northwestern.edu/index.php/Column_generation_algorithms</a><br><a href="http://ocw.nctu.edu.tw/upload/classbfs121109080773803.pdf" target="_blank" rel="external">http://ocw.nctu.edu.tw/upload/classbfs121109080773803.pdf</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/06/自然语言处理基础/" class="archive-article-date">
-  	<time datetime="2017-06-06T03:01:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/06/自然语言处理基础/">自然语言处理基础</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NLP</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Column Generation Algorithm</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://xijunlee.github.io/2017/10/12/初步认识列生成算法/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/03/集成学习总结/" class="archive-article-date">
-  	<time datetime="2017-06-03T08:18:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-03</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/03/集成学习总结/">集成学习总结</a>
-    </h1>
+  
+    <a href="/2017/10/01/极简总结两个矩阵分解/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">极简总结两个矩阵分解</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Ensembling</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/16/关于Python语法的一些笔记/" class="archive-article-date">
-  	<time datetime="2017-04-16T12:56:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/16/关于Python语法的一些笔记/">关于Python语法的一些笔记（持续更新）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/11/CNN/" class="archive-article-date">
-  	<time datetime="2017-04-11T14:45:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/11/CNN/">卷积神经网络为什么叫卷积呢？</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CNN</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-a">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/01/efficiently/" class="archive-article-date">
-  	<time datetime="2017-04-01T05:46:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/01/efficiently/">A Summary of Bit Manipulation (reposted from leetcode discussion)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Bit Manipulation</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/29/sklearn中SVM调参说明及经验总结/" class="archive-article-date">
-  	<time datetime="2017-03-29T12:47:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/29/sklearn中SVM调参说明及经验总结/">sklearn中SVM调参说明及经验总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/13/reddit上直观有趣的SVM解释/" class="archive-article-date">
-  	<time datetime="2017-03-13T05:26:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/13/reddit上直观有趣的SVM解释/">reddit上有趣的SVM图解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/21/GitMemo-Working-with-Git-on-Windows-repost/" class="archive-article-date">
-  	<time datetime="2017-02-21T13:41:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/21/GitMemo-Working-with-Git-on-Windows-repost/">GitMemo: Working with Git on Windows</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2017/">&laquo; Prev</a><a class="page-number" href="/archives/2017/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2017/page/3/">3</a><a class="extend next" rel="next" href="/archives/2017/page/3/">Next &raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -531,8 +356,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

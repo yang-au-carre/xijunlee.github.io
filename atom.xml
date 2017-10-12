@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-10-12T06:58:14.000Z</updated>
+  <updated>2017-10-12T06:59:45.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,10 +20,11 @@
     <link href="https://xijunlee.github.io/2017/10/12/%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86%E5%88%97%E7%94%9F%E6%88%90%E7%AE%97%E6%B3%95/"/>
     <id>https://xijunlee.github.io/2017/10/12/初步认识列生成算法/</id>
     <published>2017-10-12T06:49:05.000Z</published>
-    <updated>2017-10-12T06:58:14.000Z</updated>
+    <updated>2017-10-12T06:59:45.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近在做混合整数规划相关的调研，主要是关于列生成算法 (Column Generation Algorithm)，搜了一圈，发现网路上并有很多相关的中文资料，难道这个算法太难了？还是普及度不够高？后来找到了一份相关的不错的英文讲义，从头看下来，也就知道了列生成算法大概是在干什么，但是其中原因还是不得要领。该篇总结了一个列生成算法的例子，主要参考Reference的讲义。</p>
 <p>（最近一直用图片的形式记录，是因为这些总结都是组会上的slides😅</p>
+<a id="more"></a>
 <h2 id="Cutting-Stock-Problem-amp-Column-Generation-Algorithm"><a href="#Cutting-Stock-Problem-amp-Column-Generation-Algorithm" class="headerlink" title="Cutting Stock Problem &amp; Column Generation Algorithm"></a>Cutting Stock Problem &amp; Column Generation Algorithm</h2><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%872.png">
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%873.png">
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%874.png">
@@ -38,7 +39,8 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;最近在做混合整数规划相关的调研，主要是关于列生成算法 (Column Generation Algorithm)，搜了一圈，
+      &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;最近在做混合整数规划相关的调研，主要是关于列生成算法 (Column Generation Algorithm)，搜了一圈，发现网路上并有很多相关的中文资料，难道这个算法太难了？还是普及度不够高？后来找到了一份相关的不错的英文讲义，从头看下来，也就知道了列生成算法大概是在干什么，但是其中原因还是不得要领。该篇总结了一个列生成算法的例子，主要参考Reference的讲义。&lt;/p&gt;
+&lt;p&gt;（最近一直用图片的形式记录，是因为这些总结都是组会上的slides😅&lt;/p&gt;
     
     </summary>
     

@@ -79,7 +79,7 @@
     <link href="https://xijunlee.github.io/2017/09/09/Dirichlet%E5%88%86%E5%B8%83%E4%B8%8EBeta%E5%88%86%E5%B8%83/"/>
     <id>https://xijunlee.github.io/2017/09/09/Dirichlet分布与Beta分布/</id>
     <published>2017-09-09T13:17:26.000Z</published>
-    <updated>2017-09-16T13:25:10.000Z</updated>
+    <updated>2017-10-16T07:05:49.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近项目中有一部分用到了Dirichlet分布及其采样，这个分布应该是本科阶段的概率论没有教过的吧（也可能是我上课走神😓）。于是，从头学习，整理如下。</p>
 <h2 id="Beta分布"><a href="#Beta分布" class="headerlink" title="Beta分布"></a>Beta分布</h2><p>要说Dirichlet分布之前，先了解下其特殊情况Beta分布。一言以蔽之，Beta分布是二项分布的分布。二项分布中的参数theta在Beta分布中，也被认为是一个随机变量，因此Beta分布是用来描述这个随机变量theta的。下面用知乎上一个通俗的例子来说明（我觉得这个例子讲得相当好）。更严谨的叙述参看<a href="https://mqshen.gitbooks.io/prml/Chapter2/binary/beta_distribute.html" target="_blank" rel="external">PRML中相关章节</a>。</p>
@@ -100,7 +100,7 @@
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/dirichlet/3.png">
 <p>注意到这个曲线变得更加尖，并且平移到了一个右边的位置，表示比平均水平要高。</p>
 <p>一个有趣的事情是，根据这个新的beta分布，我们可以得出他的数学期望为：</p>
-<p>$$\frac{\alpha}{\alpha+\beta}=\frac{82+100}{82+100+219+200}=.303$$</p>
+<p>$$\frac{\alpha}{\alpha+\beta}=\frac{81+100}{81+100+219+200}=.303$$</p>
 <p>这一结果要比直接的估计要小：</p>
 <p>$$\frac{100}{100+200}=.333$$</p>
 <p>你可能已经意识到，我们事实上就是在这个运动员在击球之前可以理解为他已经成功了81次，失败了219次这样一个<strong>先验信息</strong>。</p>

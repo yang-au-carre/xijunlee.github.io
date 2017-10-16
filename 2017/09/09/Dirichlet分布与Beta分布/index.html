@@ -20,7 +20,7 @@ Beta分布要说Dirichlet分布之前，先了解下其特殊情况Beta分布。
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/dirichlet/1.png">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/dirichlet/2.png">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/dirichlet/3.png">
-<meta property="og:updated_time" content="2017-09-16T13:25:10.000Z">
+<meta property="og:updated_time" content="2017-10-16T07:05:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通俗理解Dirichlet分布及其实践">
 <meta name="twitter:description" content="写在前面最近项目中有一部分用到了Dirichlet分布及其采样，这个分布应该是本科阶段的概率论没有教过的吧（也可能是我上课走神😓）。于是，从头学习，整理如下。
@@ -235,7 +235,7 @@ var _hmt = _hmt || [];
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/dirichlet/3.png">
 <p>注意到这个曲线变得更加尖，并且平移到了一个右边的位置，表示比平均水平要高。</p>
 <p>一个有趣的事情是，根据这个新的beta分布，我们可以得出他的数学期望为：</p>
-<p>$$\frac{\alpha}{\alpha+\beta}=\frac{82+100}{82+100+219+200}=.303$$</p>
+<p>$$\frac{\alpha}{\alpha+\beta}=\frac{81+100}{81+100+219+200}=.303$$</p>
 <p>这一结果要比直接的估计要小：</p>
 <p>$$\frac{100}{100+200}=.333$$</p>
 <p>你可能已经意识到，我们事实上就是在这个运动员在击球之前可以理解为他已经成功了81次，失败了219次这样一个<strong>先验信息</strong>。</p>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-10-12T06:59:45.000Z</updated>
+  <updated>2017-10-27T01:40:16.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -16,16 +16,25 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>初步认识列生成算法</title>
+    <title>从单纯型法到列生成算法</title>
     <link href="https://xijunlee.github.io/2017/10/12/%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86%E5%88%97%E7%94%9F%E6%88%90%E7%AE%97%E6%B3%95/"/>
     <id>https://xijunlee.github.io/2017/10/12/初步认识列生成算法/</id>
     <published>2017-10-12T06:49:05.000Z</published>
-    <updated>2017-10-12T06:59:45.000Z</updated>
+    <updated>2017-10-27T01:40:16.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近在做混合整数规划相关的调研，主要是关于列生成算法 (Column Generation Algorithm)，搜了一圈，发现网路上并有很多相关的中文资料，难道这个算法太难了？还是普及度不够高？后来找到了一份相关的不错的英文讲义，从头看下来，也就知道了列生成算法大概是在干什么，但是其中原因还是不得要领。该篇总结了一个列生成算法的例子，主要参考Reference的讲义。</p>
+    <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近在做混合整数规划相关的调研，主要是关于列生成算法 (Column Generation Algorithm)，搜了一圈，发现网路上并有很多相关的中文资料，难道这个算法太难了？还是普及度不够高？后来找到了一份相关的不错的英文讲义，从头看下来，也就知道了列生成算法大概是在干什么，但是其中原因还是不得要领。</p>
+<p>之后，我又认真复习了单纯形法，才明白了列生成算法的初衷和要领，希望本文能把它讲明白。</p>
 <p>（最近一直用图片的形式记录，是因为这些总结都是组会上的slides😅</p>
 <a id="more"></a>
-<h2 id="Cutting-Stock-Problem-amp-Column-Generation-Algorithm"><a href="#Cutting-Stock-Problem-amp-Column-Generation-Algorithm" class="headerlink" title="Cutting Stock Problem &amp; Column Generation Algorithm"></a>Cutting Stock Problem &amp; Column Generation Algorithm</h2><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%872.png">
+<h2 id="单纯型法-Simplex-Method"><a href="#单纯型法-Simplex-Method" class="headerlink" title="单纯型法 Simplex Method"></a>单纯型法 Simplex Method</h2><p>单纯形法是求解线性规划代表性的算法。其基于这么样的一个事实：线性规划是在凸集上的凸优化问题，因此其局部最优解也是全局最优解。而这些局部最优解是会出现在该凸集的顶点上，所以单纯形法的思路就是在这些顶点上移动，一直移动到局部最优的顶点。这些顶点也叫做基本可行解，那么这些移动也就是从一个基本可行解通过基变换(即从众多非基变量中选择一个进基，再从基变量中选择一个使其出基)变成另一个基本可行解，直到不能再使得优化目标更优为止（这里，我们采用线性规划的标准形式，即最小化目标函数）。这个基变换的操作涉及到进基和出基，那么如何选择哪个非基变量进基呢？这里就会涉及到reduced cost rate，即下图中的$c^r_j$。用单纯型法的语言来说就是，通过数次基变换，使得再也找不到一个非基变量使得reduced cost rate小于零，即再也找不到一个非基变量进基使得目标函数减小，这样我们就找到目标函数在其polyhedron上的最优值。单纯形法简单过程如下面这张图所示，但完整的推导请参考<a href="http://personal.vu.nl/l.stougie/Courses/ALP/BTonlyCh12345.pdf" target="_blank" rel="external">Introduction to Linear Optimization</a>的第二、三章相关内容。</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/pic10.png">
+<h2 id="列生成算法"><a href="#列生成算法" class="headerlink" title="列生成算法"></a>列生成算法</h2><p>单纯型法虽然能保证在数次迭代后找到最优解，但是其面对变量很多的线性规划问题就显得很弱了。因为它需要去在众多变量里进行基变换，这种枚举的工作量是可怕的。因此，有人基于单纯型法提出了列生成算法，其思路大概就是先把原问题(master problem)restrict到一个规模更小（即变量数比原问题少的）的restricted master problem，在restricted master problem上用单纯型法求最优解，但是此时求得的最优解只是restricted master problem上的，并不是master problem的最优解。此时，就需要通过一个subproblem去check在那些未被考虑的变量中是否有使得reduced cost rate小于零的呢（其具体的做法就是通过求解一个线性最大化问题，即求未被考虑的变量中的reduced cost rate的最大值）？如果有，那么我就把这个变量的相关系数列加入到restricted master problem的系数矩阵中。经过这样反复的迭代，直到subproblem中的reduced cost rate大于等于零，那么master problem就求到了最优解。更详细的过程参看以下两张图：</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/pic11.png">
+<p>注意到，这里为什么要把restricted master problem转化到其对偶问题呢？我的理解是，虽然通过单纯型法直接求解restricted master problem能得到subproblem中所需的变量$u=c_BA_B^{-1}$，但是restricted master problem也可能是一个变量很多的线性规划。前面也说过了，单纯型法对变量很多的问题是无能为力的。因此通过单纯型法求restricted master problemde的对偶问题（将restricted master problem对偶一下，就能使得变量数大幅减小，因为这些变量转换成了对偶问题中的限制条件了），能更快地得到子问题想要的$u=c_BA_B^{-1}$。</p>
+<p>再次注意到，子问题是一个背包问题，通过求解该问题，我们既可以得到未被restricted master problem考虑到的变量中最大的reduced cost rate，又能得到相应的系数列。</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/pic12.png">
+<h2 id="Cutting-Stock-Problem"><a href="#Cutting-Stock-Problem" class="headerlink" title="Cutting Stock Problem"></a>Cutting Stock Problem</h2><p>下面给出一个列生成法的经典例子，Cutting Stock Problem。</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%872.png">
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%873.png">
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%874.png">
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%875.png">
@@ -34,12 +43,13 @@
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%878.png">
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%879.png">
 <hr>
-<p>Reference<br><a href="http://www.or.rwth-aachen.de/research/publications/primer.pdf" target="_blank" rel="external">http://www.or.rwth-aachen.de/research/publications/primer.pdf</a><br><a href="https://optimization.mccormick.northwestern.edu/index.php/Column_generation_algorithms" target="_blank" rel="external">https://optimization.mccormick.northwestern.edu/index.php/Column_generation_algorithms</a><br><a href="http://ocw.nctu.edu.tw/upload/classbfs121109080773803.pdf" target="_blank" rel="external">http://ocw.nctu.edu.tw/upload/classbfs121109080773803.pdf</a></p>
+<p>Reference<br><a href="http://www.or.rwth-aachen.de/research/publications/primer.pdf" target="_blank" rel="external">http://www.or.rwth-aachen.de/research/publications/primer.pdf</a><br><a href="https://optimization.mccormick.northwestern.edu/index.php/Column_generation_algorithms" target="_blank" rel="external">https://optimization.mccormick.northwestern.edu/index.php/Column_generation_algorithms</a><br><a href="http://ocw.nctu.edu.tw/upload/classbfs121109080773803.pdf" target="_blank" rel="external">http://ocw.nctu.edu.tw/upload/classbfs121109080773803.pdf</a><br><a href="http://personal.vu.nl/l.stougie/Courses/ALP/BTonlyCh12345.pdf" target="_blank" rel="external">http://personal.vu.nl/l.stougie/Courses/ALP/BTonlyCh12345.pdf</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;最近在做混合整数规划相关的调研，主要是关于列生成算法 (Column Generation Algorithm)，搜了一圈，发现网路上并有很多相关的中文资料，难道这个算法太难了？还是普及度不够高？后来找到了一份相关的不错的英文讲义，从头看下来，也就知道了列生成算法大概是在干什么，但是其中原因还是不得要领。该篇总结了一个列生成算法的例子，主要参考Reference的讲义。&lt;/p&gt;
+      &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;最近在做混合整数规划相关的调研，主要是关于列生成算法 (Column Generation Algorithm)，搜了一圈，发现网路上并有很多相关的中文资料，难道这个算法太难了？还是普及度不够高？后来找到了一份相关的不错的英文讲义，从头看下来，也就知道了列生成算法大概是在干什么，但是其中原因还是不得要领。&lt;/p&gt;
+&lt;p&gt;之后，我又认真复习了单纯形法，才明白了列生成算法的初衷和要领，希望本文能把它讲明白。&lt;/p&gt;
 &lt;p&gt;（最近一直用图片的形式记录，是因为这些总结都是组会上的slides😅&lt;/p&gt;
     
     </summary>

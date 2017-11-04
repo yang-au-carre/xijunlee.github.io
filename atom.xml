@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-11-04T15:36:33.000Z</updated>
+  <updated>2017-11-04T15:41:48.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xijunlee.github.io/2017/11/03/Zero/"/>
     <id>https://xijunlee.github.io/2017/11/03/Zero/</id>
     <published>2017-11-03T15:58:38.000Z</published>
-    <updated>2017-11-04T15:36:33.000Z</updated>
+    <updated>2017-11-04T15:41:48.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>就在上个月的19号，AlphaGo Zero横空出世，号称是没有利用人类棋谱作为指导的AI打败了之前完虐李世石的AlphaGo Lee。这一消息着实轰动，19号这一天朋友圈被刷屏（但大部分还是非业内从业者在转发）。上个礼拜又在做调研，被老板抓去讲AlphaGo Zero。组会后，还是被老板认为讲解地不够直白，不能向更大的老板作报告（更大的老板可是没有AI的背景知识的）。我也慢慢意识到一个好的researcher不仅需要很强的理解能力，更需要极强的表达能力。为了锻炼自己的表达能力，这次博文就从非AI从业者的角度讲解这只有史以来最强的狗，这也是我的第一篇科普性质的博文，希望能把它讲明白了。</p>
 <p>（主要的材料还是基于组会上的slides，仍旧是以图片的形式，十分抱歉</p>
@@ -57,7 +57,7 @@
 <p>卷积神经网络已经在很多数据集上被验证比普通的神经网络有更强大的特征抽取能力。所以目前只要涉及到图像的分类或者识别的任务，一般都想到用卷积神经网络来做。那么，下围棋这里怎么用到卷积神经网络呢？首先，我们要认识到下棋其实也是一个分类问题，就是当前给我一个棋局局面$\vec{s}$时，我如何在众多落子位置中选择一个最终要下的落子决策呢？我只需要选择我认为赢棋概率最高的位置下下去就行。这么看来下棋也就是一个多分类问题。既然卷积神经网络能模拟人类识别图像的能力，那么它是不是能用来学习人类棋手下棋的风格呢？对，早就有人这么干过了，Aja Huang在其<a href="https://arxiv.org/abs/1412.6564" target="_blank" rel="external">论文</a>中就实现过了这一过程，他从KGS围棋对战平台中获得了大量的对弈棋谱$\vec{s}$和在该状态$\vec{s}$ 人类棋手所做的落子决策$\vec{a}$，将这些$\vec{s}$和$\vec{a}$扔给一个卷积神经网络去学习。经过学习后，该网络就能模拟人类的风格进行下棋。</p>
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG121.png">
 <p>那么很容易想到就是该神经网络的棋力应当是与它模仿的人类选手的棋力相当的。如果它模仿的人是一个臭棋手，那么它的下棋水平也会很臭，如果模仿的是高手，其水平也会相应提高。在Aja Huang这篇论文中，他们训练的卷积神经网络的棋力大概是业余六段。</p>
-<p>从函数的角度解释卷积神经网络。不论是人还是机器，我们由某个状态$\vec{s}$想到对应的决策$\vec{a}$，都可以看成是一个函数映射$f$，即$f:\vec{s} \mapsto \vec{a}$。这个映射完全是由函数的参数$\theta$决定，其实不管是人类还是机器，学习的过程就是在学这个参数$\theta$。人类的认知经验其实就是抽象的$\theta<em>{human}$，被存储在我们的大脑中。而神经网络通过模仿学习人类的经验参数$\theta </em>{human}$，但这个学习过程存在误差（想想上课时老师教授你的东西，你也不可能全部听进去）。因此神经网络学到的参数只是趋近于$\theta <em>{human}$的，记为$\theta </em>{machine}$。然后$\theta _{machine}$就被保存在非易失性存储器里，供下一次神经网络被调用时使用。</p>
+<p>从函数的角度解释卷积神经网络。不论是人还是机器，我们由某个状态$\vec{s}$想到对应的决策$\vec{a}$，都可以看成是一个函数映射$f$，即$f:\vec{s} \mapsto \vec{a}$。这个映射完全是由函数的参数$\theta$决定，其实不管是人类还是机器，学习的过程就是在学这个参数$\theta$。人类的认知经验其实就是抽象的$\theta$，被存储在我们的大脑中。而神经网络通过模仿学习人类的经验参数$\theta$，但这个学习过程存在误差（想想上课时老师教授你的东西，你也不可能全部听进去）。因此神经网络学到的参数只是趋近于$\theta$的，记为$\theta$。然后$\theta$就被保存在非易失性存储器里，供下一次神经网络被调用时使用。</p>
 <p>注意到，这样一个学习人类风格下棋的神经网络被称为策略网络$p$(Policy Network），在下文将会被反复提及到。</p>
 <h2 id="Alpha-Go"><a href="#Alpha-Go" class="headerlink" title="Alpha Go"></a>Alpha Go</h2><p>To be continue</p>
 <h2 id="AlphaGo-Zero"><a href="#AlphaGo-Zero" class="headerlink" title="AlphaGo Zero"></a>AlphaGo Zero</h2><p>To be continue</p>

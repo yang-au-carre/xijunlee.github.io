@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-11-04T07:14:55.000Z</updated>
+  <updated>2017-11-04T07:27:36.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xijunlee.github.io/2017/11/03/Zero/"/>
     <id>https://xijunlee.github.io/2017/11/03/Zero/</id>
     <published>2017-11-03T15:58:38.000Z</published>
-    <updated>2017-11-04T07:14:55.000Z</updated>
+    <updated>2017-11-04T07:27:36.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>就在上个月的19号，AlphaGo Zero横空出世，号称是没有利用人类棋谱作为指导的AI打败了之前完虐李世石的AlphaGo Lee。这一消息着实轰动，19号这一天朋友圈被刷屏（但大部分还是非业内从业者在转发）。上个礼拜又在做调研，被老板抓去讲AlphaGo Zero。组会后，还是被老板认为讲解地不够直白，不能向更大的老板作报告（更大的老板可是没有AI的背景知识的）。我也慢慢意识到一个好的researcher不仅需要很强的理解能力，更需要极强的表达能力。为了提高自己的表达能力，这次博文就从非AI从业者的角度讲解这只有史以来最强的狗，这也是我的第一篇科普性质的博文，希望能把它讲明白了。</p>
 <p>（主要的材料还是基于组会上的slides，仍旧是以图片的形式，十分抱歉</p>
@@ -30,6 +30,10 @@
 <p>首先，我们来将下围棋这么一个活动形式化。</p>
 <p>围棋是在一张$19\times 19$的网格上面进行落子的活动，那么围棋的每一个状态都可以用一个$19\times 19$的矩阵$\textbf{X}$表示，矩阵中每一个元素表示对应位置的落子情况，1表示该位置被黑子占领，-1表示该位置被白子占领，0表示该位置是无子的。也可以将该矩阵展平成一个361维的向量$\vec{s}$。类似地，一个落子的决策也可以表示成一个361维的向量$\vec{a}$，因为面对每一个状态$\vec{s}$时总共会有361种落子选择（暂且先不考虑已落子或者其他不合法的落子选择，只是简单地认为有361种落子选择。</p>
 <p>下围棋最终的目标是找到一系列的最优决策$\vec{a_1},\vec{a_2},…,\vec{a_n}$，使得我方占领棋盘上最大的地盘（其实我不会下围棋的，围棋规则还是论文调研时稍微看了下，如有不对，请指出）。</p>
+<h2 id="蒙特卡洛树搜索-Monte-Carlo-Tree-Search"><a href="#蒙特卡洛树搜索-Monte-Carlo-Tree-Search" class="headerlink" title="蒙特卡洛树搜索 Monte Carlo Tree Search"></a>蒙特卡洛树搜索 Monte Carlo Tree Search</h2><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG119.png">
+<p>对于现在的任何棋类活动，如何评判我当前下的这一步是不是臭棋，回想一下自己下棋的经历。我们是不是通常会在心里预演我下完这一步棋后，对方会怎么下，然后我再怎么下，然后对方再怎么下……厉害的或者有经验的棋手往往能在心里这么预演好几步，据报道柯洁能这么预演5步棋。设想一下，如果在你下棋时，有一个上帝每次都能告诉你这一步下下去后你赢棋的概率有多大，那么你最后的赢棋概率是不是高很多呢？</p>
+<p>在计算机科学中，这么个上帝的角色可以通过树搜索来做到，说白了就是搜索到棋局结束时通过赢棋频率来判断当时落子决策的优劣，正如下面这个GIF所示：</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/mcts%20in%20go.gif">
 <hr>
 <p>Reference<br><a href="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/</a><br><a href="https://www.zhihu.com/question/39916945/answer/184152952" target="_blank" rel="external">https://www.zhihu.com/question/39916945/answer/184152952</a></p>
 ]]></content>

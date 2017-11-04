@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="A Notebook">
 <meta property="og:description" content="写在前面之前只停留在理论上，没有实际沉下心去调参，实际去做了后，发现调参是个大工程（玄学）。于是这篇来总结一下sklearn中svm的参数说明以及调参经验。方便以后查询和回忆。
 常用核函数1.linear核函数: $$K(x_i,x_j)=x_i^Tx_j$$">
-<meta property="og:updated_time" content="2017-03-29T13:11:26.000Z">
+<meta property="og:updated_time" content="2017-11-04T04:08:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sklearn中SVM调参说明及经验总结">
 <meta name="twitter:description" content="写在前面之前只停留在理论上，没有实际沉下心去调参，实际去做了后，发现调参是个大工程（玄学）。于是这篇来总结一下sklearn中svm的参数说明以及调参经验。方便以后查询和回忆。
@@ -225,10 +225,7 @@ var _hmt = _hmt || [];
 <p>此外，可以明确的两个结论是：<br>结论1：样本数目少于特征维度并不一定会导致过拟合，这可以参考余凯老师的这句评论：<br>“这不是原因啊，呵呵。用RBF kernel, 系统的dimension实际上不超过样本数，与特征维数没有一个trivial的关系。”</p>
 <p>结论2：RBF核应该可以得到与线性核相近的效果（按照理论，RBF核可以模拟线性核），可能好于线性核，也可能差于，但是，不应该相差太多。<br>当然，很多问题中，比如维度过高，或者样本海量的情况下，大家更倾向于用线性核，因为效果相当，但是在速度和模型大小方面，线性核会有更好的表现。</p>
 <hr>
-<p>Reference:</p>
-<p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC" target="_blank" rel="external">http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC</a></p>
-<p><a href="http://blog.csdn.net/lqhbupt/article/details/8610443" target="_blank" rel="external">http://blog.csdn.net/lqhbupt/article/details/8610443</a></p>
-<p><a href="http://blog.csdn.net/lujiandong1/article/details/46386201" target="_blank" rel="external">http://blog.csdn.net/lujiandong1/article/details/46386201</a></p>
+<p>Reference<br><a href="http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC" target="_blank" rel="external">http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC</a><br><a href="http://blog.csdn.net/lqhbupt/article/details/8610443" target="_blank" rel="external">http://blog.csdn.net/lqhbupt/article/details/8610443</a><br><a href="http://blog.csdn.net/lujiandong1/article/details/46386201" target="_blank" rel="external">http://blog.csdn.net/lujiandong1/article/details/46386201</a></p>
 
       
 

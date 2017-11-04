@@ -20,7 +20,7 @@
 正则表达式相关注解（1）数量词的贪婪模式与非贪婪模式
 正则表达式通常用于在文本中查找匹配的字符串。Python里数量词默认是贪婪的（在少数语言里也可能是默认非贪婪），总是尝试匹配尽可能多的字符；非贪婪的则相反，总是尝试匹配尽可能少的字符。例如：正则表达式”ab”如果用于查找”abbbc”，将找到”abbb”。而如果使用非贪婪的数量词”ab?”">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/re_summary/pic1.png">
-<meta property="og:updated_time" content="2017-06-20T14:10:29.000Z">
+<meta property="og:updated_time" content="2017-11-04T04:07:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式总结">
 <meta name="twitter:description" content="写在前面正则表达式笔记，特指python中的re模块。
@@ -251,8 +251,7 @@ var _hmt = _hmt || [];
 <h2 id="Python-Re模块的另一种使用方式"><a href="#Python-Re模块的另一种使用方式" class="headerlink" title="Python Re模块的另一种使用方式"></a>Python Re模块的另一种使用方式</h2><p>在上面我们介绍了7个工具方法，例如match，search等等，不过调用方式都是 re.match，re.search的方式，其实还有另外一种调用方式，可以通过pattern.match，pattern.search调用，这样调用便不用将pattern作为第一个参数传入了，大家想怎样调用皆可。</p>
 <p>函数API列表<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">match(string[, pos[, endpos]]) | re.match(pattern, string[, flags])</div><div class="line">search(string[, pos[, endpos]]) | re.search(pattern, string[, flags])</div><div class="line">split(string[, maxsplit]) | re.split(pattern, string[, maxsplit])</div><div class="line">findall(string[, pos[, endpos]]) | re.findall(pattern, string[, flags])</div><div class="line">finditer(string[, pos[, endpos]]) | re.finditer(pattern, string[, flags])</div><div class="line">sub(repl, string[, count]) | re.sub(pattern, repl, string[, count])</div><div class="line">subn(repl, string[, count]) |re.sub(pattern, repl, string[, count])</div></pre></td></tr></table></figure></p>
 <hr>
-<p>Reference:</p>
-<p><a href="http://cuiqingcai.com/977.html" target="_blank" rel="external">http://cuiqingcai.com/977.html</a><br><a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html" target="_blank" rel="external">http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html</a></p>
+<p>Reference<br><a href="http://cuiqingcai.com/977.html" target="_blank" rel="external">http://cuiqingcai.com/977.html</a><br><a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html" target="_blank" rel="external">http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html</a></p>
 
       
 

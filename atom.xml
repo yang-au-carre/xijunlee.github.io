@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-10-27T01:47:58.000Z</updated>
+  <updated>2017-11-04T04:08:42.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AlphaGo Zero科普之从一无所知到也能吹水</title>
+    <link href="https://xijunlee.github.io/2017/11/03/Zero/"/>
+    <id>https://xijunlee.github.io/2017/11/03/Zero/</id>
+    <published>2017-11-03T15:58:38.000Z</published>
+    <updated>2017-11-04T04:08:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>就在上个月的19号，AlphaGo Zero横空出世，号称是没有利用人类棋谱作为指导的AI打败了之前完虐李世石的AlphaGo Lee。这一消息着实轰动，19号这一天朋友圈被刷屏（但大部分还是非业内从业者在转发）。上个礼拜又在做调研，被老板抓去讲AlphaGo Zero。组会后，还是被老板认为讲解地不够直白，不能向更大的老板作报告（更大的老板可是没有AI的背景知识的）。我也慢慢意识到一个好的researcher不仅需要很强的理解能力，更需要极强的表达能力。为了提高自己的表达能力，这次博文就从非AI从业者的角度讲解这只有史以来最强的狗，这也是我的第一篇科普性质的博文，希望能把它讲明白了。</p>
+<p>（主要的材料还是基于组会上的slides，仍旧是以图片的形式，十分抱歉</p>
+<h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline"></a>Outline</h2><p>下图是本文的一个提纲，大致的流程就是：首先是对问题的定义，这里将下围棋的活动定义成数学上的变换。然后分别介绍了AlphaGo的主要构件(building blocks)：蒙特卡洛树和卷积神经网络。可以正是这二者的有效结合构造出了这个有史以来最强的围棋AI，其实想法相当简单，但是如果要弄清楚原理和优化细节还是水很深的。介绍完这两个主要的组件后，就进入了正题。但在介绍AlphaGo Zero之前，我会先介绍其前身Alpha Go。因为这二者从本质上是一样的，只是前者在网络架构稍许不一样。我觉得先弄懂了Alpha Go之后，再看AlphaGo Zero的优化会有一种理所当然的感觉。</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG118.png">
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;就在上个月的19号，AlphaGo Zero横空出世，号称是没有利用人类棋谱作为指导的AI打败了之前完虐李世石的AlphaG
+    
+    </summary>
+    
+    
+      <category term="Reinforcement Learning" scheme="https://xijunlee.github.io/tags/Reinforcement-Learning/"/>
+    
+  </entry>
   
   <entry>
     <title>从单纯型法到列生成算法</title>
@@ -89,7 +113,7 @@
     <link href="https://xijunlee.github.io/2017/09/09/Dirichlet%E5%88%86%E5%B8%83%E4%B8%8EBeta%E5%88%86%E5%B8%83/"/>
     <id>https://xijunlee.github.io/2017/09/09/Dirichlet分布与Beta分布/</id>
     <published>2017-09-09T13:17:26.000Z</published>
-    <updated>2017-10-16T07:13:51.000Z</updated>
+    <updated>2017-11-04T04:08:06.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近项目中有一部分用到了Dirichlet分布及其采样，这个分布应该是本科阶段的概率论没有教过的吧（也可能是我上课走神😓）。于是，从头学习，整理如下。</p>
 <h2 id="Beta分布"><a href="#Beta分布" class="headerlink" title="Beta分布"></a>Beta分布</h2><p>要说Dirichlet分布之前，先了解下其特殊情况Beta分布。一言以蔽之，Beta分布是二项分布的分布。二项分布中的参数theta在Beta分布中，也被认为是一个随机变量，因此Beta分布是用来描述这个随机变量theta的。下面用知乎上一个通俗的例子来说明（我觉得这个例子讲得相当好）。更严谨的叙述参看<a href="https://mqshen.gitbooks.io/prml/Chapter2/binary/beta_distribute.html" target="_blank" rel="external">PRML中相关章节</a>。</p>
@@ -125,8 +149,7 @@
 <h2 id="实践：Dirichlet分布的估计"><a href="#实践：Dirichlet分布的估计" class="headerlink" title="实践：Dirichlet分布的估计"></a>实践：Dirichlet分布的估计</h2><p>即在给定多项分布中概率向量p的一些样本后，如何估计Dirichlet分布中的参数alpha。关于这个问题，Microsoft Research的<a href="https://tminka.github.io" target="_blank" rel="external">Tom Minka</a>给出了两种解决办法。无外乎都是极大似然法，两种方法的差异在于第一种方法是采用拟牛顿法来迭代求最大似然估计，而第二种方法则是稍微曲线救国了一下，先定义两个与alpha相关的值，通过先求这两个值从而求得alpha的最大似然估计，其中采用了EM的思想。具体细节可以参考其<a href="https://tminka.github.io/papers/dirichlet/minka-dirichlet.pdf" target="_blank" rel="external">论文</a>。</p>
 <p>Minka大神同时也实现了其提出的两种方法的<a href="https://github.com/tminka/fastfit" target="_blank" rel="external">Matlab源码</a>，而<a href="http://www.ericsuh.com" target="_blank" rel="external">Eric J. Suh</a>将这些算法又用Python实现了一遍，做成了一个独立的<a href="https://github.com/ericsuh/dirichlet" target="_blank" rel="external">Python Package</a>。我项目中就是直接用的这个，跪谢两位大神Orz!</p>
 <hr>
-<p>Reference:</p>
-<p><a href="https://github.com/tminka/fastfit" target="_blank" rel="external">https://github.com/tminka/fastfit</a><br><a href="https://tminka.github.io/papers/dirichlet/minka-dirichlet.pdf" target="_blank" rel="external">https://tminka.github.io/papers/dirichlet/minka-dirichlet.pdf</a><br><a href="https://www.zhihu.com/question/30269898" target="_blank" rel="external">https://www.zhihu.com/question/30269898</a><br><a href="https://mqshen.gitbooks.io/prml/Chapter2/multinomial/dirichlet_distribute.html" target="_blank" rel="external">https://mqshen.gitbooks.io/prml/Chapter2/multinomial/dirichlet_distribute.html</a><br><a href="https://mqshen.gitbooks.io/prml/Chapter2/binary/beta_distribute.html" target="_blank" rel="external">https://mqshen.gitbooks.io/prml/Chapter2/binary/beta_distribute.html</a></p>
+<p>Reference<br><a href="https://github.com/tminka/fastfit" target="_blank" rel="external">https://github.com/tminka/fastfit</a><br><a href="https://tminka.github.io/papers/dirichlet/minka-dirichlet.pdf" target="_blank" rel="external">https://tminka.github.io/papers/dirichlet/minka-dirichlet.pdf</a><br><a href="https://www.zhihu.com/question/30269898" target="_blank" rel="external">https://www.zhihu.com/question/30269898</a><br><a href="https://mqshen.gitbooks.io/prml/Chapter2/multinomial/dirichlet_distribute.html" target="_blank" rel="external">https://mqshen.gitbooks.io/prml/Chapter2/multinomial/dirichlet_distribute.html</a><br><a href="https://mqshen.gitbooks.io/prml/Chapter2/binary/beta_distribute.html" target="_blank" rel="external">https://mqshen.gitbooks.io/prml/Chapter2/binary/beta_distribute.html</a></p>
 ]]></content>
     
     <summary type="html">
@@ -260,7 +283,7 @@
     <link href="https://xijunlee.github.io/2017/06/23/CNN%E5%AE%9E%E8%B7%B5%E4%B9%8B%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E4%BD%93%E8%AF%86%E5%88%AB/"/>
     <id>https://xijunlee.github.io/2017/06/23/CNN实践之手写数字体识别/</id>
     <published>2017-06-23T07:46:26.000Z</published>
-    <updated>2017-07-03T02:11:45.000Z</updated>
+    <updated>2017-11-04T04:06:45.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>之前一直都是只看理论，没有动手，现在终于把理论付诸实践了。话不多说，这篇博文记录一下我在kaggle上实践过程。</p>
 <h2 id="任务描述"><a href="#任务描述" class="headerlink" title="任务描述"></a>任务描述</h2><p>MNIST (“Modified National Institute of Standards and Technology”) is the de facto “hello world” dataset of computer vision. Since its release in 1999, this classic dataset of handwritten images has served as the basis for benchmarking classification algorithms. As new machine learning techniques emerge, MNIST remains a reliable resource for researchers and learners alike.</p>
@@ -319,7 +342,7 @@
     <link href="https://xijunlee.github.io/2017/06/20/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%80%BB%E7%BB%93/"/>
     <id>https://xijunlee.github.io/2017/06/20/正则表达式总结/</id>
     <published>2017-06-20T13:47:48.000Z</published>
-    <updated>2017-06-20T14:10:29.000Z</updated>
+    <updated>2017-11-04T04:07:07.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>正则表达式笔记，特指python中的re模块。</p>
 <h2 id="正则表达式相关注解"><a href="#正则表达式相关注解" class="headerlink" title="正则表达式相关注解"></a>正则表达式相关注解</h2><p>（1）数量词的贪婪模式与非贪婪模式</p>
@@ -355,8 +378,7 @@
 <h2 id="Python-Re模块的另一种使用方式"><a href="#Python-Re模块的另一种使用方式" class="headerlink" title="Python Re模块的另一种使用方式"></a>Python Re模块的另一种使用方式</h2><p>在上面我们介绍了7个工具方法，例如match，search等等，不过调用方式都是 re.match，re.search的方式，其实还有另外一种调用方式，可以通过pattern.match，pattern.search调用，这样调用便不用将pattern作为第一个参数传入了，大家想怎样调用皆可。</p>
 <p>函数API列表<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">match(string[, pos[, endpos]]) | re.match(pattern, string[, flags])</div><div class="line">search(string[, pos[, endpos]]) | re.search(pattern, string[, flags])</div><div class="line">split(string[, maxsplit]) | re.split(pattern, string[, maxsplit])</div><div class="line">findall(string[, pos[, endpos]]) | re.findall(pattern, string[, flags])</div><div class="line">finditer(string[, pos[, endpos]]) | re.finditer(pattern, string[, flags])</div><div class="line">sub(repl, string[, count]) | re.sub(pattern, repl, string[, count])</div><div class="line">subn(repl, string[, count]) |re.sub(pattern, repl, string[, count])</div></pre></td></tr></table></figure></p>
 <hr>
-<p>Reference:</p>
-<p><a href="http://cuiqingcai.com/977.html" target="_blank" rel="external">http://cuiqingcai.com/977.html</a><br><a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html" target="_blank" rel="external">http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html</a></p>
+<p>Reference<br><a href="http://cuiqingcai.com/977.html" target="_blank" rel="external">http://cuiqingcai.com/977.html</a><br><a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html" target="_blank" rel="external">http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html</a></p>
 ]]></content>
     
     <summary type="html">
@@ -378,7 +400,7 @@
     <link href="https://xijunlee.github.io/2017/06/06/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E5%9F%BA%E7%A1%80/"/>
     <id>https://xijunlee.github.io/2017/06/06/自然语言处理基础/</id>
     <published>2017-06-06T03:01:32.000Z</published>
-    <updated>2017-06-06T07:26:18.000Z</updated>
+    <updated>2017-11-04T04:07:20.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>自然语言处理中基本和经典模型的总结</p>
 <h2 id="TF-IDF"><a href="#TF-IDF" class="headerlink" title="TF-IDF"></a>TF-IDF</h2><p>对于一篇文档，TF-IDF（词频-逆文档频率）能为其中的词赋予权重，它度量的是词语与文本的相关性，而非简单的词频。因此TF-IDF能用来<strong>判断文章主题</strong>。对于一个文本而言，想要知道其主题或是想知道这篇文档是关于哪个方面的，那么最容易想到的方法就是提取关键字了。TF-IDF可以认为是分为两步来做这个事情：</p>
@@ -426,8 +448,7 @@
 <p>（2）解决了“词汇鸿沟”问题：可以通过计算向量之间的距离（欧式距离、余弦距离等）来体现词与词的相似性。</p>
 <p>这样的词向量称为词嵌入（word-embedding），那么如何训练这样的词向量呢？我们可以通过训练语言模型的同时，得到词向量。</p>
 <hr>
-<p>Reference:</p>
-<p><a href="http://www.ruanyifeng.com/blog/2013/03/tf-idf.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2013/03/tf-idf.html</a><br><a href="http://www.ruanyifeng.com/blog/2013/03/cosine_similarity.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2013/03/cosine_similarity.html</a><br><a href="https://deeplearning4j.org/cn/bagofwords-tf-idf" target="_blank" rel="external">https://deeplearning4j.org/cn/bagofwords-tf-idf</a><br><a href="http://www.nustm.cn/blog/index.php/archives/842" target="_blank" rel="external">http://www.nustm.cn/blog/index.php/archives/842</a></p>
+<p>Reference<br><a href="http://www.ruanyifeng.com/blog/2013/03/tf-idf.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2013/03/tf-idf.html</a><br><a href="http://www.ruanyifeng.com/blog/2013/03/cosine_similarity.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2013/03/cosine_similarity.html</a><br><a href="https://deeplearning4j.org/cn/bagofwords-tf-idf" target="_blank" rel="external">https://deeplearning4j.org/cn/bagofwords-tf-idf</a><br><a href="http://www.nustm.cn/blog/index.php/archives/842" target="_blank" rel="external">http://www.nustm.cn/blog/index.php/archives/842</a></p>
 ]]></content>
     
     <summary type="html">
@@ -447,7 +468,7 @@
     <link href="https://xijunlee.github.io/2017/06/03/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
     <id>https://xijunlee.github.io/2017/06/03/集成学习总结/</id>
     <published>2017-06-03T08:18:51.000Z</published>
-    <updated>2017-09-09T14:15:53.000Z</updated>
+    <updated>2017-11-04T04:07:23.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>看了不少集成学习的资料，很多算法都有相似之处，看了之后没有进行比较和整理，太容易忘记了，所以这篇来做个笔记。</p>
 <p>集成学习，（就我目前所学习到的）主要可以分为三大类，Boosting, Bagging, Stacking。Boosting的代表有AdaBoost, gbdt, xgboost。而Bagging的代表则是随机森林 (Random Forest)。Stacking 的话，好像还没有著名的代表，可以视其为一种集成的套路。</p>
@@ -552,8 +573,7 @@
 <p>Log on 2017-6-22: Stacking了两次之后，得分从单次stacking的0.77990上升到了0.79904</p>
 <p>Log on 2017-6-22: Stacking了三次之后，得分从两次stacking的0.77990降低到了0.78469。所以，Stacking并不是越多层越好，反而会变坏。</p>
 <hr>
-<p>Reference:</p>
-<p>《The Elements of Statistical Learning》<br>《统计学习方法》<br>《Practical Lessons from Predicting Clicks on Ads at Facebook》<br><a href="http://blog.csdn.net/puqutogether/article/details/44593647" target="_blank" rel="external">http://blog.csdn.net/puqutogether/article/details/44593647</a><br><a href="http://blog.csdn.net/suranxu007/article/details/49910323" target="_blank" rel="external">http://blog.csdn.net/suranxu007/article/details/49910323</a><br><a href="http://blog.csdn.net/lilyth_lilyth/article/details/48032119" target="_blank" rel="external">http://blog.csdn.net/lilyth_lilyth/article/details/48032119</a><br><a href="http://www.searchtb.com/2010/12/an-introduction-to-treelink.html" target="_blank" rel="external">http://www.searchtb.com/2010/12/an-introduction-to-treelink.html</a><br><a href="https://www.zhihu.com/question/45487317" target="_blank" rel="external">https://www.zhihu.com/question/45487317</a><br><a href="http://wakemeup.space/?p=187" target="_blank" rel="external">http://wakemeup.space/?p=187</a><br><a href="http://www.jianshu.com/p/005a4e6ac775" target="_blank" rel="external">http://www.jianshu.com/p/005a4e6ac775</a><br><a href="https://www.zhihu.com/question/41354392/answer/98658997" target="_blank" rel="external">https://www.zhihu.com/question/41354392/answer/98658997</a></p>
+<p>Reference<br>《The Elements of Statistical Learning》<br>《统计学习方法》<br>《Practical Lessons from Predicting Clicks on Ads at Facebook》<br><a href="http://blog.csdn.net/puqutogether/article/details/44593647" target="_blank" rel="external">http://blog.csdn.net/puqutogether/article/details/44593647</a><br><a href="http://blog.csdn.net/suranxu007/article/details/49910323" target="_blank" rel="external">http://blog.csdn.net/suranxu007/article/details/49910323</a><br><a href="http://blog.csdn.net/lilyth_lilyth/article/details/48032119" target="_blank" rel="external">http://blog.csdn.net/lilyth_lilyth/article/details/48032119</a><br><a href="http://www.searchtb.com/2010/12/an-introduction-to-treelink.html" target="_blank" rel="external">http://www.searchtb.com/2010/12/an-introduction-to-treelink.html</a><br><a href="https://www.zhihu.com/question/45487317" target="_blank" rel="external">https://www.zhihu.com/question/45487317</a><br><a href="http://wakemeup.space/?p=187" target="_blank" rel="external">http://wakemeup.space/?p=187</a><br><a href="http://www.jianshu.com/p/005a4e6ac775" target="_blank" rel="external">http://www.jianshu.com/p/005a4e6ac775</a><br><a href="https://www.zhihu.com/question/41354392/answer/98658997" target="_blank" rel="external">https://www.zhihu.com/question/41354392/answer/98658997</a></p>
 ]]></content>
     
     <summary type="html">
@@ -573,7 +593,7 @@
     <link href="https://xijunlee.github.io/2017/04/16/%E5%85%B3%E4%BA%8EPython%E8%AF%AD%E6%B3%95%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/"/>
     <id>https://xijunlee.github.io/2017/04/16/关于Python语法的一些笔记/</id>
     <published>2017-04-16T12:56:37.000Z</published>
-    <updated>2017-08-30T13:37:16.000Z</updated>
+    <updated>2017-11-04T04:06:58.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>记录一些Python使用过程中的没见过或者优化的使用方法……</p>
 <h3 id="什么是args和-kwargs？"><a href="#什么是args和-kwargs？" class="headerlink" title="什么是args和*kwargs？"></a>什么是<strong>args和*</strong>kwargs？</h3><p>先来看个例子：</p>
@@ -627,8 +647,7 @@
 <h3 id="if-else语句的简单赋值"><a href="#if-else语句的简单赋值" class="headerlink" title="if-else语句的简单赋值"></a>if-else语句的简单赋值</h3><p>示例:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a = <span class="number">20</span> <span class="keyword">if</span> b == <span class="number">2</span> <span class="keyword">else</span> <span class="number">3</span> <span class="comment">#如果b==2,则a被赋值为20，否则被赋值为3</span></div></pre></td></tr></table></figure></p>
 <p>很多其他语言，如C++, Java都有这种赋值语句:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a = b==<span class="number">2</span>? <span class="number">20</span>:<span class="number">3</span></div></pre></td></tr></table></figure></p>
 <hr>
-<p>Reference:</p>
-<p><a href="http://www.cnblogs.com/fengmk2/archive/2008/04/21/1163766.html" target="_blank" rel="external">http://www.cnblogs.com/fengmk2/archive/2008/04/21/1163766.html</a><br><a href="http://igorsobreira.com/2010/09/16/difference-between-one-underline-and-two-underlines-in-python.html" target="_blank" rel="external">http://igorsobreira.com/2010/09/16/difference-between-one-underline-and-two-underlines-in-python.html</a></p>
+<p>Reference<br><a href="http://www.cnblogs.com/fengmk2/archive/2008/04/21/1163766.html" target="_blank" rel="external">http://www.cnblogs.com/fengmk2/archive/2008/04/21/1163766.html</a><br><a href="http://igorsobreira.com/2010/09/16/difference-between-one-underline-and-two-underlines-in-python.html" target="_blank" rel="external">http://igorsobreira.com/2010/09/16/difference-between-one-underline-and-two-underlines-in-python.html</a></p>
 ]]></content>
     
     <summary type="html">
@@ -649,7 +668,7 @@
     <link href="https://xijunlee.github.io/2017/04/11/CNN/"/>
     <id>https://xijunlee.github.io/2017/04/11/CNN/</id>
     <published>2017-04-11T14:45:16.000Z</published>
-    <updated>2017-04-11T15:30:25.000Z</updated>
+    <updated>2017-11-04T04:08:03.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>之前读过好一些关于卷积神经网络的入门文章，看完了之后还是觉得似懂非懂。特别是<strong>卷积网络为什么叫卷积</strong>呢？上次吃饭居然还跟小红他们就这个问题聊了一下。今天碰巧刷知乎刷到<a href="https://zhuanlan.zhihu.com/p/25249694" target="_blank" rel="external">这篇文章</a>，作者对CNN做了非常生动的解释，是我目前看到的关于CNN最好的中文解释。当然了，作者还就卷积网络中卷积层对图像特征的提取和池化层的降维做了很好的解释。文章最后又对一个已经学习好的CNN中的卷积层和全连接层进行了可视化，这让我这样的小白能非常直观地看出CNN到底最后学出了什么特征。这篇博文整理了原文中关于解释<strong>卷积神经网络为什么叫卷积</strong>的描述，更多内容可以直接去<a href="https://zhuanlan.zhihu.com/p/25249694" target="_blank" rel="external">原文</a>中。</p>
 <h2 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h2><p>我们在 2 维上说话。有两个$\mathcal{R}^2\rightarrow \mathcal{R}$的函数 f(x, y) 和 g(x, y) 。所谓 f 和 g 的卷积就是一个新的 $\mathcal{R}^2\rightarrow \mathcal{R}$的函数 c(x, y) 。通过下式得到：</p>
@@ -697,11 +716,7 @@
 <p>通过把这些组件进行组合就得到了一个 CNN 。它直接以原始图像为输入，以最终的回归或分类问题的结论为输出，内部兼有滤波图像处理和函数拟合，所有参数放在一起训练。这就是卷积神经网络。</p>
 <p>以上提供了一个理解 CNN 的视角。CNN 的发明并非沿着此思路。像 NN 本身一样，CNN 的思想来源于对生物视觉神经系统的研究。</p>
 <hr>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h2><p>［1］<a href="https://link.zhihu.com/?target=https%3A//book.douban.com/subject/26732914/" target="_blank" rel="external">《最优化导论》（美）Edwin K. P. Chong（美） Stanislaw H. Zak</a></p>
-<p>［2］<a href="https://link.zhihu.com/?target=https%3A//book.douban.com/subject/1115600/" target="_blank" rel="external">《神经网络设计》（美）Martin T. Hagan（美）Howard B. Demuth（美）Mark Beale</a></p>
-<p>［3］<a href="https://link.zhihu.com/?target=https%3A//book.douban.com/subject/1102235/" target="_blank" rel="external">《机器学习》（美）Tom Mitchell</a></p>
-<p>［4］<a href="https://link.zhihu.com/?target=https%3A//book.douban.com/subject/2068931/" target="_blank" rel="external">《神经计算原理》（美）Fredric M. Han（美）Ivica Kostanic</a></p>
-<p>［5］<a href="https://link.zhihu.com/?target=https%3A//book.douban.com/subject/3587732/" target="_blank" rel="external">《人工智能——复杂问题求解的结构和策略》（美）George F. Luger</a></p>
+<p>Reference<br>［1］<a href="https://link.zhihu.com/?target=https%3A//book.douban.com/subject/26732914/" target="_blank" rel="external">《最优化导论》（美）Edwin K. P. Chong（美） Stanislaw H. Zak</a><br>［2］<a href="https://link.zhihu.com/?target=https%3A//book.douban.com/subject/1115600/" target="_blank" rel="external">《神经网络设计》（美）Martin T. Hagan（美）Howard B. Demuth（美）Mark Beale</a><br>［3］<a href="https://link.zhihu.com/?target=https%3A//book.douban.com/subject/1102235/" target="_blank" rel="external">《机器学习》（美）Tom Mitchell</a><br>［4］<a href="https://link.zhihu.com/?target=https%3A//book.douban.com/subject/2068931/" target="_blank" rel="external">《神经计算原理》（美）Fredric M. Han（美）Ivica Kostanic</a><br>［5］<a href="https://link.zhihu.com/?target=https%3A//book.douban.com/subject/3587732/" target="_blank" rel="external">《人工智能——复杂问题求解的结构和策略》（美）George F. Luger</a></p>
 ]]></content>
     
     <summary type="html">
@@ -721,7 +736,7 @@
     <link href="https://xijunlee.github.io/2017/04/01/efficiently/"/>
     <id>https://xijunlee.github.io/2017/04/01/efficiently/</id>
     <published>2017-04-01T05:46:11.000Z</published>
-    <updated>2017-09-09T14:24:32.000Z</updated>
+    <updated>2017-11-04T04:08:11.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="WIKI"><a href="#WIKI" class="headerlink" title="WIKI"></a>WIKI</h2><p>Bit manipulation is the act of algorithmically manipulating bits or other pieces of data shorter than a word. Computer programming tasks that require bit manipulation include low-level device control, error detection and correction algorithms, data compression, encryption algorithms, and optimization. For most other tasks, modern programming languages allow the programmer to work directly with abstractions instead of bits that represent those abstractions. Source code that does bit manipulation makes use of the bitwise operations: AND, OR, XOR, NOT, and bit shifts.</p>
 <p>Bit manipulation, in some cases, can obviate or reduce the need to loop over a data structure and can give many-fold speed ups, as bit manipulations are processed in parallel, but the code can become more difficult to write and maintain.</p>
@@ -766,8 +781,7 @@
 <h4 id="NUMBER-OF-1-BITS"><a href="#NUMBER-OF-1-BITS" class="headerlink" title="NUMBER OF 1 BITS"></a>NUMBER OF 1 BITS</h4><p>Write a function that takes an unsigned integer and returns the number of ’1’ bits it has (also known as the Hamming weight).</p>
 <p>Solution<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">uint32_t</span> n)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">	<span class="keyword">while</span>(n) &#123;</div><div class="line">		n = n&amp;(n<span class="number">-1</span>);</div><div class="line">		count++;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> count;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">uint32_t</span> n)</span> </span>&#123;</div><div class="line">    ulong mask = <span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; ++i)&#123; <span class="comment">//31 will not do, delicate;</span></div><div class="line">        <span class="keyword">if</span>(mask &amp; n) count++;</div><div class="line">        mask &lt;&lt;= <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> count;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <hr>
-<p>Reference:</p>
-<p><a href="https://discuss.leetcode.com/topic/50315/a-summary-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently" target="_blank" rel="external">https://discuss.leetcode.com/topic/50315/a-summary-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently</a></p>
+<p>Reference<br><a href="https://discuss.leetcode.com/topic/50315/a-summary-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently" target="_blank" rel="external">https://discuss.leetcode.com/topic/50315/a-summary-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently</a></p>
 ]]></content>
     
     <summary type="html">
@@ -787,7 +801,7 @@
     <link href="https://xijunlee.github.io/2017/03/29/sklearn%E4%B8%ADSVM%E8%B0%83%E5%8F%82%E8%AF%B4%E6%98%8E%E5%8F%8A%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/"/>
     <id>https://xijunlee.github.io/2017/03/29/sklearn中SVM调参说明及经验总结/</id>
     <published>2017-03-29T12:47:23.000Z</published>
-    <updated>2017-03-29T13:11:26.000Z</updated>
+    <updated>2017-11-04T04:08:29.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>之前只停留在理论上，没有实际沉下心去调参，实际去做了后，发现调参是个大工程（玄学）。于是这篇来总结一下<code>sklearn</code>中svm的参数说明以及调参经验。方便以后查询和回忆。</p>
 <h2 id="常用核函数"><a href="#常用核函数" class="headerlink" title="常用核函数"></a>常用核函数</h2><p>1.linear核函数: $$K(x_i,x_j)=x_i^Tx_j$$<br><a id="more"></a><br>2.polynomial核函数: $$K(x_i,x_j)=(\gamma x_i^Tx_j + r)^d, d&gt;1$$<br>3.RBF核函数（高斯核函数）: $$K(x_i,x_j)=exp(-\gamma ||x_i-x_j||^2),\gamma&gt;0$$<br>4.sigmoid核函数: $$K(x_i,x_j)=tanh(\gamma x_i^Tx_j + r ), \gamma&gt;0, r&lt;0$$</p>
@@ -802,10 +816,7 @@
 <p>此外，可以明确的两个结论是：<br>结论1：样本数目少于特征维度并不一定会导致过拟合，这可以参考余凯老师的这句评论：<br>“这不是原因啊，呵呵。用RBF kernel, 系统的dimension实际上不超过样本数，与特征维数没有一个trivial的关系。”</p>
 <p>结论2：RBF核应该可以得到与线性核相近的效果（按照理论，RBF核可以模拟线性核），可能好于线性核，也可能差于，但是，不应该相差太多。<br>当然，很多问题中，比如维度过高，或者样本海量的情况下，大家更倾向于用线性核，因为效果相当，但是在速度和模型大小方面，线性核会有更好的表现。</p>
 <hr>
-<p>Reference:</p>
-<p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC" target="_blank" rel="external">http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC</a></p>
-<p><a href="http://blog.csdn.net/lqhbupt/article/details/8610443" target="_blank" rel="external">http://blog.csdn.net/lqhbupt/article/details/8610443</a></p>
-<p><a href="http://blog.csdn.net/lujiandong1/article/details/46386201" target="_blank" rel="external">http://blog.csdn.net/lujiandong1/article/details/46386201</a></p>
+<p>Reference<br><a href="http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC" target="_blank" rel="external">http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC</a><br><a href="http://blog.csdn.net/lqhbupt/article/details/8610443" target="_blank" rel="external">http://blog.csdn.net/lqhbupt/article/details/8610443</a><br><a href="http://blog.csdn.net/lujiandong1/article/details/46386201" target="_blank" rel="external">http://blog.csdn.net/lujiandong1/article/details/46386201</a></p>
 ]]></content>
     
     <summary type="html">
@@ -1086,69 +1097,6 @@
     
     
       <category term="Linux" scheme="https://xijunlee.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2016年度总结</title>
-    <link href="https://xijunlee.github.io/2017/01/24/2016%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/"/>
-    <id>https://xijunlee.github.io/2017/01/24/2016年度总结/</id>
-    <published>2017-01-24T08:06:28.000Z</published>
-    <updated>2017-09-09T14:23:08.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>本来该篇应该在<code>2017-1-1</code>写出来的，但那时和高中老友在杭州玩😂，回上海后也忘了这茬，所以拖到了现在。虽然现在已经公历<code>2017-1-24</code>，但是标题还是取成“2016年度总结”，因为从农历看的话，现在还没有到2017嘛。之前还从未写过年度总结，所以这篇2016年度总结顺带也总结一下2015。之所以想写年度总结，其实也是受到师兄师姐的启发，梳理和盘点一下，发现一年下来还真是没做什么事情，以此激励自己明年好好把握时间。</p>
-<a id="more"></a>
-<h2 id="2015：转变"><a href="#2015：转变" class="headerlink" title="2015：转变"></a>2015：转变</h2><p>2015年，可以用“转变”二字来形容。一是从本科顺利毕业了，开始了研究生生涯；二是从广州来到了上海；三是从数学专业转到了软件工程专业。换学校，换专业，整个人的思维也跟着变了。</p>
-<p>2015上半年，得知自己保研后，就有一种茫然感，觉着人生暂时地失去了一个清晰的追逐目标。所以大四上学期一直到开始做毕设之前，没事就一个人跑到图书馆里看闲书或者在广州城里闲逛拍照。（当时我居然没出去旅游？突然想起来了，当时大家的时间都不太同步，就我比较闲）大四下学期开始后，就和大家一直在打LOL。LOL打的不少，但是发现自己确实没天赋，依旧那么菜。然后，就按部就班的做毕设，拍毕业照，毕业。没有大家那种离开校园的特别伤感。一是觉得自己还要待在校园三年时光，二是觉得现在交通这么发达，想见面还是挺容易的，关键是你有心。</p>
-<p>2015年下半年：毕业到研究生正式入学之间还有将近一个半月假期，没有响应导师的搬砖号召，在家里瘫了一个多月。接着九月份就开学了，来到了上海，一座我很有好感的城市，虽然父辈们总是黑它排外等。在交大，开学头一个月倒是一门课都没有，留给学生和老师处理各种杂事，对，这个月就是各种杂事，我也不想絮叨了，主要说两个事。首先，导师之前分配了一个科研任务，要在十月底交paper，大四倒是写了个初稿，但集群上的大实验还没有做，但那时候我连<code>Linux</code>都没用过😓。其次，上了一门坑爹课——<code>高级软件工程</code>，在这门课上接了一个坑爹的项目<code>Gogou</code>（这个项目就是开发一个同时支持<code>Android</code>和<code>iOS</code>的代购平台，我主要负责<code>iOS</code>前端设计）。这两个事情可谓是我研一一年的主旋律。结果是，前者，paper被拒了一年（其实也就是被拒稿三次）。后者，这个项目写了我整整一年时间。不过，忙归忙，坑归坑，我的coding能力和团队协作能力确实有很大提高，毕竟本科没写过这么大项目，掌握了一些程序猿必须掌握的工具（<code>github</code>,<code>Linux Shell</code>）以及一些<code>iOS</code>开发知识。其次，英语水平也有了一定的提高，一年多下来读了不少paper。</p>
-<p>其实这一年，我的“转变”很是被动，主要是因为大四那段时间太过放松，没有及时做好规划。导致在新环境中有点措手不及。所以，开始慢慢培养自己未雨绸缪的意识。首先说说城市的转变。从广州到上海，一线城市在很多方面都具有工业时代的标准化气息，二者有很多地方极其相似，上海比广州可能更加现代化一些，不多说了。但是，在我眼中，两个城市最大的差别就是生活节奏了。广州，虽然也是一线大城市，但是其骨子里有一种享受生活的慢节奏，从其早茶文化中可见一斑。而上海，节奏明显快了很多。虽然，还没上班，但是在校园里，在地铁站中，总是感受到大家匆忙的脚步。其余的方面，还有待我慢慢体会。再说说思维的转变，从理科思维转变到工科思维。记得大一第一次上数学分析课时，刘老师就讲过：“我们数学系的学生，学四年下来，学会的最有价值的就是数学思维，这个东西可以应用到生活中各个方面去，所以我们数学系的学生活跃在各行各业……” 当时，我就不以为然，尤其是数学思维这个东西，我是一点都不信的。但是当我在数学系浸淫了四年，从数学系转到了软件工程这个工科专业后，我从与工科科班出身的人的共事中发现：人和人的思维方式确实差别很大。比如去解决一个从未遇到的问题时，以前的我（理科思维）：<code>我会从头开始去了解这个问题</code>-&gt;<code>查找类似问题的解决方式</code>-&gt;<code>比较和学习所有的方式方法</code>-&gt;<code>着手解决问题本身</code>-&gt;<code>done</code>。而现在的我（工科思维）:<code>了解问题本身</code>-&gt;<code>找到一种解决类似问题的方法</code>-&gt;<code>学习并掌握这种方法，应用它来解决问题</code>-&gt;<code>如果问题没有得到很好的解决，再回到第二步，寻找其他的方法</code>-&gt;<code>不断修正方法，直到解决问题</code>。</p>
-<h2 id="2016：变强"><a href="#2016：变强" class="headerlink" title="2016：变强"></a>2016：变强</h2><p>虽然说是顺带总结一下2015，但是转变的过程让我思考了很多，所以“顺带”写得有点多了。经过一学期的转变和适应后，科研和项目也开始轻车熟路，做得越来越得心应手了。我由衷地觉得在适应了环境后，做很多事情都更有效率了，因此我给2016这一年总结为“变强”。下面就以流水账的形式盘点一下我的2016。</p>
-<h3 id="日常"><a href="#日常" class="headerlink" title="日常"></a>日常</h3><p>1月，研一上学期学期末。高级软件工程课程答辩，谢沈阿姨手下留情，让我们项目组顺利通过。这门课程占据了我整个研一上学期60%可能还多的时间，从一个从未接触过<code>iOS</code>开发的小白到能写出一个还像样子的APP（尽管离投入市场有很大距离），我觉着我还是学到不少东西。虽说只是门硕士课程，但是软件开发的基本流程大概是走了一遍，最大收获就是让我明白：我以后肯定不会从事软件开发的工作（其实是不想做纯coding这种重复劳动，而是想做偏分析和市场的数据挖掘工作）。原本，我以为课程项目的代码可以直接当作最后项目的代码交给甲方了事，但是导师跟我们说不行，需要两套代码分开。但是，当时我工程经验不足，很多代码写的可移植性太差。于是，我们相当于需要再从头开始写，还好已经有经验了，但是很多都是重复性工作，让我没有了先前学习的快感。</p>
-<p>2月，回家。照常的聚会、吃饭、走亲戚、过年，在家稍微看了下鸟叔的Linux入门书籍，同时还在继续写<code>Gogou</code>的项目代码。</p>
-<p>3月，返校，开始研一下学期。照例，开学头一个月都是用来处理选课等杂事。继续写项目代码。</p>
-<p>4月，开始应付各种课程。第一次参加志愿者活动，和室友一起去为上海半程国际马拉松发海绵和冰块。哦对了，一个很重要的变化是从这个月开始了规律的健身。（研一上学期忙的飞起，连打球的次数都屈指可数。虽然这个学期仍然要写项目代码，但很多东西都轻车熟路，就没那么大压力了。在Coach Hong的带领下，开始了健身事业。）继续写项目代码。</p>
-<p>5月，论文第二次被拒稿，根据review修改论文，投下一个会议。完成第一个专利的撰写。应付各种课程及其作业。继续写项目代码。</p>
-<p>6月，应付各种期末考试，全部都顺利通过，毕业的两座大山翻过一座。成功搭建起<code>Hadoop</code>集群。跑到五角场见高中老友星哥哥（他从长沙到上海出差），虽一年难得见一次，但每次见面都能聊地很开心。继续写项目代码。</p>
-<p>7月，开始自学经济学知识。和本科同学们跑去舟山旅游，虽然说是去旅游，但不幸那几天刚好刮台风，再加上妹子们对于<code>Airbnb</code>上租到的房子的一脸花痴样，于是一行七人在舟山的房子里宅了3天。开始构思第二篇论文的思路以及实验。继续写项目代码。</p>
-<p>8月，做论文的实验。继续写项目代码。中间回家了两周，参加了高中好友斓哥的婚礼。话说，他是我们同龄人第一个结婚的男人，也是我第一次成为婚礼摄像大哥担当。很开心，见到了很多高中同学。</p>
-<p>9月，学习<code>sklearn</code>。第一篇论文又被拒稿，根据review修改论文，投下一个期刊。啊，<code>Gogou</code>项目终于结束了，有一种阶段性胜利的错觉。</p>
-<p>10月，十一，罗威林跑来上海玩，因为没买到五月天演唱会的票，于是去隔壁听了Ke$ha的演唱会，很嗨。带着罗威林和五爷大萱面基。继续写项目代码。继续做第二篇论文的实验。</p>
-<p>11月，完成第二篇专利的撰写。思考论文思路，开始撰写第二篇论文。在做第二篇论文的过程中，开始思忖到底要不要继续读博。跟着实验室到江西婺源旅游。</p>
-<p>12月，完成第二篇论文的撰写，投稿<code>ICDCS</code>。投完论文后，开始划水了。复习机器学习知识。博客迁移到<code>Octopress</code>（该版本的前身）。开始看auction理论，为第三篇论文做准备。</p>
-<p>1月，和罗威林跑到杭州找中哥玩耍。去江苏靖江，参加徐宇婚礼，第二次婚礼摄像大哥担当。实验室年会，年会摄像大哥担当。这个月就比较划水了，因为后半个月回家了😓。</p>
-<h3 id="娱乐消遣"><a href="#娱乐消遣" class="headerlink" title="娱乐消遣"></a>娱乐消遣</h3><p>“一个脱离了高级趣味的无聊男人”，这是目前我对自己的定位。我在学校生活的主旋律就是paper和项目，周末也不大想出门，因为我在闵行，进个城花在路上的时间就有两三个小时😂。出门玩一趟（除开吃吃吃），我还是觉得宅在屋子里看书和运动最舒服。业余时间的消遣主要就是健身、篮球和电影，偶尔拍拍照和游泳。下图是我这一年娱乐消遣的频次统计。</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/2016nianduzongjie/%E5%A8%B1%E4%B9%90%E6%B6%88%E9%81%A3%E7%BB%9F%E8%AE%A1.png">
-<p>健身，现在确实成了业余时间的最大爱好。其实去健身房还是蛮枯燥的，但幸好有一批志同道合的肌友陪着我，没有他们的督促和激励，我想我也坚持不下来。同时，也跟他们学到不少科学健身的知识。但是，仍然觉得自己的肌肉长得很慢，特别是胸肌长得没有咬肌快。从上图可以看到，刚开始时我健身热情很高，几乎一周去个三四次，后面的次数就没那么多了，特别回家的两个月（回家就是过猪一般的生活）。到了下半年，进入写paper的攻坚期，去健身房的次数也少了，因为觉得写论文太累，不想分散精力去健身了。事后，我觉得不要给自己找借口，很多事情不是你做不到，而是内心怠惰或害怕困难而不去做，希望2017年能将每月健身次数保持在12次以上。</p>
-<p>篮球，其实每周最开心的就是能打一到两次篮球，这个真的是从小学一直玩到现在的运动。科比退役了，NBA看得没有以前多了，但是打球的热情和那种快乐还是和以前一样。或许，篮球是我最不需要坚持的运动，因为热爱就会自发地去玩。健身也给打球带了额外的好处，比如核心力量和上肢力量的提高，现在做很多动作都更加游刃有余，同时肌肉的增强也降低了受伤的风险。希望2017年，非惯用手能更加熟练。</p>
-<p>电影，看得越来越少，特别是来上海后。感觉现在过了看特效电影的年纪，记得看《神奇动物在哪里》、《奇异博士》、《星战》我都睡着了，因为剧情太简单了，全都是一个套路。现在更喜欢看剧情复杂或者讽刺电影，《驴得水》、《比利林恩的中场故事》就给我留下很深的印象。多说一句，过去一年闲暇时间还补或追了几部电视剧，题材广泛，如《来自星星的你》、《琅琊榜》、《余罪》、《行尸走肉》、《权力的游戏》、《西部世界》、《好先生》、《黑镜》、《逃避虽可耻但有用》、《Legal High》（我居然看了这么多……）。再多说一句，现在收听或收看的知识性节目，从《罗辑思维》《晓松奇谈（2017停播）》增加了《锵锵三人行》，很喜欢窦文涛这种揣着明白装糊涂的风骚中年大叔。</p>
-<h3 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h3><p>本科时期，阅读量仅限于专业书籍，因为觉得看闲书浪费时间，保研了后才开始看闲书。其实，这又是给自己找理由。平时，一个人安静下来会胡思乱想，有时候会搞到心情抑郁。后面把这些时间都拿来看书，就立马治好了这种中二病。统计了下最近一年半看过的纸质书和Kindle电纸书（除掉专业书籍）：</p>
-<blockquote>
-<p>《浪潮之巅》（上下册）、《数学之美》、《三体》（1，2，3）、《单恋》、《解忧杂货店》、《历史的教训》、《美国种族简史》、《欧洲极简史》、《枪炮、病菌与钢铁》、《为奴十二年》、《嫌疑人X的献身》、《中国震撼》、《微观经济学原理》</p>
-</blockquote>
-<p>总共读了才16本书，月均读书量不超过一本……从上可看出，我一如既往地喜欢读历史类书籍。现在开始涉猎经济学知识，尝试着以经济学思维来看待很多事物，讲究回报率。希望2017年每个月至少读完一本书，涉猎更加广泛。</p>
-<h3 id="图说2015-amp-2016"><a href="#图说2015-amp-2016" class="headerlink" title="图说2015&amp;2016"></a>图说2015&amp;2016</h3><p>一张图结束流水账盘点：</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/2016nianduzongjie/20162015.jpg">
-<h2 id="2017：期望"><a href="#2017：期望" class="headerlink" title="2017：期望"></a>2017：期望</h2><p>2015和2016都过去了，之前总认为计划赶不上变化，所以从来没有对未来一年的规划。但是规划并不是都要实现，只是让人能保持一个大方向不至于偏离太多。那么，我就给自己的2017许下那么些期待：</p>
-<ol>
-<li>只求中一篇paper（同时也是毕业要求）</li>
-<li>每周去健身房三次或以上（希望我的胸从a cup涨到b cup）</li>
-<li>每月至少阅读一本书</li>
-<li>能找到一份好实习（数据挖掘相关）</li>
-<li>找到女朋友（现在爸妈居然在催了，其实我也想啊，但是找到那么个合适的不是这么容易）</li>
-<li>左手能熟练运球，能上篮</li>
-<li>去霓虹国旅游</li>
-<li>世界和平</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;本来该篇应该在&lt;code&gt;2017-1-1&lt;/code&gt;写出来的，但那时和高中老友在杭州玩😂，回上海后也忘了这茬，所以拖到了现在。虽然现在已经公历&lt;code&gt;2017-1-24&lt;/code&gt;，但是标题还是取成“2016年度总结”，因为从农历看的话，现在还没有到2017嘛。之前还从未写过年度总结，所以这篇2016年度总结顺带也总结一下2015。之所以想写年度总结，其实也是受到师兄师姐的启发，梳理和盘点一下，发现一年下来还真是没做什么事情，以此激励自己明年好好把握时间。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Dairy" scheme="https://xijunlee.github.io/tags/Dairy/"/>
     
   </entry>
   

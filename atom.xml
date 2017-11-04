@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-11-04T07:58:28.000Z</updated>
+  <updated>2017-11-04T08:12:58.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xijunlee.github.io/2017/11/03/Zero/"/>
     <id>https://xijunlee.github.io/2017/11/03/Zero/</id>
     <published>2017-11-03T15:58:38.000Z</published>
-    <updated>2017-11-04T07:58:28.000Z</updated>
+    <updated>2017-11-04T08:12:58.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>就在上个月的19号，AlphaGo Zero横空出世，号称是没有利用人类棋谱作为指导的AI打败了之前完虐李世石的AlphaGo Lee。这一消息着实轰动，19号这一天朋友圈被刷屏（但大部分还是非业内从业者在转发）。上个礼拜又在做调研，被老板抓去讲AlphaGo Zero。组会后，还是被老板认为讲解地不够直白，不能向更大的老板作报告（更大的老板可是没有AI的背景知识的）。我也慢慢意识到一个好的researcher不仅需要很强的理解能力，更需要极强的表达能力。为了提高自己的表达能力，这次博文就从非AI从业者的角度讲解这只有史以来最强的狗，这也是我的第一篇科普性质的博文，希望能把它讲明白了。</p>
 <p>（主要的材料还是基于组会上的slides，仍旧是以图片的形式，十分抱歉</p>
@@ -45,6 +45,8 @@
 <li>第三步是模拟（Simluation）。从上面这个没有试过的着法开始，用快速走子策略（Rollout policy）走到底，得到一个胜负结果。按照普遍的观点，快速走子策略适合选择一个棋力很弱但走子很快的策略。因为如果这个策略走得慢（比如用 AlphaGo 的策略网络走棋），虽然棋力会更强，结果会更准确，但由于耗时多了，在单位时间内的模拟次数就少了，所以不一定会棋力更强，有可能会更弱。这也是为什么我们一般只模拟一次，因为如果模拟多次，虽然更准确，但更慢。</li>
 <li>第四步是回溯（Backpropagation）。把模拟的结果加到它的所有父节点上。例如第三步模拟的结果是 0/1（代表黑棋失败），那么就把这个节点的所有父节点加上 0/1。</li>
 </ol>
+<h2 id="卷积神经网络-Convolutional-Neural-Network"><a href="#卷积神经网络-Convolutional-Neural-Network" class="headerlink" title="卷积神经网络 Convolutional Neural Network"></a>卷积神经网络 Convolutional Neural Network</h2><p>卷积神经网络是目前深度学习中最炙手可热的大明星之一，其在图像分类、目标识别等多方面都有很好的应用。这里我们讲讲其在图像分类方面的应用，如下所示。</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG120.png">
 <hr>
 <p>Reference<br><a href="https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf" target="_blank" rel="external">https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf</a><br><a href="http://www.nature.com/nature/journal/v550/n7676/full/nature24270.html" target="_blank" rel="external">http://www.nature.com/nature/journal/v550/n7676/full/nature24270.html</a><br><a href="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/</a><br><a href="https://www.zhihu.com/question/39916945/answer/184152952" target="_blank" rel="external">https://www.zhihu.com/question/39916945/answer/184152952</a><br><a href="http://ieeexplore.ieee.org/document/6145622/" target="_blank" rel="external">http://ieeexplore.ieee.org/document/6145622/</a><br><a href="https://zhuanlan.zhihu.com/p/25345778" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/25345778</a></p>
 ]]></content>

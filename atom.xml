@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-11-05T06:33:56.000Z</updated>
+  <updated>2017-11-05T06:34:23.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xijunlee.github.io/2017/11/03/Zero/"/>
     <id>https://xijunlee.github.io/2017/11/03/Zero/</id>
     <published>2017-11-03T15:58:38.000Z</published>
-    <updated>2017-11-05T06:33:56.000Z</updated>
+    <updated>2017-11-05T06:34:23.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>就在上个月的19号，AlphaGo Zero横空出世，号称是没有利用人类棋谱作为指导的AI打败了之前完虐李世石的AlphaGo Lee。这一消息着实轰动，19号这一天朋友圈被刷屏（但大部分还是非业内从业者在转发）。上个礼拜又在做调研，被老板抓去讲AlphaGo Zero。组会后，还是被老板认为讲解地不够直白，不能向更大的老板作报告（更大的老板可是没有AI的背景知识的）。我也慢慢意识到一个好的researcher不仅需要很强的理解能力，更需要极强的表达能力。为了锻炼自己的表达能力，这次博文就从非AI从业者的角度讲解这只有史以来最强的狗，这也是我的第一篇科普性质的博文，希望能把它讲明白了。</p>
 <p>（主要的材料还是基于组会上的slides，仍旧是以图片的形式，十分抱歉</p>
@@ -63,7 +63,7 @@
 <h3 id="策略网络-Policy-Network"><a href="#策略网络-Policy-Network" class="headerlink" title="策略网络 Policy Network"></a>策略网络 Policy Network</h3><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG122.png">
 <p>这里的监督学习策略网络p_sigma就是之前提到的学习人类棋手下棋风格的卷积神经网络。Deepmind的研究人员收集了大量的职业棋手的棋谱$(\vec{s},\vec{a})$后，利用随机梯度下降方法训练出了p_sigma。该网络的输入是Deepmind按照围棋规则和他们自己的理解构造的人工特征，详见下图，共有48个特征，每个特征是$19\times 19$的矩阵。因此该网络的输入$\vec{s}$是$19\times 19\times 48$的。然后输出是一个落子概率向量$\vec{a}$，即在每个合法位置落子的概率。</p>
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG123.png">
-<p>虽然p_sigma能比较精确地模拟人类棋手的下期风格，但是因为网络结果比较复杂，网络每次计算时间比较长。为了能在后续的蒙特卡洛树搜索中能实现快速走子，Deepmind又训练了一个结构相对简单的快速走子网络(Rollout Network)p_pi。p_pi使用了更少的特征，结构相对$p_sigma更简单，因此p_pi会算的更快但是算的没有p_sigma精确。</p>
+<p>虽然p_sigma能比较精确地模拟人类棋手的下期风格，但是因为网络结果比较复杂，网络每次计算时间比较长。为了能在后续的蒙特卡洛树搜索中能实现快速走子，Deepmind又训练了一个结构相对简单的快速走子网络(Rollout Network)p_pi。p_pi使用了更少的特征，结构相对p_sigma更简单，因此p_pi会算的更快但是算的没有p_sigma精确。</p>
 <h3 id="价值网络-Value-Network"><a href="#价值网络-Value-Network" class="headerlink" title="价值网络 Value Network"></a>价值网络 Value Network</h3><h3 id="“融合”的蒙特卡洛树搜索"><a href="#“融合”的蒙特卡洛树搜索" class="headerlink" title="“融合”的蒙特卡洛树搜索"></a>“融合”的蒙特卡洛树搜索</h3><h2 id="AlphaGo-Zero"><a href="#AlphaGo-Zero" class="headerlink" title="AlphaGo Zero"></a>AlphaGo Zero</h2><p>To be continue</p>
 <hr>
 <p>Reference<br><a href="https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf" target="_blank" rel="external">https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf</a><br><a href="http://www.nature.com/nature/journal/v550/n7676/full/nature24270.html" target="_blank" rel="external">http://www.nature.com/nature/journal/v550/n7676/full/nature24270.html</a><br><a href="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/</a><br><a href="https://www.zhihu.com/question/39916945/answer/184152952" target="_blank" rel="external">https://www.zhihu.com/question/39916945/answer/184152952</a><br><a href="http://ieeexplore.ieee.org/document/6145622/" target="_blank" rel="external">http://ieeexplore.ieee.org/document/6145622/</a><br><a href="https://zhuanlan.zhihu.com/p/25345778" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/25345778</a><br><a href="https://arxiv.org/abs/1412.6564" target="_blank" rel="external">https://arxiv.org/abs/1412.6564</a></p>

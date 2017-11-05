@@ -25,7 +25,7 @@ Alpha Go这里开始进入正题了，有了对蒙特卡洛树搜索和卷积神
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG127.png">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG128.png">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG130.png">
-<meta property="og:updated_time" content="2017-11-05T14:48:51.000Z">
+<meta property="og:updated_time" content="2017-11-05T14:52:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AlphaGo Zero科普之从一无所知到我也能吹水（下篇）">
 <meta name="twitter:description" content="写在前面上篇介绍了Alpha Go的两个最主要的组件：卷积神经网络和蒙特卡洛树搜索。这篇开始进入正题，但在介绍AlphaGo Zero之前，我会先介绍其前身Alpha Go。因为这二者从本质上是一样的，只是前者在网络架构稍许不一样。我觉得先弄懂了Alpha Go之后，再看AlphaGo Zero的优化会有一种理所当然的感觉。
@@ -223,6 +223,7 @@ var _hmt = _hmt || [];
       
         <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>上篇介绍了Alpha Go的两个最主要的组件：卷积神经网络和蒙特卡洛树搜索。这篇开始进入正题，<br>但在介绍AlphaGo Zero之前，我会先介绍其前身Alpha Go。因为这二者从本质上是一样的，只是前者在网络架构稍许不一样。我觉得先弄懂了Alpha Go之后，再看AlphaGo Zero的优化会有一种理所当然的感觉。</p>
 <h2 id="Alpha-Go"><a href="#Alpha-Go" class="headerlink" title="Alpha Go"></a>Alpha Go</h2><p>这里开始进入正题了，有了对蒙特卡洛树搜索和卷积神经网络的初步认识，我觉得就比较容易理解Alpha Go的本质了。本节分为三个小节，分别是策略网络(Policy Network)，价值网络(Value Network)以及与前两个网络融合的蒙特卡洛树搜索。</p>
+<a id="more"></a>
 <h3 id="监督学习下的策略网络-Supervised-Learning-Policy-Network"><a href="#监督学习下的策略网络-Supervised-Learning-Policy-Network" class="headerlink" title="监督学习下的策略网络 Supervised Learning Policy Network"></a>监督学习下的策略网络 Supervised Learning Policy Network</h3><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG122.png">
 <p>这里的监督学习策略网络p_sigma就是之前提到的学习人类棋手下棋风格的卷积神经网络。Deepmind的研究人员收集了大量的职业棋手的棋谱$(\vec{s},\vec{a})$后，利用随机梯度下降方法训练出了p_sigma。该网络的输入是Deepmind按照围棋规则和他们自己的理解构造的人工特征，详见下图，共有48个特征，每个特征是$19\times 19$的矩阵。因此该网络的输入$\vec{s}$是$19\times 19\times 48$的。然后输出是一个落子概率向量$\vec{a}$，即在每个合法位置落子的概率。</p>
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG123.png">
@@ -263,6 +264,8 @@ var _hmt = _hmt || [];
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG128.png">
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG130.png">
 <p>To be continued</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><hr>
+<p>Reference<br><a href="https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf" target="_blank" rel="external">https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf</a><br><a href="http://www.nature.com/nature/journal/v550/n7676/full/nature24270.html" target="_blank" rel="external">http://www.nature.com/nature/journal/v550/n7676/full/nature24270.html</a><br><a href="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/</a><br><a href="https://www.zhihu.com/question/39916945/answer/184152952" target="_blank" rel="external">https://www.zhihu.com/question/39916945/answer/184152952</a><br><a href="http://ieeexplore.ieee.org/document/6145622/" target="_blank" rel="external">http://ieeexplore.ieee.org/document/6145622/</a><br><a href="https://zhuanlan.zhihu.com/p/25345778" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/25345778</a><br><a href="https://arxiv.org/abs/1412.6564" target="_blank" rel="external">https://arxiv.org/abs/1412.6564</a><br><a href="https://morvanzhou.github.io/tutorials/machine-learning/reinforcement-learning/1-1-A-RL/" target="_blank" rel="external">https://morvanzhou.github.io/tutorials/machine-learning/reinforcement-learning/1-1-A-RL/</a></p>
 
       
 

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-11-05T14:48:51.000Z</updated>
+  <updated>2017-11-05T14:52:06.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,10 +20,11 @@
     <link href="https://xijunlee.github.io/2017/11/05/Zero2/"/>
     <id>https://xijunlee.github.io/2017/11/05/Zero2/</id>
     <published>2017-11-05T14:42:12.000Z</published>
-    <updated>2017-11-05T14:48:51.000Z</updated>
+    <updated>2017-11-05T14:52:06.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>上篇介绍了Alpha Go的两个最主要的组件：卷积神经网络和蒙特卡洛树搜索。这篇开始进入正题，<br>但在介绍AlphaGo Zero之前，我会先介绍其前身Alpha Go。因为这二者从本质上是一样的，只是前者在网络架构稍许不一样。我觉得先弄懂了Alpha Go之后，再看AlphaGo Zero的优化会有一种理所当然的感觉。</p>
 <h2 id="Alpha-Go"><a href="#Alpha-Go" class="headerlink" title="Alpha Go"></a>Alpha Go</h2><p>这里开始进入正题了，有了对蒙特卡洛树搜索和卷积神经网络的初步认识，我觉得就比较容易理解Alpha Go的本质了。本节分为三个小节，分别是策略网络(Policy Network)，价值网络(Value Network)以及与前两个网络融合的蒙特卡洛树搜索。</p>
+<a id="more"></a>
 <h3 id="监督学习下的策略网络-Supervised-Learning-Policy-Network"><a href="#监督学习下的策略网络-Supervised-Learning-Policy-Network" class="headerlink" title="监督学习下的策略网络 Supervised Learning Policy Network"></a>监督学习下的策略网络 Supervised Learning Policy Network</h3><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG122.png">
 <p>这里的监督学习策略网络p_sigma就是之前提到的学习人类棋手下棋风格的卷积神经网络。Deepmind的研究人员收集了大量的职业棋手的棋谱$(\vec{s},\vec{a})$后，利用随机梯度下降方法训练出了p_sigma。该网络的输入是Deepmind按照围棋规则和他们自己的理解构造的人工特征，详见下图，共有48个特征，每个特征是$19\times 19$的矩阵。因此该网络的输入$\vec{s}$是$19\times 19\times 48$的。然后输出是一个落子概率向量$\vec{a}$，即在每个合法位置落子的概率。</p>
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG123.png">
@@ -64,11 +65,14 @@
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG128.png">
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG130.png">
 <p>To be continued</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><hr>
+<p>Reference<br><a href="https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf" target="_blank" rel="external">https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf</a><br><a href="http://www.nature.com/nature/journal/v550/n7676/full/nature24270.html" target="_blank" rel="external">http://www.nature.com/nature/journal/v550/n7676/full/nature24270.html</a><br><a href="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/</a><br><a href="https://www.zhihu.com/question/39916945/answer/184152952" target="_blank" rel="external">https://www.zhihu.com/question/39916945/answer/184152952</a><br><a href="http://ieeexplore.ieee.org/document/6145622/" target="_blank" rel="external">http://ieeexplore.ieee.org/document/6145622/</a><br><a href="https://zhuanlan.zhihu.com/p/25345778" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/25345778</a><br><a href="https://arxiv.org/abs/1412.6564" target="_blank" rel="external">https://arxiv.org/abs/1412.6564</a><br><a href="https://morvanzhou.github.io/tutorials/machine-learning/reinforcement-learning/1-1-A-RL/" target="_blank" rel="external">https://morvanzhou.github.io/tutorials/machine-learning/reinforcement-learning/1-1-A-RL/</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;上篇介绍了Alpha Go的两个最主要的组件：卷积神经网络和蒙特卡洛树搜索。这篇开始进入正题，&lt;br&gt;但在介绍AlphaGo
+      &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;上篇介绍了Alpha Go的两个最主要的组件：卷积神经网络和蒙特卡洛树搜索。这篇开始进入正题，&lt;br&gt;但在介绍AlphaGo Zero之前，我会先介绍其前身Alpha Go。因为这二者从本质上是一样的，只是前者在网络架构稍许不一样。我觉得先弄懂了Alpha Go之后，再看AlphaGo Zero的优化会有一种理所当然的感觉。&lt;/p&gt;
+&lt;h2 id=&quot;Alpha-Go&quot;&gt;&lt;a href=&quot;#Alpha-Go&quot; class=&quot;headerlink&quot; title=&quot;Alpha Go&quot;&gt;&lt;/a&gt;Alpha Go&lt;/h2&gt;&lt;p&gt;这里开始进入正题了，有了对蒙特卡洛树搜索和卷积神经网络的初步认识，我觉得就比较容易理解Alpha Go的本质了。本节分为三个小节，分别是策略网络(Policy Network)，价值网络(Value Network)以及与前两个网络融合的蒙特卡洛树搜索。&lt;/p&gt;
     
     </summary>
     
@@ -82,7 +86,7 @@
     <link href="https://xijunlee.github.io/2017/11/03/Zero/"/>
     <id>https://xijunlee.github.io/2017/11/03/Zero/</id>
     <published>2017-11-03T15:58:38.000Z</published>
-    <updated>2017-11-05T14:47:19.000Z</updated>
+    <updated>2017-11-05T14:51:46.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>就在上个月的19号，AlphaGo Zero横空出世，号称是没有利用人类棋谱作为指导的AI打败了之前完虐李世石的AlphaGo Lee。这一消息着实轰动，19号这一天朋友圈被刷屏（但大部分还是非业内从业者在转发）。上个礼拜又在做调研，被老板抓去讲AlphaGo Zero。组会后，还是被老板认为讲解地不够直白，不能向更大的老板作报告（更大的老板可是没有AI的背景知识的）。我也慢慢意识到一个好的researcher不仅需要很强的理解能力，更需要极强的表达能力。为了锻炼自己的表达能力，这次博文就从非AI从业者的角度讲解这只有史以来最强的狗，这也是我的第一篇科普性质的博文，希望能把它讲明白了。</p>
 <p>由于内容较多，该水文将分为上下两篇。上篇主要介绍Alpha Go的主要组件。如果你对卷积神经网络和蒙特卡洛树搜索很了解的话，可以跳过上篇。下篇进入正题，将详细介绍Alpha Go和Alpha Go Zero的原理。当然了，所有的讲解都是以非AI从业者的角度出发，不会有晦涩复杂的数学推导。</p>
@@ -122,6 +126,7 @@
 <p>那么很容易想到就是该神经网络的棋力应当是与它模仿的人类选手的棋力相当的。如果它模仿的人是一个臭棋手，那么它的下棋水平也会很臭，如果模仿的是高手，其水平也会相应提高。在Aja Huang这篇论文中，他们训练的卷积神经网络的棋力大概是业余六段。</p>
 <p>从函数的角度解释卷积神经网络。不论是人还是机器，我们由某个状态$\vec{s}$想到对应的决策$\vec{a}$，都可以看成是一个函数映射$f$，即$f:\vec{s} \mapsto \vec{a}$。这个映射完全是由函数的参数$\Theta$决定，其实不管是人类还是机器，学习的过程就是在学这个参数$\Theta$。人类的认知经验其实就是抽象的$\Theta$，被存储在我们的大脑中。而神经网络通过模仿学习人类的经验参数$\theta$，但这个学习过程存在误差（想想上课时老师教授你的东西，你也不可能全部听进去）。因此神经网络学到的参数只是趋近于$\Theta$的，记为$\theta$。然后$\theta$就被保存在非易失性存储器里，供下一次神经网络被调用时使用。</p>
 <p>注意到，这样一个学习人类风格下棋的神经网络被称为策略网络$p$(Policy Network），在下文将会被反复提及到。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>本篇比较详细地介绍了Alpha Go中的两个主要组件：卷积神经网络和蒙特卡洛树搜索。正是这二者的有效结合构造出了有史以来最强的围棋AI。下篇将开始进入正题，详细解剖Alpha Go和AlphaGo Zero的架构和原理。</p>
 <hr>
 <p>Reference<br><a href="https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf" target="_blank" rel="external">https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf</a><br><a href="http://www.nature.com/nature/journal/v550/n7676/full/nature24270.html" target="_blank" rel="external">http://www.nature.com/nature/journal/v550/n7676/full/nature24270.html</a><br><a href="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/</a><br><a href="https://www.zhihu.com/question/39916945/answer/184152952" target="_blank" rel="external">https://www.zhihu.com/question/39916945/answer/184152952</a><br><a href="http://ieeexplore.ieee.org/document/6145622/" target="_blank" rel="external">http://ieeexplore.ieee.org/document/6145622/</a><br><a href="https://zhuanlan.zhihu.com/p/25345778" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/25345778</a><br><a href="https://arxiv.org/abs/1412.6564" target="_blank" rel="external">https://arxiv.org/abs/1412.6564</a><br><a href="https://morvanzhou.github.io/tutorials/machine-learning/reinforcement-learning/1-1-A-RL/" target="_blank" rel="external">https://morvanzhou.github.io/tutorials/machine-learning/reinforcement-learning/1-1-A-RL/</a></p>
 ]]></content>

@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG123.png">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG124.png">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG125.png">
-<meta property="og:updated_time" content="2017-11-05T07:19:58.000Z">
+<meta property="og:updated_time" content="2017-11-05T07:20:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AlphaGo Zero科普之从一无所知到我也能吹水">
 <meta name="twitter:description" content="写在前面就在上个月的19号，AlphaGo Zero横空出世，号称是没有利用人类棋谱作为指导的AI打败了之前完虐李世石的AlphaGo Lee。这一消息着实轰动，19号这一天朋友圈被刷屏（但大部分还是非业内从业者在转发）。上个礼拜又在做调研，被老板抓去讲AlphaGo Zero。组会后，还是被老板认为讲解地不够直白，不能向更大的老板作报告（更大的老板可是没有AI的背景知识的）。我也慢慢意识到一个好">
@@ -273,7 +273,7 @@ var _hmt = _hmt || [];
 <p>Alpha Go中还构造了一个网络，即价值网络v。该网络的用途是给定一个棋局局面$\vec{s}$，立马根据$\vec{s}$输出我赢棋的概率$v$。</p>
 <p>价值网络v的训练方法依旧是强化学习。更细一点说明如下：</p>
 <ol>
-<li><p>针对棋局局面$\vec{s}$，不断利用强化策略网络p_rho进行自我对弈一直下棋到最后，就会得到一个输赢结果$z,z \in {1,-1}$。其中1表示黑子赢棋，-1表示白子赢棋；</p>
+<li><p>针对棋局局面$\vec{s}$，不断利用强化策略网络p_rho进行自我对弈一直下棋到最后，就会得到一个输赢结果$z,z \in \brace 1,-1\rbrace$。其中1表示黑子赢棋，-1表示白子赢棋；</p>
 </li>
 <li><p>不断执行上一步骤，就能得到一系列的$(\vec{s},z)$对了。将这些$(\vec{s},z)$对作为训练数据来训练价值网络v。</p>
 </li>

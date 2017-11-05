@@ -25,7 +25,7 @@ Alpha Go这里开始进入正题了，有了对蒙特卡洛树搜索和卷积神
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG128.png">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG127.png">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG130.png">
-<meta property="og:updated_time" content="2017-11-05T15:16:44.000Z">
+<meta property="og:updated_time" content="2017-11-05T15:18:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AlphaGo Zero科普之从一无所知到我也能吹水（下篇）">
 <meta name="twitter:description" content="写在前面上篇介绍了Alpha Go的两个最主要的组件：卷积神经网络和蒙特卡洛树搜索。这篇开始进入正题，但在介绍AlphaGo Zero之前，我会先介绍其前身Alpha Go。因为这二者从本质上是一样的，只是前者在网络架构稍许不一样。我觉得先弄懂了Alpha Go之后，再看AlphaGo Zero的优化会有一种理所当然的感觉。
@@ -271,7 +271,7 @@ var _hmt = _hmt || [];
 </li>
 </ol>
 <h3 id="AlphaGo-Zero中的强化学习"><a href="#AlphaGo-Zero中的强化学习" class="headerlink" title="AlphaGo Zero中的强化学习"></a>AlphaGo Zero中的强化学习</h3><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG127.png">
-<p>Zero将Alpha Go中的策略网络和价值网络融合成为一个网络$f_\theta$。该网络的输入是棋盘当前状态以及前七步状态$\vec{s}<em>t,\vec{s}</em>{t-1},…,\vec{s}_{t-7}$，输出是落子概率向量$\vec{a}$和赢棋概率$v$。</p>
+<p>Zero将Alpha Go中的策略网络和价值网络融合成为一个网络$f_\theta$。该网络的输入是棋盘当前状态以及前七步状态$s<em>t,s</em>{t-2},…,s_{t-7}$，输出是落子概率向量$\vec{a}$和赢棋概率$v$。</p>
 <p>该网络的参数$\theta$是随机初始化的，也就是说没有学习人类知识，完全从零开始，这也是AlphaGo Zero中Zero取名的由来。而参数$\theta$的训练是利用在$f_\theta$指导下的蒙特卡洛树搜索的强化学习完成的。具体的步骤如下:</p>
 <ol>
 <li>自我博弈(Self-play)。蒙特卡洛树搜索在$f_\theta$的指导下进行自我博弈，直到棋局结束。在这个自我博弈过程中，会得到一系列的棋盘状态$\vec{s}_i$，对应的落子概率向量$\vec{\pi}_i$，以及一个最后的赢棋结果$z$。</li>

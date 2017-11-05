@@ -7,33 +7,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xijunlee.github.io">
-  <title>从单纯型法到列生成算法 | A Notebook</title>
+  <title>AlphaGo Zero科普之从一无所知到我也能吹水（下篇） | A Notebook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="写在前面最近在做混合整数规划相关的调研，主要是关于列生成算法 (Column Generation Algorithm)，搜了一圈，发现网路上并有很多相关的中文资料，难道这个算法太难了？还是普及度不够高？后来找到了一份相关的不错的英文讲义，从头看下来，也就知道了列生成算法大概是在干什么，但是其中原因还是不得要领。
-之后，我又认真复习了单纯形法，才明白了列生成算法的初衷和要领，希望本文能把它讲明白。">
+  <meta name="description" content="写在前面上篇介绍了Alpha Go的两个最主要的组件：卷积神经网络和蒙特卡洛树搜索。这篇开始进入正题，但在介绍AlphaGo Zero之前，我会先介绍其前身Alpha Go。因为这二者从本质上是一样的，只是前者在网络架构稍许不一样。我觉得先弄懂了Alpha Go之后，再看AlphaGo Zero的优化会有一种理所当然的感觉。
+Alpha Go这里开始进入正题了，有了对蒙特卡洛树搜索和卷积神经网络的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从单纯型法到列生成算法">
-<meta property="og:url" content="https://xijunlee.github.io/2017/10/12/从单纯型法到列生成算法/index.html">
+<meta property="og:title" content="AlphaGo Zero科普之从一无所知到我也能吹水（下篇）">
+<meta property="og:url" content="https://xijunlee.github.io/2017/11/05/Zero2/index.html">
 <meta property="og:site_name" content="A Notebook">
-<meta property="og:description" content="写在前面最近在做混合整数规划相关的调研，主要是关于列生成算法 (Column Generation Algorithm)，搜了一圈，发现网路上并有很多相关的中文资料，难道这个算法太难了？还是普及度不够高？后来找到了一份相关的不错的英文讲义，从头看下来，也就知道了列生成算法大概是在干什么，但是其中原因还是不得要领。
-之后，我又认真复习了单纯形法，才明白了列生成算法的初衷和要领，希望本文能把它讲明白。">
-<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/pic10.png">
-<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/pic11.png">
-<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/pic12.png">
-<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%872.png">
-<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%873.png">
-<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%874.png">
-<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%875.png">
-<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%876.png">
-<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%877.png">
-<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%878.png">
-<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%879.png">
-<meta property="og:updated_time" content="2017-10-27T01:47:58.000Z">
+<meta property="og:description" content="写在前面上篇介绍了Alpha Go的两个最主要的组件：卷积神经网络和蒙特卡洛树搜索。这篇开始进入正题，但在介绍AlphaGo Zero之前，我会先介绍其前身Alpha Go。因为这二者从本质上是一样的，只是前者在网络架构稍许不一样。我觉得先弄懂了Alpha Go之后，再看AlphaGo Zero的优化会有一种理所当然的感觉。
+Alpha Go这里开始进入正题了，有了对蒙特卡洛树搜索和卷积神经网络的">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG122.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG123.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG124.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG125.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG126.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG127.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG128.png">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG130.png">
+<meta property="og:updated_time" content="2017-11-05T14:48:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从单纯型法到列生成算法">
-<meta name="twitter:description" content="写在前面最近在做混合整数规划相关的调研，主要是关于列生成算法 (Column Generation Algorithm)，搜了一圈，发现网路上并有很多相关的中文资料，难道这个算法太难了？还是普及度不够高？后来找到了一份相关的不错的英文讲义，从头看下来，也就知道了列生成算法大概是在干什么，但是其中原因还是不得要领。
-之后，我又认真复习了单纯形法，才明白了列生成算法的初衷和要领，希望本文能把它讲明白。">
-<meta name="twitter:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/pic10.png">
+<meta name="twitter:title" content="AlphaGo Zero科普之从一无所知到我也能吹水（下篇）">
+<meta name="twitter:description" content="写在前面上篇介绍了Alpha Go的两个最主要的组件：卷积神经网络和蒙特卡洛树搜索。这篇开始进入正题，但在介绍AlphaGo Zero之前，我会先介绍其前身Alpha Go。因为这二者从本质上是一样的，只是前者在网络架构稍许不一样。我觉得先弄懂了Alpha Go之后，再看AlphaGo Zero的优化会有一种理所当然的感觉。
+Alpha Go这里开始进入正题了，有了对蒙特卡洛树搜索和卷积神经网络的">
+<meta name="twitter:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG122.png">
   
     <link rel="alternative" href="/atom.xml" title="A Notebook" type="application/atom+xml">
   
@@ -204,48 +201,68 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-从单纯型法到列生成算法" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Zero2" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      从单纯型法到列生成算法
+      AlphaGo Zero科普之从一无所知到我也能吹水（下篇）
     </h1>
   
 
         
-        <a href="/2017/10/12/从单纯型法到列生成算法/" class="archive-article-date">
-  	<time datetime="2017-10-12T06:49:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-12</time>
+        <a href="/2017/11/05/Zero2/" class="archive-article-date">
+  	<time datetime="2017-11-05T14:42:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-05</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近在做混合整数规划相关的调研，主要是关于列生成算法 (Column Generation Algorithm)，搜了一圈，发现网路上并有很多相关的中文资料，难道这个算法太难了？还是普及度不够高？后来找到了一份相关的不错的英文讲义，从头看下来，也就知道了列生成算法大概是在干什么，但是其中原因还是不得要领。</p>
-<p>之后，我又认真复习了单纯形法，才明白了列生成算法的初衷和要领，希望本文能把它讲明白。</p>
-<p>（最近一直用图片的形式记录，是因为这些总结都是组会上的slides😅</p>
-<a id="more"></a>
-<h2 id="单纯型法-Simplex-Method"><a href="#单纯型法-Simplex-Method" class="headerlink" title="单纯型法 Simplex Method"></a>单纯型法 Simplex Method</h2><p>单纯形法是求解线性规划代表性的算法。其基于这么样的一个事实：线性规划是在凸集上的凸优化问题，因此其局部最优解也是全局最优解。而这些局部最优解是会出现在该凸集的顶点上，所以单纯形法的思路就是在这些顶点上移动，一直移动到局部最优的顶点。这些顶点也叫做基本可行解，那么这些移动也就是从一个基本可行解通过基变换(即从众多非基变量中选择一个进基，再从基变量中选择一个使其出基)变成另一个基本可行解，直到不能再使得优化目标更优为止（这里，我们采用线性规划的标准形式，即最小化目标函数）。这个基变换的操作涉及到进基和出基，那么如何选择哪个非基变量进基呢？这里就会涉及到reduced cost rate，即下图中的$c^r_j$。用单纯型法的语言来说就是，通过数次基变换，使得再也找不到一个非基变量使得reduced cost rate小于零，即再也找不到一个非基变量进基使得目标函数减小，这样我们就找到目标函数在其polyhedron上的最优值。单纯形法简单过程如下面这张图所示，但完整的推导请参考<a href="http://personal.vu.nl/l.stougie/Courses/ALP/BTonlyCh12345.pdf" target="_blank" rel="external">Introduction to Linear Optimization</a>的第二、三章相关内容。</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/pic10.png">
-<h2 id="列生成算法-Column-Generation-Algorithm"><a href="#列生成算法-Column-Generation-Algorithm" class="headerlink" title="列生成算法 Column Generation Algorithm"></a>列生成算法 Column Generation Algorithm</h2><p>单纯型法虽然能保证在数次迭代后找到最优解，但是其面对变量很多的线性规划问题就显得很弱了。因为它需要去在众多变量里进行基变换，这种枚举的工作量是可怕的。因此，有人基于单纯型法提出了列生成算法，其思路大概就是先把原问题(master problem)restrict到一个规模更小（即变量数比原问题少的）的restricted master problem，在restricted master problem上用单纯型法求最优解，但是此时求得的最优解只是restricted master problem上的，并不是master problem的最优解。此时，就需要通过一个subproblem去check在那些未被考虑的变量中是否有使得reduced cost rate小于零的呢（其具体的做法就是通过求解一个线性最大化问题，即求未被考虑的变量中的reduced cost rate的最大值）？如果有，那么我就把这个变量的相关系数列加入到restricted master problem的系数矩阵中。经过这样反复的迭代，直到subproblem中的reduced cost rate大于等于零，那么master problem就求到了最优解。更详细的过程参看以下两张图：</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/pic11.png">
-<p>注意到，这里为什么要把restricted master problem转化到其对偶问题呢？我的理解是，虽然通过单纯型法直接求解restricted master problem能得到subproblem中所需的变量$u=c_BA_B^{-1}$，但是restricted master problem也可能是一个变量很多的线性规划。前面也说过了，单纯型法对变量很多的问题是无能为力的。因此通过单纯型法求restricted master problemde的对偶问题（将restricted master problem对偶一下，就能使得变量数大幅减小，因为这些变量转换成了对偶问题中的限制条件了），能更快地得到子问题想要的$u=c_BA_B^{-1}$。</p>
-<p>再次注意到，子问题是一个背包问题，通过求解该问题，我们既可以得到未被restricted master problem考虑到的变量中最大的reduced cost rate，又能得到相应的系数列。</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/pic12.png">
-<h2 id="列生成算法经典例子-Cutting-Stock-Problem"><a href="#列生成算法经典例子-Cutting-Stock-Problem" class="headerlink" title="列生成算法经典例子 Cutting Stock Problem"></a>列生成算法经典例子 Cutting Stock Problem</h2><p>下面给出一个列生成法的经典例子，Cutting Stock Problem。</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%872.png">
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%873.png">
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%874.png">
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%875.png">
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%876.png">
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%877.png">
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%878.png">
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/column%20generation/%E5%9B%BE%E7%89%879.png">
-<hr>
-<p>Reference<br><a href="http://www.or.rwth-aachen.de/research/publications/primer.pdf" target="_blank" rel="external">http://www.or.rwth-aachen.de/research/publications/primer.pdf</a><br><a href="https://optimization.mccormick.northwestern.edu/index.php/Column_generation_algorithms" target="_blank" rel="external">https://optimization.mccormick.northwestern.edu/index.php/Column_generation_algorithms</a><br><a href="http://ocw.nctu.edu.tw/upload/classbfs121109080773803.pdf" target="_blank" rel="external">http://ocw.nctu.edu.tw/upload/classbfs121109080773803.pdf</a><br><a href="http://personal.vu.nl/l.stougie/Courses/ALP/BTonlyCh12345.pdf" target="_blank" rel="external">http://personal.vu.nl/l.stougie/Courses/ALP/BTonlyCh12345.pdf</a></p>
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>上篇介绍了Alpha Go的两个最主要的组件：卷积神经网络和蒙特卡洛树搜索。这篇开始进入正题，<br>但在介绍AlphaGo Zero之前，我会先介绍其前身Alpha Go。因为这二者从本质上是一样的，只是前者在网络架构稍许不一样。我觉得先弄懂了Alpha Go之后，再看AlphaGo Zero的优化会有一种理所当然的感觉。</p>
+<h2 id="Alpha-Go"><a href="#Alpha-Go" class="headerlink" title="Alpha Go"></a>Alpha Go</h2><p>这里开始进入正题了，有了对蒙特卡洛树搜索和卷积神经网络的初步认识，我觉得就比较容易理解Alpha Go的本质了。本节分为三个小节，分别是策略网络(Policy Network)，价值网络(Value Network)以及与前两个网络融合的蒙特卡洛树搜索。</p>
+<h3 id="监督学习下的策略网络-Supervised-Learning-Policy-Network"><a href="#监督学习下的策略网络-Supervised-Learning-Policy-Network" class="headerlink" title="监督学习下的策略网络 Supervised Learning Policy Network"></a>监督学习下的策略网络 Supervised Learning Policy Network</h3><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG122.png">
+<p>这里的监督学习策略网络p_sigma就是之前提到的学习人类棋手下棋风格的卷积神经网络。Deepmind的研究人员收集了大量的职业棋手的棋谱$(\vec{s},\vec{a})$后，利用随机梯度下降方法训练出了p_sigma。该网络的输入是Deepmind按照围棋规则和他们自己的理解构造的人工特征，详见下图，共有48个特征，每个特征是$19\times 19$的矩阵。因此该网络的输入$\vec{s}$是$19\times 19\times 48$的。然后输出是一个落子概率向量$\vec{a}$，即在每个合法位置落子的概率。</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG123.png">
+<p>虽然p_sigma能比较精确地模拟人类棋手的下期风格，但是因为网络结果比较复杂，网络每次计算时间比较长。为了能在后续的蒙特卡洛树搜索中能实现快速走子，Deepmind又训练了一个结构相对简单的快速走子网络(Rollout Network)p_pi。p_pi使用了更少的特征，结构相对p_sigma更简单，因此p_pi会算的更快但是算的没有p_sigma精确。</p>
+<h3 id="强化学习下的策略网络-Reinforcement-Learning-Policy-Network"><a href="#强化学习下的策略网络-Reinforcement-Learning-Policy-Network" class="headerlink" title="强化学习下的策略网络 Reinforcement Learning Policy Network"></a>强化学习下的策略网络 Reinforcement Learning Policy Network</h3><p>先稍微简单介绍下强化学习。</p>
+<blockquote>
+<p>强化学习是一类算法, 是让计算机实现从一开始什么都不懂, 脑袋里没有一点想法, 通过不断地尝试, 从错误中学习, 最后找到规律, 学会了达到目的的方法. 这就是一个完整的强化学习过程. 实际中的强化学习例子有很多. 比如近期最有名的 Alpha go, 机器头一次在围棋场上战胜人类高手, 让计算机自己学着玩经典游戏 Atari, 这些都是让计算机在不断的尝试中更新自己的行为准则, 从而一步步学会如何下好围棋, 如何操控游戏得到高分. 既然要让计算机自己学, 那计算机通过什么来学习呢?原来计算机也需要一位虚拟的老师, 这个老师比较吝啬, 他不会告诉你如何移动, 如何做决定, 他为你做的事只有给你的行为打分, 那我们应该以什么形式学习这些现有的资源, 或者说怎么样只从分数中学习到我应该怎样做决定呢? 很简单, 我只需要记住那些高分, 低分对应的行为, 下次用同样的行为拿高分, 并避免低分的行为.比如老师会根据我的开心程度来打分, 我开心时, 可以得到高分, 我不开心时得到低分. 有了这些被打分的经验, 我就能判断为了拿到高分, 我应该选择一张开心的脸, 避免选到伤心的脸. 这也是强化学习的核心思想. 可以看出在强化学习中, 一种行为的分数是十分重要的. 所以强化学习具有分数导向性. 我们换一个角度来思考.这种分数导向性好比我们在监督学习中的正确标签.</p>
+</blockquote>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG124.png">
+<p>这样子大家应该对强化学习有一个感性的认知了。AlphaGo在构造好了监督学习下的策略网络后，就开始利用强化学习来提升策略网络的棋力了，记这个强化学习的策略网络为p_rho。p_rho在输入、输出和网络结构上与p_sigma可谓是完全一样。初始化时,p_rho的参数就等于p_sigma。之后该网络p_rho利用自我博弈和策略梯度强化学更新其参数，以提升其棋力。实验证明p_rho的棋力确实是要高于p_sigma的。这意味着强化学习网络青出于蓝而胜于蓝；这意味着强化学习网络从人类老师那里学到了围棋知识后，通过自我对弈学到了更多的围棋知识。</p>
+<h3 id="价值网络-Value-Network"><a href="#价值网络-Value-Network" class="headerlink" title="价值网络 Value Network"></a>价值网络 Value Network</h3><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG125.png">
+<p>Alpha Go中还构造了一个网络，即价值网络v。该网络的用途是给定一个棋局局面$\vec{s}$，立马根据$\vec{s}$输出我赢棋的概率$v$。</p>
+<p>价值网络v的训练方法依旧是强化学习。更细一点说明如下：</p>
+<ol>
+<li><p>针对棋局局面$\vec{s}$，不断利用强化策略网络p_rho进行自我对弈一直下棋到最后，就会得到一个输赢结果$z,z \in \brace 1,-1\rbrace$。其中1表示黑子赢棋，-1表示白子赢棋；</p>
+</li>
+<li><p>不断执行上一步骤，就能得到一系列的$(\vec{s},z)$对了。将这些$(\vec{s},z)$对作为训练数据来训练价值网络v。</p>
+</li>
+</ol>
+<h3 id="“融合”的蒙特卡洛树搜索"><a href="#“融合”的蒙特卡洛树搜索" class="headerlink" title="“融合”的蒙特卡洛树搜索"></a>“融合”的蒙特卡洛树搜索</h3><p>训练好了上述所有网络后，我们现在就已经万事具备了。上述的这些网络都是需要提前训练好的，这个训练过程的时间是非常漫长的，但是训练好之后就可以立马使用。不过，如果只单纯用策略网络去跟人下棋的话，一般是会被人类玩家虐的，因为这样的策略还是太简单了。所以，需要将上述网络与蒙特卡洛树搜索进行结合。下图正是Alpha Go中将策略网络和价值网络融合到蒙特卡洛树搜索的架构与算法流程：</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG126.png">
+<p>首先，认识一下这个树结构。</p>
+<p>树中的节点表示棋局中的一个局面$\vec{s}$，每个点的状态可以使用价值网络v进行评判其赢棋概率$v$。</p>
+<p>每条边$(\vec{s},\vec{a})$表示基于某个局面$\vec{s}$的落子决策，每条边还存储三个状态$P(\vec{s},\vec{a})$，$N(\vec{s},\vec{a})$，$Q(\vec{s},\vec{a})$。$P(\vec{s},\vec{a})$是由策略网络p_sigma得到，表示基于当前状态$\vec{s}$下，采取策略$\vec{a}$的概率。$N(\vec{s},\vec{a})$表示经过边$(\vec{s},\vec{a})$的次数。$Q(\vec{s},\vec{a})$表示策略值，计算公式见上图。</p>
+<p>Alpha Go Zero中的树搜索步骤可以总结为：</p>
+<ol>
+<li><p>这个过程的第一步叫选择（Selection）。从根节点往下走，每次都选一个“最值得看的子节点”，直到来到一个“存在未扩展的子节点”的节点。什么叫做“存在未扩展的子节点”，其实就是指这个局面存在未走过的后续着法。选择的依据如上图公式所示。</p>
+</li>
+<li><p>第二步叫扩展（Expansion）。对应之前所说的“未扩展的子节点”，就是还没有试过的一个着法。我们利用策略网络p_sigma对其进行扩展，即基于当前局面下给出其所有可能落子位置的概率。</p>
+</li>
+<li><p>第三步是模拟（Simluation）。从上面这个没有试过的着法开始，用快速走子策略（Rollout policy）走到底，得到一个胜负结果$z_L$。另一方面，我们还可以利用价值网络v对当前这个局面进行评估，得到赢棋概率$v$。然后将这两个结果进行加权平均，得到一个更加客观的赢棋概率，记为$V$。</p>
+</li>
+<li><p>第四步是回溯（Backpropagation）。把模拟的结果更新回它的所有父节点上。这里需要更新的参数有$N(\vec{s},\vec{a})$，$Q(\vec{s},\vec{a})$。</p>
+</li>
+</ol>
+<p>好了，以上就是Alpha Go原理比较完整的概述了，如果大家对细节很感兴趣的话，还是阅读原文最好。</p>
+<h2 id="AlphaGo-Zero"><a href="#AlphaGo-Zero" class="headerlink" title="AlphaGo Zero"></a>AlphaGo Zero</h2><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG127.png">
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG128.png">
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG130.png">
+<p>To be continued</p>
 
       
 
@@ -259,7 +276,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Column Generation Algorithm</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reinforcement Learning</a>
         		</li>
       		
 		</ul>
@@ -315,7 +332,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://xijunlee.github.io/2017/10/12/从单纯型法到列生成算法/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://xijunlee.github.io/2017/11/05/Zero2/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -329,18 +346,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2017/11/03/Zero/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          AlphaGo Zero科普之从一无所知到我也能吹水（上篇）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/10/01/极简总结两个矩阵分解/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">极简总结两个矩阵分解</div>
+    <a href="/2017/11/03/Zero/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">AlphaGo Zero科普之从一无所知到我也能吹水（上篇）</div>
       <i class="icon-circle-right"></i>
     </a>
   

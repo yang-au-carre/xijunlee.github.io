@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/mcts.jpg">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG120.png">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG121.png">
-<meta property="og:updated_time" content="2017-11-05T14:51:46.000Z">
+<meta property="og:updated_time" content="2017-11-05T14:52:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AlphaGo Zero科普之从一无所知到我也能吹水（上篇）">
 <meta name="twitter:description" content="写在前面就在上个月的19号，AlphaGo Zero横空出世，号称是没有利用人类棋谱作为指导的AI打败了之前完虐李世石的AlphaGo Lee。这一消息着实轰动，19号这一天朋友圈被刷屏（但大部分还是非业内从业者在转发）。上个礼拜又在做调研，被老板抓去讲AlphaGo Zero。组会后，还是被老板认为讲解地不够直白，不能向更大的老板作报告（更大的老板可是没有AI的背景知识的）。我也慢慢意识到一个好">
@@ -220,7 +220,8 @@ var _hmt = _hmt || [];
         <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>就在上个月的19号，AlphaGo Zero横空出世，号称是没有利用人类棋谱作为指导的AI打败了之前完虐李世石的AlphaGo Lee。这一消息着实轰动，19号这一天朋友圈被刷屏（但大部分还是非业内从业者在转发）。上个礼拜又在做调研，被老板抓去讲AlphaGo Zero。组会后，还是被老板认为讲解地不够直白，不能向更大的老板作报告（更大的老板可是没有AI的背景知识的）。我也慢慢意识到一个好的researcher不仅需要很强的理解能力，更需要极强的表达能力。为了锻炼自己的表达能力，这次博文就从非AI从业者的角度讲解这只有史以来最强的狗，这也是我的第一篇科普性质的博文，希望能把它讲明白了。</p>
 <p>由于内容较多，该水文将分为上下两篇。上篇主要介绍Alpha Go的主要组件。如果你对卷积神经网络和蒙特卡洛树搜索很了解的话，可以跳过上篇。下篇进入正题，将详细介绍Alpha Go和Alpha Go Zero的原理。当然了，所有的讲解都是以非AI从业者的角度出发，不会有晦涩复杂的数学推导。</p>
 <p>（主要的材料还是基于组会上的slides，仍旧是以图片的形式，十分抱歉</p>
-<h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline"></a>Outline</h2><p>下图是本文的一个提纲，大致的流程就是：首先是对问题的定义，这里将下围棋的活动定义成数学上的变换。然后分别介绍了AlphaGo的主要构件(building blocks)：蒙特卡洛树搜索(Monte Carlo Tree Search, MCTS)和卷积神经网络(Convolutional Neural Network, CNN)。可以说正是这二者的有效结合构造出了这个有史以来最强的围棋AI，其实想法相当简单，但是如果要弄清楚原理和优化细节还是水很深的。介绍完这两个主要的组件后，就进入了正题。但在介绍AlphaGo Zero之前，我会先介绍其前身Alpha Go。因为这二者从本质上是一样的，只是前者在网络架构稍许不一样。我觉得先弄懂了Alpha Go之后，再看AlphaGo Zero的优化会有一种理所当然的感觉。<br><a id="more"></a></p>
+<a id="more"></a>
+<h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline"></a>Outline</h2><p>下图是本文的一个提纲，大致的流程就是：首先是对问题的定义，这里将下围棋的活动定义成数学上的变换。然后分别介绍了AlphaGo的主要构件(building blocks)：蒙特卡洛树搜索(Monte Carlo Tree Search, MCTS)和卷积神经网络(Convolutional Neural Network, CNN)。可以说正是这二者的有效结合构造出了这个有史以来最强的围棋AI，其实想法相当简单，但是如果要弄清楚原理和优化细节还是水很深的。介绍完这两个主要的组件后，就进入了正题。但在介绍AlphaGo Zero之前，我会先介绍其前身Alpha Go。因为这二者从本质上是一样的，只是前者在网络架构稍许不一样。我觉得先弄懂了Alpha Go之后，再看AlphaGo Zero的优化会有一种理所当然的感觉。</p>
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG118.png">
 <h2 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h2><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG117.png">
 <p>首先，我们来将下围棋这么一个活动形式化。</p>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-11-05T07:25:48.000Z</updated>
+  <updated>2017-11-05T07:27:51.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xijunlee.github.io/2017/11/03/Zero/"/>
     <id>https://xijunlee.github.io/2017/11/03/Zero/</id>
     <published>2017-11-03T15:58:38.000Z</published>
-    <updated>2017-11-05T07:25:48.000Z</updated>
+    <updated>2017-11-05T07:27:51.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>就在上个月的19号，AlphaGo Zero横空出世，号称是没有利用人类棋谱作为指导的AI打败了之前完虐李世石的AlphaGo Lee。这一消息着实轰动，19号这一天朋友圈被刷屏（但大部分还是非业内从业者在转发）。上个礼拜又在做调研，被老板抓去讲AlphaGo Zero。组会后，还是被老板认为讲解地不够直白，不能向更大的老板作报告（更大的老板可是没有AI的背景知识的）。我也慢慢意识到一个好的researcher不仅需要很强的理解能力，更需要极强的表达能力。为了锻炼自己的表达能力，这次博文就从非AI从业者的角度讲解这只有史以来最强的狗，这也是我的第一篇科普性质的博文，希望能把它讲明白了。</p>
 <p>（主要的材料还是基于组会上的slides，仍旧是以图片的形式，十分抱歉</p>
@@ -80,7 +80,7 @@
 </li>
 </ol>
 <h3 id="“融合”的蒙特卡洛树搜索"><a href="#“融合”的蒙特卡洛树搜索" class="headerlink" title="“融合”的蒙特卡洛树搜索"></a>“融合”的蒙特卡洛树搜索</h3><p>训练好了上述所有网络后，我们现在就已经万事具备了。上述的这些网络都是需要提前训练好的，这个训练过程的时间是非常漫长的，但是训练好之后就可以立马使用。不过，如果只单纯用策略网络去跟人下棋的话，一般是会被人类玩家虐的，因为这样的策略还是太简单了。所以，需要将上述网络与蒙特卡洛树搜索进行结合。下图正是Alpha Go中将策略网络和价值网络融合到蒙特卡洛树搜索的架构与算法流程：</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG1256.png">
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG126.png">
 <h2 id="AlphaGo-Zero"><a href="#AlphaGo-Zero" class="headerlink" title="AlphaGo Zero"></a>AlphaGo Zero</h2><p>To be continue</p>
 <hr>
 <p>Reference<br><a href="https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf" target="_blank" rel="external">https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf</a><br><a href="http://www.nature.com/nature/journal/v550/n7676/full/nature24270.html" target="_blank" rel="external">http://www.nature.com/nature/journal/v550/n7676/full/nature24270.html</a><br><a href="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/</a><br><a href="https://www.zhihu.com/question/39916945/answer/184152952" target="_blank" rel="external">https://www.zhihu.com/question/39916945/answer/184152952</a><br><a href="http://ieeexplore.ieee.org/document/6145622/" target="_blank" rel="external">http://ieeexplore.ieee.org/document/6145622/</a><br><a href="https://zhuanlan.zhihu.com/p/25345778" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/25345778</a><br><a href="https://arxiv.org/abs/1412.6564" target="_blank" rel="external">https://arxiv.org/abs/1412.6564</a><br><a href="https://morvanzhou.github.io/tutorials/machine-learning/reinforcement-learning/1-1-A-RL/" target="_blank" rel="external">https://morvanzhou.github.io/tutorials/machine-learning/reinforcement-learning/1-1-A-RL/</a></p>

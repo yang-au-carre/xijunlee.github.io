@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-11-06T13:03:42.000Z</updated>
+  <updated>2017-11-06T13:13:00.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xijunlee.github.io/2017/11/05/Zero2/"/>
     <id>https://xijunlee.github.io/2017/11/05/Zero2/</id>
     <published>2017-11-05T14:42:12.000Z</published>
-    <updated>2017-11-06T13:03:42.000Z</updated>
+    <updated>2017-11-06T13:13:00.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>上篇介绍了Alpha Go的两个最主要的组件：卷积神经网络和蒙特卡洛树搜索。这篇开始进入正题，但在介绍AlphaGo Zero之前，我会先介绍其前身Alpha Go。因为这二者从本质上是一样的，只是前者在网络架构稍许不一样。我觉得先弄懂了Alpha Go之后，再看AlphaGo Zero的优化会有一种理所当然的感觉。</p>
 <h2 id="Alpha-Go"><a href="#Alpha-Go" class="headerlink" title="Alpha Go"></a>Alpha Go</h2><p>这里开始进入正题了，有了对蒙特卡洛树搜索和卷积神经网络的初步认识，我觉得就比较容易理解Alpha Go的本质了。本节分为三个小节，分别是策略网络(Policy Network)，价值网络(Value Network)以及与前两个网络融合的蒙特卡洛树搜索。</p>
@@ -77,7 +77,7 @@
 <ol>
 <li><p>自我博弈(Self-play)。蒙特卡洛树搜索在$f_\theta$的指导下进行自我博弈，直到棋局结束。在这个自我博弈过程中，会得到一系列的棋盘状态$\vec{s}_i$，对应的落子概率向量$\vec{\pi}_i$，以及一个最后的赢棋结果$z$。</p>
 </li>
-<li><p>神经网络训练。利用第一步得到的一系列的$($\vec{s}_i,\vec{\pi}<em>i,s)$来更新网络参数$\theta$。更新后的网络$f</em>\theta$又去指导蒙特卡洛树搜索进行自我博弈。</p>
+<li><p>神经网络训练。利用第一步得到的一系列的$(\vec{s}_i,\vec{\pi}<em>i,z)$来更新网络参数$\theta$。更新后的网络$f</em>\theta$又去指导蒙特卡洛树搜索进行自我博弈。</p>
 </li>
 </ol>
 <p>自我博弈和网络训练交替进行，直到网络参数$\theta$收敛为止。这样，我们就能得到一个无比强大的融合网络$f_\theta$。</p>
@@ -425,7 +425,7 @@
     <link href="https://xijunlee.github.io/2017/06/23/CNN%E5%AE%9E%E8%B7%B5%E4%B9%8B%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E4%BD%93%E8%AF%86%E5%88%AB/"/>
     <id>https://xijunlee.github.io/2017/06/23/CNN实践之手写数字体识别/</id>
     <published>2017-06-23T07:46:26.000Z</published>
-    <updated>2017-11-04T04:06:45.000Z</updated>
+    <updated>2017-11-06T13:08:56.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>之前一直都是只看理论，没有动手，现在终于把理论付诸实践了。话不多说，这篇博文记录一下我在kaggle上实践过程。</p>
 <h2 id="任务描述"><a href="#任务描述" class="headerlink" title="任务描述"></a>任务描述</h2><p>MNIST (“Modified National Institute of Standards and Technology”) is the de facto “hello world” dataset of computer vision. Since its release in 1999, this classic dataset of handwritten images has served as the basis for benchmarking classification algorithms. As new machine learning techniques emerge, MNIST remains a reliable resource for researchers and learners alike.</p>
@@ -476,6 +476,8 @@
     
     
       <category term="CNN" scheme="https://xijunlee.github.io/tags/CNN/"/>
+    
+      <category term="Machine Learning" scheme="https://xijunlee.github.io/tags/Machine-Learning/"/>
     
   </entry>
   
@@ -812,7 +814,7 @@
     <link href="https://xijunlee.github.io/2017/04/11/CNN/"/>
     <id>https://xijunlee.github.io/2017/04/11/CNN/</id>
     <published>2017-04-11T14:45:16.000Z</published>
-    <updated>2017-11-04T04:08:03.000Z</updated>
+    <updated>2017-11-06T13:09:07.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>之前读过好一些关于卷积神经网络的入门文章，看完了之后还是觉得似懂非懂。特别是<strong>卷积网络为什么叫卷积</strong>呢？上次吃饭居然还跟小红他们就这个问题聊了一下。今天碰巧刷知乎刷到<a href="https://zhuanlan.zhihu.com/p/25249694" target="_blank" rel="external">这篇文章</a>，作者对CNN做了非常生动的解释，是我目前看到的关于CNN最好的中文解释。当然了，作者还就卷积网络中卷积层对图像特征的提取和池化层的降维做了很好的解释。文章最后又对一个已经学习好的CNN中的卷积层和全连接层进行了可视化，这让我这样的小白能非常直观地看出CNN到底最后学出了什么特征。这篇博文整理了原文中关于解释<strong>卷积神经网络为什么叫卷积</strong>的描述，更多内容可以直接去<a href="https://zhuanlan.zhihu.com/p/25249694" target="_blank" rel="external">原文</a>中。</p>
 <h2 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h2><p>我们在 2 维上说话。有两个$\mathcal{R}^2\rightarrow \mathcal{R}$的函数 f(x, y) 和 g(x, y) 。所谓 f 和 g 的卷积就是一个新的 $\mathcal{R}^2\rightarrow \mathcal{R}$的函数 c(x, y) 。通过下式得到：</p>
@@ -873,6 +875,8 @@
     
       <category term="CNN" scheme="https://xijunlee.github.io/tags/CNN/"/>
     
+      <category term="Machine Learning" scheme="https://xijunlee.github.io/tags/Machine-Learning/"/>
+    
   </entry>
   
   <entry>
@@ -880,7 +884,7 @@
     <link href="https://xijunlee.github.io/2017/04/01/efficiently/"/>
     <id>https://xijunlee.github.io/2017/04/01/efficiently/</id>
     <published>2017-04-01T05:46:11.000Z</published>
-    <updated>2017-11-04T04:08:11.000Z</updated>
+    <updated>2017-11-06T13:09:31.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="WIKI"><a href="#WIKI" class="headerlink" title="WIKI"></a>WIKI</h2><p>Bit manipulation is the act of algorithmically manipulating bits or other pieces of data shorter than a word. Computer programming tasks that require bit manipulation include low-level device control, error detection and correction algorithms, data compression, encryption algorithms, and optimization. For most other tasks, modern programming languages allow the programmer to work directly with abstractions instead of bits that represent those abstractions. Source code that does bit manipulation makes use of the bitwise operations: AND, OR, XOR, NOT, and bit shifts.</p>
 <p>Bit manipulation, in some cases, can obviate or reduce the need to loop over a data structure and can give many-fold speed ups, as bit manipulations are processed in parallel, but the code can become more difficult to write and maintain.</p>
@@ -938,6 +942,8 @@
     
       <category term="Bit Manipulation" scheme="https://xijunlee.github.io/tags/Bit-Manipulation/"/>
     
+      <category term="Programing Tricks" scheme="https://xijunlee.github.io/tags/Programing-Tricks/"/>
+    
   </entry>
   
   <entry>
@@ -945,7 +951,7 @@
     <link href="https://xijunlee.github.io/2017/03/29/sklearn%E4%B8%ADSVM%E8%B0%83%E5%8F%82%E8%AF%B4%E6%98%8E%E5%8F%8A%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/"/>
     <id>https://xijunlee.github.io/2017/03/29/sklearn中SVM调参说明及经验总结/</id>
     <published>2017-03-29T12:47:23.000Z</published>
-    <updated>2017-11-04T04:08:29.000Z</updated>
+    <updated>2017-11-06T13:10:05.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>之前只停留在理论上，没有实际沉下心去调参，实际去做了后，发现调参是个大工程（玄学）。于是这篇来总结一下<code>sklearn</code>中svm的参数说明以及调参经验。方便以后查询和回忆。</p>
 <h2 id="常用核函数"><a href="#常用核函数" class="headerlink" title="常用核函数"></a>常用核函数</h2><p>1.linear核函数: $$K(x_i,x_j)=x_i^Tx_j$$<br><a id="more"></a><br>2.polynomial核函数: $$K(x_i,x_j)=(\gamma x_i^Tx_j + r)^d, d&gt;1$$<br>3.RBF核函数（高斯核函数）: $$K(x_i,x_j)=exp(-\gamma ||x_i-x_j||^2),\gamma&gt;0$$<br>4.sigmoid核函数: $$K(x_i,x_j)=tanh(\gamma x_i^Tx_j + r ), \gamma&gt;0, r&lt;0$$</p>
@@ -973,6 +979,8 @@
     
       <category term="SVM" scheme="https://xijunlee.github.io/tags/SVM/"/>
     
+      <category term="Machine Learning" scheme="https://xijunlee.github.io/tags/Machine-Learning/"/>
+    
   </entry>
   
   <entry>
@@ -980,7 +988,7 @@
     <link href="https://xijunlee.github.io/2017/03/13/reddit%E4%B8%8A%E7%9B%B4%E8%A7%82%E6%9C%89%E8%B6%A3%E7%9A%84SVM%E8%A7%A3%E9%87%8A/"/>
     <id>https://xijunlee.github.io/2017/03/13/reddit上直观有趣的SVM解释/</id>
     <published>2017-03-13T05:26:10.000Z</published>
-    <updated>2017-09-09T14:25:08.000Z</updated>
+    <updated>2017-11-06T13:09:55.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这是目前看到过的对SVM的最直观的解释，原题目名还叫作<a href="https://www.reddit.com/r/MachineLearning/comments/15zrpp/please_explain_support_vector_machines_svm_like_i/" target="_blank" rel="external">Please explain Support Vector Machines (SVM) like I am a 5 year old</a>。于是，稍微整理下放到博客里。我个人认为，它对SVM中<code>kernel function</code>解释地相当形象。</p>
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>Found <a href="https://www.reddit.com/r/MachineLearning/comments/15zrpp/please_explain_support_vector_machines_svm_like_i/" target="_blank" rel="external">this</a> on Reddit <a href="https://www.reddit.com/r/MachineLearning/" target="_blank" rel="external">r/machinelearning</a></p>
@@ -1018,6 +1026,8 @@
     
       <category term="SVM" scheme="https://xijunlee.github.io/tags/SVM/"/>
     
+      <category term="Machine Learning" scheme="https://xijunlee.github.io/tags/Machine-Learning/"/>
+    
   </entry>
   
   <entry>
@@ -1025,7 +1035,7 @@
     <link href="https://xijunlee.github.io/2017/02/21/GitMemo-Working-with-Git-on-Windows-repost/"/>
     <id>https://xijunlee.github.io/2017/02/21/GitMemo-Working-with-Git-on-Windows-repost/</id>
     <published>2017-02-21T13:41:38.000Z</published>
-    <updated>2017-02-21T14:11:44.000Z</updated>
+    <updated>2017-11-06T13:09:37.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Preamble"><a href="#Preamble" class="headerlink" title="Preamble"></a>Preamble</h2><p>Setting up Git can be tricky on Windows compared to Linux or Mac, but if you follow the steps in this guide, you should have no problems using Git on Windows. This guide will take you through the steps to install and configure Git and connect it to remote repositories to clone, push, and pull. </p>
 <a id="more"></a>
@@ -1063,7 +1073,7 @@
     </summary>
     
     
-      <category term="git" scheme="https://xijunlee.github.io/tags/git/"/>
+      <category term="Git" scheme="https://xijunlee.github.io/tags/Git/"/>
     
   </entry>
   
@@ -1130,7 +1140,7 @@
     <link href="https://xijunlee.github.io/2017/02/10/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
     <id>https://xijunlee.github.io/2017/02/10/python虚拟环境安装与使用/</id>
     <published>2017-02-10T03:15:15.000Z</published>
-    <updated>2017-09-09T14:25:15.000Z</updated>
+    <updated>2017-11-06T13:09:46.000Z</updated>
     
     <content type="html"><![CDATA[<p>在开发<code>Python</code>应用程序的时候，系统安装的<code>Python3</code>只有一个版本：3.4。所有第三方的包都会被<code>pip</code>安装到<code>Python3</code>的<code>site-packages</code>目录下。</p>
 <p>如果我们要同时开发多个应用程序，那这些应用程序都会共用一个<code>Python</code>，就是安装在系统的Python 3。如果应用A需要<code>jinja 2.7</code>，而应用B需要<code>jinja 2.6</code>怎么办？</p>
@@ -1169,7 +1179,9 @@
     </summary>
     
     
-      <category term="Python Virtual Environment" scheme="https://xijunlee.github.io/tags/Python-Virtual-Environment/"/>
+      <category term="Python" scheme="https://xijunlee.github.io/tags/Python/"/>
+    
+      <category term="Virtual Environment" scheme="https://xijunlee.github.io/tags/Virtual-Environment/"/>
     
   </entry>
   

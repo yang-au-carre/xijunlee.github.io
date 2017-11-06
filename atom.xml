@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-11-06T14:15:51.000Z</updated>
+  <updated>2017-11-06T14:58:39.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>AlphaGo Zero科普之从一无所知到我也能吹水（下篇）</title>
+    <title>AlphaGo Zero科普之从一无所知到也能吹水（下篇）</title>
     <link href="https://xijunlee.github.io/2017/11/05/Zero2/"/>
     <id>https://xijunlee.github.io/2017/11/05/Zero2/</id>
     <published>2017-11-05T14:42:12.000Z</published>
-    <updated>2017-11-06T14:15:51.000Z</updated>
+    <updated>2017-11-06T14:58:39.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>上篇介绍了Alpha Go的两个最主要的组件：卷积神经网络和蒙特卡洛树搜索。这篇开始进入正题，但在介绍AlphaGo Zero之前，我会先介绍其前身Alpha Go。因为这二者从本质上是一样的，只是前者在网络架构稍许不一样。我觉得先弄懂了Alpha Go之后，再看AlphaGo Zero的优化会有一种理所当然的感觉。</p>
 <h2 id="Alpha-Go"><a href="#Alpha-Go" class="headerlink" title="Alpha Go"></a>Alpha Go</h2><p>这里开始进入正题了，有了对蒙特卡洛树搜索和卷积神经网络的初步认识，我觉得就比较容易理解Alpha Go的本质了。本节分为三个小节，分别是策略网络(Policy Network)，价值网络(Value Network)以及与前两个网络融合的蒙特卡洛树搜索。</p>

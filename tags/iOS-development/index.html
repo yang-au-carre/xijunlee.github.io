@@ -7,24 +7,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xijunlee.github.io">
-  <title>算法导论学习之红黑树(2) | A Notebook</title>
+  <title>Tag: iOS Development | A Notebook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="写在前面的话这一章具体介绍红黑树的删除操作，以及我对删除一系列操作的理解。
-话不多说，我先直接给出算导上关于删除操作的伪代码（这伪代码几乎就可以当作实现代码了，不过还是要搞懂原理）">
-<meta property="og:type" content="article">
-<meta property="og:title" content="算法导论学习之红黑树(2)">
-<meta property="og:url" content="https://xijunlee.github.io/2015/07/22/算法导论学习之红黑树-2/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="A Notebook">
+<meta property="og:url" content="https://xijunlee.github.io/tags/iOS-Development/index.html">
 <meta property="og:site_name" content="A Notebook">
-<meta property="og:description" content="写在前面的话这一章具体介绍红黑树的删除操作，以及我对删除一系列操作的理解。
-话不多说，我先直接给出算导上关于删除操作的伪代码（这伪代码几乎就可以当作实现代码了，不过还是要搞懂原理）">
-<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree2/img1.jpeg">
-<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree2/img2.jpeg">
-<meta property="og:updated_time" content="2017-09-09T14:22:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法导论学习之红黑树(2)">
-<meta name="twitter:description" content="写在前面的话这一章具体介绍红黑树的删除操作，以及我对删除一系列操作的理解。
-话不多说，我先直接给出算导上关于删除操作的伪代码（这伪代码几乎就可以当作实现代码了，不过还是要搞懂原理）">
-<meta name="twitter:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree2/img1.jpeg">
+<meta name="twitter:title" content="A Notebook">
   
     <link rel="alternative" href="/atom.xml" title="A Notebook" type="application/atom+xml">
   
@@ -195,192 +185,60 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-算法导论学习之红黑树-2" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      算法导论学习之红黑树(2)
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/01/02/［iOS开发］推荐一个库，还是解决键盘隐藏问题，好用到飞上天！！/" class="archive-article-date">
+  	<time datetime="2016-01-02T10:51:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-02</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/01/02/［iOS开发］推荐一个库，还是解决键盘隐藏问题，好用到飞上天！！/">［iOS开发］推荐一个库，还是解决键盘隐藏问题，好用到飞上天！！</a>
     </h1>
   
 
-        
-        <a href="/2015/07/22/算法导论学习之红黑树-2/" class="archive-article-date">
-  	<time datetime="2015-07-22T10:31:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-07-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><p>这一章具体介绍红黑树的删除操作，以及我对删除一系列操作的理解。</p>
-<p>话不多说，我先直接给出算导上关于删除操作的伪代码（这伪代码几乎就可以当作实现代码了，不过还是要搞懂原理）</p>
-<a id="more"></a>
-<h3 id="红黑树的删除操作"><a href="#红黑树的删除操作" class="headerlink" title="红黑树的删除操作"></a>红黑树的删除操作</h3><h4 id="删除操作伪代码"><a href="#删除操作伪代码" class="headerlink" title="删除操作伪代码"></a>删除操作伪代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">RB-DELETE(T,z)</div><div class="line">  <span class="keyword">if</span> left[z] == nil[T] || right[z] == nil[T]</div><div class="line">    then y &lt;- z</div><div class="line">    <span class="keyword">else</span> y &lt;- TREE-SUCCESOR(z)</div><div class="line">  <span class="keyword">if</span> left[y] != nil[T]</div><div class="line">    then x &lt;- left[y]</div><div class="line">    <span class="keyword">else</span> x &lt;- right[y]</div><div class="line">  p[x] &lt;- p[y]</div><div class="line">  <span class="keyword">if</span> p[y] == nil[T]</div><div class="line">    then root[T] &lt;- x</div><div class="line">   	<span class="keyword">else</span> <span class="keyword">if</span> y == left[p[y]]</div><div class="line">       then left[p[y]] &lt;- x</div><div class="line">       <span class="keyword">else</span> right[p[y]] &lt;- x</div><div class="line">  <span class="keyword">if</span> y != z</div><div class="line">    then key[z] &lt;- key[y]</div><div class="line">        copy y’s satellite data into z</div><div class="line">  <span class="keyword">if</span> color[y] == BLACK</div><div class="line">     then RB-DELETE-FIXUP(T,z)</div></pre></td></tr></table></figure>
-<p>可以从上述伪代码发现，红黑树的删除操作和普通二叉树操作差不多，但因为红黑树的性质，当如果删除的节点是一个黑节点时，则有可能违反某些性质（用脚趾头想最可能违反的性质就是性质5）：某个节点到其叶子节点所有路径上的包含相同的黑节点数），那么就需要调用 RB-DELETE-FIXUP(T,z)来修正。为什么不要讨论删除的节点是红节点的情况呢？如果这棵树先前就是一棵标准的红黑树的话，那么它就满足所有的红黑性质，删除一个红色节点，是不会违反任何一条性质的。</p>
-<p>下面先给出RB-DELETE-FIXUP(T,z)的伪代码</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">RB-DELETE-FIXUP(T,z)的伪代码： </div><div class="line"><span class="keyword">while</span> x != root[T] &amp;&amp; color[x] == BLACK </div><div class="line"> 	<span class="keyword">do</span> <span class="keyword">if</span> x == left[p[x]] </div><div class="line"> 		then w &lt;- right[p[x]] </div><div class="line"> 			<span class="keyword">if</span> color[w] == RED </div><div class="line"> 				then color[w] &lt;- BLACK <span class="comment">//case 1 </span></div><div class="line"> 					color[p[x]] &lt;- RED <span class="comment">//case 1 </span></div><div class="line"> 					LEFT-ROTATE(T,p[x]) <span class="comment">//case 1 </span></div><div class="line"> 					w &lt;- right[p[x]] <span class="comment">//case 1 </span></div><div class="line"> 			<span class="keyword">if</span> color[left[w]] == BLACK &amp;&amp; color[right[w]] == BLACK </div><div class="line"> 				then color[w] &lt;- RED <span class="comment">//case 2 </span></div><div class="line"> 					x &lt;- p[x] <span class="comment">//case 2 </span></div><div class="line"> 				<span class="keyword">else</span> <span class="keyword">if</span> color[right[w]] == BLACK </div><div class="line"> 					then color[left[w]] &lt;- BLACK <span class="comment">//case 3 </span></div><div class="line"> 						color[w] &lt;- RED <span class="comment">//case 3 </span></div><div class="line"> 						RIGHT-ROTATE(T,w) <span class="comment">//case 3 </span></div><div class="line"> 						w &lt;- right[p[x]] <span class="comment">//case 3 </span></div><div class="line"> 					color[w] &lt;- color[p[x]] <span class="comment">//case 4 </span></div><div class="line"> 					color[p[x]] &lt;- BLACK <span class="comment">//case 4 </span></div><div class="line"> 					color[right[w]] &lt;- BLACK <span class="comment">//case 4 </span></div><div class="line"> 					LEFT-ROTATE(T,p[x]) <span class="comment">//case 4 </span></div><div class="line"> 				x&lt;-root <span class="comment">//case 4 </span></div><div class="line"> 		<span class="keyword">else</span> (same as then clause with “right” and “left” exchange)</div></pre></td></tr></table></figure>
-<p> 可能初看这么一大堆伪代码，谁看谁都会头晕。先思考下删除一个黑节点会违反哪些性质呢？</p>
-<pre><code>* 如果y原来是根节点，那么y的一个红孩儿x可能成为新根，那么就违反了根节点必须是黑色的性质；
-* 如果x和p[y]都是红色的，那么删除了黑节点y后，那就违反了两个红节点不能相邻的性质；
-* 因为删除了一个黑色节点y，那么在包含节点y的路径上就少了一个黑节点，就违反了性质5）
-</code></pre><p>算法导论书上fix上述可能违反的性质的基本思路其实也很简单：因为删除的是一个黑节点，其黑色的删除是一定会违反性质5）的，那么就假想被删结点y的儿子节点x具有一层额外的黑色，如果x原本是红节点的话，就把x节点染成黑色，如果x不是红节点的话，就沿着x往上升，找到一颗红节点并把它染成黑色；如果一直往上升，直到根节点都没有找到红节点的话，那就可以把这额外的黑色给“挤”出去。要完成上述两个想法，需要一定的旋转和颜色改变。下面来讨论具体的八种可能违反红黑性质的情况。</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree2/img1.jpeg">
-<p>图1 删除操作的四种情况，其余四种是这四种的对偶</p>
-<p>需要考虑的有八种情况，但是其中四种与另外四种是相互对称的，因此只需要详细讲其中四种的操作即可：</p>
-<ol>
-<li>x的兄弟w是红色的；<br>处理方法：因为能进入到循环内，所以x一定是黑的。并且其兄弟w是红的，所以x的父亲一定是红的，于是将w与p[x]的颜色互换，然后对p[x]做左旋。x的兄弟w就变成节点D，是黑色的，于是将情况1转换成了情况2。</li>
-<li>x的兄弟w是黑色的，并且w的两个儿子都是黑色的。<br>处理方法：将w涂成红色的，并将x指向原来x的父亲节点。注意到，只有在这个情况下才会使得指针上升。</li>
-<li>x的兄弟w是黑色的，但w的左孩子是红色的，w的右孩子是黑的。<br>处理方法：将w与其左孩子颜色互换，然后对w做右旋，x的新兄弟变成节点C。这时，x的兄弟w变成黑色，而其右孩子变成了红色，将情况3转换成了情况4.</li>
-<li>x的兄弟w是黑色的，且w的右孩子是红色的。<br>处理方法：这种情况是终极情况，只需要将p[x]和w的颜色互换，并将w的红孩儿染成黑色的，然后对p[x]做左旋，最后将x指向整棵树的根，即可退出while循环。</li>
-</ol>
-<p>总结：因为删除的是一颗黑节点，黑节点的减少，势必会违背性质5。因此就要想方设法将这额外的黑色转嫁给树中某颗红节点。可以看到，情况1和情况3并没有在局部新增黑色的节点，这两种情况的作用只不过是将它们转化为情况2和情况4。而情况2是将x所在这一层的所有黑色减少一次，将这个黑色转接到其父亲那一层去。情况4则更简单，找到x兄弟w的一个红孩儿，把它染成黑色，就结束了这一路寻找红节点的旅程。</p>
-<p>以下是四种情况的转化关系：</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree2/img2.jpeg">
-<p>图2 四种情况的转化关系</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">iOS Development</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://xijunlee.github.io/2015/07/22/算法导论学习之红黑树-2/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2015/10/07/关于南京的记忆/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          关于南京的记忆
-        
-      </div>
-    </a>
   
   
-    <a href="/2015/07/20/算法导论学习之红黑树-1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">算法导论学习之红黑树(1)</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#写在前面的话"><span class="toc-number">1.</span> <span class="toc-text">写在前面的话</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#红黑树的删除操作"><span class="toc-number">1.1.</span> <span class="toc-text">红黑树的删除操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#删除操作伪代码"><span class="toc-number">1.1.1.</span> <span class="toc-text">删除操作伪代码</span></a></li></ol></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -403,9 +261,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

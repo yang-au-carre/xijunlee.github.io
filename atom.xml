@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-11-06T14:11:23.000Z</updated>
+  <updated>2017-11-06T14:13:31.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xijunlee.github.io/2017/11/05/Zero2/"/>
     <id>https://xijunlee.github.io/2017/11/05/Zero2/</id>
     <published>2017-11-05T14:42:12.000Z</published>
-    <updated>2017-11-06T14:11:23.000Z</updated>
+    <updated>2017-11-06T14:13:31.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>上篇介绍了Alpha Go的两个最主要的组件：卷积神经网络和蒙特卡洛树搜索。这篇开始进入正题，但在介绍AlphaGo Zero之前，我会先介绍其前身Alpha Go。因为这二者从本质上是一样的，只是前者在网络架构稍许不一样。我觉得先弄懂了Alpha Go之后，再看AlphaGo Zero的优化会有一种理所当然的感觉。</p>
 <h2 id="Alpha-Go"><a href="#Alpha-Go" class="headerlink" title="Alpha Go"></a>Alpha Go</h2><p>这里开始进入正题了，有了对蒙特卡洛树搜索和卷积神经网络的初步认识，我觉得就比较容易理解Alpha Go的本质了。本节分为三个小节，分别是策略网络(Policy Network)，价值网络(Value Network)以及与前两个网络融合的蒙特卡洛树搜索。</p>
@@ -38,12 +38,7 @@
 <h3 id="价值网络-Value-Network"><a href="#价值网络-Value-Network" class="headerlink" title="价值网络 Value Network"></a>价值网络 Value Network</h3><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG125.png">
 <p>Alpha Go中还构造了一个网络，即价值网络v。该网络的用途是给定一个棋局局面$\vec{s}$，立马根据$\vec{s}$输出我赢棋的概率$v$。</p>
 <p>价值网络v的训练方法依旧是强化学习。更细一点说明如下：</p>
-<ol>
-<li><p>针对棋局局面$\vec{s}$，不断利用强化策略网络p_rho进行自我对弈一直下棋到最后，就会得到一个输赢结果$z,z \in \brace 1,-1 \rbrace$。其中1表示黑子赢棋，-1表示白子赢棋；</p>
-</li>
-<li><p>不断执行上一步骤，就能得到一系列的$(\vec{s},z)$对了。将这些$(\vec{s},z)$对作为训练数据来训练价值网络v。</p>
-</li>
-</ol>
+<p>1.针对棋局局面$\vec{s}$，不断利用强化策略网络p_rho进行自我对弈一直下棋到最后，就会得到一个输赢结果$z,z \in \brace 1,-1 \rbrace$。其中1表示黑子赢棋，-1表示白子赢棋；<br>2.不断执行上一步骤，就能得到一系列的$(\vec{s},z)$对了。将这些$(\vec{s},z)$对作为训练数据来训练价值网络v。</p>
 <h3 id="“融合”的蒙特卡洛树搜索"><a href="#“融合”的蒙特卡洛树搜索" class="headerlink" title="“融合”的蒙特卡洛树搜索"></a>“融合”的蒙特卡洛树搜索</h3><p>训练好了上述所有网络后，我们现在就已经万事具备了。上述的这些网络都是需要提前训练好的，这个训练过程的时间是非常漫长的，但是训练好之后就可以立马使用。不过，如果只单纯用策略网络去跟人下棋的话，一般是会被人类玩家虐的，因为这样的策略还是太简单了。所以，需要将上述网络与蒙特卡洛树搜索进行结合。下图正是Alpha Go中将策略网络和价值网络融合到蒙特卡洛树搜索的架构与算法流程：</p>
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG126.png">
 <p>首先，认识一下这个树结构。</p>
@@ -58,12 +53,7 @@
 <h3 id="AlphaGo-Zero中的强化学习"><a href="#AlphaGo-Zero中的强化学习" class="headerlink" title="AlphaGo Zero中的强化学习"></a>AlphaGo Zero中的强化学习</h3><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG127.png">
 <p>Zero将Alpha Go中的策略网络和价值网络融合成为一个网络$f_\theta$。该网络的输入是棋盘当前状态以及前七步状态$\vec{s}$，输出是落子概率向量$\vec{a}$和赢棋概率$v$。</p>
 <p>该网络的参数$\theta$是随机初始化的，也就是说没有学习人类知识，完全从零开始，这也是AlphaGo Zero中Zero取名的由来。而参数$\theta$的训练是利用在$f_\theta$指导下的蒙特卡洛树搜索的强化学习完成的。具体的步骤如下:</p>
-<ol>
-<li><p>自我博弈(Self-play)。蒙特卡洛树搜索在$f_\theta$的指导下进行自我博弈，直到棋局结束。在这个自我博弈过程中，会得到一系列的棋盘状态$\vec{s}_i$，对应的落子概率向量$\vec{\pi}_i$，以及一个最后的赢棋结果$z$。</p>
-</li>
-<li><p>神经网络训练。利用第一步得到的一系列（棋盘状态，落子概率向量，赢棋结果）的来更新网络参数$\theta$。更新后的网络$f_\theta$又去指导蒙特卡洛树搜索进行自我博弈。</p>
-</li>
-</ol>
+<p>1.自我博弈(Self-play)。蒙特卡洛树搜索在$f_\theta$的指导下进行自我博弈，直到棋局结束。在这个自我博弈过程中，会得到一系列的棋盘状态$\vec{s}_i$，对应的落子概率向量$\vec{\pi}<em>i$，以及一个最后的赢棋结果$z$。<br>2.神经网络训练。利用第一步得到的一系列（棋盘状态，落子概率向量，赢棋结果）的来更新网络参数$\theta$。更新后的网络$f</em>\theta$又去指导蒙特卡洛树搜索进行自我博弈。</p>
 <p>自我博弈和网络训练交替进行，直到网络参数$\theta$收敛为止。这样，我们就能得到一个无比强大的融合网络$f_\theta$。</p>
 <h3 id="AlphaGo-Zero中的蒙特卡洛树搜索"><a href="#AlphaGo-Zero中的蒙特卡洛树搜索" class="headerlink" title="AlphaGo Zero中的蒙特卡洛树搜索"></a>AlphaGo Zero中的蒙特卡洛树搜索</h3><p>Zero中的树搜索和Alpha Go中的树搜索在流程和结构上可以说是一模一样，如下图所示，所以就不再赘述了。差异是Zero用了一个融合过后的网络$f_\theta$，这个网络干了Alpha Go中的策略网络和价值网络的活。</p>
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG130.png">

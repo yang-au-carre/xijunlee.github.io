@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-11-06T14:01:23.000Z</updated>
+  <updated>2017-11-06T14:10:28.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xijunlee.github.io/2017/11/05/Zero2/"/>
     <id>https://xijunlee.github.io/2017/11/05/Zero2/</id>
     <published>2017-11-05T14:42:12.000Z</published>
-    <updated>2017-11-06T14:01:23.000Z</updated>
+    <updated>2017-11-06T14:10:28.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>上篇介绍了Alpha Go的两个最主要的组件：卷积神经网络和蒙特卡洛树搜索。这篇开始进入正题，但在介绍AlphaGo Zero之前，我会先介绍其前身Alpha Go。因为这二者从本质上是一样的，只是前者在网络架构稍许不一样。我觉得先弄懂了Alpha Go之后，再看AlphaGo Zero的优化会有一种理所当然的感觉。</p>
 <h2 id="Alpha-Go"><a href="#Alpha-Go" class="headerlink" title="Alpha Go"></a>Alpha Go</h2><p>这里开始进入正题了，有了对蒙特卡洛树搜索和卷积神经网络的初步认识，我觉得就比较容易理解Alpha Go的本质了。本节分为三个小节，分别是策略网络(Policy Network)，价值网络(Value Network)以及与前两个网络融合的蒙特卡洛树搜索。</p>
@@ -50,16 +50,10 @@
 <p>树中的节点表示棋局中的一个局面$\vec{s}$，每个点的状态可以使用价值网络v进行评判其赢棋概率$v$。</p>
 <p>每条边$(\vec{s},\vec{a})$表示基于某个局面$\vec{s}$的落子决策，每条边还存储三个状态$P(\vec{s},\vec{a})$，$N(\vec{s},\vec{a})$，$Q(\vec{s},\vec{a})$。$P(\vec{s},\vec{a})$是由策略网络p_sigma得到，表示基于当前状态$\vec{s}$下，采取策略$\vec{a}$的概率。$N(\vec{s},\vec{a})$表示经过边$(\vec{s},\vec{a})$的次数。$Q(\vec{s},\vec{a})$表示策略值，计算公式见上图。</p>
 <p>Alpha Go Zero中的树搜索步骤可以总结为：</p>
-<ol>
-<li><p>这个过程的第一步叫选择（Selection）。从根节点往下走，每次都选一个“最值得看的子节点”，直到来到一个“存在未扩展的子节点”的节点。什么叫做“存在未扩展的子节点”，其实就是指这个局面存在未走过的后续着法。选择的依据如上图公式所示。</p>
-</li>
-<li><p>第二步叫扩展（Expansion）。对应之前所说的“未扩展的子节点”，就是还没有试过的一个着法。我们利用策略网络p_sigma对其进行扩展，即基于当前局面下给出其所有可能落子位置的概率。</p>
-</li>
-<li><p>第三步是模拟（Simluation）。从上面这个没有试过的着法开始，用快速走子策略（Rollout policy）走到底，得到一个胜负结果$z_L$。另一方面，我们还可以利用价值网络v对当前这个局面进行评估，得到赢棋概率$v$。然后将这两个结果进行加权平均，得到一个更加客观的赢棋概率，记为$V$。</p>
-</li>
-<li><p>第四步是回溯（Backpropagation）。把模拟的结果更新回它的所有父节点上。这里需要更新的参数有$N(\vec{s},\vec{a})$，$Q(\vec{s},\vec{a})$。</p>
-</li>
-</ol>
+<p>1.这个过程的第一步叫选择（Selection）。从根节点往下走，每次都选一个“最值得看的子节点”，直到来到一个“存在未扩展的子节点”的节点。什么叫做“存在未扩展的子节点”，其实就是指这个局面存在未走过的后续着法。选择的依据如上图公式所示。</p>
+<p>2.第二步叫扩展（Expansion）。对应之前所说的“未扩展的子节点”，就是还没有试过的一个着法。我们利用策略网络p_sigma对其进行扩展，即基于当前局面下给出其所有可能落子位置的概率。</p>
+<p>3.第三步是模拟（Simluation）。从上面这个没有试过的着法开始，用快速走子策略（Rollout policy）走到底，得到一个胜负结果$z_L$。另一方面，我们还可以利用价值网络v对当前这个局面进行评估，得到赢棋概率$v$。然后将这两个结果进行加权平均，得到一个更加客观的赢棋概率，记为$V$。</p>
+<p>4.第四步是回溯（Backpropagation）。把模拟的结果更新回它的所有父节点上。这里需要更新的参数有$N(\vec{s},\vec{a})$，$Q(\vec{s},\vec{a})$。</p>
 <p>好了，以上就是Alpha Go原理比较完整的概述了，如果大家对细节很感兴趣的话，还是阅读原文最好。</p>
 <h2 id="AlphaGo-Zero"><a href="#AlphaGo-Zero" class="headerlink" title="AlphaGo Zero"></a>AlphaGo Zero</h2><h3 id="AlphaGo-Zero与Alpha-Go的不同之处"><a href="#AlphaGo-Zero与Alpha-Go的不同之处" class="headerlink" title="AlphaGo Zero与Alpha Go的不同之处"></a>AlphaGo Zero与Alpha Go的不同之处</h3><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG128.png">
 <p>根据我的理解，Zero和之前的Alpha Go的主要差异有三点:</p>
@@ -1082,7 +1076,7 @@
     <link href="https://xijunlee.github.io/2017/02/16/%E7%88%AC%E8%99%AB%E7%BB%83%E6%89%8B%E4%B8%80%EF%BC%9A%E7%88%AC%E4%B8%8B%E6%96%B0%E6%B5%AA%E7%88%B1%E9%97%AE%E6%89%80%E6%9C%89%E9%97%AE%E9%A2%98%EF%BC%81/"/>
     <id>https://xijunlee.github.io/2017/02/16/爬虫练手一：爬下新浪爱问所有问题！/</id>
     <published>2017-02-16T07:33:43.000Z</published>
-    <updated>2017-11-06T13:05:24.000Z</updated>
+    <updated>2017-11-06T14:10:14.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>老早就想写爬虫了，只奈何以前总是空有一颗写爬虫的心。很多事情不可能全部都准备好才动手做，而是在边做的过程中边学。看着<a href="http://cuiqingcai.com/1052.html" target="_blank" rel="external">大神的博客</a>，学了五天，写了几个小demo，遂准备自己动手从头写一个爬虫来练手。这篇博文不是教程，相当于一个<code>readme</code>文档吧。</p>
 <h2 id="爬的对象-–-新浪爱问"><a href="#爬的对象-–-新浪爱问" class="headerlink" title="爬的对象 – 新浪爱问"></a>爬的对象 – 新浪爱问</h2><p>选择<a href="http://iask.sina.com.cn" target="_blank" rel="external">新浪爱问</a>作为爬虫对象的原因如下：</p>
@@ -1131,7 +1125,9 @@
     </summary>
     
     
-      <category term="Spider - Python" scheme="https://xijunlee.github.io/tags/Spider-Python/"/>
+      <category term="Python" scheme="https://xijunlee.github.io/tags/Python/"/>
+    
+      <category term="Spider" scheme="https://xijunlee.github.io/tags/Spider/"/>
     
   </entry>
   

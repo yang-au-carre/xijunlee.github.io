@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-11-06T13:17:15.000Z</updated>
+  <updated>2017-11-06T13:18:55.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xijunlee.github.io/2017/11/05/Zero2/"/>
     <id>https://xijunlee.github.io/2017/11/05/Zero2/</id>
     <published>2017-11-05T14:42:12.000Z</published>
-    <updated>2017-11-06T13:17:15.000Z</updated>
+    <updated>2017-11-06T13:18:55.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>上篇介绍了Alpha Go的两个最主要的组件：卷积神经网络和蒙特卡洛树搜索。这篇开始进入正题，但在介绍AlphaGo Zero之前，我会先介绍其前身Alpha Go。因为这二者从本质上是一样的，只是前者在网络架构稍许不一样。我觉得先弄懂了Alpha Go之后，再看AlphaGo Zero的优化会有一种理所当然的感觉。</p>
 <h2 id="Alpha-Go"><a href="#Alpha-Go" class="headerlink" title="Alpha Go"></a>Alpha Go</h2><p>这里开始进入正题了，有了对蒙特卡洛树搜索和卷积神经网络的初步认识，我觉得就比较容易理解Alpha Go的本质了。本节分为三个小节，分别是策略网络(Policy Network)，价值网络(Value Network)以及与前两个网络融合的蒙特卡洛树搜索。</p>
@@ -85,7 +85,7 @@
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG130.png">
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>终于把Alpha Go与AlphaGo Zero系统地梳理了一遍了。不得不感慨Alpha Go以及AlphaGo Zero是科研与工程的极致产物，但也要认识到AlphaGo Zero并没有像媒体吹地那么神，其与真正的智能还是差的很远。最后，我就节选贴上田渊栋最近对于Zero的<a href="https://zhuanlan.zhihu.com/p/30750293?utm_source=wechat_session&amp;utm_medium=social" target="_blank" rel="external">评论</a>，其写得非常到位和客观。</p>
 <blockquote>
-<p>AlphaGo厉害的地方在于结合了工程和科研两方面的工作，通过大量计算资源和工程优化将一个方向推向了极致，并且同时借鉴了十年来大家在围棋上及在计算机视觉上的点滴进展，围棋和强化学习方向上像蒙特卡罗树搜索，自对弈（俗称“左右互搏”），随机走子盘面估值，用人工特征加浅层网络进行快速走子，权衡广度和深度搜索，权衡从头探索和先验知识，计算机视觉方向上像卷积神经网络（CNN），残差网络（ResNet），旋转翻折样本增强，等等。这些都不是DeepMind团队率先想出来的，而是过去的经验一点点积累起来得到的。只是过去的点滴进步并没有进入公众的视野，而AlphaGo达成了这最后的一步。AlphaGo在业内的影响力并不像在大众中（尤其是国内）那么大。在人工智能领域，每个方法都有优缺点和局限性，没有一种方法是万能的。让在AlphaGo上做出惊人结果的卷积神经网络，早先在计算机视觉上已获得巨大的成功，但让它去拟合含有大量离散特征的广告数据，大家都知道效果不佳；同样左右互搏对其它游戏也有相当不错的效果，但让它去做优化机器翻译，未必有人工标定的数据好。我想主要的问题在于我们之前把围棋这个千年的文化传承神化了，所以现在才有这样大的反弹；若是现在再把AlphaGo神化，那不免又掉进一模一样的圈子里去了。国外对于AlphaGo相比之下要理性很多，在各大论坛上也有更多技术上的深入探讨，而不是陷入玄之又玄的空谈。等到大家有这个实力AlphaGo拆解得七零八落，对它的每个部分都有比较清晰的了解的时候，那我相信它的神秘感，和现在这些疑惑和担扰，也就烟消云散。            —- 田渊栋，Facebook人工智能组研究员</p>
+<p>AlphaGo厉害的地方在于结合了工程和科研两方面的工作，通过大量计算资源和工程优化将一个方向推向了极致，并且同时借鉴了十年来大家在围棋上及在计算机视觉上的点滴进展，围棋和强化学习方向上像蒙特卡罗树搜索，自对弈（俗称“左右互搏”），随机走子盘面估值，用人工特征加浅层网络进行快速走子，权衡广度和深度搜索，权衡从头探索和先验知识，计算机视觉方向上像卷积神经网络（CNN），残差网络（ResNet），旋转翻折样本增强，等等。这些都不是DeepMind团队率先想出来的，而是过去的经验一点点积累起来得到的。只是过去的点滴进步并没有进入公众的视野，而AlphaGo达成了这最后的一步。AlphaGo在业内的影响力并不像在大众中（尤其是国内）那么大。在人工智能领域，每个方法都有优缺点和局限性，没有一种方法是万能的。让在AlphaGo上做出惊人结果的卷积神经网络，早先在计算机视觉上已获得巨大的成功，但让它去拟合含有大量离散特征的广告数据，大家都知道效果不佳；同样左右互搏对其它游戏也有相当不错的效果，但让它去做优化机器翻译，未必有人工标定的数据好。我想主要的问题在于我们之前把围棋这个千年的文化传承神化了，所以现在才有这样大的反弹；若是现在再把AlphaGo神化，那不免又掉进一模一样的圈子里去了。国外对于AlphaGo相比之下要理性很多，在各大论坛上也有更多技术上的深入探讨，而不是陷入玄之又玄的空谈。等到大家有这个实力AlphaGo拆解得七零八落，对它的每个部分都有比较清晰的了解的时候，那我相信它的神秘感，和现在这些疑惑和担扰，也就烟消云散。            —田渊栋，Facebook人工智能组研究员</p>
 </blockquote>
 <hr>
 <p>Reference<br><a href="https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf" target="_blank" rel="external">https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf</a><br><a href="http://www.nature.com/nature/journal/v550/n7676/full/nature24270.html" target="_blank" rel="external">http://www.nature.com/nature/journal/v550/n7676/full/nature24270.html</a><br><a href="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/</a><br><a href="https://www.zhihu.com/question/39916945/answer/184152952" target="_blank" rel="external">https://www.zhihu.com/question/39916945/answer/184152952</a><br><a href="http://ieeexplore.ieee.org/document/6145622/" target="_blank" rel="external">http://ieeexplore.ieee.org/document/6145622/</a><br><a href="https://zhuanlan.zhihu.com/p/25345778" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/25345778</a><br><a href="https://arxiv.org/abs/1412.6564" target="_blank" rel="external">https://arxiv.org/abs/1412.6564</a><br><a href="https://morvanzhou.github.io/tutorials/machine-learning/reinforcement-learning/1-1-A-RL/" target="_blank" rel="external">https://morvanzhou.github.io/tutorials/machine-learning/reinforcement-learning/1-1-A-RL/</a><br><a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="external">https://arxiv.org/abs/1512.03385</a><br><a href="https://zhuanlan.zhihu.com/p/30750293?utm_source=wechat_session&amp;utm_medium=social" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/30750293?utm_source=wechat_session&amp;utm_medium=social</a></p>

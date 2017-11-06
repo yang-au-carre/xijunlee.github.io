@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2017-11-05T15:34:37.000Z</updated>
+  <updated>2017-11-06T13:03:42.000Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xijunlee.github.io/2017/11/05/Zero2/"/>
     <id>https://xijunlee.github.io/2017/11/05/Zero2/</id>
     <published>2017-11-05T14:42:12.000Z</published>
-    <updated>2017-11-05T15:34:37.000Z</updated>
+    <updated>2017-11-06T13:03:42.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>上篇介绍了Alpha Go的两个最主要的组件：卷积神经网络和蒙特卡洛树搜索。这篇开始进入正题，但在介绍AlphaGo Zero之前，我会先介绍其前身Alpha Go。因为这二者从本质上是一样的，只是前者在网络架构稍许不一样。我觉得先弄懂了Alpha Go之后，再看AlphaGo Zero的优化会有一种理所当然的感觉。</p>
 <h2 id="Alpha-Go"><a href="#Alpha-Go" class="headerlink" title="Alpha Go"></a>Alpha Go</h2><p>这里开始进入正题了，有了对蒙特卡洛树搜索和卷积神经网络的初步认识，我觉得就比较容易理解Alpha Go的本质了。本节分为三个小节，分别是策略网络(Policy Network)，价值网络(Value Network)以及与前两个网络融合的蒙特卡洛树搜索。</p>
@@ -85,7 +85,7 @@
 <img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/alphagozero/WechatIMG130.png">
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>终于把Alpha Go与AlphaGo Zero系统地梳理了一遍了。不得不感慨Alpha Go以及AlphaGo Zero是科研与工程的极致产物，但也要认识到AlphaGo Zero并没有像媒体吹地那么神，其与真正的智能还是差的很远。最后，我就节选贴上田渊栋最近对于Zero的<a href="https://zhuanlan.zhihu.com/p/30750293?utm_source=wechat_session&amp;utm_medium=social" target="_blank" rel="external">评论</a>，其写得非常到位和客观。</p>
 <blockquote>
-<p>AlphaGo厉害的地方在于结合了工程和科研两方面的工作，通过大量计算资源和工程优化将一个方向推向了极致，并且同时借鉴了十年来大家在围棋上及在计算机视觉上的点滴进展，围棋和强化学习方向上像蒙特卡罗树搜索，自对弈（俗称“左右互搏”），随机走子盘面估值，用人工特征加浅层网络进行快速走子，权衡广度和深度搜索，权衡从头探索和先验知识，计算机视觉方向上像卷积神经网络（CNN），残差网络（ResNet），旋转翻折样本增强，等等。这些都不是DeepMind团队率先想出来的，而是过去的经验一点点积累起来得到的。只是过去的点滴进步并没有进入公众的视野，而AlphaGo达成了这最后的一步。AlphaGo在业内的影响力并不像在大众中（尤其是国内）那么大。在人工智能领域，每个方法都有优缺点和局限性，没有一种方法是万能的。让在AlphaGo上做出惊人结果的卷积神经网络，早先在计算机视觉上已获得巨大的成功，但让它去拟合含有大量离散特征的广告数据，大家都知道效果不佳；同样左右互搏对其它游戏也有相当不错的效果，但让它去做优化机器翻译，未必有人工标定的数据好。我想主要的问题在于我们之前把围棋这个千年的文化传承神化了，所以现在才有这样大的反弹；若是现在再把AlphaGo神化，那不免又掉进一模一样的圈子里去了。国外对于AlphaGo相比之下要理性很多，在各大论坛上也有更多技术上的深入探讨，而不是陷入玄之又玄的空谈。等到大家有这个实力AlphaGo拆解得七零八落，对它的每个部分都有比较清晰的了解的时候，那我相信它的神秘感，和现在这些疑惑和担扰，也就烟消云散。 – 田渊栋，Facebook人工智能组研究员</p>
+<p>AlphaGo厉害的地方在于结合了工程和科研两方面的工作，通过大量计算资源和工程优化将一个方向推向了极致，并且同时借鉴了十年来大家在围棋上及在计算机视觉上的点滴进展，围棋和强化学习方向上像蒙特卡罗树搜索，自对弈（俗称“左右互搏”），随机走子盘面估值，用人工特征加浅层网络进行快速走子，权衡广度和深度搜索，权衡从头探索和先验知识，计算机视觉方向上像卷积神经网络（CNN），残差网络（ResNet），旋转翻折样本增强，等等。这些都不是DeepMind团队率先想出来的，而是过去的经验一点点积累起来得到的。只是过去的点滴进步并没有进入公众的视野，而AlphaGo达成了这最后的一步。AlphaGo在业内的影响力并不像在大众中（尤其是国内）那么大。在人工智能领域，每个方法都有优缺点和局限性，没有一种方法是万能的。让在AlphaGo上做出惊人结果的卷积神经网络，早先在计算机视觉上已获得巨大的成功，但让它去拟合含有大量离散特征的广告数据，大家都知道效果不佳；同样左右互搏对其它游戏也有相当不错的效果，但让它去做优化机器翻译，未必有人工标定的数据好。我想主要的问题在于我们之前把围棋这个千年的文化传承神化了，所以现在才有这样大的反弹；若是现在再把AlphaGo神化，那不免又掉进一模一样的圈子里去了。国外对于AlphaGo相比之下要理性很多，在各大论坛上也有更多技术上的深入探讨，而不是陷入玄之又玄的空谈。等到大家有这个实力AlphaGo拆解得七零八落，对它的每个部分都有比较清晰的了解的时候，那我相信它的神秘感，和现在这些疑惑和担扰，也就烟消云散。            —- 田渊栋，Facebook人工智能组研究员</p>
 </blockquote>
 <hr>
 <p>Reference<br><a href="https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf" target="_blank" rel="external">https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf</a><br><a href="http://www.nature.com/nature/journal/v550/n7676/full/nature24270.html" target="_blank" rel="external">http://www.nature.com/nature/journal/v550/n7676/full/nature24270.html</a><br><a href="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/</a><br><a href="https://www.zhihu.com/question/39916945/answer/184152952" target="_blank" rel="external">https://www.zhihu.com/question/39916945/answer/184152952</a><br><a href="http://ieeexplore.ieee.org/document/6145622/" target="_blank" rel="external">http://ieeexplore.ieee.org/document/6145622/</a><br><a href="https://zhuanlan.zhihu.com/p/25345778" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/25345778</a><br><a href="https://arxiv.org/abs/1412.6564" target="_blank" rel="external">https://arxiv.org/abs/1412.6564</a><br><a href="https://morvanzhou.github.io/tutorials/machine-learning/reinforcement-learning/1-1-A-RL/" target="_blank" rel="external">https://morvanzhou.github.io/tutorials/machine-learning/reinforcement-learning/1-1-A-RL/</a><br><a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="external">https://arxiv.org/abs/1512.03385</a><br><a href="https://zhuanlan.zhihu.com/p/30750293?utm_source=wechat_session&amp;utm_medium=social" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/30750293?utm_source=wechat_session&amp;utm_medium=social</a></p>
@@ -99,7 +99,11 @@
     </summary>
     
     
+      <category term="CNN" scheme="https://xijunlee.github.io/tags/CNN/"/>
+    
       <category term="Reinforcement Learning" scheme="https://xijunlee.github.io/tags/Reinforcement-Learning/"/>
+    
+      <category term="MCTS" scheme="https://xijunlee.github.io/tags/MCTS/"/>
     
   </entry>
   
@@ -108,7 +112,7 @@
     <link href="https://xijunlee.github.io/2017/11/03/Zero/"/>
     <id>https://xijunlee.github.io/2017/11/03/Zero/</id>
     <published>2017-11-03T15:58:38.000Z</published>
-    <updated>2017-11-05T14:52:26.000Z</updated>
+    <updated>2017-11-06T13:03:56.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>就在上个月的19号，AlphaGo Zero横空出世，号称是没有利用人类棋谱作为指导的AI打败了之前完虐李世石的AlphaGo Lee。这一消息着实轰动，19号这一天朋友圈被刷屏（但大部分还是非业内从业者在转发）。上个礼拜又在做调研，被老板抓去讲AlphaGo Zero。组会后，还是被老板认为讲解地不够直白，不能向更大的老板作报告（更大的老板可是没有AI的背景知识的）。我也慢慢意识到一个好的researcher不仅需要很强的理解能力，更需要极强的表达能力。为了锻炼自己的表达能力，这次博文就从非AI从业者的角度讲解这只有史以来最强的狗，这也是我的第一篇科普性质的博文，希望能把它讲明白了。</p>
 <p>由于内容较多，该水文将分为上下两篇。上篇主要介绍Alpha Go的主要组件。如果你对卷积神经网络和蒙特卡洛树搜索很了解的话，可以跳过上篇。下篇进入正题，将详细介绍Alpha Go和Alpha Go Zero的原理。当然了，所有的讲解都是以非AI从业者的角度出发，不会有晦涩复杂的数学推导。</p>
@@ -163,7 +167,11 @@
     </summary>
     
     
+      <category term="CNN" scheme="https://xijunlee.github.io/tags/CNN/"/>
+    
       <category term="Reinforcement Learning" scheme="https://xijunlee.github.io/tags/Reinforcement-Learning/"/>
+    
+      <category term="MCTS" scheme="https://xijunlee.github.io/tags/MCTS/"/>
     
   </entry>
   
@@ -172,7 +180,7 @@
     <link href="https://xijunlee.github.io/2017/10/12/%E4%BB%8E%E5%8D%95%E7%BA%AF%E5%9E%8B%E6%B3%95%E5%88%B0%E5%88%97%E7%94%9F%E6%88%90%E7%AE%97%E6%B3%95/"/>
     <id>https://xijunlee.github.io/2017/10/12/从单纯型法到列生成算法/</id>
     <published>2017-10-12T06:49:05.000Z</published>
-    <updated>2017-10-27T01:47:58.000Z</updated>
+    <updated>2017-11-06T13:04:22.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近在做混合整数规划相关的调研，主要是关于列生成算法 (Column Generation Algorithm)，搜了一圈，发现网路上并有很多相关的中文资料，难道这个算法太难了？还是普及度不够高？后来找到了一份相关的不错的英文讲义，从头看下来，也就知道了列生成算法大概是在干什么，但是其中原因还是不得要领。</p>
 <p>之后，我又认真复习了单纯形法，才明白了列生成算法的初衷和要领，希望本文能把它讲明白。</p>
@@ -208,6 +216,10 @@
     
     
       <category term="Column Generation Algorithm" scheme="https://xijunlee.github.io/tags/Column-Generation-Algorithm/"/>
+    
+      <category term="Operation Research" scheme="https://xijunlee.github.io/tags/Operation-Research/"/>
+    
+      <category term="Simplex Method" scheme="https://xijunlee.github.io/tags/Simplex-Method/"/>
     
   </entry>
   
@@ -365,7 +377,7 @@
     <link href="https://xijunlee.github.io/2017/06/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%B8%B8%E8%A7%81%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93/"/>
     <id>https://xijunlee.github.io/2017/06/25/机器学习中常见激活函数总结/</id>
     <published>2017-06-25T13:58:32.000Z</published>
-    <updated>2017-06-25T15:29:35.000Z</updated>
+    <updated>2017-11-06T13:04:57.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>机器学习中很多场合都用到了激活函数 (Activation Function)，但激活函数主要是在神经网络中提出来的，很多场合下其实就是函数。这篇总结一下常见的激活函数以及它们的优缺点。</p>
 <h2 id="激活函数起源与性质"><a href="#激活函数起源与性质" class="headerlink" title="激活函数起源与性质"></a>激活函数起源与性质</h2><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/ActivationFunction/pic0.png">
@@ -403,6 +415,8 @@
     
     
       <category term="Activation Function" scheme="https://xijunlee.github.io/tags/Activation-Function/"/>
+    
+      <category term="Machine Learning" scheme="https://xijunlee.github.io/tags/Machine-Learning/"/>
     
   </entry>
   
@@ -470,7 +484,7 @@
     <link href="https://xijunlee.github.io/2017/06/20/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%80%BB%E7%BB%93/"/>
     <id>https://xijunlee.github.io/2017/06/20/正则表达式总结/</id>
     <published>2017-06-20T13:47:48.000Z</published>
-    <updated>2017-11-04T04:07:07.000Z</updated>
+    <updated>2017-11-06T13:05:15.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>正则表达式笔记，特指python中的re模块。</p>
 <h2 id="正则表达式相关注解"><a href="#正则表达式相关注解" class="headerlink" title="正则表达式相关注解"></a>正则表达式相关注解</h2><p>（1）数量词的贪婪模式与非贪婪模式</p>
@@ -519,7 +533,7 @@
     </summary>
     
     
-      <category term="RE" scheme="https://xijunlee.github.io/tags/RE/"/>
+      <category term="Regularization Expression" scheme="https://xijunlee.github.io/tags/Regularization-Expression/"/>
     
   </entry>
   
@@ -528,7 +542,7 @@
     <link href="https://xijunlee.github.io/2017/06/06/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E5%9F%BA%E7%A1%80/"/>
     <id>https://xijunlee.github.io/2017/06/06/自然语言处理基础/</id>
     <published>2017-06-06T03:01:32.000Z</published>
-    <updated>2017-11-04T04:07:20.000Z</updated>
+    <updated>2017-11-06T13:05:49.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>自然语言处理中基本和经典模型的总结</p>
 <h2 id="TF-IDF"><a href="#TF-IDF" class="headerlink" title="TF-IDF"></a>TF-IDF</h2><p>对于一篇文档，TF-IDF（词频-逆文档频率）能为其中的词赋予权重，它度量的是词语与文本的相关性，而非简单的词频。因此TF-IDF能用来<strong>判断文章主题</strong>。对于一个文本而言，想要知道其主题或是想知道这篇文档是关于哪个方面的，那么最容易想到的方法就是提取关键字了。TF-IDF可以认为是分为两步来做这个事情：</p>
@@ -587,7 +601,7 @@
     </summary>
     
     
-      <category term="NLP" scheme="https://xijunlee.github.io/tags/NLP/"/>
+      <category term="Natural Language Process" scheme="https://xijunlee.github.io/tags/Natural-Language-Process/"/>
     
   </entry>
   
@@ -596,7 +610,7 @@
     <link href="https://xijunlee.github.io/2017/06/03/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
     <id>https://xijunlee.github.io/2017/06/03/集成学习总结/</id>
     <published>2017-06-03T08:18:51.000Z</published>
-    <updated>2017-11-04T04:07:23.000Z</updated>
+    <updated>2017-11-06T13:05:58.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>看了不少集成学习的资料，很多算法都有相似之处，看了之后没有进行比较和整理，太容易忘记了，所以这篇来做个笔记。</p>
 <p>集成学习，（就我目前所学习到的）主要可以分为三大类，Boosting, Bagging, Stacking。Boosting的代表有AdaBoost, gbdt, xgboost。而Bagging的代表则是随机森林 (Random Forest)。Stacking 的话，好像还没有著名的代表，可以视其为一种集成的套路。</p>
@@ -713,6 +727,8 @@
     
     
       <category term="Ensembling" scheme="https://xijunlee.github.io/tags/Ensembling/"/>
+    
+      <category term="Machine Learning" scheme="https://xijunlee.github.io/tags/Machine-Learning/"/>
     
   </entry>
   
@@ -1056,7 +1072,7 @@
     <link href="https://xijunlee.github.io/2017/02/16/%E7%88%AC%E8%99%AB%E7%BB%83%E6%89%8B%E4%B8%80%EF%BC%9A%E7%88%AC%E4%B8%8B%E6%96%B0%E6%B5%AA%E7%88%B1%E9%97%AE%E6%89%80%E6%9C%89%E9%97%AE%E9%A2%98%EF%BC%81/"/>
     <id>https://xijunlee.github.io/2017/02/16/爬虫练手一：爬下新浪爱问所有问题！/</id>
     <published>2017-02-16T07:33:43.000Z</published>
-    <updated>2017-09-09T14:22:47.000Z</updated>
+    <updated>2017-11-06T13:05:24.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>老早就想写爬虫了，只奈何以前总是空有一颗写爬虫的心。很多事情不可能全部都准备好才动手做，而是在边做的过程中边学。看着<a href="http://cuiqingcai.com/1052.html" target="_blank" rel="external">大神的博客</a>，学了五天，写了几个小demo，遂准备自己动手从头写一个爬虫来练手。这篇博文不是教程，相当于一个<code>readme</code>文档吧。</p>
 <h2 id="爬的对象-–-新浪爱问"><a href="#爬的对象-–-新浪爱问" class="headerlink" title="爬的对象 – 新浪爱问"></a>爬的对象 – 新浪爱问</h2><p>选择<a href="http://iask.sina.com.cn" target="_blank" rel="external">新浪爱问</a>作为爬虫对象的原因如下：</p>
@@ -1105,7 +1121,7 @@
     </summary>
     
     
-      <category term="Spider" scheme="https://xijunlee.github.io/tags/Spider/"/>
+      <category term="Spider - Python" scheme="https://xijunlee.github.io/tags/Spider-Python/"/>
     
   </entry>
   

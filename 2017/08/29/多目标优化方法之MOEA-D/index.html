@@ -116,6 +116,10 @@ var _hmt = _hmt || [];
     			
             
     			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">Friends&#39; Link</a>
+    			
+            
+    			
             
 		</nav>
 		<nav class="header-nav">
@@ -439,6 +443,10 @@ MathJax.Hub.Queue(function() {
       
     
       
+      
+      
+    
+      
     
     
 
@@ -446,7 +454,11 @@ MathJax.Hub.Queue(function() {
     
     
       
-      <li style="width: 100%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">TagCloud</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">TagCloud</a></li>
+      
+        
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">Friends&#39; Link</a></li>
       
         
       
@@ -659,6 +671,22 @@ MathJax.Hub.Queue(function() {
     	</section>
     
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://www.noahlab.com.hk" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Noah&#39;s Ark Lab, Huawei</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://tcloud.sjtu.edu.cn" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>TCloud Lab, SJTU</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
     
 
     

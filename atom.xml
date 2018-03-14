@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2018-02-24T03:16:13.400Z</updated>
+  <updated>2018-03-14T14:03:45.719Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>The Many Tribes of Artificial Intelligence [repost]</title>
+    <link href="https://xijunlee.github.io/2018/03/14/tribe-of-ai/"/>
+    <id>https://xijunlee.github.io/2018/03/14/tribe-of-ai/</id>
+    <published>2018-03-14T13:51:12.000Z</published>
+    <updated>2018-03-14T14:03:45.719Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>I found an interesting article discussing the different “tribe” in the field of AI, which could help us understand further the distinction and similarity of these tribes. Thus, I repo this article.</p>
+<h2 id="The-Article"><a href="#The-Article" class="headerlink" title="The Article"></a>The Article</h2><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/tribe_of_ai/fig1.jpg">
+<a id="more"></a>
+<p>One of the biggest confusions about “Artificial Intelligence” is that it is a very vague term. That’s because Artificial Intelligence or AI is a term that was coined way back in 1955 with extreme hubris:</p>
+<p>We propose that a 2 month, 10 man study of artificial intelligence be carried out during the summer of 1956 at Dartmouth College in Hanover, New Hampshire.<br>The study is to proceed on the basis of the conjecture that every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it. An attempt will be made to find how to make machines use language, form abstractions, and concepts, solve kinds of problems now reserved for humans, and improve themselves. - Dartmouth AI Project Proposal; J. McCarthy et al.; Aug. 31, 1955.</p>
+<p>AI is over half a century old and carries with it too much baggage. For a very long time, AI was dominated by Symbolists, that is rule-based systems that had “Zero Learning”. In the 1980’s a new kind of AI began to emerge, we termed this Machine Learning. Finally, we had at least “Simple Learning”. The big disruption, however, occurred this decade, when we stumbled upon “Deep Learning” and ever since it has been taking no prisoners.</p>
+<p>This is, of course, a grossly simplified history of AI. There are actually many different approaches or tribes in AI. Pedro Domingo’s in his book, the Master Algorithm, talks about five different “tribes”. Not to be outdone, A YCombinator user “solidrocketfuel” posts about at least “21 different cultures”.<br>It is important for anyone that plans on doing AI to understand that there are differences in the approaches of the different tribes of AI. AI is not a homogenous field, but rather a field in constant tribal warfare. Here’s an overview:</p>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/tribe_of_ai/fig2.jpg">
+<p>And a quick breakdown:</p>
+<p><strong>Symbolists</strong> — Folks who used symbolic rule-based systems to make inferences. Most of AI has revolved around this approach. The approaches that used Lisp and Prolog are in this group, as well as the SemanticWeb, RDF, and OWL. One of the most ambitious attempts at this is Doug Lenat’s Cyc that he started back in the 80’s, where he has attempted to encode in logic rules all that we understand about this world. The major flaw is the brittleness of this approach, one always seems to find edge cases where one’s rigid knowledge base doesn’t seem to apply. Reality just seems to have this kind of fuzziness and uncertainty that is inescapable. It is like playing an endless game of Whack-a-mole.<br>Evolutionists- Folks who apply evolutionary processes like crossover and mutation to arrive at emergent intelligent behavior. This approach is typically known as Genetic Algorithms. We do see GA techniques used in replacement of a gradient descent approach in Deep Learning, so it’s not a approach that lives in isolation. Folks in this tribe also study cellular automata such as Conway’s Game of Life [CON] and Complex Adaptive Systems (CAS).</p>
+<p><strong>Bayesians</strong> — Folks who use probabilistic rules and their dependencies to make inferences. Probabilistic Graph Models (PGMs) are a generalization of this approach and the primary computational mechanism is the Monte-Carlo method for sampling distributions. The approach has some similarity with the Symbolist approach in that there is a way to arrive at an explanation of the results. One other advantage of this approach is that there is a measure of uncertainty that can be expressed in the results. Edward is one library that mixes this approach with Deep Learning.<br>Kernel Conservatives — One of the most successful methods prior to the dominance of Deep Learning was SVM. Yann LeCun calls this glorified template matching. There is what is called a kernel trick that makes an otherwise non-linear separation problem into one that is linear. Practitioners in this field live in delight over the mathematical elegance of their approach. They believe the Deep Learners are nothing but alchemists conjuring up spells without the vaguest of understanding of the consequences.</p>
+<p><strong>Tree Huggers</strong> — Folks who use tree-based models such as Random Forests and Gradient Boosted Decision Trees. These are essentially a tree of logic rules that slice up the domain recursively to build a classifier. This approach has actually been pretty effective in many Kaggle competitions. Microsoft has an approach that melds the tree based models with Deep Learning.</p>
+<p><strong>Connectionists</strong> — Folks who believe that intelligent behavior arises from simple mechanisms that are highly interconnected. The first manifestation of this were Perceptrons back in 1959. This approach died and resurrected a few times since then. The latest incarnation is Deep Learning.<br>There are many sub-approaches under Deep Learning. This includes:<br>The Canadian Conspirators — Hinton, LeCun, Bengio et al. End-to-end deep learning without manual feature engineering.<br>Swiss Posse — Basically LSTM and that consciousness has been solved by two cooperating RNNs. This posse will have you lynched if you ever claim that you invented something before they did. GANs, the “coolest thing in the last 20 years” according to LeCun are also claimed to be invented by the posse.</p>
+<p><strong>British AlphaGoist</strong> — Conjecture that AI = Deep Learning + Reinforcement Learning, despite LeCun’s claim that it is just the cherry on the cake. DeepMind is one of the major proponents in this area.</p>
+<p><strong>Predictive Learners</strong> — I’m using the term Yann LeCun conjured up to describe unsupervised learning. The cake of AI or the dark matter of AI. This is a major unsolved area of AI. I, however, tend to believe that the solution is in “Meta-Learning”.<br>In addition to the above mainstream approaches, we also have:</p>
+<p><strong>Compressionists</strong> — Cognition and learning are compression (Actually an idea that is shared by other tribes). The origins of Information theory derives from an argument about compression. This is a universal concept that it is more powerful than the all too often abused tool of aggregate statistics.</p>
+<p><strong>Complexity Theorists</strong>- Employ methods coming from physics, energy-based models, complexity theory, chaos theory and statistical mechanics. Swarm AI likely fits into this category. If there’s any group that has a chance at coming up with a good explanation why Deep Learning works, then it is likely this group.</p>
+<p><strong>Fuzzy Logicians</strong> — This approach was once quite popular, but for some reason, I haven’t heard much about it as of late. One would think that there would be a little more interest here considering the success of the also ‘fuzzy’ approach of Deep Learning. There was a recently published result that showed the use of Fuzzy rules defeating a fighter pilot in a mock dogfight.<br>Biological Inspirationalists — Folks who create models that are closer to what neurons appear in biology. Examples are the Numenta folks and the Spike-and-Integrate folks like IBM’s TrueNorth chip.</p>
+<p><strong>Connectomeist</strong> — Folks who believe that the interconnection of the brain (i.e. Connectome) is where intelligence comes from. There’s a project that is trying to replicate a virtual worm and there is some ambitious heavily funded research [HCP] that is trying to map the brain in this way.<br>Information Integration Theorists — Argue that consciousness emerges from some internal imagination of machines that mirrors the causality of reality. The motivation of this group is that if we are ever to understand consciousness then we have to at least start thinking about it! I, however, can’t see the relationship of learning and consciousness in their approach. It is possible that they aren’t related at all! That’s maybe why we need sleep.<br><strong>PAC Theorists</strong> — Are folks that don’t really want to discuss Artificial Intelligence, rather prefer just studying intelligence because at least they know it exists! Their whole idea is that adaptive systems perform computation expediently such that they are all probably approximately correct. In short, intelligence does not have the luxury of massive computation.</p>
+<p>In summary, there really is a bewildering array of alternative approaches to AI. I am certain that there are other approaches that I have missed. Some approaches are in opposition to each other, while other can be used together synergistically. However, what I want to point out is that a bit of an understanding of what is out there can help you navigate this space.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Preface&quot;&gt;&lt;a href=&quot;#Preface&quot; class=&quot;headerlink&quot; title=&quot;Preface&quot;&gt;&lt;/a&gt;Preface&lt;/h2&gt;&lt;p&gt;I found an interesting article discussing the different “tribe” in the field of AI, which could help us understand further the distinction and similarity of these tribes. Thus, I repo this article.&lt;/p&gt;
+&lt;h2 id=&quot;The-Article&quot;&gt;&lt;a href=&quot;#The-Article&quot; class=&quot;headerlink&quot; title=&quot;The Article&quot;&gt;&lt;/a&gt;The Article&lt;/h2&gt;&lt;img src=&quot;http://xijun-album.oss-cn-hangzhou.aliyuncs.com/tribe_of_ai/fig1.jpg&quot;&gt;
+    
+    </summary>
+    
+    
+      <category term="AI" scheme="https://xijunlee.github.io/tags/AI/"/>
+    
+      <category term="repost" scheme="https://xijunlee.github.io/tags/repost/"/>
+    
+  </entry>
   
   <entry>
     <title>2018: Beginning of Career</title>
@@ -1083,56 +1126,6 @@
       <category term="Python" scheme="https://xijunlee.github.io/tags/Python/"/>
     
       <category term="Spider" scheme="https://xijunlee.github.io/tags/Spider/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python虚拟环境安装与使用(转)</title>
-    <link href="https://xijunlee.github.io/2017/02/10/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
-    <id>https://xijunlee.github.io/2017/02/10/python虚拟环境安装与使用/</id>
-    <published>2017-02-10T03:15:15.000Z</published>
-    <updated>2017-11-06T13:09:46.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在开发<code>Python</code>应用程序的时候，系统安装的<code>Python3</code>只有一个版本：3.4。所有第三方的包都会被<code>pip</code>安装到<code>Python3</code>的<code>site-packages</code>目录下。</p>
-<p>如果我们要同时开发多个应用程序，那这些应用程序都会共用一个<code>Python</code>，就是安装在系统的Python 3。如果应用A需要<code>jinja 2.7</code>，而应用B需要<code>jinja 2.6</code>怎么办？</p>
-<p>这种情况下，每个应用可能需要各自拥有一套“独立”的<code>Python</code>运行环境。<code>virtualenv</code>就是用来为一个应用创建一套“隔离”的<code>Python</code>运行环境。</p>
-<p>首先，我们用<code>pip</code>安装<code>virtualenv</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip3 install virtualenv</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>然后，假定我们要开发一个新的项目，需要一套独立的Python运行环境，可以这么做：</p>
-<p>第一步，创建目录：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Mac:~ michael$ mkdir myproject</div><div class="line">Mac:~ michael$ <span class="built_in">cd</span> myproject/</div><div class="line">Mac:myproject michael$</div></pre></td></tr></table></figure>
-<p>第二步，创建一个独立的<code>Python</code>运行环境，命名为<code>venv</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Mac:myproject michael$ virtualenv --no-site-packages venv</div><div class="line">Using base prefix <span class="string">'/usr/local/.../Python.framework/Versions/3.4'</span>New python executable <span class="keyword">in</span> venv/bin/python3.4Also creating executable <span class="keyword">in</span> venv/bin/python</div><div class="line">Installing setuptools, pip, wheel...done.</div></pre></td></tr></table></figure>
-<p>命令<code>virtualenv</code>就可以创建一个独立的<code>Python</code>运行环境，我们还加上了参数<code>--no-site-packages</code>，这样，已经安装到系统Python环境中的所有第三方包都不会复制过来，这样，我们就得到了一个不带任何第三方包的“干净”的<code>Python</code>运行环境。</p>
-<p>新建的<code>Python</code>环境被放到当前目录下的<code>venv</code>目录。有了<code>venv</code>这个<code>Python</code>环境，可以用<code>source</code>进入该环境：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Mac:myproject michael$ <span class="built_in">source</span> venv/bin/activate</div><div class="line">(venv)Mac:myproject michael$</div></pre></td></tr></table></figure>
-<p>注意到命令提示符变了，有个<code>(venv)</code>前缀，表示当前环境是一个名为<code>venv</code>的<code>Python</code>环境。</p>
-<p>下面正常安装各种第三方包，并运行<code>python</code>命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(venv)Mac:myproject michael$ pip install jinja2</div><div class="line">...</div><div class="line">Successfully installed jinja2-2.7.3 markupsafe-0.23</div><div class="line">(venv)Mac:myproject michael$ python myapp.py</div><div class="line">...</div></pre></td></tr></table></figure>
-<p>在<code>venv</code>环境下，用<code>pip</code>安装的包都被安装到<code>venv</code>这个环境下，系统<code>Python</code>环境不受任何影响。也就是说，<code>venv</code>环境是专门针对myproject这个应用创建的。</p>
-<p>退出当前的<code>venv</code>环境，使用<code>deactivate</code>命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(venv)Mac:myproject michael$ deactivate </div><div class="line">Mac:myproject michael$</div></pre></td></tr></table></figure>
-<p>此时就回到了正常的环境，现在pip或python均是在系统Python环境下执行。</p>
-<p>完全可以针对每个应用创建独立的Python运行环境，这样就可以对每个应用的Python环境进行隔离。</p>
-<p>virtualenv是如何创建“独立”的Python运行环境的呢？原理很简单，就是把系统Python复制一份到virtualenv的环境，用命令<code>source venv/bin/activate</code>进入一个virtualenv环境时，virtualenv会修改相关环境变量，让命令<code>python</code>和<code>pip</code>均指向当前的virtualenv环境。</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>virtualenv为应用提供了隔离的Python运行环境，解决了不同应用间多版本的冲突问题。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在开发&lt;code&gt;Python&lt;/code&gt;应用程序的时候，系统安装的&lt;code&gt;Python3&lt;/code&gt;只有一个版本：3.4。所有第三方的包都会被&lt;code&gt;pip&lt;/code&gt;安装到&lt;code&gt;Python3&lt;/code&gt;的&lt;code&gt;site-packages&lt;/code&gt;目录下。&lt;/p&gt;
-&lt;p&gt;如果我们要同时开发多个应用程序，那这些应用程序都会共用一个&lt;code&gt;Python&lt;/code&gt;，就是安装在系统的Python 3。如果应用A需要&lt;code&gt;jinja 2.7&lt;/code&gt;，而应用B需要&lt;code&gt;jinja 2.6&lt;/code&gt;怎么办？&lt;/p&gt;
-&lt;p&gt;这种情况下，每个应用可能需要各自拥有一套“独立”的&lt;code&gt;Python&lt;/code&gt;运行环境。&lt;code&gt;virtualenv&lt;/code&gt;就是用来为一个应用创建一套“隔离”的&lt;code&gt;Python&lt;/code&gt;运行环境。&lt;/p&gt;
-&lt;p&gt;首先，我们用&lt;code&gt;pip&lt;/code&gt;安装&lt;code&gt;virtualenv&lt;/code&gt;：&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ pip3 install virtualenv&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="Python" scheme="https://xijunlee.github.io/tags/Python/"/>
-    
-      <category term="Virtual Environment" scheme="https://xijunlee.github.io/tags/Virtual-Environment/"/>
     
   </entry>
   

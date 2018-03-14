@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2018-03-14T14:03:45.719Z</updated>
+  <updated>2018-03-14T14:05:03.414Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="https://xijunlee.github.io/2018/03/14/tribe-of-ai/"/>
     <id>https://xijunlee.github.io/2018/03/14/tribe-of-ai/</id>
     <published>2018-03-14T13:51:12.000Z</published>
-    <updated>2018-03-14T14:03:45.719Z</updated>
+    <updated>2018-03-14T14:05:03.414Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>I found an interesting article discussing the different “tribe” in the field of AI, which could help us understand further the distinction and similarity of these tribes. Thus, I repo this article.</p>
+    <content type="html"><![CDATA[<h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>I found an interesting article discussing the different “tribe” in the field of AI, which could help us understand further the distinction and similarity of these tribes. Thus, I repo this article whose soure is <a href="https://medium.com/intuitionmachine/the-many-tribes-problem-of-artificial-intelligence-ai-1300faba5b60" target="_blank" rel="external">from here</a>.</p>
 <h2 id="The-Article"><a href="#The-Article" class="headerlink" title="The Article"></a>The Article</h2><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/tribe_of_ai/fig1.jpg">
 <a id="more"></a>
 <p>One of the biggest confusions about “Artificial Intelligence” is that it is a very vague term. That’s because Artificial Intelligence or AI is a term that was coined way back in 1955 with extreme hubris:</p>
@@ -46,7 +46,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;Preface&quot;&gt;&lt;a href=&quot;#Preface&quot; class=&quot;headerlink&quot; title=&quot;Preface&quot;&gt;&lt;/a&gt;Preface&lt;/h2&gt;&lt;p&gt;I found an interesting article discussing the different “tribe” in the field of AI, which could help us understand further the distinction and similarity of these tribes. Thus, I repo this article.&lt;/p&gt;
+      &lt;h2 id=&quot;Preface&quot;&gt;&lt;a href=&quot;#Preface&quot; class=&quot;headerlink&quot; title=&quot;Preface&quot;&gt;&lt;/a&gt;Preface&lt;/h2&gt;&lt;p&gt;I found an interesting article discussing the different “tribe” in the field of AI, which could help us understand further the distinction and similarity of these tribes. Thus, I repo this article whose soure is &lt;a href=&quot;https://medium.com/intuitionmachine/the-many-tribes-problem-of-artificial-intelligence-ai-1300faba5b60&quot;&gt;from here&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&quot;The-Article&quot;&gt;&lt;a href=&quot;#The-Article&quot; class=&quot;headerlink&quot; title=&quot;The Article&quot;&gt;&lt;/a&gt;The Article&lt;/h2&gt;&lt;img src=&quot;http://xijun-album.oss-cn-hangzhou.aliyuncs.com/tribe_of_ai/fig1.jpg&quot;&gt;
     
     </summary>

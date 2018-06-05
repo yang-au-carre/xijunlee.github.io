@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2018-06-05T16:01:45.548Z</updated>
+  <updated>2018-06-05T16:02:09.736Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,11 +20,12 @@
     <link href="https://xijunlee.github.io/2018/06/05/Method/"/>
     <id>https://xijunlee.github.io/2018/06/05/Method/</id>
     <published>2018-06-05T15:53:55.000Z</published>
-    <updated>2018-06-05T16:01:45.548Z</updated>
+    <updated>2018-06-05T16:02:09.736Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Evolutionary-Algorithm"><a href="#Evolutionary-Algorithm" class="headerlink" title="Evolutionary Algorithm"></a>Evolutionary Algorithm</h2><p>To be written…</p>
 <h2 id="Natural-Gradient-Descent"><a href="#Natural-Gradient-Descent" class="headerlink" title="Natural Gradient Descent"></a>Natural Gradient Descent</h2><p>The goal in standard backpropagation is to keep resampling the gradient of the network’s parameters after every update, and update them accordingly until reaching a (hopefully global) minimum.</p>
 <p>However, there’s another way we can think of optimization. To better understand it, we first need to understand KL divergence.</p>
+<a id="more"></a>
 <p>In simple terms, KL divergence is a measure of how close a distribution is to another distribution. Here, it’s helpful to think of a neural network as a distribution over output values, given an input.</p>
 <p>For example, let’s take a simple classification network that, given an input image, outputs probabilities that the image is either an apple, a banana, or an orange. If we had two of these networks with the same parameters, their KL divergence would be 0.</p>
 <p>On the other hand, if the networks had different parameters, they would likely output different probabilities, given the same image.</p>
@@ -42,7 +43,9 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;Evolutionary-Algorithm&quot;&gt;&lt;a href=&quot;#Evolutionary-Algorithm&quot; class=&quot;headerlink&quot; title=&quot;Evolutionary Algorithm&quot;&gt;&lt;/a&gt;Evolutionary Algorit
+      &lt;h2 id=&quot;Evolutionary-Algorithm&quot;&gt;&lt;a href=&quot;#Evolutionary-Algorithm&quot; class=&quot;headerlink&quot; title=&quot;Evolutionary Algorithm&quot;&gt;&lt;/a&gt;Evolutionary Algorithm&lt;/h2&gt;&lt;p&gt;To be written…&lt;/p&gt;
+&lt;h2 id=&quot;Natural-Gradient-Descent&quot;&gt;&lt;a href=&quot;#Natural-Gradient-Descent&quot; class=&quot;headerlink&quot; title=&quot;Natural Gradient Descent&quot;&gt;&lt;/a&gt;Natural Gradient Descent&lt;/h2&gt;&lt;p&gt;The goal in standard backpropagation is to keep resampling the gradient of the network’s parameters after every update, and update them accordingly until reaching a (hopefully global) minimum.&lt;/p&gt;
+&lt;p&gt;However, there’s another way we can think of optimization. To better understand it, we first need to understand KL divergence.&lt;/p&gt;
     
     </summary>
     

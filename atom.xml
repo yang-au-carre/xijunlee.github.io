@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2018-06-05T16:02:09.736Z</updated>
+  <updated>2018-06-05T16:04:09.514Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xijunlee.github.io/2018/06/05/Method/"/>
     <id>https://xijunlee.github.io/2018/06/05/Method/</id>
     <published>2018-06-05T15:53:55.000Z</published>
-    <updated>2018-06-05T16:02:09.736Z</updated>
+    <updated>2018-06-05T16:04:09.514Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Evolutionary-Algorithm"><a href="#Evolutionary-Algorithm" class="headerlink" title="Evolutionary Algorithm"></a>Evolutionary Algorithm</h2><p>To be written…</p>
 <h2 id="Natural-Gradient-Descent"><a href="#Natural-Gradient-Descent" class="headerlink" title="Natural Gradient Descent"></a>Natural Gradient Descent</h2><p>The goal in standard backpropagation is to keep resampling the gradient of the network’s parameters after every update, and update them accordingly until reaching a (hopefully global) minimum.</p>
@@ -38,7 +38,7 @@
 <p>Of course, in practice we don’t actually loop through every possible combination of parameters within a certain KL divergence. I won’t go into the mathematical explanations here, but it’s still true that the natural gradient is more computationally expensive compared to straight gradient descent.</p>
 <p>For more in-depth details, check out <a href="https://arxiv.org/pdf/1301.3584v7.pdf" target="_blank" rel="external">this paper</a> or <a href="https://ipvs.informatik.uni-stuttgart.de/mlr/marc/notes/gradientDescent.pdf" target="_blank" rel="external">these notes</a>.</p>
 <hr>
-<p>Reference<br>[A intuitive explanation of natural gradient descent](<a href="http://kvfrans.com/a-intuitive-explanation-of-natural-gradient-descent/" target="_blank" rel="external">http://kvfrans.com/a-intuitive-explanation-of-natural-gradient-descent/</a></p>
+<p>Reference<br><a href="http://kvfrans.com/a-intuitive-explanation-of-natural-gradient-descent/" target="_blank" rel="external">A intuitive explanation of natural gradient descent</a></p>
 ]]></content>
     
     <summary type="html">

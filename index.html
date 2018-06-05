@@ -193,6 +193,103 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Method" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/05/Method/">Reunderstanding Evolutionary Algorithm Based on Gradient Descent Method</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/05/Method/" class="archive-article-date">
+  	<time datetime="2018-06-05T15:53:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Evolutionary-Algorithm"><a href="#Evolutionary-Algorithm" class="headerlink" title="Evolutionary Algorithm"></a>Evolutionary Algorithm</h2><p>To be written…</p>
+<h2 id="Natural-Gradient-Descent"><a href="#Natural-Gradient-Descent" class="headerlink" title="Natural Gradient Descent"></a>Natural Gradient Descent</h2><p>The goal in standard backpropagation is to keep resampling the gradient of the network’s parameters after every update, and update them accordingly until reaching a (hopefully global) minimum.</p>
+<p>However, there’s another way we can think of optimization. To better understand it, we first need to understand KL divergence.</p>
+<p>In simple terms, KL divergence is a measure of how close a distribution is to another distribution. Here, it’s helpful to think of a neural network as a distribution over output values, given an input.</p>
+<p>For example, let’s take a simple classification network that, given an input image, outputs probabilities that the image is either an apple, a banana, or an orange. If we had two of these networks with the same parameters, their KL divergence would be 0.</p>
+<p>On the other hand, if the networks had different parameters, they would likely output different probabilities, given the same image.</p>
+<p>The higher the difference between these probabilities are, the higher the KL divergence is between the two networks.</p>
+<p>This brings us to the natural gradient. If we blindly update our network in the direction of its gradients, there are no guarantees the distribution of the new network will be similar to the old one.</p>
+<p>To fix this, we first consider all combinations of parameters that result in a new network a constant KL divergence away from the old network. This constant value can be viewed as the step size or learning rate. Out of all these possible combinations, we choose the one that minimizes our loss function.</p>
+<p>Basically, we’re adding in a constraint to our update, that the new network will behave relatively similar to our old one. Our step size corresponds directly to the actual distribution of the network, not it’s parameter’s values.</p>
+<p>This comes with the added benefit of a more stable learning process. Especially when we’re updating using a randomly sampled batch, some outliers may make drastic changes to a network’s parameters. With natural gradient descent, a single update can’t make too much of an impact.</p>
+<p>Furthermore, the natural gradient updates based on KL divergence, which only considers the output of a network. It doesn’t matter how the network is modeled. Replacing a sigmoid activation with a tanh function would change the standard gradient, but not the natural gradient.</p>
+<p>Of course, in practice we don’t actually loop through every possible combination of parameters within a certain KL divergence. I won’t go into the mathematical explanations here, but it’s still true that the natural gradient is more computationally expensive compared to straight gradient descent.</p>
+<p>For more in-depth details, check out <a href="https://arxiv.org/pdf/1301.3584v7.pdf" target="_blank" rel="external">this paper</a> or <a href="https://ipvs.informatik.uni-stuttgart.de/mlr/marc/notes/gradientDescent.pdf" target="_blank" rel="external">these notes</a>.</p>
+<hr>
+<p>Reference<br>[A intuitive explanation of natural gradient descent](<a href="http://kvfrans.com/a-intuitive-explanation-of-natural-gradient-descent/" target="_blank" rel="external">http://kvfrans.com/a-intuitive-explanation-of-natural-gradient-descent/</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Evolutionary Algorithm</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Gradient Descent</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Probability Distribution</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/05/Method/">Show All >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-tribe-of-ai" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -769,85 +866,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-多目标优化方法之MOEA-D" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/29/多目标优化方法之MOEA-D/">多目标优化方法之MOEA-D</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/29/多目标优化方法之MOEA-D/" class="archive-article-date">
-  	<time datetime="2017-08-29T14:57:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近项目有一部分是在做多目标优化，调研了一些论文，总结一下其中目前state-of-the-art的solution —— <a href="http://ieeexplore.ieee.org/document/4358754/">MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition</a>，这篇paper出自两位华人之手Qingfu Zhang和Hui Li。</p>
-<hr>
-<p>下面用我组会slides上的两张图简单介绍问题和这篇paper提出的解决思路。</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/MOEAD/MOEAD%20summary.png">
-        
-          <a class="article-more-a" href="/2017/08/29/多目标优化方法之MOEA-D/#more">More >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Multiobjective Optimization</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/29/多目标优化方法之MOEA-D/">Show All >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -970,15 +988,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Clustering</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1002,6 +1020,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Evolutionary Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Gradient Descent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Probability Distribution</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
@@ -1014,23 +1044,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Bit Manipulation</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Programing Tricks</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">AI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">repost</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1046,6 +1064,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">AI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">repost</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Column Generation Algorithm</a>
               </li>
              
@@ -1058,11 +1088,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Matrix Factorization</a>
+                <a href="javascript:void(0)" class="js-tag color3">Multiobjective Optimization</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Multiobjective Optimization</a>
+                <a href="javascript:void(0)" class="js-tag color1">Matrix Factorization</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1086,11 +1116,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">iOS Development</a>
+                <a href="javascript:void(0)" class="js-tag color1">Ensembling</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Ensembling</a>
+                <a href="javascript:void(0)" class="js-tag color1">iOS Development</a>
               </li>
             
             <div class="clearfix"></div>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2018-06-05T16:04:09.514Z</updated>
+  <updated>2018-08-17T18:25:36.404Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>A Paper Has Been Accepted by SIGKDD 2018</title>
+    <link href="https://xijunlee.github.io/2018/08/18/SIGKDD2018/"/>
+    <id>https://xijunlee.github.io/2018/08/18/SIGKDD2018/</id>
+    <published>2018-08-17T18:14:32.000Z</published>
+    <updated>2018-08-17T18:25:36.404Z</updated>
+    
+    <content type="html"><![CDATA[<img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/sigkdd2018/bigben_1920_800.jpg">
+<p>My work during internship at Noah’s Ark Lab of Huawei, A Data-Driven Three-Layer Algorithm for Split Delivery Vehicle Routing Problem with 3D Container Loading Constraint, has been recently accepted by Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining.</p>
+<p>The abstract of this work is as follows:</p>
+<p>Split Delivery Vehicle Routing Problem with 3D Loading Constraints (3L-SDVRP) can be seen as the most important problem in large-scale manufacturing logistics. The goal is to devise a strategy consisting of three NP-hard planning components: vehicle routing, cargo splitting and container loading, which shall be jointly optimized for cost savings. The problem is an enhanced variant of the classical logistics problem 3L-CVRP, and its complexity leaps beyond current studies of solvability. Our solution employs a novel data-driven three-layer search algorithm (DTSA), which we designed to improve both the efficiency and effectiveness of traditional meta-heuristic approaches, through learning from data and from simulation.</p>
+<p>A detailed experimental evaluation on real data shows our algorithm is versatile in solving this practical complex constrained multi-objective optimization problem, and our framework may be of general interest. DTSA performs much better than the state-of-the-art algorithms both in efficiency and optimization performance. Our algorithm has been deployed in the UAT (User Acceptance Test) environment; conservative estimates suggest that the full usage of our algorithm would save millions of dollars in logistics costs per year, besides savings due to automation and more efficient routing.</p>
+<p>You are available to this work by visiting the <a href="http://www.kdd.org/kdd2018/accepted-papers/view/a-data-driven-three-layer-algorithm-for-split-delivery-vehicle-routing-prob" target="_blank" rel="external">link</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;https://xijun-album.oss-cn-hangzhou.aliyuncs.com/sigkdd2018/bigben_1920_800.jpg&quot;&gt;
+&lt;p&gt;My work during internship at Noah’s Ark Lab o
+    
+    </summary>
+    
+    
+      <category term="SIGKDD" scheme="https://xijunlee.github.io/tags/SIGKDD/"/>
+    
+      <category term="Academy" scheme="https://xijunlee.github.io/tags/Academy/"/>
+    
+  </entry>
   
   <entry>
     <title>Reunderstanding Evolutionary Algorithm Based on Gradient Descent Method</title>
@@ -1062,53 +1091,6 @@
       <category term="Machine Learning" scheme="https://xijunlee.github.io/tags/Machine-Learning/"/>
     
       <category term="SVM" scheme="https://xijunlee.github.io/tags/SVM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GitMemo: Working with Git on Windows</title>
-    <link href="https://xijunlee.github.io/2017/02/21/GitMemo-Working-with-Git-on-Windows-repost/"/>
-    <id>https://xijunlee.github.io/2017/02/21/GitMemo-Working-with-Git-on-Windows-repost/</id>
-    <published>2017-02-21T13:41:38.000Z</published>
-    <updated>2017-11-06T13:09:37.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Preamble"><a href="#Preamble" class="headerlink" title="Preamble"></a>Preamble</h2><p>Setting up Git can be tricky on Windows compared to Linux or Mac, but if you follow the steps in this guide, you should have no problems using Git on Windows. This guide will take you through the steps to install and configure Git and connect it to remote repositories to clone, push, and pull. </p>
-<a id="more"></a>
-<h2 id="Choosing-a-Git-distribution"><a href="#Choosing-a-Git-distribution" class="headerlink" title="Choosing a Git distribution"></a>Choosing a Git distribution</h2><p>There are two competing Git packages for Windows: a <a href="http://www.cygwin.com" target="_blank" rel="external">Cygwin-based</a> Git and a version called <a href="https://git-for-windows.github.io" target="_blank" rel="external">msysGit</a>. I will describe how to install the msysGit package. I recommend installing msysGit because I’ve found it’s easier to work with than the Cygwin based installation.</p>
-<h2 id="Installing-Git"><a href="#Installing-Git" class="headerlink" title="Installing Git"></a>Installing Git</h2><p>Once you have downloaded the msysGit executable, double click on it to start the installation wizard. Leave the default directory options. When you get to the “Adjusting your Path environment” setting, select the “Run Git from the Windows Command Prompt” option. Choosing this option will make it easy for you to run Git commands from the Windows Command Prompt (command line) if you choose. Command Prompt is a simple tool, where you can run commands, switch through folders, manage files and it can be ran by selecting RUN… in START menu, and executing <code>cmd</code>command.</p>
-<p><strong> Note </strong> : I recommend that you better choose the default options when installing <code>msysGit</code> for saving your time and mind.</p>
-<p>You will notice that for the rest of this article we will use Git Bash for running Git commands. The Git Bash tool works in the same way as the default Windows’ Command Prompt, but has some special features. With Git Bash you’ll be able to use a number of UNIX command line tools along with access to Git, and we recommend it since it’s often simpler to use than the Windows Command Prompt.</p>
-<p>You can run it by right clicking your mouse on the desktop, and selecting Git Bash from pop up window.</p>
-<p><strong> Important note </strong>: The most common problems when setting up Git on Windows are related to SSH keys. Git uses SSH keys to securely access your repositories, and in Windows SSH keys are often searched on the wrong path when you try to use Git.</p>
-<p>If you use an older version of msysGit, you may encounter a step called “Choosing the SSH executables”. If you encounter that dialog, we recommend that you choose the “Use OpenSSH” option.</p>
-<p>After you have successfully installed Git on Windows, you’ll need to provide secure communication with your Git repositories by creating and installing SSH keys.</p>
-<h2 id="Installing-SSH-keys-on-Windows"><a href="#Installing-SSH-keys-on-Windows" class="headerlink" title="Installing SSH keys on Windows"></a>Installing SSH keys on Windows</h2><p>To access your Git repositories you will need to create and install SSH keys. You can do this using OpenSSH and generate SSH keys with <code>ssh-keygen</code></p>
-<h3 id="Using-OpenSSH-and-generating-SSH-keys-with-ssh-keygen"><a href="#Using-OpenSSH-and-generating-SSH-keys-with-ssh-keygen" class="headerlink" title="Using OpenSSH and generating SSH keys with ssh-keygen"></a>Using OpenSSH and generating SSH keys with ssh-keygen</h3><p>To communicate with the remote Git repository from your Windows computer, you will need to generate an SSH key pair for that computer. This process requires only a few steps, but you do first need to install <code>msysGit</code> using the full installer as described above.</p>
-<h4 id="Generating-a-key-pair"><a href="#Generating-a-key-pair" class="headerlink" title="Generating a key pair"></a>Generating a key pair</h4><p>To do this you need to run Git Bash, which can be found in your START menu. Run the command:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C youremail@xxx.xxx</div></pre></td></tr></table></figure>
-<p>Next, there will be several messages that asks you to set pass phrase. You could keep entering <code>return</code> key to skip these askings.</p>
-<p>Now that the keys are generated, open the file id_rsa.pub (found in the default location from the previous step) with a text editor. The contents of this file is your new public key. If you copy it to your clipboard, you can add it to your git SSH keys.</p>
-<p>Your SSH public key should look something like this:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAyyA8wePstPC69PeuHFtOwyTecByonsHFAjHbVnZ+h0dpomvLZxUtbknNj3+</div><div class="line">c7MPYKqKBOx9gUKV/diR/mIDqsb405MlrI1kmNR9zbFGYAAwIH/Gxt0Lv5ffwaqsz7cECHBbMojQGEz3IH3twEvDfF6cu5p</div><div class="line">00QfP0MSmEi/eB+W+h30NGdqLJCziLDlp409jAfXbQm/4Yx7apLvEmkaYSrb5f/pfvYv1FEV1tS8/J7DgdHUAWo6gyGUUSZ</div><div class="line">JgsyHcuJT7v9Tf0xwiFWOWL9WsWXa9fCKqTeYnYJhHlqfinZRnT/+jkz0OZ7YmXo6j4Hyms3RCOqenIX1W6gnIn+eQIkw==</div><div class="line">Mac Pro</div></pre></td></tr></table></figure>
-<h3 id="Adding-your-SSH-public-key-to-your-git-SSH-keys"><a href="#Adding-your-SSH-public-key-to-your-git-SSH-keys" class="headerlink" title="Adding your SSH public key to your git SSH keys"></a>Adding your SSH public key to your git SSH keys</h3><p>1.Log your git account in, and click your avatar. Then, click <code>Setting</code> and find <code>SSH and GPG keys</code>.</p>
-<p>2.Click <code>New SSH key</code>, copy your SSH public key in <code>Key</code> input area, and give this SSH key name in <code>Title</code> input area.</p>
-<h3 id="Checking-your-connection"><a href="#Checking-your-connection" class="headerlink" title="Checking your connection"></a>Checking your connection</h3><p>Enter the following code to check whether you access to github successfully:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh git@github.com</div></pre></td></tr></table></figure>
-<p>You will see:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">The authenticity of host <span class="string">'github.com (207.97.227.239)'</span> can<span class="string">'t be established.</span></div><div class="line">    RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</div><div class="line">    Are you sure you want to continue connecting (yes/no)?</div></pre></td></tr></table></figure>
-<p>Enter <code>Yes</code>, you will see:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Hi your name! You<span class="string">'ve successfully authenticated, but GitHub does not provide shell access.</span></div></pre></td></tr></table></figure>
-<p>If you see above code, that indicates you have accessed github successfully!</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Preamble&quot;&gt;&lt;a href=&quot;#Preamble&quot; class=&quot;headerlink&quot; title=&quot;Preamble&quot;&gt;&lt;/a&gt;Preamble&lt;/h2&gt;&lt;p&gt;Setting up Git can be tricky on Windows compared to Linux or Mac, but if you follow the steps in this guide, you should have no problems using Git on Windows. This guide will take you through the steps to install and configure Git and connect it to remote repositories to clone, push, and pull. &lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Git" scheme="https://xijunlee.github.io/tags/Git/"/>
     
   </entry>
   

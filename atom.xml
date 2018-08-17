@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2018-08-17T18:32:14.431Z</updated>
+  <updated>2018-08-17T18:39:53.870Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -16,13 +16,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>CIKM2018</title>
+    <link href="https://xijunlee.github.io/2018/08/18/CIKM2018/"/>
+    <id>https://xijunlee.github.io/2018/08/18/CIKM2018/</id>
+    <published>2018-08-17T18:32:59.000Z</published>
+    <updated>2018-08-17T18:39:53.870Z</updated>
+    
+    <content type="html"><![CDATA[<img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/cikm2018/Screen%20Shot%202018-08-18%20at%2002.33.39.png">
+<p>My another work collaborated with Noah’s Ark Lab of Huawei, A Two-Layer Algorithmic Framework for Service Provider Configuration and Planning with Optimal Spatial Matching, has been recently accepted by ACM International Conference on Information and Knowledge Management (CIKM 2018).</p>
+<p>The abstract of this work is as follows:</p>
+<p>Industrial telecommunication applications prefer to run at the optimal capacity configuration to achieve the required Quality of Service (QoS) at the minimum cost. The optimal capacity configuration is usually achieved through the selection of cell towers capacities and locations. Given a set of service providers (e.g., cell towers) and a set of customers (e.g., major residential areas), where each customer has an amount of demand and each provider has multiple candidate capacities and corresponding costs, the optimal capacity selection is configured through spatial matching to satisfy the demand of each customer at the minimum cost. However, existing solutions developed for spatial matching, in which each provider’s capacity is fixed, cannot be directly applied to the capacity configuration problem with multiple capacities and location selections. In this paper, we are the first to study Service Provider Configuration and Planning with Optimal Spatial Matching (SPC-POSM) problem, in which the objectives are 1) to select the proper capacity for each provider at the minimum total cost and 2) to assign providers’ service to satisfy the demand of each customer on a condition that the matching distance is no more than service quality requirement. We prove that SPC-POSM problem is NP-hard and design an efficient two-layer meta-heuristic framework to solve the problem. Unsupervised learning technique is designed to accelerate the calculation and a novel local search mechanism is embedded to further improve solution quality. Extensive experimental results on both real and synthetic datasets verify the effectiveness and efficiency of the proposed framework.</p>
+<p>The camery-ready version is going to be available in Oct. 2018.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;https://xijun-album.oss-cn-hangzhou.aliyuncs.com/cikm2018/Screen%20Shot%202018-08-18%20at%2002.33.39.png&quot;&gt;
+&lt;p&gt;My another work coll
+    
+    </summary>
+    
+    
+      <category term="CIKM" scheme="https://xijunlee.github.io/tags/CIKM/"/>
+    
+      <category term="Academy" scheme="https://xijunlee.github.io/tags/Academy/"/>
+    
+  </entry>
+  
+  <entry>
     <title>A Paper Has Been Accepted by SIGKDD 2018</title>
     <link href="https://xijunlee.github.io/2018/08/18/SIGKDD2018/"/>
     <id>https://xijunlee.github.io/2018/08/18/SIGKDD2018/</id>
     <published>2018-08-17T18:14:32.000Z</published>
-    <updated>2018-08-17T18:32:14.431Z</updated>
+    <updated>2018-08-17T18:36:12.265Z</updated>
     
-    <content type="html"><![CDATA[<img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/sigkdd2018/bigben_1920_800.jpg">
+    <content type="html"><![CDATA[<img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/sigkdd2018/Screen%20Shot%202018-08-18%20at%2002.34.35.png">
 <p>My work during internship at Noah’s Ark Lab of Huawei, A Data-Driven Three-Layer Algorithm for Split Delivery Vehicle Routing Problem with 3D Container Loading Constraint, has been recently accepted by Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining.</p>
 <p>The abstract of this work is as follows:</p>
 <p>Split Delivery Vehicle Routing Problem with 3D Loading Constraints (3L-SDVRP) can be seen as the most important problem in large-scale manufacturing logistics. The goal is to devise a strategy consisting of three NP-hard planning components: vehicle routing, cargo splitting and container loading, which shall be jointly optimized for cost savings. The problem is an enhanced variant of the classical logistics problem 3L-CVRP, and its complexity leaps beyond current studies of solvability. Our solution employs a novel data-driven three-layer search algorithm (DTSA), which we designed to improve both the efficiency and effectiveness of traditional meta-heuristic approaches, through learning from data and from simulation.</p>
@@ -32,15 +60,15 @@
     
     <summary type="html">
     
-      &lt;img src=&quot;https://xijun-album.oss-cn-hangzhou.aliyuncs.com/sigkdd2018/bigben_1920_800.jpg&quot;&gt;
-&lt;p&gt;My work during internship at Noah’s Ark Lab o
+      &lt;img src=&quot;https://xijun-album.oss-cn-hangzhou.aliyuncs.com/sigkdd2018/Screen%20Shot%202018-08-18%20at%2002.34.35.png&quot;&gt;
+&lt;p&gt;My work during int
     
     </summary>
     
     
-      <category term="SIGKDD" scheme="https://xijunlee.github.io/tags/SIGKDD/"/>
-    
       <category term="Academy" scheme="https://xijunlee.github.io/tags/Academy/"/>
+    
+      <category term="SIGKDD" scheme="https://xijunlee.github.io/tags/SIGKDD/"/>
     
   </entry>
   
@@ -1037,53 +1065,6 @@
     
       &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;之前只停留在理论上，没有实际沉下心去调参，实际去做了后，发现调参是个大工程（玄学）。于是这篇来总结一下&lt;code&gt;sklearn&lt;/code&gt;中svm的参数说明以及调参经验。方便以后查询和回忆。&lt;/p&gt;
 &lt;h2 id=&quot;常用核函数&quot;&gt;&lt;a href=&quot;#常用核函数&quot; class=&quot;headerlink&quot; title=&quot;常用核函数&quot;&gt;&lt;/a&gt;常用核函数&lt;/h2&gt;&lt;p&gt;1.linear核函数: $$K(x_i,x_j)=x_i^Tx_j$$&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="Machine Learning" scheme="https://xijunlee.github.io/tags/Machine-Learning/"/>
-    
-      <category term="SVM" scheme="https://xijunlee.github.io/tags/SVM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>reddit上有趣的SVM图解</title>
-    <link href="https://xijunlee.github.io/2017/03/13/reddit%E4%B8%8A%E7%9B%B4%E8%A7%82%E6%9C%89%E8%B6%A3%E7%9A%84SVM%E8%A7%A3%E9%87%8A/"/>
-    <id>https://xijunlee.github.io/2017/03/13/reddit上直观有趣的SVM解释/</id>
-    <published>2017-03-13T05:26:10.000Z</published>
-    <updated>2017-11-06T13:09:55.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这是目前看到过的对SVM的最直观的解释，原题目名还叫作<a href="https://www.reddit.com/r/MachineLearning/comments/15zrpp/please_explain_support_vector_machines_svm_like_i/" target="_blank" rel="external">Please explain Support Vector Machines (SVM) like I am a 5 year old</a>。于是，稍微整理下放到博客里。我个人认为，它对SVM中<code>kernel function</code>解释地相当形象。</p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>Found <a href="https://www.reddit.com/r/MachineLearning/comments/15zrpp/please_explain_support_vector_machines_svm_like_i/" target="_blank" rel="external">this</a> on Reddit <a href="https://www.reddit.com/r/MachineLearning/" target="_blank" rel="external">r/machinelearning</a></p>
-<p>(In related news, there’s a machine learning subreddit. Wow.)</p>
-<a id="more"></a>
-<p><a href="https://en.wikipedia.org/wiki/Support_vector_machine" target="_blank" rel="external">Support Vector Machines</a> (warning: Wikipedia dense article alert in previous link!) are learning models used for classification: which individuals in a population belong where? So… how do SVM and the mysterious “kernel” work?</p>
-<p>The user curious_thoughts asked for an explanation of SVMs like s/he was a five year old. User copperking stepped up to the plate:</p>
-<p>We have 2 colors of balls on the table that we want to separate.</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/svm_reddit/svm1.png">
-<p>We get a stick and put it on the table, this works pretty well right?</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/svm_reddit/svm2.png">
-<p>Some villain comes and places more balls on the table, it kind of works but one of the balls is on the wrong side and there is probably a better place to put the stick now.</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/svm_reddit/svm3.png">
-<p>SVMs try to put the stick in the best possible place by having as big a gap on either side of the stick as possible.</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/svm_reddit/svm4.png">
-<p>Now when the villain returns the stick is still in a pretty good spot.</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/svm_reddit/svm5.png">
-<p>There is another trick in the SVM toolbox that is even more important. Say the villain has seen how good you are with a stick so he gives you a new challenge.</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/svm_reddit/svm6.png">
-<p>There’s no stick in the world that will let you split those balls well, so what do you do? You flip the table of course! Throwing the balls into the air. Then, with your pro ninja skills, you grab a sheet of paper and slip it between the balls.</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/svm_reddit/svm6.png">
-<p>Now, looking at the balls from where the villain is standing, they balls will look split by some curvy line.</p>
-<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/svm_reddit/svm7.png">
-<p>Boring adults the call balls data, the stick a classifier, the biggest gap trick optimization, call flipping the table kernelling and the piece of paper a hyperplane.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;这是目前看到过的对SVM的最直观的解释，原题目名还叫作&lt;a href=&quot;https://www.reddit.com/r/MachineLearning/comments/15zrpp/please_explain_support_vector_machines_svm_like_i/&quot;&gt;Please explain Support Vector Machines (SVM) like I am a 5 year old&lt;/a&gt;。于是，稍微整理下放到博客里。我个人认为，它对SVM中&lt;code&gt;kernel function&lt;/code&gt;解释地相当形象。&lt;/p&gt;
-&lt;h2 id=&quot;正文&quot;&gt;&lt;a href=&quot;#正文&quot; class=&quot;headerlink&quot; title=&quot;正文&quot;&gt;&lt;/a&gt;正文&lt;/h2&gt;&lt;p&gt;Found &lt;a href=&quot;https://www.reddit.com/r/MachineLearning/comments/15zrpp/please_explain_support_vector_machines_svm_like_i/&quot;&gt;this&lt;/a&gt; on Reddit &lt;a href=&quot;https://www.reddit.com/r/MachineLearning/&quot;&gt;r/machinelearning&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;(In related news, there’s a machine learning subreddit. Wow.)&lt;/p&gt;
     
     </summary>
     

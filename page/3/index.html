@@ -193,6 +193,84 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-关于Python语法的一些笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/16/关于Python语法的一些笔记/">关于Python语法的一些笔记（持续更新）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/16/关于Python语法的一些笔记/" class="archive-article-date">
+  	<time datetime="2017-04-16T12:56:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>记录一些Python使用过程中的没见过或者优化的使用方法……</p>
+<h3 id="什么是args和-kwargs？"><a href="#什么是args和-kwargs？" class="headerlink" title="什么是args和*kwargs？"></a>什么是<strong>args和*</strong>kwargs？</h3><p>先来看个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(*args, **kwargs)</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'args = '</span>, args</div><div class="line">    <span class="keyword">print</span> <span class="string">'kwargs = '</span>, kwargs</div><div class="line">    <span class="keyword">print</span> <span class="string">'---------------------------------------'</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    foo(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</div><div class="line">    foo(a=<span class="number">1</span>,b=<span class="number">2</span>,c=<span class="number">3</span>)</div><div class="line">    foo(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>, a=<span class="number">1</span>,b=<span class="number">2</span>,c=<span class="number">3</span>)</div><div class="line">    foo(<span class="string">'a'</span>, <span class="number">1</span>, <span class="keyword">None</span>, a=<span class="number">1</span>, b=<span class="string">'2'</span>, c=<span class="number">3</span>)</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2017/04/16/关于Python语法的一些笔记/#more">More >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/16/关于Python语法的一些笔记/">Show All >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-CNN" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -763,85 +841,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-linux下杀死进程（kill）的N种方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/05/linux下杀死进程（kill）的N种方法/">linux下杀死进程（kill）的N种方法(转)</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/05/linux下杀死进程（kill）的N种方法/" class="archive-article-date">
-  	<time datetime="2017-02-05T12:39:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>首先说明这是转载的，作为笔记整理成下文。</p>
-<h2 id="常规篇："><a href="#常规篇：" class="headerlink" title="常规篇："></a>常规篇：</h2><p>首先，用ps查看进程，方法如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ps -ef</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">……</div><div class="line">smx       1822     1  0 11:38 ?        00:00:49 gnome-terminal</div><div class="line">smx       1823  1822  0 11:38 ?        00:00:00 gnome-pty-helper</div><div class="line">smx       1824  1822  0 11:38 pts/0    00:00:02 bash</div><div class="line">smx       1827     1  4 11:38 ?        00:26:28 /usr/lib/firefox-3.6.18/firefox-bin</div><div class="line">smx       1857  1822  0 11:38 pts/1    00:00:00 bash</div><div class="line">smx       1880  1619  0 11:38 ?        00:00:00 update-notifier</div><div class="line">……</div><div class="line">smx      11946  1824  0 21:41 pts/0    00:00:00 ps -ef</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/02/05/linux下杀死进程（kill）的N种方法/#more">More >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/05/linux下杀死进程（kill）的N种方法/">Show All >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -956,11 +955,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Dairy</a>
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+                <a href="javascript:void(0)" class="js-tag color1">Dairy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -972,15 +971,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Distributed Computing</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Probability Theory</a>
+                <a href="javascript:void(0)" class="js-tag color2">Distributed Computing</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -988,19 +983,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Probability Theory</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auction</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">SIGKDD</a>
+                <a href="javascript:void(0)" class="js-tag color5">CIKM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1008,11 +999,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reinforcement Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MCTS</a>
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1028,6 +1015,22 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">SIGKDD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Reinforcement Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MCTS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Bit Manipulation</a>
               </li>
              
@@ -1040,15 +1043,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Virtual Environment</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1076,19 +1079,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Activation Function</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Matrix Factorization</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spider</a>
+                <a href="javascript:void(0)" class="js-tag color5">Activation Function</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Regularization Expression</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spider</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1100,11 +1103,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Ensembling</a>
+                <a href="javascript:void(0)" class="js-tag color1">iOS Development</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">iOS Development</a>
+                <a href="javascript:void(0)" class="js-tag color1">Ensembling</a>
               </li>
             
             <div class="clearfix"></div>

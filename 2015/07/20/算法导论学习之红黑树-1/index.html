@@ -7,13 +7,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xijunlee.github.io">
-  <title>算法导论学习之红黑树(1) | A Notebook</title>
+  <title>算法导论学习之红黑树(1) | Xijun&#39;s Homepage</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="写在前面的话花了三天时间，将将实现了红黑树算法，但还是不能裸写红黑树，起码要看着算导书上的示意图::&amp;gt;_&amp;lt;:: 整个算法确实算比较复杂的，实现代码比普通二叉树多一倍多，但换来的是效率上的提升。废话不多说，总结一下学习心得（基本的细节不会提到，因为可以去翻书，我只写出对书中个别知识点的理解和总结），方便日后会看红黑树时，能立马回忆起来。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法导论学习之红黑树(1)">
 <meta property="og:url" content="https://xijunlee.github.io/2015/07/20/算法导论学习之红黑树-1/index.html">
-<meta property="og:site_name" content="A Notebook">
+<meta property="og:site_name" content="Xijun's Homepage">
 <meta property="og:description" content="写在前面的话花了三天时间，将将实现了红黑树算法，但还是不能裸写红黑树，起码要看着算导书上的示意图::&amp;gt;_&amp;lt;:: 整个算法确实算比较复杂的，实现代码比普通二叉树多一倍多，但换来的是效率上的提升。废话不多说，总结一下学习心得（基本的细节不会提到，因为可以去翻书，我只写出对书中个别知识点的理解和总结），方便日后会看红黑树时，能立马回忆起来。">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree1/img1.jpeg">
 <meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree1/img2.jpeg">
@@ -25,7 +25,7 @@
 <meta name="twitter:description" content="写在前面的话花了三天时间，将将实现了红黑树算法，但还是不能裸写红黑树，起码要看着算导书上的示意图::&amp;gt;_&amp;lt;:: 整个算法确实算比较复杂的，实现代码比普通二叉树多一倍多，但换来的是效率上的提升。废话不多说，总结一下学习心得（基本的细节不会提到，因为可以去翻书，我只写出对书中个别知识点的理解和总结），方便日后会看红黑树时，能立马回忆起来。">
 <meta name="twitter:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/rbtree1/img1.jpeg">
   
-    <link rel="alternative" href="/atom.xml" title="A Notebook" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Xijun&#39;s Homepage" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -85,7 +85,7 @@ var _hmt = _hmt || [];
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="https://xijunlee.github.io" class="profilepic">
-			<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/avatar3.jpg" class="js-avatar">
+			<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/avatar4.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="https://xijunlee.github.io">Xijun LI</a></h1>
@@ -145,7 +145,7 @@ var _hmt = _hmt || [];
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/avatar3.jpg" class="js-avatar">
+				<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/avatar4.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Xijun LI</h1>

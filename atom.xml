@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2018-11-25T04:27:51.669Z</updated>
+  <updated>2018-11-25T04:41:31.718Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Reading Notes</title>
+    <title>AutoML Reading Note 1</title>
     <link href="https://xijunlee.github.io/2018/11/25/HPO/"/>
     <id>https://xijunlee.github.io/2018/11/25/HPO/</id>
     <published>2018-11-25T04:22:39.000Z</published>
-    <updated>2018-11-25T04:27:51.669Z</updated>
+    <updated>2018-11-25T04:41:31.718Z</updated>
     
     <content type="html"><![CDATA[<p>Although there are currently several developed machine learning suites,such as Keras, Pytorch, etc, facilitating the prevalence of machine learning techniques, data scientists or machine learning engineers still need to face the difficulty of hyperparameter choice of machine learning models. It has been empirically proved that for a given model, different choices of hyperparameter  also result in very different performances (accuracy, recall, etc). There is a trend of automating the hyperparameter selection for machine learning model, which is part of AutoML.</p>
 <p>Recently I have been reading the ``ongoing’’ book,  <a href="https://www.automl.org/book/" target="_blank" rel="external">AutoML</a>, of which Chapter 1 introduces the existing methods to solve the hyperparameter optimization of machine learning model, and discusses several open problems as well as future research direction of this subfield. I wrote the post after reading this chapter.</p>

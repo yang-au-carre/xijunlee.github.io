@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2018-09-21T12:58:15.501Z</updated>
+  <updated>2018-11-25T04:27:51.669Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -14,6 +14,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Reading Notes</title>
+    <link href="https://xijunlee.github.io/2018/11/25/HPO/"/>
+    <id>https://xijunlee.github.io/2018/11/25/HPO/</id>
+    <published>2018-11-25T04:22:39.000Z</published>
+    <updated>2018-11-25T04:27:51.669Z</updated>
+    
+    <content type="html"><![CDATA[<p>Although there are currently several developed machine learning suites,such as Keras, Pytorch, etc, facilitating the prevalence of machine learning techniques, data scientists or machine learning engineers still need to face the difficulty of hyperparameter choice of machine learning models. It has been empirically proved that for a given model, different choices of hyperparameter  also result in very different performances (accuracy, recall, etc). There is a trend of automating the hyperparameter selection for machine learning model, which is part of AutoML.</p>
+<p>Recently I have been reading the ``ongoing’’ book,  <a href="https://www.automl.org/book/" target="_blank" rel="external">AutoML</a>, of which Chapter 1 introduces the existing methods to solve the hyperparameter optimization of machine learning model, and discusses several open problems as well as future research direction of this subfield. I wrote the post after reading this chapter.</p>
+<a id="more"></a>
+<h2 id="What-is-hyper-parameter"><a href="#What-is-hyper-parameter" class="headerlink" title="What is hyper parameter?"></a>What is hyper parameter?</h2><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.003.jpeg" alt=""></p>
+<p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.004.jpeg" alt=""></p>
+<p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.005.jpeg" alt=""></p>
+<p>Hyperparameter optimization has led to new state-of-the-art performances for important machine learning benchmarks in several studies. Besides, Automated HPO is clearly more reproducible than manual search. It facilitates fair comparisons since dierent methods can only be compared fairly if they all receive the same level of tuning for the problem at hand.</p>
+<p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.006.jpeg" alt=""></p>
+<h2 id="Methods-to-optimize-hyperparameter-of-machine-learning-model"><a href="#Methods-to-optimize-hyperparameter-of-machine-learning-model" class="headerlink" title="Methods to optimize hyperparameter of machine learning model"></a>Methods to optimize hyperparameter of machine learning model</h2><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.007.jpeg" alt=""></p>
+<p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.008.jpeg" alt=""></p>
+<p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.009.jpeg" alt=""></p>
+<p>Bayesian optimization is actually an iterative algorithm with the probabilisitic surrogate model and acquisition function. In each iteration, the surrogate model is fitted to all observations of the target function made so far. Then, the acquisition function, which uses the predictive distribution of the probabilisitic model, determines the utility of different candidate points, trading off exploration and exploitation.</p>
+<p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.010.jpeg" alt=""></p>
+<p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.011.jpeg" alt=""></p>
+<p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.012.jpeg" alt=""></p>
+<p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.013.jpeg" alt=""></p>
+<p>Multi-task Bayesian optimization  uses a multi-task Gaussian process to model the performance of related tasks and to automatically learn the tasks’ correlation during the optimization process. This method can dynamically switch between cheaper, low-fidelity tasks and the expensive, high-fidelity target task based on a cost-aware information-theoretic acquisition function. In practice, the proposed method starts exploring the conguration space on the cheaper task and only switches to the more expensive conguration space in later parts of the optimization, approximately halving the time required for HPO.</p>
+<h2 id="Applications"><a href="#Applications" class="headerlink" title="Applications"></a>Applications</h2><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.014.jpeg" alt=""></p>
+<h2 id="Open-problem-and-future-research-directions"><a href="#Open-problem-and-future-research-directions" class="headerlink" title="Open problem and future research directions"></a>Open problem and future research directions</h2><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.015.jpeg" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Although there are currently several developed machine learning suites,such as Keras, Pytorch, etc, facilitating the prevalence of machine learning techniques, data scientists or machine learning engineers still need to face the difficulty of hyperparameter choice of machine learning models. It has been empirically proved that for a given model, different choices of hyperparameter  also result in very different performances (accuracy, recall, etc). There is a trend of automating the hyperparameter selection for machine learning model, which is part of AutoML.&lt;/p&gt;
+&lt;p&gt;Recently I have been reading the ``ongoing’’ book,  &lt;a href=&quot;https://www.automl.org/book/&quot;&gt;AutoML&lt;/a&gt;, of which Chapter 1 introduces the existing methods to solve the hyperparameter optimization of machine learning model, and discusses several open problems as well as future research direction of this subfield. I wrote the post after reading this chapter.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Machine Learning" scheme="https://xijunlee.github.io/tags/Machine-Learning/"/>
+    
+      <category term="AutoML" scheme="https://xijunlee.github.io/tags/AutoML/"/>
+    
+      <category term="Optimization" scheme="https://xijunlee.github.io/tags/Optimization/"/>
+    
+      <category term="Reading Note" scheme="https://xijunlee.github.io/tags/Reading-Note/"/>
+    
+  </entry>
   
   <entry>
     <title>My Talk at SIGKDD 2018</title>
@@ -991,73 +1037,6 @@
       <category term="Machine Learning" scheme="https://xijunlee.github.io/tags/Machine-Learning/"/>
     
       <category term="CNN" scheme="https://xijunlee.github.io/tags/CNN/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>A Summary of Bit Manipulation (reposted from leetcode discussion)</title>
-    <link href="https://xijunlee.github.io/2017/04/01/efficiently/"/>
-    <id>https://xijunlee.github.io/2017/04/01/efficiently/</id>
-    <published>2017-04-01T05:46:11.000Z</published>
-    <updated>2017-11-06T13:09:31.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="WIKI"><a href="#WIKI" class="headerlink" title="WIKI"></a>WIKI</h2><p>Bit manipulation is the act of algorithmically manipulating bits or other pieces of data shorter than a word. Computer programming tasks that require bit manipulation include low-level device control, error detection and correction algorithms, data compression, encryption algorithms, and optimization. For most other tasks, modern programming languages allow the programmer to work directly with abstractions instead of bits that represent those abstractions. Source code that does bit manipulation makes use of the bitwise operations: AND, OR, XOR, NOT, and bit shifts.</p>
-<p>Bit manipulation, in some cases, can obviate or reduce the need to loop over a data structure and can give many-fold speed ups, as bit manipulations are processed in parallel, but the code can become more difficult to write and maintain.</p>
-<a id="more"></a>
-<h2 id="DETAILS"><a href="#DETAILS" class="headerlink" title="DETAILS"></a>DETAILS</h2><h3 id="Basics"><a href="#Basics" class="headerlink" title="Basics"></a>Basics</h3><p>At the heart of bit manipulation are the bit-wise operators &amp; (and), | (or), ~ (not) and ^ (exclusive-or, xor) and shift operators a &lt;&lt; b and a &gt;&gt; b.</p>
-<blockquote>
-<p>There is no boolean operator counterpart to bitwise exclusive-or, but there is a simple explanation. The exclusive-or operation takes two inputs and returns a 1 if either one or the other of the inputs is a 1, but not if both are. That is, if both inputs are 1 or both inputs are 0, it returns 0. Bitwise exclusive-or, with the operator of a caret, ^, performs the exclusive-or operation on each pair of bits. Exclusive-or is commonly abbreviated XOR.</p>
-</blockquote>
-<ol>
-<li>Set union A | B</li>
-<li>Set intersection A &amp; B</li>
-<li>Set subtraction A &amp; ~B</li>
-<li>Set negation ALL_BITS ^ A or ~A</li>
-<li>Set bit A |= 1 &lt;&lt; bit</li>
-<li>Clear bit A &amp;= ~(1 &lt;&lt; bit)</li>
-<li>Test bit (A &amp; 1 &lt;&lt; bit) != 0</li>
-<li>Extract last bit A&amp;-A or A&amp;~(A-1) or x^(x&amp;(x-1))</li>
-<li>Remove last bit A&amp;(A-1)</li>
-<li>Get all 1-bits ~0</li>
-</ol>
-<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><p>Count the number of ones in the binary representation of the given number</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">count_one</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">while</span>(n) &#123;</div><div class="line">        n = n&amp;(n<span class="number">-1</span>);</div><div class="line">        count++;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> count;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Is power of four (actually map-checking, iterative and recursive methods can do the same)</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isPowerOfFour</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> !(n&amp;(n<span class="number">-1</span>)) &amp;&amp; (n&amp;<span class="number">0x55555555</span>);</div><div class="line">    <span class="comment">//check the 1-bit location;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="tricks"><a href="#tricks" class="headerlink" title="^ tricks"></a><code>^</code> tricks</h3><p>Use <code>^</code> to remove even exactly same numbers and save the odd, or save the distinct bits and remove the same.</p>
-<h4 id="SUM-OF-TWO-INTEGERS"><a href="#SUM-OF-TWO-INTEGERS" class="headerlink" title="SUM OF TWO INTEGERS"></a>SUM OF TWO INTEGERS</h4><p>Use <code>^</code> and <code>&amp;</code> to add two integers</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> b==<span class="number">0</span>? a:getSum(a^b, (a&amp;b)&lt;&lt;<span class="number">1</span>); <span class="comment">//be careful about the terminating condition;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="MISSING-NUMBER"><a href="#MISSING-NUMBER" class="headerlink" title="MISSING NUMBER"></a>MISSING NUMBER</h4><p>Given an array containing n distinct numbers taken from 0, 1, 2, …, n, find the one that is missing from the array. For example, Given nums = [0, 1, 3] return 2. (Of course, you can do this by math.)</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">missingNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); ++i) &#123;</div><div class="line">        ret ^= i;</div><div class="line">        ret ^= nums[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ret^=nums.size();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="tricks-1"><a href="#tricks-1" class="headerlink" title="| tricks"></a><code>|</code> tricks</h3><p>Keep as many 1-bits as possible</p>
-<p>Find the largest power of 2 (most significant bit in binary form), which is less than or equal to the given number N.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">long</span> <span class="title">largest_power</span><span class="params">(<span class="keyword">long</span> N)</span> </span>&#123;</div><div class="line">    <span class="comment">//changing all right side bits to 1.</span></div><div class="line">    N = N | (N&gt;&gt;<span class="number">1</span>);</div><div class="line">    N = N | (N&gt;&gt;<span class="number">2</span>);</div><div class="line">    N = N | (N&gt;&gt;<span class="number">4</span>);</div><div class="line">    N = N | (N&gt;&gt;<span class="number">8</span>);</div><div class="line">    N = N | (N&gt;&gt;<span class="number">16</span>);</div><div class="line">    <span class="keyword">return</span> (N+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="REVERSE-BITS"><a href="#REVERSE-BITS" class="headerlink" title="REVERSE BITS"></a>REVERSE BITS</h4><p>Reverse bits of a given 32 bits unsigned integer.</p>
-<p>Solution</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">uint32_t</span> reverseBits(<span class="keyword">uint32_t</span> n) &#123;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> mask = <span class="number">1</span>&lt;&lt;<span class="number">31</span>, res = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; ++i) &#123;</div><div class="line">        <span class="keyword">if</span>(n &amp; <span class="number">1</span>) res |= mask;</div><div class="line">        mask &gt;&gt;= <span class="number">1</span>;</div><div class="line">        n &gt;&gt;= <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">uint32_t</span> reverseBits(<span class="keyword">uint32_t</span> n) &#123;</div><div class="line">	<span class="keyword">uint32_t</span> mask = <span class="number">1</span>, ret = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; ++i)&#123;</div><div class="line">		ret &lt;&lt;= <span class="number">1</span>;</div><div class="line">		<span class="keyword">if</span>(mask &amp; n) ret |= <span class="number">1</span>;</div><div class="line">		mask &lt;&lt;= <span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ret;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="amp-tricks"><a href="#amp-tricks" class="headerlink" title="&amp; tricks"></a><code>&amp;</code> tricks</h3><p>Just selecting certain bits</p>
-<p>Reversing the bits in integer</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">x = ((x &amp; <span class="number">0xaaaaaaaa</span>) &gt;&gt; <span class="number">1</span>) | ((x &amp; <span class="number">0x55555555</span>) &lt;&lt; <span class="number">1</span>);</div><div class="line">x = ((x &amp; <span class="number">0xcccccccc</span>) &gt;&gt; <span class="number">2</span>) | ((x &amp; <span class="number">0x33333333</span>) &lt;&lt; <span class="number">2</span>);</div><div class="line">x = ((x &amp; <span class="number">0xf0f0f0f0</span>) &gt;&gt; <span class="number">4</span>) | ((x &amp; <span class="number">0x0f0f0f0f</span>) &lt;&lt; <span class="number">4</span>);</div><div class="line">x = ((x &amp; <span class="number">0xff00ff00</span>) &gt;&gt; <span class="number">8</span>) | ((x &amp; <span class="number">0x00ff00ff</span>) &lt;&lt; <span class="number">8</span>);</div><div class="line">x = ((x &amp; <span class="number">0xffff0000</span>) &gt;&gt; <span class="number">16</span>) | ((x &amp; <span class="number">0x0000ffff</span>) &lt;&lt; <span class="number">16</span>);</div></pre></td></tr></table></figure>
-<h4 id="BITWISE-AND-OF-NUMBERS-RANGE"><a href="#BITWISE-AND-OF-NUMBERS-RANGE" class="headerlink" title="BITWISE AND OF NUMBERS RANGE"></a>BITWISE AND OF NUMBERS RANGE</h4><p>Given a range [m, n] where 0 &lt;= m &lt;= n &lt;= 2147483647, return the bitwise AND of all numbers in this range, inclusive. For example, given the range [5, 7], you should return 4.</p>
-<p>Solution<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">rangeBitwiseAnd</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(m != n) &#123;</div><div class="line">        m &gt;&gt;= <span class="number">1</span>;</div><div class="line">        n &gt;&gt;= <span class="number">1</span>;</div><div class="line">        a++;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> m&lt;&lt;a; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h4 id="NUMBER-OF-1-BITS"><a href="#NUMBER-OF-1-BITS" class="headerlink" title="NUMBER OF 1 BITS"></a>NUMBER OF 1 BITS</h4><p>Write a function that takes an unsigned integer and returns the number of ’1’ bits it has (also known as the Hamming weight).</p>
-<p>Solution<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">uint32_t</span> n)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">	<span class="keyword">while</span>(n) &#123;</div><div class="line">		n = n&amp;(n<span class="number">-1</span>);</div><div class="line">		count++;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> count;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">uint32_t</span> n)</span> </span>&#123;</div><div class="line">    ulong mask = <span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; ++i)&#123; <span class="comment">//31 will not do, delicate;</span></div><div class="line">        <span class="keyword">if</span>(mask &amp; n) count++;</div><div class="line">        mask &lt;&lt;= <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> count;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<hr>
-<p>Reference<br><a href="https://discuss.leetcode.com/topic/50315/a-summary-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently" target="_blank" rel="external">https://discuss.leetcode.com/topic/50315/a-summary-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;WIKI&quot;&gt;&lt;a href=&quot;#WIKI&quot; class=&quot;headerlink&quot; title=&quot;WIKI&quot;&gt;&lt;/a&gt;WIKI&lt;/h2&gt;&lt;p&gt;Bit manipulation is the act of algorithmically manipulating bits or other pieces of data shorter than a word. Computer programming tasks that require bit manipulation include low-level device control, error detection and correction algorithms, data compression, encryption algorithms, and optimization. For most other tasks, modern programming languages allow the programmer to work directly with abstractions instead of bits that represent those abstractions. Source code that does bit manipulation makes use of the bitwise operations: AND, OR, XOR, NOT, and bit shifts.&lt;/p&gt;
-&lt;p&gt;Bit manipulation, in some cases, can obviate or reduce the need to loop over a data structure and can give many-fold speed ups, as bit manipulations are processed in parallel, but the code can become more difficult to write and maintain.&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Bit Manipulation" scheme="https://xijunlee.github.io/tags/Bit-Manipulation/"/>
-    
-      <category term="Programing Tricks" scheme="https://xijunlee.github.io/tags/Programing-Tricks/"/>
     
   </entry>
   

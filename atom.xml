@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2018-12-09T16:07:11.204Z</updated>
+  <updated>2018-12-09T16:11:07.078Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>meta-learning</title>
+    <title>AutoML Reading Note 2</title>
     <link href="https://xijunlee.github.io/2018/12/09/meta-learning/"/>
     <id>https://xijunlee.github.io/2018/12/09/meta-learning/</id>
     <published>2018-12-09T15:41:25.000Z</published>
-    <updated>2018-12-09T16:07:11.204Z</updated>
+    <updated>2018-12-09T16:11:07.078Z</updated>
     
     <content type="html"><![CDATA[<p>This post is about meta learning in AutoML, corresponding to Chapter 2 of <a href="https://www.automl.org/book/" target="_blank" rel="external">AutoML</a>.</p>
 <h1 id="What-is-meta-learning"><a href="#What-is-meta-learning" class="headerlink" title="What is meta learning?"></a>What is meta learning?</h1><p><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML2/Intro%20To%20AutoML.017.jpeg" alt=""></p>

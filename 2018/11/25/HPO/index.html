@@ -15,7 +15,6 @@
 <meta property="og:url" content="https://xijunlee.github.io/2018/11/25/HPO/index.html">
 <meta property="og:site_name" content="Xijun's Homepage">
 <meta property="og:description" content="Although there are currently several developed machine learning suites,such as Keras, Pytorch, etc, facilitating the prevalence of machine learning techniques, data scientists or machine learning engi">
-<meta property="og:image" content="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.003.jpeg">
 <meta property="og:image" content="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.004.jpeg">
 <meta property="og:image" content="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.005.jpeg">
 <meta property="og:image" content="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.006.jpeg">
@@ -28,11 +27,12 @@
 <meta property="og:image" content="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.013.jpeg">
 <meta property="og:image" content="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.014.jpeg">
 <meta property="og:image" content="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.015.jpeg">
-<meta property="og:updated_time" content="2018-11-25T04:41:31.718Z">
+<meta property="og:image" content="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.016.jpeg">
+<meta property="og:updated_time" content="2018-12-09T16:10:22.868Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AutoML Reading Note 1">
 <meta name="twitter:description" content="Although there are currently several developed machine learning suites,such as Keras, Pytorch, etc, facilitating the prevalence of machine learning techniques, data scientists or machine learning engi">
-<meta name="twitter:image" content="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.003.jpeg">
+<meta name="twitter:image" content="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.004.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="Xijun&#39;s Homepage" type="application/atom+xml">
   
@@ -232,22 +232,21 @@ var _hmt = _hmt || [];
         <p>Although there are currently several developed machine learning suites,such as Keras, Pytorch, etc, facilitating the prevalence of machine learning techniques, data scientists or machine learning engineers still need to face the difficulty of hyperparameter choice of machine learning models. It has been empirically proved that for a given model, different choices of hyperparameter  also result in very different performances (accuracy, recall, etc). There is a trend of automating the hyperparameter selection for machine learning model, which is part of AutoML.</p>
 <p>Recently I have been reading the ``ongoing’’ book,  <a href="https://www.automl.org/book/" target="_blank" rel="external">AutoML</a>, of which Chapter 1 introduces the existing methods to solve the hyperparameter optimization of machine learning model, and discusses several open problems as well as future research direction of this subfield. I wrote the post after reading this chapter.</p>
 <a id="more"></a>
-<h2 id="What-is-hyper-parameter"><a href="#What-is-hyper-parameter" class="headerlink" title="What is hyper parameter?"></a>What is hyper parameter?</h2><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.003.jpeg" alt=""></p>
-<p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.004.jpeg" alt=""></p>
+<h1 id="What-is-hyper-parameter"><a href="#What-is-hyper-parameter" class="headerlink" title="What is hyper parameter?"></a>What is hyper parameter?</h1><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.004.jpeg" alt=""></p>
 <p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.005.jpeg" alt=""></p>
-<p>Hyperparameter optimization has led to new state-of-the-art performances for important machine learning benchmarks in several studies. Besides, Automated HPO is clearly more reproducible than manual search. It facilitates fair comparisons since dierent methods can only be compared fairly if they all receive the same level of tuning for the problem at hand.</p>
 <p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.006.jpeg" alt=""></p>
-<h2 id="Methods-to-optimize-hyperparameter-of-machine-learning-model"><a href="#Methods-to-optimize-hyperparameter-of-machine-learning-model" class="headerlink" title="Methods to optimize hyperparameter of machine learning model"></a>Methods to optimize hyperparameter of machine learning model</h2><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.007.jpeg" alt=""></p>
-<p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.008.jpeg" alt=""></p>
-<p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.009.jpeg" alt=""></p>
-<p>Bayesian optimization is actually an iterative algorithm with the probabilisitic surrogate model and acquisition function. In each iteration, the surrogate model is fitted to all observations of the target function made so far. Then, the acquisition function, which uses the predictive distribution of the probabilisitic model, determines the utility of different candidate points, trading off exploration and exploitation.</p>
+<p>Hyperparameter optimization has led to new state-of-the-art performances for important machine learning benchmarks in several studies. Besides, Automated HPO is clearly more reproducible than manual search. It facilitates fair comparisons since dierent methods can only be compared fairly if they all receive the same level of tuning for the problem at hand.</p>
+<h1 id="Problem-statement-of-hyperparameter-optimization"><a href="#Problem-statement-of-hyperparameter-optimization" class="headerlink" title="Problem statement of hyperparameter optimization"></a>Problem statement of hyperparameter optimization</h1><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.007.jpeg" alt=""></p>
+<h1 id="Methods-to-optimize-hyperparameter"><a href="#Methods-to-optimize-hyperparameter" class="headerlink" title="Methods to optimize hyperparameter"></a>Methods to optimize hyperparameter</h1><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.008.jpeg" alt=""></p>
+<h2 id="Black-hyperparameter-optimization"><a href="#Black-hyperparameter-optimization" class="headerlink" title="Black hyperparameter optimization"></a>Black hyperparameter optimization</h2><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.009.jpeg" alt=""></p>
 <p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.010.jpeg" alt=""></p>
-<p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.011.jpeg" alt=""></p>
-<p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.012.jpeg" alt=""></p>
-<p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.013.jpeg" alt=""></p>
+<p>Bayesian optimization is actually an iterative algorithm with the probabilisitic surrogate model and acquisition function. In each iteration, the surrogate model is fitted to all observations of the target function made so far. Then, the acquisition function, which uses the predictive distribution of the probabilisitic model, determines the utility of different candidate points, trading off exploration and exploitation.</p>
+<h1 id="Multi-fidelity-optimization"><a href="#Multi-fidelity-optimization" class="headerlink" title="Multi-fidelity optimization"></a>Multi-fidelity optimization</h1><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.011.jpeg" alt=""></p>
+<h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.012.jpeg" alt=""></h1><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.013.jpeg" alt=""></p>
+<p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.014.jpeg" alt=""></p>
 <p>Multi-task Bayesian optimization  uses a multi-task Gaussian process to model the performance of related tasks and to automatically learn the tasks’ correlation during the optimization process. This method can dynamically switch between cheaper, low-fidelity tasks and the expensive, high-fidelity target task based on a cost-aware information-theoretic acquisition function. In practice, the proposed method starts exploring the conguration space on the cheaper task and only switches to the more expensive conguration space in later parts of the optimization, approximately halving the time required for HPO.</p>
-<h2 id="Applications"><a href="#Applications" class="headerlink" title="Applications"></a>Applications</h2><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.014.jpeg" alt=""></p>
-<h2 id="Open-problem-and-future-research-directions"><a href="#Open-problem-and-future-research-directions" class="headerlink" title="Open problem and future research directions"></a>Open problem and future research directions</h2><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.015.jpeg" alt=""></p>
+<h1 id="Applications"><a href="#Applications" class="headerlink" title="Applications"></a>Applications</h1><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.015.jpeg" alt=""></p>
+<h1 id="In-the-future"><a href="#In-the-future" class="headerlink" title="In the future"></a>In the future</h1><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML1/Intro%20To%20AutoML.016.jpeg" alt=""></p>
 
       
 
@@ -343,6 +342,15 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
+    <a href="/2018/12/09/meta-learning/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          meta-learning
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/09/21/KDD2018/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">My Presentation at SIGKDD 2018</div>
@@ -372,7 +380,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-hyper-parameter"><span class="toc-number">1.</span> <span class="toc-text">What is hyper parameter?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Methods-to-optimize-hyperparameter-of-machine-learning-model"><span class="toc-number">2.</span> <span class="toc-text">Methods to optimize hyperparameter of machine learning model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Applications"><span class="toc-number">3.</span> <span class="toc-text">Applications</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Open-problem-and-future-research-directions"><span class="toc-number">4.</span> <span class="toc-text">Open problem and future research directions</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-hyper-parameter"><span class="toc-number">1.</span> <span class="toc-text">What is hyper parameter?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Problem-statement-of-hyperparameter-optimization"><span class="toc-number">2.</span> <span class="toc-text">Problem statement of hyperparameter optimization</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Methods-to-optimize-hyperparameter"><span class="toc-number">3.</span> <span class="toc-text">Methods to optimize hyperparameter</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Black-hyperparameter-optimization"><span class="toc-number">3.1.</span> <span class="toc-text">Black hyperparameter optimization</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Multi-fidelity-optimization"><span class="toc-number">4.</span> <span class="toc-text">Multi-fidelity optimization</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#"><span class="toc-number">5.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Applications"><span class="toc-number">6.</span> <span class="toc-text">Applications</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#In-the-future"><span class="toc-number">7.</span> <span class="toc-text">In the future</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -509,7 +517,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color2">Distributed Computing</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -521,15 +529,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Distributed Computing</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Academic Plotting</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Probability Theory</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -541,11 +545,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color4">Probability Theory</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Auction</a>
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,7 +565,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Something Acadameic</a>
+                <a href="javascript:void(0)" class="js-tag color3">Auction</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -577,7 +585,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
+                <a href="javascript:void(0)" class="js-tag color3">Reinforcement Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MCTS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -585,15 +597,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">Something Acadameic</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reinforcement Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MCTS</a>
+                <a href="javascript:void(0)" class="js-tag color4">Meta Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -617,11 +625,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">AI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">repost</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -637,7 +641,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Activation Function</a>
+                <a href="javascript:void(0)" class="js-tag color3">AI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">repost</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -645,11 +653,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Regularization Expression</a>
+                <a href="javascript:void(0)" class="js-tag color1">Matrix Factorization</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Matrix Factorization</a>
+                <a href="javascript:void(0)" class="js-tag color5">Activation Function</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -657,11 +665,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Regularization Expression</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Ensembling</a>
+                <a href="javascript:void(0)" class="js-tag color5">Natural Language Process</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -669,7 +681,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Natural Language Process</a>
+                <a href="javascript:void(0)" class="js-tag color1">Ensembling</a>
               </li>
             
             <div class="clearfix"></div>

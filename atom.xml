@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2018-12-28T13:32:27.466Z</updated>
+  <updated>2018-12-28T13:33:06.397Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xijunlee.github.io/2018/12/28/forwar-declaration/"/>
     <id>https://xijunlee.github.io/2018/12/28/forwar-declaration/</id>
     <published>2018-12-28T00:06:35.000Z</published>
-    <updated>2018-12-28T13:32:27.466Z</updated>
+    <updated>2018-12-28T13:33:06.397Z</updated>
     
     <content type="html"><![CDATA[<p>In the recent project, I was responsible for improving program efficiency. The whole project is written in Python. To this end, I’ve tried to rewrite C++ code to substitute Python code in some compute-intensive part. I’ve met the mutual reference when rewring the C++ code. The post shows the way I practice mutual reference in C++.</p>
 <h2 id="Mutual-reference"><a href="#Mutual-reference" class="headerlink" title="Mutual reference"></a>Mutual reference</h2><p>There might often be such a situation that we have two classes, and they reference member variable or function of each other.  Just like Python code below:</p>
@@ -46,7 +46,7 @@
 <p>Note: we often add  the header guard for header file. We should make the guard compatible with header file name, just like this:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//classA.h</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CLASSA_H</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CLASSA_H</span></div><div class="line"></div><div class="line"><span class="keyword">class</span> B; <span class="comment">// forward incomplete declaration - class B will be fully declared later</span></div><div class="line"><span class="keyword">class</span> A &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">(B b)</span></span>; <span class="comment">// Ex. 1:</span></div><div class="line">	<span class="comment">/* rest omitted to save space */</span></div><div class="line">&#125;;</div><div class="line"> </div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
 <p>Thanks to so many answers in Stackoverflow and David Kieras’s note.</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h2><p><a href="http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/" target="_blank" rel="external">http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/</a><br><a href="http://umich.edu/~eecs381/handouts/IncompleteDeclarations.pdf" target="_blank" rel="external">http://umich.edu/~eecs381/handouts/IncompleteDeclarations.pdf</a></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/" target="_blank" rel="external">http://jatinganhotra.com/blog/2012/11/25/forward-class-declaration-in-c-plus-plus/</a><br><a href="http://umich.edu/~eecs381/handouts/IncompleteDeclarations.pdf" target="_blank" rel="external">http://umich.edu/~eecs381/handouts/IncompleteDeclarations.pdf</a></p>
 ]]></content>
     
     <summary type="html">

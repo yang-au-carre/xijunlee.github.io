@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xijunlee.github.io/about/index.html</loc>
+    
+    <lastmod>2019-01-01T02:06:37.143Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://xijunlee.github.io/2018/12/28/forwar-declaration/</loc>
     
     <lastmod>2018-12-28T13:33:06.397Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>https://xijunlee.github.io/2018/09/21/KDD2018/</loc>
     
     <lastmod>2018-11-25T04:37:15.762Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xijunlee.github.io/about/index.html</loc>
-    
-    <lastmod>2018-11-07T15:10:19.062Z</lastmod>
     
   </url>
   

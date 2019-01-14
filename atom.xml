@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2019-01-14T14:10:45.832Z</updated>
+  <updated>2019-01-14T14:13:33.093Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>panorama</title>
+    <title>Panorama of AutoML Methods</title>
     <link href="https://xijunlee.github.io/2019/01/14/panorama/"/>
     <id>https://xijunlee.github.io/2019/01/14/panorama/</id>
     <published>2019-01-14T13:59:27.000Z</published>
-    <updated>2019-01-14T14:10:45.832Z</updated>
+    <updated>2019-01-14T14:13:33.093Z</updated>
     
     <content type="html"><![CDATA[<p>Eventually, I finished the three AutoML reading notes. In addition to these notes, I also draw a panaroma of AutoML techniques discussed in the previous notes. It is hard to say that this panaroma has covered all AutoML techniques being researched now. So guys add ideas to this :)</p>
 <p><img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML3/Panoroma.001.jpeg" alt=""></p>

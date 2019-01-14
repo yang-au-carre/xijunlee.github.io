@@ -9,12 +9,14 @@
   <link rel="dns-prefetch" href="https://xijunlee.github.io">
   <title>AutoML Reading Note 3 | Xijun&#39;s Homepage</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="This post is about  Neural Architecture Search in AutoML, corresponding to Chapter 3 of the book AutoML. Note that all references can be found in the book.">
+  <meta name="description" content="This post is about  Neural Architecture Search in AutoML, corresponding to Chapter 3 of the book AutoML. Note that all references can be found in the book.
+What is neural architecture search?">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AutoML Reading Note 3">
 <meta property="og:url" content="https://xijunlee.github.io/2019/01/14/NAS/index.html">
 <meta property="og:site_name" content="Xijun's Homepage">
-<meta property="og:description" content="This post is about  Neural Architecture Search in AutoML, corresponding to Chapter 3 of the book AutoML. Note that all references can be found in the book.">
+<meta property="og:description" content="This post is about  Neural Architecture Search in AutoML, corresponding to Chapter 3 of the book AutoML. Note that all references can be found in the book.
+What is neural architecture search?">
 <meta property="og:image" content="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML3/Intro%20To%20AutoML.001.jpeg">
 <meta property="og:image" content="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML3/Intro%20To%20AutoML.002.jpeg">
 <meta property="og:image" content="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML3/Intro%20To%20AutoML.003.jpeg">
@@ -22,10 +24,11 @@
 <meta property="og:image" content="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML3/Intro%20To%20AutoML.005.jpeg">
 <meta property="og:image" content="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML3/Intro%20To%20AutoML.006.jpeg">
 <meta property="og:image" content="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML3/Intro%20To%20AutoML.007.jpeg">
-<meta property="og:updated_time" content="2019-01-14T14:11:25.903Z">
+<meta property="og:updated_time" content="2019-01-14T14:19:14.349Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AutoML Reading Note 3">
-<meta name="twitter:description" content="This post is about  Neural Architecture Search in AutoML, corresponding to Chapter 3 of the book AutoML. Note that all references can be found in the book.">
+<meta name="twitter:description" content="This post is about  Neural Architecture Search in AutoML, corresponding to Chapter 3 of the book AutoML. Note that all references can be found in the book.
+What is neural architecture search?">
 <meta name="twitter:image" content="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML3/Intro%20To%20AutoML.001.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="Xijun&#39;s Homepage" type="application/atom+xml">
@@ -224,8 +227,8 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <p>This post is about  <em>Neural Architecture Search</em> in AutoML, corresponding to Chapter 3 of the book <a href="https://www.automl.org/book/" target="_blank" rel="external">AutoML</a>. Note that all references can be found in the book.</p>
-<a id="more"></a>
 <h1 id="What-is-neural-architecture-search"><a href="#What-is-neural-architecture-search" class="headerlink" title="What is neural architecture search?"></a>What is neural architecture search?</h1><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML3/Intro%20To%20AutoML.001.jpeg" alt=""></p>
+<a id="more"></a>
 <h1 id="How-to-do-neural-architecture-search"><a href="#How-to-do-neural-architecture-search" class="headerlink" title="How to do neural architecture search?"></a>How to do neural architecture search?</h1><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML3/Intro%20To%20AutoML.002.jpeg" alt=""></p>
 <p>Search space defines which architectures can be represented in principle. Incorporating prior knowledge about properties well-suited for a task can reduce the size of the search space and simplify the search. However, this also introduces a human bias, which may prevent finding novel architectural building blocks that go beyond the current human knowledge.</p>
 <p>The search strategy  details how to explore the search space. It encompasses the classical exploration-exploitation trade-off since, on the one hand, it is desirable to find well-performing architectures quickly, while on the other hand, premature convergence to  a region of suboptimal architectures should be avoided.</p>

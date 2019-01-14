@@ -46,11 +46,11 @@
     <link href="https://xijunlee.github.io/2019/01/14/NAS/"/>
     <id>https://xijunlee.github.io/2019/01/14/NAS/</id>
     <published>2019-01-14T13:12:30.000Z</published>
-    <updated>2019-01-14T14:11:25.903Z</updated>
+    <updated>2019-01-14T14:19:14.349Z</updated>
     
     <content type="html"><![CDATA[<p>This post is about  <em>Neural Architecture Search</em> in AutoML, corresponding to Chapter 3 of the book <a href="https://www.automl.org/book/" target="_blank" rel="external">AutoML</a>. Note that all references can be found in the book.</p>
-<a id="more"></a>
 <h1 id="What-is-neural-architecture-search"><a href="#What-is-neural-architecture-search" class="headerlink" title="What is neural architecture search?"></a>What is neural architecture search?</h1><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML3/Intro%20To%20AutoML.001.jpeg" alt=""></p>
+<a id="more"></a>
 <h1 id="How-to-do-neural-architecture-search"><a href="#How-to-do-neural-architecture-search" class="headerlink" title="How to do neural architecture search?"></a>How to do neural architecture search?</h1><p><img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML3/Intro%20To%20AutoML.002.jpeg" alt=""></p>
 <p>Search space defines which architectures can be represented in principle. Incorporating prior knowledge about properties well-suited for a task can reduce the size of the search space and simplify the search. However, this also introduces a human bias, which may prevent finding novel architectural building blocks that go beyond the current human knowledge.</p>
 <p>The search strategy  details how to explore the search space. It encompasses the classical exploration-exploitation trade-off since, on the one hand, it is desirable to find well-performing architectures quickly, while on the other hand, premature convergence to  a region of suboptimal architectures should be avoided.</p>
@@ -84,6 +84,7 @@
     <summary type="html">
     
       &lt;p&gt;This post is about  &lt;em&gt;Neural Architecture Search&lt;/em&gt; in AutoML, corresponding to Chapter 3 of the book &lt;a href=&quot;https://www.automl.org/book/&quot;&gt;AutoML&lt;/a&gt;. Note that all references can be found in the book.&lt;/p&gt;
+&lt;h1 id=&quot;What-is-neural-architecture-search&quot;&gt;&lt;a href=&quot;#What-is-neural-architecture-search&quot; class=&quot;headerlink&quot; title=&quot;What is neural architecture search?&quot;&gt;&lt;/a&gt;What is neural architecture search?&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://xijun-album.oss-cn-hangzhou.aliyuncs.com/AutoML3/Intro%20To%20AutoML.001.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
     
     </summary>
     

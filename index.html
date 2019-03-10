@@ -193,6 +193,109 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-reunderstanding-of-PCA" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/10/reunderstanding-of-PCA/">Reunderstanding The Mathematics Behind Principal Component Analysis</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/10/reunderstanding-of-PCA/" class="archive-article-date">
+  	<time datetime="2019-03-10T06:54:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>As we all know, Principal Component Analysis (PCA) is a dimensionality reduction algorithm that can be used to significantly speed up your unsupervised feature learning algorithm. Most of us just know the procedure of PCA. In other words, we know how to use the algorithm but do not know how it comes. In this post, I summarize the procedure and mathematics of PCA based on materials of reference.</p>
+<h2 id="Procedure-of-PCA"><a href="#Procedure-of-PCA" class="headerlink" title="Procedure of PCA"></a>Procedure of PCA</h2><p>Suppose we have a dataset  ${x^{(1)}, x^{(2)},…, x^{(m)} }$ with n dimension inputs. We want to reduce the data from $n$ dimension to $k$ dimension $(k&lt;&lt;n)$ using PCA. The procedure of PCA is shown below:</p>
+<ol>
+<li><p>Standardize the raw data: make the raw data have zero mean and unit variance<br>$$<br>x^{(i)}<em>{j} = \frac{x^{(i)}</em>{j}-\bar{x}_j}{\sigma_j} \quad \forall j \tag{1}<br>$$</p>
+</li>
+<li><p>Get the covariance matrix of raw data, namely:<br>$$<br>\Sigma=\frac{1}{m}\sum<em>{i}^{m}(x</em>{(i)})(x_{(i)})^T, \quad \Sigma\in \mathbb{R}^{n\times n} \tag{2}<br>$$</p>
+</li>
+<li><p>Compute the eigenvalue and  eigenvector of the covariance matrix:<br>$$<br>u^T \Sigma= \lambda u \tag{3}<br>$$</p>
+<p>$$<br>U=<br>\left{<br>\begin{matrix}<br>  |&amp; |&amp; &amp; |\<br>  u_1 &amp; u_2 &amp; … &amp; u<em>n \<br>  |&amp; |&amp; &amp; |<br> \end{matrix}<br> \right}, \quad u</em>{i} \in \mathbb{R}^n<br> \tag{4}<br>$$</p>
+<p>Here, eigenvector is corresponding to its eigenvalue,  and they are placed in the descending order of eigenvalue.</p>
+</li>
+<li><p>Project the raw data into a k-dimensional subspace: Choose the top k eigenvector of covariance matrix. The top k eigenvectors now form a new, orthogonal basis for the data. Then to represent raw data in the new basis, we need only compute the corresponding vector as shown below<br>$$<br>x^{(i)}_{new} = \left[<br>\begin{matrix}<br>  u_1^Tx^{(i)} \<br>  u_2^Tx^{(i)} \<br>  … \<br>  u_k^Tx^{(i)} \<br> \end{matrix}<br> \right] \in \mathbb{R}^k<br> \tag{5}<br>$$<br>Thus, whereas raw data is with n dimensionality, and the new vector new gives a lower, k-dimensional, approximation/representation for the raw data.</p>
+</li>
+</ol>
+<h2 id="Mathematics-behind-PCA"><a href="#Mathematics-behind-PCA" class="headerlink" title="Mathematics behind PCA"></a>Mathematics behind PCA</h2><p>In the previous section, I present the procedure of PCA.  What a simple algorithm it looks like. However, do we actually know why we calculate the eigenvector of covariance matrix, getting the basis of new subspace.</p>
+<p>The motivation of PCA is remaining as much information of raw data as possible by projecting  raw data into lower subspace. In other words, we hope remain as much variance of raw data as possible in the new space.</p>
+<p>In the formula (5), we see the projection of raw data. The length (variance) of the projection of $x$ onto $u$ is given by $x^T u$. I.e., if $x^(i)$ is a point in the dataset, then its projection onto $u$ is distance $x^T u$ from the origin. Hence to maximize the variance, we can formulate it as an optimization problem:<br>$$<br>\max \quad \frac{1}{m} \Sigma_{i=1}^{m} ({x^{(i)}}^Tu)^2 \tag{6}<br>$$</p>
+<p>$$<br>s.t. \quad \quad \Arrowvert u \Arrowvert = 1 \tag{7}<br>$$</p>
+<p>This is a maximization problem with constraint. It can be reformulated as:<br>$$<br>\max \quad u^T(\frac{1}{m}\Sigma_{i=1}^m x^{(i)} {x^{(i)}}^T )u = u^T\Sigma u \tag{8}<br>$$</p>
+<p>$$<br>u^Tu=1 \tag{9}<br>$$</p>
+<p>To get the (local) optimum of the constrained problem, we use the method of Lagrange multipliers:<br>$$<br>L(u,\lambda) = u^T \Sigma u -\lambda (u^Tu-1) \tag{10}<br>$$<br>Note that $\lambda$ is the Lagrange multipliers not the eigenvalue of covariance matrix. Now let us take the partial derivatives of formula (10) with respect to $u$ and $\lambda$. Then let the derivatives equal to zero:<br>$$<br>\frac{\partial L}{\partial u} = u^T\Sigma - \lambda u = 0 \tag{11}<br>$$</p>
+<p>$$<br>\frac{\partial L}{\partial \lambda} = u^Tu-1 = 0 \tag{12}<br>$$</p>
+<p>We can see that the formula (11) is equivalent to formula (3). Thus choosing the new basis of lower space is equivalent to getting the top-k eigenvector of covariance matrix of raw data.</p>
+<p>See! The dimensionality reduction problem is intrinsically a constrained maximization problem. We use the method of Lagrangian multiplier to solve the problem.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://59.80.44.100/cs229.stanford.edu/notes/cs229-notes10.pdf" target="_blank" rel="external">http://59.80.44.100/cs229.stanford.edu/notes/cs229-notes10.pdf</a></p>
+<p><a href="http://ufldl.stanford.edu/wiki/index.php/PCA" target="_blank" rel="external">http://ufldl.stanford.edu/wiki/index.php/PCA</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Optimization</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/10/reunderstanding-of-PCA/">Show all >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-panorama" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -799,88 +902,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-CIKM2018" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/18/CIKM2018/">A Paper Has Been Accepted by CIKM 2018</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/18/CIKM2018/" class="archive-article-date">
-  	<time datetime="2018-08-17T18:14:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/cikm2018/Screen%20Shot%202018-08-18%20at%2002.33.49.png">
-<p>My another work collaborated with Noah’s Ark Lab of Huawei, A Two-Layer Algorithmic Framework for Service Provider Configuration and Planning with Optimal Spatial Matching, has been recently accepted by ACM International Conference on Information and Knowledge Management (CIKM 2018).</p>
-<p>The abstract of this work is as follows:</p>
-<p>Industrial telecommunication applications prefer to run at the optimal capacity configuration to achieve the required Quality of Service (QoS) at the minimum cost. The optimal capacity configuration is usually achieved through the selection of cell towers capacities and locations. Given a set of service providers (e.g., cell towers) and a set of customers (e.g., major residential areas), where each customer has an amount of demand and each provider has multiple candidate capacities and corresponding costs, the optimal capacity selection is configured through spatial matching to satisfy the demand of each customer at the minimum cost. However, existing solutions developed for spatial matching, in which each provider’s capacity is fixed, cannot be directly applied to the capacity configuration problem with multiple capacities and location selections. In this paper, we are the first to study Service Provider Configuration and Planning with Optimal Spatial Matching (SPC-POSM) problem, in which the objectives are 1) to select the proper capacity for each provider at the minimum total cost and 2) to assign providers’ service to satisfy the demand of each customer on a condition that the matching distance is no more than service quality requirement. We prove that SPC-POSM problem is NP-hard and design an efficient two-layer meta-heuristic framework to solve the problem. Unsupervised learning technique is designed to accelerate the calculation and a novel local search mechanism is embedded to further improve solution quality. Extensive experimental results on both real and synthetic datasets verify the effectiveness and efficiency of the proposed framework.</p>
-<p>The camery-ready version is going to be available in Oct. 2018.</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">CIKM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Academy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/18/CIKM2018/">Show all >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -995,11 +1016,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Dairy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Dairy</a>
+                <a href="javascript:void(0)" class="js-tag color2">Distributed Computing</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1011,19 +1040,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Distributed Computing</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Probability Theory</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Academic Plotting</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1035,11 +1052,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Academic Plotting</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Auction</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">SIGKDD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1052,22 +1081,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Reading Note</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Meta Heuristic</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reinforcement Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">SIGKDD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1087,6 +1100,26 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Meta Heuristic</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Reinforcement Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MCTS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Bit Manipulation</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Programing Tricks</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
@@ -1103,15 +1136,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Bit Manipulation</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Programing Tricks</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MCTS</a>
+                <a href="javascript:void(0)" class="js-tag color4">Meta Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1123,27 +1152,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Meta Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">AI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">repost</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Multiobjective Optimization</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1159,11 +1168,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Activation Function</a>
+                <a href="javascript:void(0)" class="js-tag color3">AI</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spider</a>
+                <a href="javascript:void(0)" class="js-tag color2">repost</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Multiobjective Optimization</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1179,11 +1192,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Natural Language Process</a>
+                <a href="javascript:void(0)" class="js-tag color5">Activation Function</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spider</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">iOS Development</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Natural Language Process</a>
               </li>
              
               <li class="article-tag-list-item">

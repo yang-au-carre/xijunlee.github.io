@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2019-03-16T04:13:37.287Z</updated>
+  <updated>2019-03-16T04:19:28.447Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -20,12 +20,12 @@
     <link href="https://xijunlee.github.io/2019/03/10/reunderstanding-of-PCA/"/>
     <id>https://xijunlee.github.io/2019/03/10/reunderstanding-of-PCA/</id>
     <published>2019-03-10T06:54:13.000Z</published>
-    <updated>2019-03-16T04:13:37.287Z</updated>
+    <updated>2019-03-16T04:19:28.447Z</updated>
     
     <content type="html"><![CDATA[<p>As we all know, Principal Component Analysis (PCA) is a dimensionality reduction algorithm that can be used to significantly speed up your unsupervised feature learning algorithm. Most of us just know the procedure of PCA. In other words, we know how to use the algorithm but do not know how it comes. In this post, I summarize the procedure and mathematics of PCA based on materials of reference.</p>
 <h2 id="Procedure-of-PCA"><a href="#Procedure-of-PCA" class="headerlink" title="Procedure of PCA"></a>Procedure of PCA</h2><p>Suppose we have a dataset  ${x^{(1)}, x^{(2)},…, x^{(m)} }$ with n dimension inputs. We want to reduce the data from $n$ dimension to $k$ dimension $(k&lt;&lt;n)$ using PCA. The procedure of PCA is shown below (Owing to the mathematical formual rendering problem, I use picture to display the procedure): </p>
 <a id="more"></a>
-<img src="/PCA](http:/xijun-album.oss-cn-hangzhou.aliyuncs.com/20190316Reunderstanding_PCA/Procedure%20of%20PCA.png)" class="[Procedure of">
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/20190316Reunderstanding_PCA/Procedure%20of%20PCA.png">
 <h2 id="Mathematics-behind-PCA"><a href="#Mathematics-behind-PCA" class="headerlink" title="Mathematics behind PCA"></a>Mathematics behind PCA</h2><p>In the previous section, I present the procedure of PCA.  What a simple algorithm it looks like. However, do we actually know why we calculate the eigenvector of covariance matrix, getting the basis of new subspace.</p>
 <p>The motivation of PCA is remaining as much information of raw data as possible by projecting  raw data into lower subspace. In other words, we hope remain as much variance of raw data as possible in the new space.</p>
 <p>In the formula (5), we see the projection of raw data. The length (variance) of the projection of $x$ onto $u$ is given by $x^T u$. I.e., if $x^(i)$ is a point in the dataset, then its projection onto $u$ is distance $x^T u$ from the origin. Hence to maximize the variance, we can formulate it as an optimization problem:<br>$$<br>\max \quad \frac{1}{m} \Sigma_{i=1}^{m} ({x^{(i)}}^Tu)^2 \tag{6}<br>$$</p>

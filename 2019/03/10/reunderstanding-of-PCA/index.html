@@ -7,14 +7,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xijunlee.github.io">
-  <title>Tag: Column Generation Algorithm | Xijun&#39;s Homepage</title>
+  <title>Reunderstanding The Mathematics Behind Principal Component Analysis | Xijun&#39;s Homepage</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Xijun's Homepage">
-<meta property="og:url" content="https://xijunlee.github.io/tags/Column-Generation-Algorithm/index.html">
+  <meta name="description" content="As we all know, Principal Component Analysis (PCA) is a dimensionality reduction algorithm that can be used to significantly speed up your unsupervised feature learning algorithm. Most of us just know">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reunderstanding The Mathematics Behind Principal Component Analysis">
+<meta property="og:url" content="https://xijunlee.github.io/2019/03/10/reunderstanding-of-PCA/index.html">
 <meta property="og:site_name" content="Xijun's Homepage">
+<meta property="og:description" content="As we all know, Principal Component Analysis (PCA) is a dimensionality reduction algorithm that can be used to significantly speed up your unsupervised feature learning algorithm. Most of us just know">
+<meta property="og:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/20190316Reunderstanding_PCA/Procedure%20of%20PCA.png">
+<meta property="og:updated_time" content="2019-03-16T04:19:28.447Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xijun's Homepage">
+<meta name="twitter:title" content="Reunderstanding The Mathematics Behind Principal Component Analysis">
+<meta name="twitter:description" content="As we all know, Principal Component Analysis (PCA) is a dimensionality reduction algorithm that can be used to significantly speed up your unsupervised feature learning algorithm. Most of us just know">
+<meta name="twitter:image" content="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/20190316Reunderstanding_PCA/Procedure%20of%20PCA.png">
   
     <link rel="alternative" href="/atom.xml" title="Xijun&#39;s Homepage" type="application/atom+xml">
   
@@ -191,68 +197,178 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-reunderstanding-of-PCA" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/12/从单纯型法到列生成算法/" class="archive-article-date">
-  	<time datetime="2017-10-12T06:49:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/12/从单纯型法到列生成算法/">从单纯型法到列生成算法</a>
+    <h1 class="article-title" itemprop="name">
+      Reunderstanding The Mathematics Behind Principal Component Analysis
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/03/10/reunderstanding-of-PCA/" class="archive-article-date">
+  	<time datetime="2019-03-10T06:54:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>As we all know, Principal Component Analysis (PCA) is a dimensionality reduction algorithm that can be used to significantly speed up your unsupervised feature learning algorithm. Most of us just know the procedure of PCA. In other words, we know how to use the algorithm but do not know how it comes. In this post, I summarize the procedure and mathematics of PCA based on materials of reference.</p>
+<h2 id="Procedure-of-PCA"><a href="#Procedure-of-PCA" class="headerlink" title="Procedure of PCA"></a>Procedure of PCA</h2><p>Suppose we have a dataset  ${x^{(1)}, x^{(2)},…, x^{(m)} }$ with n dimension inputs. We want to reduce the data from $n$ dimension to $k$ dimension $(k&lt;&lt;n)$ using PCA. The procedure of PCA is shown below (Owing to the mathematical formual rendering problem, I use picture to display the procedure): </p>
+<a id="more"></a>
+<img src="http://xijun-album.oss-cn-hangzhou.aliyuncs.com/20190316Reunderstanding_PCA/Procedure%20of%20PCA.png">
+<h2 id="Mathematics-behind-PCA"><a href="#Mathematics-behind-PCA" class="headerlink" title="Mathematics behind PCA"></a>Mathematics behind PCA</h2><p>In the previous section, I present the procedure of PCA.  What a simple algorithm it looks like. However, do we actually know why we calculate the eigenvector of covariance matrix, getting the basis of new subspace.</p>
+<p>The motivation of PCA is remaining as much information of raw data as possible by projecting  raw data into lower subspace. In other words, we hope remain as much variance of raw data as possible in the new space.</p>
+<p>In the formula (5), we see the projection of raw data. The length (variance) of the projection of $x$ onto $u$ is given by $x^T u$. I.e., if $x^(i)$ is a point in the dataset, then its projection onto $u$ is distance $x^T u$ from the origin. Hence to maximize the variance, we can formulate it as an optimization problem:<br>$$<br>\max \quad \frac{1}{m} \Sigma_{i=1}^{m} ({x^{(i)}}^Tu)^2 \tag{6}<br>$$</p>
+<p>$$<br>s.t. \quad \quad \Arrowvert u \Arrowvert = 1 \tag{7}<br>$$</p>
+<p>This is a maximization problem with constraint. It can be reformulated as:<br>$$<br>\max \quad u^T(\frac{1}{m}\Sigma_{i=1}^m x^{(i)} {x^{(i)}}^T )u = u^T\Sigma u \tag{8}<br>$$</p>
+<p>$$<br>u^Tu=1 \tag{9}<br>$$</p>
+<p>To get the (local) optimum of the constrained problem, we use the method of Lagrange multipliers:<br>$$<br>L(u,\lambda) = u^T \Sigma u -\lambda (u^Tu-1) \tag{10}<br>$$<br>Note that $\lambda$ is the Lagrange multipliers not the eigenvalue of covariance matrix. Now let us take the partial derivatives of formula (10) with respect to $u$ and $\lambda$. Then let the derivatives equal to zero:<br>$$<br>\frac{\partial L}{\partial u} = u^T\Sigma - \lambda u = 0 \tag{11}<br>$$</p>
+<p>$$<br>\frac{\partial L}{\partial \lambda} = u^Tu-1 = 0 \tag{12}<br>$$</p>
+<p>We can see that the formula (11) is equivalent to formula (3). Thus choosing the new basis of lower space is equivalent to getting the top-k eigenvector of covariance matrix of raw data.</p>
+<p>See! The dimensionality reduction problem is intrinsically a constrained maximization problem. We use the method of Lagrangian multiplier to solve the problem.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://59.80.44.100/cs229.stanford.edu/notes/cs229-notes10.pdf" target="_blank" rel="external">http://59.80.44.100/cs229.stanford.edu/notes/cs229-notes10.pdf</a></p>
+<p><a href="http://ufldl.stanford.edu/wiki/index.php/PCA" target="_blank" rel="external">http://ufldl.stanford.edu/wiki/index.php/PCA</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Column Generation Algorithm</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Operation Research</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Simplex Method</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Optimization</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://xijunlee.github.io/2019/03/10/reunderstanding-of-PCA/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/01/14/panorama/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Panorama of AutoML Methods</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Procedure-of-PCA"><span class="toc-number">1.</span> <span class="toc-text">Procedure of PCA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mathematics-behind-PCA"><span class="toc-number">2.</span> <span class="toc-text">Mathematics behind PCA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">3.</span> <span class="toc-text">Reference</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -275,9 +391,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

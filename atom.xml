@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xijunlee.github.io/"/>
-  <updated>2019-07-25T16:02:47.206Z</updated>
+  <updated>2019-07-27T16:11:27.635Z</updated>
   <id>https://xijunlee.github.io/</id>
   
   <author>
@@ -16,15 +16,15 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Intern Recruting</title>
+    <title>Intern Recruiting</title>
     <link href="https://xijunlee.github.io/2019/07/25/recruting-intern/"/>
     <id>https://xijunlee.github.io/2019/07/25/recruting-intern/</id>
     <published>2019-07-25T15:43:27.000Z</published>
-    <updated>2019-07-25T16:02:47.206Z</updated>
+    <updated>2019-07-27T16:11:27.635Z</updated>
     
     <content type="html"><![CDATA[<img src="https://xijun-album.oss-cn-hangzhou.aliyuncs.com/banner2.jpg">
 <p>We are recruting long-term (<strong> 6+ months </strong>) interns! If you are MS or PhD students in computer science, operations research, applied mathematics or related subjects. Interdisciplinary background is positive. You could send me (xijun.li@huawei.com) your CV If you are interested on working in Noah’s Ark Lab (Shenzhen and Hong Kong).</p>
-<p>Specifically, our group focuses on 1) combining combinatorial optimization with machine learning algorithm, a.k.a. learning to optimize; 2) Automated Matchine Learning, etc. I hope we can work together on these exicting topics.</p>
+<p>Specifically, our group focuses on 1) combining combinatorial optimization with machine learning algorithm, a.k.a. <strong> Learning to Optimize </strong>; 2) <strong> Automated Matchine Learning </strong>, etc. I hope we can work together on these exicting topics.</p>
 ]]></content>
     
     <summary type="html">
@@ -35,7 +35,7 @@
     </summary>
     
     
-      <category term="Recruting" scheme="https://xijunlee.github.io/tags/Recruting/"/>
+      <category term="Recruiting" scheme="https://xijunlee.github.io/tags/Recruiting/"/>
     
       <category term="Internship" scheme="https://xijunlee.github.io/tags/Internship/"/>
     

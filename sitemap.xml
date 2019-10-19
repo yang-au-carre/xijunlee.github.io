@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xijunlee.github.io/about/index.html</loc>
+    
+    <lastmod>2019-10-19T14:34:54.809Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://xijunlee.github.io/2019/07/25/recruting-intern/</loc>
     
     <lastmod>2019-08-06T15:27:28.536Z</lastmod>
@@ -61,13 +68,6 @@
     <loc>https://xijunlee.github.io/2018/12/09/meta-learning/</loc>
     
     <lastmod>2019-01-13T15:40:33.642Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xijunlee.github.io/about/index.html</loc>
-    
-    <lastmod>2019-01-01T02:06:37.143Z</lastmod>
     
   </url>
   
